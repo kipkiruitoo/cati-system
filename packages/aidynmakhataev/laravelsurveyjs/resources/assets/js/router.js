@@ -10,10 +10,21 @@ import VueRouter from "vue-router";
 /**
  *  SPA routes
  */
-const routes = [
-    { path: '/', component: SurveyList, name: 'home'},
-    { path: '/:id', component: SurveyEditor, name: 'editor'},
-    { path: '/:id/results', component: SurveyResult, name: 'result'}
+const routes = [{
+        path: '/',
+        component: SurveyList,
+        name: 'home'
+    },
+    {
+        path: '/:id',
+        component: SurveyEditor,
+        name: 'editor'
+    },
+    {
+        path: '/:id/results',
+        component: SurveyResult,
+        name: 'result'
+    }
 ];
 
 export default new VueRouter({
