@@ -7,3 +7,5 @@ Vue.component('survey-show', require('./components/SurveyShow.vue'))
 new Vue({
     el: "#surveyElement"
 })
+
+Vue.config.devtools = true

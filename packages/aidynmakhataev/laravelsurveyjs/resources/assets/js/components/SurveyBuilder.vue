@@ -55,8 +55,3 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-    .btn-primary {
-        background-color: #1976d2 !important
-    }
-</style>

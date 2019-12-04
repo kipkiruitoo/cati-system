@@ -68314,6 +68314,7 @@ Vue.component('survey-show', __webpack_require__(/*! ./components/SurveyShow.vue
 new Vue({
   el: "#surveyElement"
 });
+Vue.config.devtools = true;
 
 /***/ }),
 
@@ -68324,7 +68325,7 @@ new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Davis\Desktop\tifa_projects\swz\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-front.js */"./resources/assets/js/survey-front.js");
+module.exports = __webpack_require__(/*! C:\Users\Davis\Desktop\tifa_projects\szw\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-front.js */"./resources/assets/js/survey-front.js");
 
 
 /***/ })
