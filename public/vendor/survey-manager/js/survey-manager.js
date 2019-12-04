@@ -1848,26 +1848,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1876,7 +1856,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       survey: {},
-      surveyName: '',
+      surveyName: "",
       nameField: false
     };
   },
@@ -1887,7 +1867,7 @@ __webpack_require__.r(__webpack_exports__);
     getSurvey: function getSurvey(id) {
       var _this = this;
 
-      axios.get('/survey/' + id).then(function (response) {
+      axios.get("/survey/" + id).then(function (response) {
         _this.survey = response.data.data;
         _this.surveyName = response.data.data.name;
       })["catch"](function (error) {
@@ -1901,7 +1881,7 @@ __webpack_require__.r(__webpack_exports__);
     postEdit: function postEdit() {
       var _this2 = this;
 
-      axios.put('/survey/' + this.survey.id, {
+      axios.put("/survey/" + this.survey.id, {
         name: this.surveyName
       }).then(function (response) {
         _this2.nameField = false;
@@ -1925,7 +1905,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -4310,26 +4289,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card--flex-toolbar {\n    margin-top: -64px;\n}\n.github-corner:hover .octo-arm {\n    animation: octocat-wave 560ms ease-in-out;\n}\n@keyframes octocat-wave {\n0%,\n    100% {\n        transform: rotate(0);\n}\n20%,\n    60% {\n        transform: rotate(-25deg);\n}\n40%,\n    80% {\n        transform: rotate(10deg);\n}\n}\n@media (max-width: 500px) {\n.github-corner:hover .octo-arm {\n        animation: none;\n}\n.github-corner .octo-arm {\n        animation: octocat-wave 560ms ease-in-out;\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.btn-primary {\n    background-color: #1976d2 !important\n}\n", ""]);
+exports.push([module.i, "\n.card--flex-toolbar {\n  margin-top: -64px;\n}\n.github-corner:hover .octo-arm {\n  animation: octocat-wave 560ms ease-in-out;\n}\n@keyframes octocat-wave {\n0%,\n  100% {\n    transform: rotate(0);\n}\n20%,\n  60% {\n    transform: rotate(-25deg);\n}\n40%,\n  80% {\n    transform: rotate(10deg);\n}\n}\n@media (max-width: 500px) {\n.github-corner:hover .octo-arm {\n    animation: none;\n}\n.github-corner .octo-arm {\n    animation: octocat-wave 560ms ease-in-out;\n}\n}\n", ""]);
 
 // exports
 
@@ -28566,36 +28526,6 @@ options.transform = transform
 options.insertInto = undefined;
 
 var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--5-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--5-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--5-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--5-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SurveyBuilder.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -102795,83 +102725,33 @@ var render = function() {
   return _c(
     "v-app",
     [
+      _c("router-view"),
+      _vm._v(" "),
       _c(
-        "v-card",
-        { attrs: { flat: "" } },
+        "v-snackbar",
+        {
+          attrs: { timeout: 6000, bottom: "", right: "", "multi-line": "" },
+          model: {
+            value: _vm.$root.snackbar,
+            callback: function($$v) {
+              _vm.$set(_vm.$root, "snackbar", $$v)
+            },
+            expression: "$root.snackbar"
+          }
+        },
         [
+          _vm._v("\n    " + _vm._s(_vm.$root.snackbarMsg) + "\n    "),
           _c(
-            "v-toolbar",
-            { attrs: { dark: "", color: "primary", flat: "", extended: "" } },
-            [_c("v-toolbar-title", [_vm._v("sger")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-layout",
-            { attrs: { row: "", "pb-2": "" } },
-            [
-              _c(
-                "v-flex",
-                { attrs: { xs8: "", "offset-xs2": "" } },
-                [
-                  _c(
-                    "v-card",
-                    { staticClass: "card--flex-toolbar" },
-                    [
-                      _c(
-                        "v-card-text",
-                        [
-                          _c("router-view"),
-                          _vm._v(" "),
-                          _c(
-                            "v-snackbar",
-                            {
-                              attrs: {
-                                timeout: 6000,
-                                bottom: "",
-                                right: "",
-                                "multi-line": ""
-                              },
-                              model: {
-                                value: _vm.$root.snackbar,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.$root, "snackbar", $$v)
-                                },
-                                expression: "$root.snackbar"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.$root.snackbarMsg) +
-                                  "\n                            "
-                              ),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "blue" },
-                                  nativeOn: {
-                                    click: function($event) {
-                                      _vm.$root.snackbar = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Close")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
+            "v-btn",
+            {
+              attrs: { flat: "", color: "blue" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.$root.snackbar = false
+                }
+              }
+            },
+            [_vm._v("Close")]
           )
         ],
         1
@@ -102936,110 +102816,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-toolbar",
-        [
-          _c(
-            "v-btn",
-            {
-              staticClass: "mb-3",
-              attrs: { icon: "" },
-              nativeOn: {
-                click: function($event) {
-                  return _vm.$router.push({ name: "home" })
-                }
-              }
-            },
-            [_c("v-icon", { attrs: { large: "" } }, [_vm._v("home")])],
-            1
-          ),
-          _vm._v(" "),
-          !_vm.nameField
-            ? _c(
-                "v-toolbar-title",
-                {
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.nameField = true
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.surveyName))]
-              )
-            : _c(
-                "v-flex",
-                { attrs: { xs4: "" } },
-                [
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: {
-                      rules: [
-                        function() {
-                          return (
-                            !!_vm.surveyName || "The field name is required"
-                          )
-                        },
-                        function() {
-                          return (
-                            (!!_vm.surveyName && _vm.surveyName.length >= 3) ||
-                            "Name must contain at least 3 character!"
-                          )
-                        }
-                      ]
-                    },
-                    model: {
-                      value: _vm.surveyName,
-                      callback: function($$v) {
-                        _vm.surveyName = $$v
-                      },
-                      expression: "surveyName"
-                    }
-                  })
-                ],
-                1
-              ),
-          _vm._v(" "),
-          _vm.nameField
-            ? _c(
-                "v-toolbar-items",
-                [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { small: "", flat: "", color: "primary" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.postEdit($event)
-                        }
-                      }
-                    },
-                    [_vm._v("Save")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { small: "", flat: "", color: "warning" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.onCancelEdit($event)
-                        }
-                      }
-                    },
-                    [_vm._v("Cancel")]
-                  )
-                ],
-                1
-              )
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
       Object.keys(_vm.survey).length
         ? _c("survey-builder", {
             attrs: { json: _vm.survey.json, id: _vm.survey.id }
@@ -103077,12 +102853,6 @@ var render = function() {
       _c(
         "v-toolbar",
         [
-          _c("v-toolbar-title", [
-            _vm._v("List of all available surveys in this project")
-          ]),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
           _c(
             "v-dialog",
             {
@@ -135149,9 +134919,7 @@ if (token) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SurveyBuilder_vue_vue_type_template_id_1990b48c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SurveyBuilder.vue?vue&type=template&id=1990b48c& */ "./resources/assets/js/components/SurveyBuilder.vue?vue&type=template&id=1990b48c&");
 /* harmony import */ var _SurveyBuilder_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SurveyBuilder.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/SurveyBuilder.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SurveyBuilder.vue?vue&type=style&index=0&lang=css& */ "./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -135159,7 +134927,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _SurveyBuilder_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _SurveyBuilder_vue_vue_type_template_id_1990b48c___WEBPACK_IMPORTED_MODULE_0__["render"],
   _SurveyBuilder_vue_vue_type_template_id_1990b48c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -135188,22 +134956,6 @@ component.options.__file = "resources/assets/js/components/SurveyBuilder.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SurveyBuilder.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyBuilder.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--5-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--5-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./SurveyBuilder.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyBuilder.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_5_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_5_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyBuilder_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

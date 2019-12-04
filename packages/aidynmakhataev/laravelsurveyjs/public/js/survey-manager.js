@@ -1976,7 +1976,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "survey-list",
   data: function data() {
@@ -4290,7 +4289,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card--flex-toolbar {\n    margin-top: -64px;\n}\n.github-corner:hover .octo-arm {\n    animation: octocat-wave 560ms ease-in-out;\n}\n@keyframes octocat-wave {\n0%,\n    100% {\n        transform: rotate(0);\n}\n20%,\n    60% {\n        transform: rotate(-25deg);\n}\n40%,\n    80% {\n        transform: rotate(10deg);\n}\n}\n@media (max-width: 500px) {\n.github-corner:hover .octo-arm {\n        animation: none;\n}\n.github-corner .octo-arm {\n        animation: octocat-wave 560ms ease-in-out;\n}\n}\n", ""]);
+exports.push([module.i, "\n.card--flex-toolbar {\n  margin-top: -64px;\n}\n.github-corner:hover .octo-arm {\n  animation: octocat-wave 560ms ease-in-out;\n}\n@keyframes octocat-wave {\n0%,\n  100% {\n    transform: rotate(0);\n}\n20%,\n  60% {\n    transform: rotate(-25deg);\n}\n40%,\n  80% {\n    transform: rotate(10deg);\n}\n}\n@media (max-width: 500px) {\n.github-corner:hover .octo-arm {\n    animation: none;\n}\n.github-corner .octo-arm {\n    animation: octocat-wave 560ms ease-in-out;\n}\n}\n", ""]);
 
 // exports
 
@@ -102726,83 +102725,33 @@ var render = function() {
   return _c(
     "v-app",
     [
+      _c("router-view"),
+      _vm._v(" "),
       _c(
-        "v-card",
-        { attrs: { flat: "" } },
+        "v-snackbar",
+        {
+          attrs: { timeout: 6000, bottom: "", right: "", "multi-line": "" },
+          model: {
+            value: _vm.$root.snackbar,
+            callback: function($$v) {
+              _vm.$set(_vm.$root, "snackbar", $$v)
+            },
+            expression: "$root.snackbar"
+          }
+        },
         [
+          _vm._v("\n    " + _vm._s(_vm.$root.snackbarMsg) + "\n    "),
           _c(
-            "v-toolbar",
-            { attrs: { dark: "", color: "primary", flat: "", extended: "" } },
-            [_c("v-toolbar-title", [_vm._v("sger")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-layout",
-            { attrs: { row: "", "pb-2": "" } },
-            [
-              _c(
-                "v-flex",
-                { attrs: { xs8: "", "offset-xs2": "" } },
-                [
-                  _c(
-                    "v-card",
-                    { staticClass: "card--flex-toolbar" },
-                    [
-                      _c(
-                        "v-card-text",
-                        [
-                          _c("router-view"),
-                          _vm._v(" "),
-                          _c(
-                            "v-snackbar",
-                            {
-                              attrs: {
-                                timeout: 6000,
-                                bottom: "",
-                                right: "",
-                                "multi-line": ""
-                              },
-                              model: {
-                                value: _vm.$root.snackbar,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.$root, "snackbar", $$v)
-                                },
-                                expression: "$root.snackbar"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.$root.snackbarMsg) +
-                                  "\n                            "
-                              ),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { flat: "", color: "blue" },
-                                  nativeOn: {
-                                    click: function($event) {
-                                      _vm.$root.snackbar = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Close")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
+            "v-btn",
+            {
+              attrs: { flat: "", color: "blue" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.$root.snackbar = false
+                }
+              }
+            },
+            [_vm._v("Close")]
           )
         ],
         1
@@ -102904,12 +102853,6 @@ var render = function() {
       _c(
         "v-toolbar",
         [
-          _c("v-toolbar-title", [
-            _vm._v("List of all available surveys in this project")
-          ]),
-          _vm._v(" "),
-          _c("v-spacer"),
-          _vm._v(" "),
           _c(
             "v-dialog",
             {

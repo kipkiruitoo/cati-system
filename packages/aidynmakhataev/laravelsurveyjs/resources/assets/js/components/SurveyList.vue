@@ -1,8 +1,7 @@
 <template>
   <div>
     <v-toolbar>
-      <v-toolbar-title>List of all available surveys in this project</v-toolbar-title>
-      <v-spacer></v-spacer>
+
       <v-dialog flat v-model="dialog" max-width="500px" content-class="remove-overflow">
         <v-btn slot="activator" color="primary" dark class="mb-2">New Survey</v-btn>
         <v-card>

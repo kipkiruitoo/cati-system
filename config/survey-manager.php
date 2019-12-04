@@ -48,7 +48,7 @@ return [
     'locale'                    =>  'en',
 
     // Default theme for survey
-    'theme'                     =>  'bootstrap',
+    'theme'                     =>  'darkblue',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ return [
 
     'builder'                   =>  [
 
-        'theme'                 =>  'bootstrapmaterial',
+        'theme'                 =>  'darkblue',
 
         'showEmbededSurveyTab'  =>  false,
 
