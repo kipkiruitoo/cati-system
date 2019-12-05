@@ -7,35 +7,41 @@
         <h4>Add a new Project</h4>
     </div>
     <div class="row">
-        <div class="card">
-            <div class="card-content">
+        <div class="card ">
+            <div class="card-content ">
                 <form action="{{route('projects.store')}}" method="post">
                     @csrf
 
-                    <div class="form-group">
+                    <div class="form-group m-l-10">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
-                            placeholder="Enter Name">
+                            placeholder="Enter Name" required>
                         <small id="nameHelp" class="form-text text-muted">Name of the Project</small>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group p-l-10">
                         <label for="name">Start Date</label>
-                        <input type="date" class="form-control" id="sdate" name="name" aria-describedby="nameHelp">
+                        <input type="date" class="form-control" id="sdate" name="sdate" aria-describedby="nameHelp"
+                            required>
                         <small id="nameHelp" class="form-text text-muted">Expected start date of the project</small>
                     </div>
                     <div class="form-group">
                         <label for="name">End Date</label>
-                        <input type="date" class="form-control" id="edate" name="name" aria-describedby="nameHelp">
+                        <input type="date" class="form-control" id="edate" name="edate" aria-describedby="nameHelp"
+                            required>
                         <small id="nameHelp" class="form-text text-muted">Expected end date of the project</small>
                     </div>
                     <div class="form-group">
-                        <label for="name">Supervisor</label>
-                        <select class="form-control" id="name" name="supervisor" aria-describedby="nameHelp">
+                        <label for="name">Project Manager</label>
+                        <select class="form-control" id="name" name="pm" aria-describedby="nameHelp" required>
                             @foreach($pms as $pm)
                             <option value="{{$pm->id}}">{{$pm->name}}</option>
                             @endforeach
                         </select>
-                        <small id="nameHelp" class="form-text text-muted">Name of the Project</small>
+                        <small id="nameHelp" class="form-text text-muted">Assign a project manager to this
+                            project</small>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary  btn-block">Submit</button>
                     </div>
 
                 </form>

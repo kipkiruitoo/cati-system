@@ -6,23 +6,17 @@
 
 <script>
     import * as SurveyVue from 'survey-vue'
-
     const Survey = SurveyVue.Survey
     SurveyVue.StylesManager.applyTheme(SurveyConfig.theme)
-
     import * as widgets from "surveyjs-widgets";
-
     Object.filter = (obj, predicate) =>
         Object.keys(obj)
             .filter( key => predicate(obj[key]) )
             .reduce( (res, key) => Object.assign(res, { [key]: obj[key] }), {} );
-
     const widgetsList = Object.filter(SurveyConfig.widgets, widget => widget === true);
-
     Object.keys(widgetsList).forEach(function (widget) {
         widgets[widget](SurveyVue);
     });
-
     export default {
         components: {
             Survey

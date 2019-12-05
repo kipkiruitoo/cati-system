@@ -2,10 +2,53 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-content">
-        
+<div class="container">
+    <div class="row">
+        <h4>Edit {{$project->name}}</h4>
     </div>
-</div>
+    <div class="row">
+        <div class="card ">
+            <div class="card-content ">
+                <form action="{{route('projects.update', $project->id)}}" method="POST">
+                    {{method_field('PUT')}}
+                     {{csrf_field()}}
 
+                    <div class="form-group m-l-10">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" value="{{$project->name}}" name="name" aria-describedby="nameHelp"
+                            placeholder="Enter Name" required>
+                        <small id="nameHelp" class="form-text text-muted">Name of the Project</small>
+                    </div>
+                    <div class="form-group p-l-10">
+                        <label for="name">Start Date</label>
+                        <input type="date" class="form-control" id="sdate" value="{{$project->start_date}}" name="sdate" aria-describedby="nameHelp"
+                            required>
+                        <small id="nameHelp" class="form-text text-muted">Expected start date of the project</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">End Date</label>
+                        <input type="date" class="form-control" id="edate" value="{{$project->end_date}}" name="edate" aria-describedby="nameHelp"
+                            required>
+                        <small id="nameHelp" class="form-text text-muted">Expected end date of the project</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Project Manager</label>
+                        <select class="form-control" id="name" name="pm" value="{{$project->pm}}" aria-describedby="nameHelp" required>
+                            @foreach($pms as $pm)
+                            <option value="{{$pm->id}}">{{$pm->name}}</option>
+                            @endforeach
+                        </select>
+                        <small id="nameHelp" class="form-text text-muted">Assign a project manager to this
+                            project</small>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary  btn-block">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
 @endsection

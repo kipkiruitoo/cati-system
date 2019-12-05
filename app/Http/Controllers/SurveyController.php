@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Survey;
+// use App\Survey;
 use Illuminate\Http\Request;
+use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 class SurveyController extends Controller
 {
@@ -14,7 +15,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
+        return view('surveys.index');
     }
 
     /**
@@ -22,9 +23,9 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return view('surveys.create', compact('id'));
     }
 
     /**
@@ -35,7 +36,19 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $survey =  new Survey;
+       $survey->name = $request->name;
+       $survey->slug = str_slug($request->name);
+       $survey->project = $request->project;
+       $jsonArray = json_decode('{"pages":[]}');
+       $survey->json = $jsonArray;
+
+       if ($survey->save()) {
+           
+        return redirect()->route('projects.show', $survey->project);
+       }else{
+           echo "did not work";
+       }
     }
 
     /**
@@ -78,8 +91,19 @@ class SurveyController extends Controller
      * @param  \App\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey)
+    public function destroy($id)
     {
-        //
+       $pj = Survey::find($id);
+
+        if ($pj->delete()) {
+               
+        // $projects = Projects::all();
+
+
+        return redirect()->back();
+        }else{
+
+            echo('an error occured while deleting');
+        }
     }
 }

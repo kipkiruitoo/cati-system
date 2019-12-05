@@ -6,7 +6,6 @@
 
 <script>
 import SurveyBuilder from "./../components/SurveyBuilder";
-
 export default {
   components: {
     SurveyBuilder

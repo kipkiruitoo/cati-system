@@ -68314,7 +68314,6 @@ Vue.component('survey-show', __webpack_require__(/*! ./components/SurveyShow.vue
 new Vue({
   el: "#surveyElement"
 });
-Vue.config.devtools = true;
 
 /***/ }),
 

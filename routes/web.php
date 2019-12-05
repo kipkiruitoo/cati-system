@@ -25,3 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::resource('/projects', 'ProjectController');
+
+Route::resource('/surveys', 'SurveyController');
+
+Route::get('/surveys/create/{id}', 'SurveyController@create')->name('createsurvey');

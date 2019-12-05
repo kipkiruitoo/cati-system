@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Projects;
 use App\User;
+use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager\Role;
@@ -32,7 +33,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $pms = DB::table('users')->join('user_roles', 'user_roles.user_id', '=', 'users.id')->join('roles','roles.id', '=', 'user_roles.role_id' )->where('roles.name', 'Project Manager')->get();
+        $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
         return view('projects.create', compact('pms'));
 
         // print_r($pms);
@@ -46,7 +47,27 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proj =  new Projects;
+
+        $proj->name =  $request->name;
+        $proj->start_date =  $request->sdate;
+        $proj->slug = str_slug($request->name); 
+        $proj->end_date =  $request->edate;
+        $proj->pm =  $request->pm;
+
+
+        if ($proj->save()) {
+           
+            
+        $projects = Projects::all();
+
+
+        return view('projects.index')->withProjects($projects);
+        }else{
+            $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
+            return view('projects.create', compact('pms'));
+
+        }
     }
 
     /**
@@ -58,9 +79,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Projects::findOrFail($id)->first();
+        $surveys = Survey::where('project', $id)->get();
 
 
-        return view('projects.show')->withProject($project);
+        return view('projects.show', compact('surveys', 'id'))->withProject($project);
     }
 
     /**
@@ -71,10 +93,12 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-       $project = Projects::findOrFail($id)->first();
+       $project = Projects::where('id', $id)->first();
 
+       $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
 
-        return view('projects.show')->withProject($project);
+        return view('projects.edit', compact('pms'))->withProject($project);
+    // print_r($project);
     }
 
     /**
@@ -84,9 +108,35 @@ class ProjectController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Projects $projects)
+    public function update(Request $request, $id)
     {
-        //
+       $proj =  Projects::findOrFail($id);
+
+        $proj->name =  $request->name;
+        $proj->start_date =  $request->sdate;
+        $proj->slug = str_slug($request->name); 
+        $proj->end_date =  $request->edate;
+        $proj->pm =  $request->pm;
+
+
+        if ($proj->save()) {
+           
+            
+        $projects = Projects::all();
+
+
+        return redirect()->route('projects.index')->withProjects($projects);
+//  echo "worked";
+
+
+        }else{
+            $project = $proj;
+            $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
+            return redirect()->route('projects.edit', $proj->id, compact('pms', 'project'));
+
+            // echo "an error occured";
+
+        }
     }
 
     /**
@@ -95,8 +145,19 @@ class ProjectController extends Controller
      * @param  \App\Projects  $projects
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Projects $projects)
+    public function destroy($id)
     {
-        //
+        $pj = Projects::find($id);
+
+        if ($pj->delete()) {
+               
+        $projects = Projects::all();
+
+
+        return redirect()->route('projects.index')->withProjects($projects);
+        }else{
+
+            echo('an error occured while deleting');
+        }
     }
 }

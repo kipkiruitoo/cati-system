@@ -22,5 +22,3 @@ new Vue({
     },
     render: h => h(App)
 }).$mount('#survey-manager')
-
-Vue.config.devtools = true
