@@ -180,7 +180,7 @@ return [
     | Here you change some of the Voyager UI settings.
     |
     */
-
+    'google_analytics_client_id'=> '387324644799-1jkfkl73soh3nudiog2rd53q1773cb41.apps.googleusercontent.com',
     'primary_color' => '#22A7F0',
 
     'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
