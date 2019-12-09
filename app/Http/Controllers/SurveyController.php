@@ -38,7 +38,7 @@ class SurveyController extends Controller
     {
        $survey =  new Survey;
        $survey->name = $request->name;
-       $survey->slug = str_slug($request->name);
+       $survey->slug = time();
        $survey->project = $request->project;
        $jsonArray = json_decode('{"pages":[]}');
        $survey->json = $jsonArray;

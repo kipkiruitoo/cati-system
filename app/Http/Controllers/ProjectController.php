@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Projects;
 use App\User;
+use Auth;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,13 @@ class ProjectController extends Controller
     public function index()
     {
         
-        $projects = Projects::all();
+        $projects = Projects::where('pm', Auth::user()->id )->get();
 
 
         return view('projects.index')->withProjects($projects);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -33,8 +36,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
-        return view('projects.create', compact('pms'));
+        $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sup')->get();
+        $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sa')->get();
+        return view('projects.create', compact('sups', 'sas'));
 
         // print_r($pms);
     }
@@ -53,19 +57,29 @@ class ProjectController extends Controller
         $proj->start_date =  $request->sdate;
         $proj->slug = str_slug($request->name); 
         $proj->end_date =  $request->edate;
-        $proj->pm =  $request->pm;
-
-
+        $proj->pm =  Auth::user()->id;
+        $proj->sa = $request->sa;
+        
+        $supervisors = $request->supervisors;
+        // print_r($supervisors);
         if ($proj->save()) {
+
+            foreach ($supervisors as $supervisor) {
+                
+                DB::table('project_supervisor')->insert(
+                    ['user_id' => $supervisor, 'project_id' => $proj->id]
+                );
+            }
            
             
-        $projects = Projects::all();
+        $projects = Projects::where('pm', Auth::user()->id )->get();
 
 
         return view('projects.index')->withProjects($projects);
         }else{
-            $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
-            return view('projects.create', compact('pms'));
+          $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sup')->get();
+        $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sa')->get();
+        return view('projects.create', compact('sups', 'sas'));
 
         }
     }
@@ -95,9 +109,9 @@ class ProjectController extends Controller
     {
        $project = Projects::where('id', $id)->first();
 
-       $pms = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'Project Manager')->get();
-
-        return view('projects.edit', compact('pms'))->withProject($project);
+       $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sup')->get();
+         $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sa')->get();
+        return view('projects.edit', compact('sups', 'sas'))->withProject($project);
     // print_r($project);
     }
 
@@ -118,9 +132,13 @@ class ProjectController extends Controller
         $proj->end_date =  $request->edate;
         $proj->pm =  $request->pm;
 
-
+        $supervisors = $request->supervisors;
         if ($proj->save()) {
-           
+            foreach ($supervisors as $supervisor) {
+             DB::table('project_supervisor')->where('project_id', $id)->update(
+                    ['user_id' => $supervisor, 'project_id' => $proj->id]
+                );
+            }
             
         $projects = Projects::all();
 
@@ -160,4 +178,8 @@ class ProjectController extends Controller
             echo('an error occured while deleting');
         }
     }
+     protected function guard()
+  {
+      return Auth::guard(app('VoyagerGuard'));
+  }
 }

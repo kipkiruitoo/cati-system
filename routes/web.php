@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
@@ -27,5 +27,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::resource('/projects', 'ProjectController');
 
 Route::resource('/surveys', 'SurveyController');
+
+Route::get('/script', 'ScripterController@index');
+Route::get('/script/surveys/{id}', 'ScripterController@surveys')->name('scriptersurveys');
 
 Route::get('/surveys/create/{id}', 'SurveyController@create')->name('createsurvey');

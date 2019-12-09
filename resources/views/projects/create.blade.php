@@ -31,14 +31,24 @@
                         <small id="nameHelp" class="form-text text-muted">Expected end date of the project</small>
                     </div>
                     <div class="form-group">
-                        <label for="name">Project Manager</label>
-                        <select class="form-control" id="name" name="pm" aria-describedby="nameHelp" required>
-                            @foreach($pms as $pm)
-                            <option value="{{$pm->id}}">{{$pm->name}}</option>
+                        <label for="name">Assign Supervisors</label>
+                        <select class="form-control select_multiple" id="supervisors" name="supervisors[]" aria-describedby="nameHelp" multiple required>
+                            @foreach($sups as $sup)
+                            <option value="{{$sup->id}}">{{$sup->name}}</option>
                             @endforeach
                         </select>
-                        <small id="nameHelp" class="form-text text-muted">Assign a project manager to this
-                            project</small>
+                        <small id="nameHelp" class="form-text text-muted">Assign supervisors to this
+                            project. Press Ctrl and click to add more than one supervisor</small>
+                    </div>
+                    <div class="form-group">
+                    <label for="name">Assign a Scripting Agent</label>
+                        <select class="form-control" id="supervisors"  name="sa" aria-describedby="nameHelp" required>
+                            @foreach($sas as $sup)
+                            <option value="{{$sup->id}}">{{$sup->name}}</option>
+                            @endforeach
+                        </select>
+                        <small id="nameHelp" class="form-text text-muted">Assign a scripting agent  to this
+                            project. Press Ctrl and click to add more than one Scripting Agent</small>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary  btn-block">Submit</button>
@@ -50,5 +60,12 @@
     </div>
 
 </div>
+
+<script>
+$(document).ready(function () {
+  $("#test").CreateMultiCheckBox({ width: '230px',
+             defaultText : 'Select Below', height:'250px' });
+});
+</script>
 
 @endsection
