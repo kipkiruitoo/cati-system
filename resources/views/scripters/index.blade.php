@@ -27,8 +27,9 @@
                         <a href="{{route('scriptersurveys', $project->id)}}"><button
                                 class="btn btn-primary">Show</button></a>
                     </td>
+                    
                 </tr>
-                <hr>
+              
                 @endforeach
             </tbody>
         </table>

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Projects;
 use App\User;
+use App\Client;
 use Auth;
+use App\RespondentTypes;
+
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 use Illuminate\Support\Facades\DB;
@@ -20,11 +23,21 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->role_id == 1) {
+            $projects = Projects::all();
+        }else{
+            $projects = Projects::where('pm', Auth::user()->id )->get();
+        }
         
-        $projects = Projects::where('pm', Auth::user()->id )->get();
+
+        
+
+        $clients = Client::all();
+        $respondents = RespondentTypes::all();
+        
 
 
-        return view('projects.index')->withProjects($projects);
+        return view('projects.index', compact('clients', 'respondents'))->withProjects($projects);
     }
 
     
@@ -73,13 +86,17 @@ class ProjectController extends Controller
            
             
         $projects = Projects::where('pm', Auth::user()->id )->get();
+        
+        $clients = Client::all();
+        $respondents = RespondentTypes::all();
+        
 
 
-        return view('projects.index')->withProjects($projects);
+        return view('projects.index', compact('clients', 'respondents'))->withProjects($projects);
         }else{
           $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sup')->get();
         $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users','users.id', '=', 'user_roles.user_id' )->where('roles.name', 'sa')->get();
-        return view('projects.create', compact('sups', 'sas'));
+        return view('projects.create', compact('sups', 'sas', 'clients', 'respondents'));
 
         }
     }
@@ -181,5 +198,29 @@ class ProjectController extends Controller
      protected function guard()
   {
       return Auth::guard(app('VoyagerGuard'));
+  }
+
+  public function assignclient(Request $request, $id){
+
+    $proj =  Projects::findOrFail($id);
+    $proj->client = $request->client;
+    if ($proj->save()) {
+        
+        return redirect()->back();
+    }else{
+        echo "Something went wrong";
+    }
+
+  }
+    public function assignrespondents(Request $request, $id){
+      $proj =  Projects::findOrFail($id);
+         $proj->respondents = $request->respondent;
+    if ($proj->save()) {
+        
+        return redirect()->back();
+    }else{
+        echo "Something went wrong";
+    }
+
   }
 }

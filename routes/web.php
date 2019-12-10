@@ -32,3 +32,9 @@ Route::get('/script', 'ScripterController@index');
 Route::get('/script/surveys/{id}', 'ScripterController@surveys')->name('scriptersurveys');
 
 Route::get('/surveys/create/{id}', 'SurveyController@create')->name('createsurvey');
+Route::get('/scripter/create/{id}', 'ScripterController@create')->name('screatesurveyform');
+Route::post('/scripter/post', 'ScripterController@createsurvey')->name('screatesurvey');
+
+Route::put('/changestatus/{id}', 'ScripterController@changestatus')->name('changestatus');
+Route::put('/assignclients/{id}', 'ProjectController@assignclient')->name('assignclients');
+Route::put('/assignrespondents/{id}', 'ProjectController@assignrespondents')->name('assignrespondents');
