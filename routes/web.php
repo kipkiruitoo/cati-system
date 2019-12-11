@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Exports\RespondentExport;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return redirect()->route('home');
@@ -38,3 +41,15 @@ Route::post('/scripter/post', 'ScripterController@createsurvey')->name('screates
 Route::put('/changestatus/{id}', 'ScripterController@changestatus')->name('changestatus');
 Route::put('/assignclients/{id}', 'ProjectController@assignclient')->name('assignclients');
 Route::put('/assignrespondents/{id}', 'ProjectController@assignrespondents')->name('assignrespondents');
+
+
+Route::get('/respondents/export', function(){
+
+     return Excel::download(new RespondentExport, 'respondents.xlsx');
+});
+Route::post('/respondents/import', 'ProjectController@importrespondents')->name('uploadrespondents');
+Route::get('/users/export', function(){
+
+     return Excel::download(new UsersExport, 'users.xlsx');
+});
+

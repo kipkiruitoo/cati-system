@@ -11,6 +11,7 @@
             <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
+            <button type="button" data-toggle="modal" data-target="#uploadModal"  class="btn btn-dark btn-add-new"><i class="voyager-list-add"></i><span> Import from Excel</span></button>
         @endcan
         @can('delete', app($dataType->model_name))
             @include('voyager::partials.bulk-delete')
@@ -34,6 +35,35 @@
         @endforeach
         @include('voyager::multilingual.language-selector')
     </div>
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose Excel file to upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('uploadrespondents')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                         <input class="form-control" type="file" name="upfile" id="upfile">
+                    </div>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+            
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+
 @stop
 
 @section('content')

@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager\Role;
 use Illuminate\Http\Request;
 
+
+use App\Exports\RespondentExport;
+use App\Exports\UsersExport;
+use App\Imports\RespondentsImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 class ProjectController extends Controller
 {
     /**
@@ -222,5 +229,10 @@ class ProjectController extends Controller
         echo "Something went wrong";
     }
 
+  }
+  public function importrespondents(Request $request){
+      Excel::import(new RespondentsImport, request()->file('upfile'));
+
+      return redirect()->back();
   }
 }
