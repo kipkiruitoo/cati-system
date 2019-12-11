@@ -43,7 +43,7 @@
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
                             <h6>{{ Auth::user()->email }}</h6>
-                        </div>
+                        </div> 
                     </li>
                     <li class="divider"></li>
                     <?php $nav_items = config('voyager.dashboard.navbar_items'); ?>
@@ -51,7 +51,7 @@
                     @foreach($nav_items as $name => $item)
                     <li {!! isset($item['classes']) && !empty($item['classes']) ? 'class="'.$item['classes'].'"' : '' !!}>
                         @if(isset($item['route']) && $item['route'] == 'voyager.logout')
-                        <form action="{{ route('voyager.logout') }}" method="POST">
+                        <form action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-danger btn-block">
                                 @if(isset($item['icon_class']) && !empty($item['icon_class']))

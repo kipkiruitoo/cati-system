@@ -202,10 +202,7 @@ class ProjectController extends Controller
             echo('an error occured while deleting');
         }
     }
-     protected function guard()
-  {
-      return Auth::guard(app('VoyagerGuard'));
-  }
+ 
 
   public function assignclient(Request $request, $id){
 
@@ -232,6 +229,38 @@ class ProjectController extends Controller
   }
   public function importrespondents(Request $request){
       Excel::import(new RespondentsImport, request()->file('upfile'));
+
+      return redirect()->back();
+  }
+
+  public function supervisorview(){
+      
+    $projects = DB::table('projects')->join('project_supervisor', 'project_supervisor.project_id', '=', 'projects.id')->where('project_supervisor.user_id', Auth::user()->id)->get();
+        return view('supervisors.index')->withProjects($projects);
+  }
+
+
+
+  public function projectagents($id){
+      $agents =  DB::table('users')->join('projects_agents', 'projects_agents.user_id', '=', 'users.id')->where('projects_agents.project_id', $id)->get();
+    //   print_r($agents);
+
+
+        $freeagents = User::where('role_id', 2)->get();
+
+      return view('supervisors.agents', compact('agents', 'freeagents', 'id'));
+    
+  }
+
+
+
+  public function addagents(Request $request, $id){
+      $agents = $request->agents;
+      foreach ($agents as $agent) {
+          DB::table('projects_agents')->insert(
+                    ['user_id' => $agent, 'project_id' => $id]
+                );
+      }
 
       return redirect()->back();
   }

@@ -53,3 +53,13 @@ Route::get('/users/export', function(){
      return Excel::download(new UsersExport, 'users.xlsx');
 });
 
+
+
+Route::get('/agent', 'AgentController@firstpage')->name('agent');
+
+
+Route::get('/supervisor', 'ProjectController@supervisorview')->name('supervisor');
+
+Route::get('/projectagents/{id}', 'ProjectController@projectagents')->name('projectagents');
+
+Route::post('/addagents/{id}', 'ProjectController@addagents')->name('addagents');

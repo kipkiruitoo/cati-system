@@ -29,8 +29,14 @@
             </div>
 
         </div>
+        @if(Auth::user()->role_id != 2 && Auth::user()->role_id != 5 )
         <div id="adminmenu">
             <admin-menu :items="{{ menu('admin', '_json') }}"></admin-menu>
         </div>
+        @else
+        <div id="adminmenu">
+            <admin-menu :items="{{ menu('scripters', '_json') }}"></admin-menu>
+        </div>
+        @endif
     </nav>
 </div>
