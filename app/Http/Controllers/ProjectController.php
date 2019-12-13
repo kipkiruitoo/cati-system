@@ -257,11 +257,25 @@ class ProjectController extends Controller
   public function addagents(Request $request, $id){
       $agents = $request->agents;
       foreach ($agents as $agent) {
+          DB::table('projects_agents')->where(
+                    ['user_id' => $agent, 'project_id' => $id]
+                )->delete();
           DB::table('projects_agents')->insert(
                     ['user_id' => $agent, 'project_id' => $id]
                 );
       }
 
       return redirect()->back();
+  }
+
+
+  public function removeagents(Request $request, $id){
+       
+DB::table('projects_agents')->where(
+                    ['user_id' => $request->agent, 'project_id' => $id]
+                )->delete();
+
+    return redirect()->back();
+
   }
 }

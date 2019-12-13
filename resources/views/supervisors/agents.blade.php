@@ -23,7 +23,13 @@
                 <tr>
                     <td>{{$agent->user_id}}</td>
                     <td>{{$agent->name}}</td>
-                    <td><button class="btn btn-danger">Remove</button></td>
+                    <td>
+                    <form action="{{route('removeagents', $id)}}" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$agent->user_id}}" name="agent">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
