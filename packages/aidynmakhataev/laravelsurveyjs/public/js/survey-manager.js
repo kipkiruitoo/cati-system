@@ -1780,6 +1780,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1800,8 +1801,8 @@ Object.keys(widgetsList).forEach(function (widget) {
   surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__[widget](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "survey-builder",
-  props: ["json", "id"],
+  name: 'survey-builder',
+  props: ['json', 'id'],
   data: function data() {
     return {
       surveyData: this.json,
@@ -1811,12 +1812,12 @@ Object.keys(widgetsList).forEach(function (widget) {
   mounted: function mounted() {
     var editorOptions = SurveyConfig.builder;
     surveyjs_editor__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme(SurveyConfig.builder.theme);
-    this.editor = new surveyjs_editor__WEBPACK_IMPORTED_MODULE_0__["SurveyEditor"]("surveyEditorContainer", editorOptions);
+    this.editor = new surveyjs_editor__WEBPACK_IMPORTED_MODULE_0__["SurveyEditor"]('surveyEditorContainer', editorOptions);
     this.editor.text = JSON.stringify(this.surveyData);
     var self = this;
 
     this.editor.saveSurveyFunc = function () {
-      axios.put("/survey/" + self.id, {
+      axios.put('/survey/' + self.id, {
         json: JSON.parse(this.text)
       }).then(function (response) {
         self.editor.text = JSON.stringify(response.data.data.json);
@@ -1847,6 +1848,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1855,7 +1876,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       survey: {},
-      surveyName: "",
+      surveyName: '',
       nameField: false
     };
   },
@@ -1866,7 +1887,7 @@ __webpack_require__.r(__webpack_exports__);
     getSurvey: function getSurvey(id) {
       var _this = this;
 
-      axios.get("/survey/" + id).then(function (response) {
+      axios.get('/survey/' + id).then(function (response) {
         _this.survey = response.data.data;
         _this.surveyName = response.data.data.name;
       })["catch"](function (error) {
@@ -1880,7 +1901,7 @@ __webpack_require__.r(__webpack_exports__);
     postEdit: function postEdit() {
       var _this2 = this;
 
-      axios.put("/survey/" + this.survey.id, {
+      axios.put('/survey/' + this.survey.id, {
         name: this.surveyName
       }).then(function (response) {
         _this2.nameField = false;
@@ -1975,8 +1996,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "survey-list",
+  name: 'survey-list',
   data: function data() {
     return {
       surveys: [],
@@ -1984,27 +2007,27 @@ __webpack_require__.r(__webpack_exports__);
       pageLength: 1,
       dialog: false,
       loading: false,
-      formTitle: "New Survey",
+      formTitle: 'New Survey',
       headers: [{
-        text: "ID",
-        alignt: "left",
-        value: "id",
+        text: 'ID',
+        alignt: 'left',
+        value: 'id',
         sortable: false
       }, {
-        text: "Name",
-        value: "name",
+        text: 'Name',
+        value: 'name',
         sortable: false
       }, {
-        text: "Created date",
-        valie: "created_at",
+        text: 'Created date',
+        valie: 'created_at',
         sortable: false
       }, {
-        text: "Actions",
-        value: "actions",
+        text: 'Actions',
+        value: 'actions',
         sortable: false
       }],
       editedItem: {
-        name: ""
+        name: ''
       }
     };
   },
@@ -2021,7 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      axios.get("/survey", {
+      axios.get('/survey', {
         params: {
           page: this.page
         }
@@ -2038,7 +2061,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     editItem: function editItem(id) {
       this.$router.push({
-        name: "editor",
+        name: 'editor',
         params: {
           id: id
         }
@@ -2047,9 +2070,9 @@ __webpack_require__.r(__webpack_exports__);
     deleteItem: function deleteItem(item) {
       var _this2 = this;
 
-      if (confirm("Are you sure you want to delete this survey?")) {
+      if (confirm('Are you sure you want to delete this survey?')) {
         this.snackbar = true;
-        axios["delete"]("/survey/" + item.id).then(function (response) {
+        axios["delete"]('/survey/' + item.id).then(function (response) {
           if (response.status === 200) {
             _this2.$root.snackbarMsg = response.data.message;
             _this2.$root.snackbar = true;
@@ -2062,7 +2085,7 @@ __webpack_require__.r(__webpack_exports__);
     onCloseModal: function onCloseModal() {
       this.dialog = false;
       this.editedItem = Object.assign({}, {
-        name: ""
+        name: ''
       });
     },
     onSaveModal: function onSaveModal(name) {
@@ -2075,14 +2098,14 @@ __webpack_require__.r(__webpack_exports__);
           pages: []
         }
       };
-      axios.post("/survey", data).then(function (response) {
+      axios.post('/survey', data).then(function (response) {
         if (response.status === 201) {
           _this3.dialog = false;
           _this3.loading = false;
           _this3.$root.snackbarMsg = response.data.message;
           _this3.$root.snackbar = true;
           _this3.editedItem = Object.assign({}, {
-            name: ""
+            name: ''
           });
 
           _this3.getSurveys();
@@ -2090,11 +2113,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     runSurvey: function runSurvey(slug) {
-      window.open("/" + SurveyConfig.route_prefix + "/" + slug, "_blank");
+      window.open('/' + SurveyConfig.route_prefix + '/' + slug, '_blank');
     },
     showResults: function showResults(id) {
       this.$router.push({
-        name: "result",
+        name: 'result',
         params: {
           id: id
         }
@@ -2169,7 +2192,110 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
+
+var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
+survey_vue__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme(SurveyConfig.theme);
+
+
+Object.filter = function (obj, predicate) {
+  return Object.keys(obj).filter(function (key) {
+    return predicate(obj[key]);
+  }).reduce(function (res, key) {
+    return Object.assign(res, _defineProperty({}, key, obj[key]));
+  }, {});
+};
+
+var widgetsList = Object.filter(SurveyConfig.widgets, function (widget) {
+  return widget === true;
+});
+Object.keys(widgetsList).forEach(function (widget) {
+  surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__[widget](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'survey-result',
+  components: {
+    Survey: Survey
+  },
+  data: function data() {
+    return {
+      results: [],
+      loading: false,
+      survey: {},
+      dialog: false,
+      surveyData: {},
+      surveyId: this.$route.params.id,
+      page: 1,
+      pageLength: 1,
+      headers: [{
+        text: 'ID',
+        alignt: 'left',
+        value: 'id',
+        sortable: false
+      }, {
+        text: 'IP_ADDRESS',
+        value: 'ip_address',
+        sortable: false
+      }, {
+        text: 'Created date',
+        valie: 'created_at',
+        sortable: false
+      }, {
+        text: 'Actions',
+        value: 'actions',
+        sortable: false
+      }]
+    };
+  },
+  mounted: function mounted() {
+    this.getSurveyResults(this.$route.params.id);
+  },
+  watch: {
+    page: function page() {
+      this.getSurveyResults();
+    }
+  },
+  methods: {
+    getSurveyResults: function getSurveyResults() {
+      var _this = this;
+
+      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.surveyId;
+      this.loading = true;
+      axios.get('/survey/' + id + '/result?page=' + this.page).then(function (response) {
+        _this.results = response.data.data;
+        _this.survey = response.data.meta.survey;
+        _this.pageLength = Math.ceil(response.data.meta.total / response.data.meta.per_page);
+        _this.loading = false;
+        _this.surveyData = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](response.data.meta.survey.json);
+        _this.surveyData.mode = 'display';
+      })["catch"](function (error) {
+        console.info(error.response);
+        _this.loading = false;
+      });
+    },
+    showSurvey: function showSurvey(result) {
+      this.dialog = true;
+      this.surveyData.data = result.json;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var survey_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! survey-vue */ "./node_modules/survey-vue/survey.vue.js");
+/* harmony import */ var survey_vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! surveyjs-widgets */ "./node_modules/surveyjs-widgets/surveyjs-widgets.js");
+/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2196,70 +2322,29 @@ Object.keys(widgetsList).forEach(function (widget) {
   surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__[widget](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
 });
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "survey-result",
   components: {
     Survey: Survey
   },
+  props: ['surveyData'],
   data: function data() {
     return {
-      results: [],
-      loading: false,
-      survey: {},
-      dialog: false,
-      surveyData: {},
-      surveyId: this.$route.params.id,
-      page: 1,
-      pageLength: 1,
-      headers: [{
-        text: "ID",
-        alignt: "left",
-        value: "id",
-        sortable: false
-      }, {
-        text: "IP_ADDRESS",
-        value: "ip_address",
-        sortable: false
-      }, {
-        text: "Created date",
-        valie: "created_at",
-        sortable: false
-      }, {
-        text: "Actions",
-        value: "actions",
-        sortable: false
-      }]
+      survey: {}
     };
   },
+  created: function created() {
+    this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](this.surveyData.json);
+  },
   mounted: function mounted() {
-    this.getSurveyResults(this.$route.params.id);
-  },
-  watch: {
-    page: function page() {
-      this.getSurveyResults();
-    }
-  },
-  methods: {
-    getSurveyResults: function getSurveyResults() {
-      var _this = this;
+    var _this = this;
 
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.surveyId;
-      this.loading = true;
-      axios.get("/survey/" + id + "/result?page=" + this.page).then(function (response) {
-        _this.results = response.data.data;
-        _this.survey = response.data.meta.survey;
-        _this.pageLength = Math.ceil(response.data.meta.total / response.data.meta.per_page);
-        _this.loading = false;
-        _this.surveyData = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](response.data.meta.survey.json);
-        _this.surveyData.mode = "display";
-      })["catch"](function (error) {
-        console.info(error.response);
-        _this.loading = false;
+    this.survey.onComplete.add(function (result) {
+      var url = "/survey/".concat(_this.surveyData.id, "/result");
+      axios.post(url, {
+        json: result.data
+      }).then(function (response) {
+        console.log(response);
       });
-    },
-    showSurvey: function showSurvey(result) {
-      this.dialog = true;
-      this.surveyData.data = result.json;
-    }
+    });
   }
 });
 
@@ -4294,7 +4379,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card--flex-toolbar {\n    margin-top: -64px;\n}\n.github-corner:hover .octo-arm {\n    animation: octocat-wave 560ms ease-in-out;\n}\n@keyframes octocat-wave {\n0%,\n    100% {\n        transform: rotate(0);\n}\n20%,\n    60% {\n        transform: rotate(-25deg);\n}\n40%,\n    80% {\n        transform: rotate(10deg);\n}\n}\n@media (max-width: 500px) {\n.github-corner:hover .octo-arm {\n        animation: none;\n}\n.github-corner .octo-arm {\n        animation: octocat-wave 560ms ease-in-out;\n}\n}\n", ""]);
+exports.push([module.i, "\n.card--flex-toolbar {\n    margin-top: -64px;\n}\n.github-corner:hover .octo-arm  {\n    animation:octocat-wave 560ms ease-in-out\n}\n@keyframes octocat-wave {\n0%,100% {\n        transform:rotate(0)\n}\n20%,60% {\n        transform:rotate(-25deg)\n}\n40%,80% {\n        transform:rotate(10deg)\n}\n}\n@media (max-width:500px)    {\n.github-corner:hover .octo-arm  {\n        animation:none\n}\n.github-corner .octo-arm    {\n        animation:octocat-wave 560ms ease-in-out\n}\n}\n", ""]);
 
 // exports
 
@@ -4313,7 +4398,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-primary {\n  background-color: #1976d2 !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn-primary {\n    background-color: #1976d2 !important\n}\n", ""]);
 
 // exports
 
@@ -4332,7 +4417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.remove-overflow {\n  overflow: inherit;\n}\n", ""]);
+exports.push([module.i, "\n.remove-overflow {\n    overflow: inherit;\n}\n", ""]);
 
 // exports
 
@@ -102779,33 +102864,83 @@ var render = function() {
   return _c(
     "v-app",
     [
-      _c("router-view"),
-      _vm._v(" "),
       _c(
-        "v-snackbar",
-        {
-          attrs: { timeout: 6000, bottom: "", right: "", "multi-line": "" },
-          model: {
-            value: _vm.$root.snackbar,
-            callback: function($$v) {
-              _vm.$set(_vm.$root, "snackbar", $$v)
-            },
-            expression: "$root.snackbar"
-          }
-        },
+        "v-card",
+        { attrs: { flat: "" } },
         [
-          _vm._v("\n        " + _vm._s(_vm.$root.snackbarMsg) + "\n        "),
           _c(
-            "v-btn",
-            {
-              attrs: { flat: "", color: "blue" },
-              nativeOn: {
-                click: function($event) {
-                  _vm.$root.snackbar = false
-                }
-              }
-            },
-            [_vm._v("Close")]
+            "v-toolbar",
+            { attrs: { dark: "", color: "primary", flat: "", extended: "" } },
+            [_c("v-toolbar-title", [_vm._v("Survey Manager")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", "pb-2": "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs8: "", "offset-xs2": "" } },
+                [
+                  _c(
+                    "v-card",
+                    { staticClass: "card--flex-toolbar" },
+                    [
+                      _c(
+                        "v-card-text",
+                        [
+                          _c("router-view"),
+                          _vm._v(" "),
+                          _c(
+                            "v-snackbar",
+                            {
+                              attrs: {
+                                timeout: 6000,
+                                bottom: "",
+                                right: "",
+                                "multi-line": ""
+                              },
+                              model: {
+                                value: _vm.$root.snackbar,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.$root, "snackbar", $$v)
+                                },
+                                expression: "$root.snackbar"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$root.snackbarMsg) +
+                                  "\n                            "
+                              ),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { flat: "", color: "blue" },
+                                  nativeOn: {
+                                    click: function($event) {
+                                      _vm.$root.snackbar = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Close")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -102870,6 +103005,110 @@ var render = function() {
   return _c(
     "div",
     [
+      _c(
+        "v-toolbar",
+        [
+          _c(
+            "v-btn",
+            {
+              staticClass: "mb-3",
+              attrs: { icon: "" },
+              nativeOn: {
+                click: function($event) {
+                  return _vm.$router.push({ name: "home" })
+                }
+              }
+            },
+            [_c("v-icon", { attrs: { large: "" } }, [_vm._v("home")])],
+            1
+          ),
+          _vm._v(" "),
+          !_vm.nameField
+            ? _c(
+                "v-toolbar-title",
+                {
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.nameField = true
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.surveyName))]
+              )
+            : _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: [
+                        function() {
+                          return (
+                            !!_vm.surveyName || "The field name is required"
+                          )
+                        },
+                        function() {
+                          return (
+                            (!!_vm.surveyName && _vm.surveyName.length >= 3) ||
+                            "Name must contain at least 3 character!"
+                          )
+                        }
+                      ]
+                    },
+                    model: {
+                      value: _vm.surveyName,
+                      callback: function($$v) {
+                        _vm.surveyName = $$v
+                      },
+                      expression: "surveyName"
+                    }
+                  })
+                ],
+                1
+              ),
+          _vm._v(" "),
+          _vm.nameField
+            ? _c(
+                "v-toolbar-items",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { small: "", flat: "", color: "primary" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.postEdit($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { small: "", flat: "", color: "warning" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.onCancelEdit($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
       Object.keys(_vm.survey).length
         ? _c("survey-builder", {
             attrs: { json: _vm.survey.json, id: _vm.survey.id }
@@ -103321,7 +103560,11 @@ var render = function() {
                     icon: "warning"
                   }
                 },
-                [_vm._v("Sorry, nothing to display here :(")]
+                [
+                  _vm._v(
+                    "\n                Sorry, nothing to display here :(\n            "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -103414,6 +103657,30 @@ var render = function() {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("survey", { attrs: { survey: _vm.survey } })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -135270,6 +135537,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/SurveyShow.vue":
+/*!*******************************************************!*\
+  !*** ./resources/assets/js/components/SurveyShow.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SurveyShow.vue?vue&type=template&id=719d1924& */ "./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924&");
+/* harmony import */ var _SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SurveyShow.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/SurveyShow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SurveyShow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924&":
+/*!**************************************************************************************!*\
+  !*** ./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SurveyShow.vue?vue&type=template&id=719d1924& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/router.js":
 /*!***************************************!*\
   !*** ./resources/assets/js/router.js ***!
@@ -135331,6 +135667,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./resources/assets/js/App.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ "./resources/assets/js/router.js");
+/* harmony import */ var _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SurveyShow.vue */ "./resources/assets/js/components/SurveyShow.vue");
 __webpack_require__(/*! ./base */ "./resources/assets/js/base.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -135339,9 +135676,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
-Vue.component('survey-show', './components/SurveyShow.vue');
+Vue.component('survey-show', _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
 new Vue({
   router: _router__WEBPACK_IMPORTED_MODULE_4__["default"],
   data: function data() {

@@ -7,10 +7,13 @@ import 'vuetify/dist/vuetify.min.css'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from './router'
+
+import SurveyShow from './components/SurveyShow.vue'
+
 Vue.use(VueRouter)
 Vue.use(Vuetify)
 
-Vue.component('survey-show', './components/SurveyShow.vue')
+Vue.component('survey-show', SurveyShow)
 
 new Vue({
     router,

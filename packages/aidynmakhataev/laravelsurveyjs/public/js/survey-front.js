@@ -1798,7 +1798,7 @@ Object.keys(widgetsList).forEach(function (widget) {
   components: {
     Survey: Survey
   },
-  props: ["surveyData"],
+  props: ['surveyData'],
   data: function data() {
     return {
       survey: {}
@@ -1816,8 +1816,6 @@ Object.keys(widgetsList).forEach(function (widget) {
         json: result.data
       }).then(function (response) {
         console.log(response);
-        survey.clear(true, true);
-        document.location.reload();
       });
     });
   }
@@ -68306,13 +68304,17 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/assets/js/survey-front.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/SurveyShow.vue */ "./resources/assets/js/components/SurveyShow.vue");
 __webpack_require__(/*! ./base */ "./resources/assets/js/base.js");
 
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-Vue.component('survey-show', __webpack_require__(/*! ./components/SurveyShow.vue */ "./resources/assets/js/components/SurveyShow.vue"));
+Vue.component('survey-show', _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 new Vue({
   el: "#surveyElement"
 });
