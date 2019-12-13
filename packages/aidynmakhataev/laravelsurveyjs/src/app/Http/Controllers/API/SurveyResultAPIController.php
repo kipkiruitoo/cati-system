@@ -4,6 +4,7 @@ namespace AidynMakhataev\LaravelSurveyJs\app\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Interview;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
@@ -31,11 +32,14 @@ class SurveyResultAPIController extends Controller
             'json'  =>  'required',
         ]);
 
+        echo $request;
+
         $result = $survey->results()->create([
             'json'          =>  $request->input('json'),
-            'user_id'       =>  \Auth::check() ? \Auth::id() : null,
             'ip_address'    =>  $request->ip(),
         ]);
+
+        //  $interview = new Interview;
 
         return response()->json([
             'data'      =>  new SurveyResultResource($result),

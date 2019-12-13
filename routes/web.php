@@ -57,6 +57,9 @@ Route::get('/users/export', function(){
 
 Route::get('/agent', 'AgentController@firstpage')->name('agent');
 
+Route::get('/agent/project/{id}', 'AgentController@secondpage')->name('agentchoseproject');
+Route::post('/agent/project/survey', 'AgentController@thirdpage')->name('agentthirdpage');
+
 
 Route::get('/supervisor', 'ProjectController@supervisorview')->name('supervisor');
 

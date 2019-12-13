@@ -135364,7 +135364,7 @@ new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Davis\Desktop\tifa_projects\szw\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-manager.js */"./resources/assets/js/survey-manager.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\szw\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-manager.js */"./resources/assets/js/survey-manager.js");
 
 
 /***/ })

@@ -8,7 +8,7 @@ Route::group(
         'prefix'        =>  config('survey-manager.route_prefix'),
     ],
     function () {
-        Route::get('/{surveySlug}', 'SurveyController@runSurvey')->name('survey-manager.run');
+        Route::post('/{surveySlug}', 'SurveyController@runSurvey')->name('survey-manager.run');
     }
 );
 

@@ -1798,7 +1798,7 @@ Object.keys(widgetsList).forEach(function (widget) {
   components: {
     Survey: Survey
   },
-  props: ['surveyData'],
+  props: ["surveyData"],
   data: function data() {
     return {
       survey: {}
@@ -1816,6 +1816,8 @@ Object.keys(widgetsList).forEach(function (widget) {
         json: result.data
       }).then(function (response) {
         console.log(response);
+        survey.clear(true, true);
+        document.location.reload();
       });
     });
   }
@@ -68324,7 +68326,7 @@ new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Davis\Desktop\tifa_projects\szw\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-front.js */"./resources/assets/js/survey-front.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\szw\packages\aidynmakhataev\laravelsurveyjs\resources\assets\js\survey-front.js */"./resources/assets/js/survey-front.js");
 
 
 /***/ })
