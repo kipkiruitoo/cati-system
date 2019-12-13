@@ -2302,6 +2302,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
 survey_vue__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme(SurveyConfig.theme);
@@ -2325,14 +2330,20 @@ Object.keys(widgetsList).forEach(function (widget) {
   components: {
     Survey: Survey
   },
-  props: ['surveyData'],
+  props: ["surveyData"],
   data: function data() {
     return {
-      survey: {}
+      survey: {},
+      respondent: "",
+      agent: "",
+      date: "",
+      count: 0
     };
   },
   created: function created() {
     this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](this.surveyData.json);
+    this.agent = this.surveyData[1];
+    this.respondent = this.surveyData[0];
   },
   mounted: function mounted() {
     var _this = this;
@@ -2340,9 +2351,22 @@ Object.keys(widgetsList).forEach(function (widget) {
     this.survey.onComplete.add(function (result) {
       var url = "/survey/".concat(_this.surveyData.id, "/result");
       axios.post(url, {
-        json: result.data
+        json: result.data,
+        agent: _this.agent,
+        respondent: _this.respondent,
+        date: _this.date
       }).then(function (response) {
         console.log(response);
+        _this.count++;
+        console.log(_this.count);
+
+        if (_this.count == 1) {
+          _this.survey.clear();
+
+          _this.survey.render();
+        } else {
+          window.history.back();
+        }
       });
     });
   }
@@ -103680,7 +103704,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("survey", { attrs: { survey: _vm.survey } })], 1)
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "date" } }, [_vm._v("Pick the date")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "date", id: "date", name: "date", date: _vm.date }
+        })
+      ]),
+      _vm._v(" "),
+      _c("survey", { attrs: { survey: _vm.survey } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

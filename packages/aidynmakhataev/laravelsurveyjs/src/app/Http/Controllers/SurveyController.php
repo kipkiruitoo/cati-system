@@ -17,10 +17,16 @@ class SurveyController extends Controller
     {
         $survey = Survey::where('slug', $slug)->firstOrFail();
 
+        $survey = $survey->toArray();
+
+        // print_r($survey) ;
+        array_push($survey, ["respondent" => $request->respondent] );
+        array_push($survey, ['agent' => Auth::user()->id]);
         return view('survey-manager::survey', [
             'survey'    =>  $survey,
             'respondent' => $request->respondent,
             'agent' => Auth::user()->id,
         ]);
     }
+    
 }

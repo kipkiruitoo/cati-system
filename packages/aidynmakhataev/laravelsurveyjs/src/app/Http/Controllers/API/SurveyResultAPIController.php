@@ -32,17 +32,35 @@ class SurveyResultAPIController extends Controller
             'json'  =>  'required',
         ]);
 
-        echo $request;
+        // echo $request->input('respondent');
+        // Log::debug($request->input('respondent'));
 
         $result = $survey->results()->create([
             'json'          =>  $request->input('json'),
             'ip_address'    =>  $request->ip(),
         ]);
 
-        //  $interview = new Interview;
+
+
+         $interview = new Interview;
+         $agent = (object) $request->input('agent');
+         $respondent = (object) $request->input('respondent');
+
+        //  print_r($agent->agent);
+
+        //  echo "<br><hr>";
+
+        $respondent = json_decode($respondent->respondent);
+
+         print_r($respondent) ;
+         $interview->agent = $agent->agent;
+         $interview->respondent = $respondent[0]->id;
+         $interview->date = $request->input('date');
+
+         $interview->save();
 
         return response()->json([
-            'data'      =>  new SurveyResultResource($result),
+            'data'      =>  $request->input(),
             'message'   =>  'Survey Result successfully created',
         ], 201);
     }

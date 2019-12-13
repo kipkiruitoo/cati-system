@@ -8,6 +8,6 @@ let mix = require('laravel-mix');
  */
 
 mix
-    .setPublicPath('public')
-    .js('resources/assets/js/survey-manager.js', 'public/js/')
-    .js('resources/assets/js/survey-front.js', 'public/js/');
+    .setPublicPath('../../../public/vendor/survey-manager/')
+    .js('resources/assets/js/survey-manager.js', 'js/')
+    .js('resources/assets/js/survey-front.js', 'js/');
