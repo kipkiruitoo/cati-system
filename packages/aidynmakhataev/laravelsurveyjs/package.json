@@ -15,7 +15,7 @@
         "popper.js": "^1.12",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
-        "vue": "^2.5.7",
+        "vue": "^2.5.18",
         "survey-vue": "^1.0.15",
         "surveyjs-editor": "^1.0.15",
         "survey-knockout": "^1.0.22"
@@ -23,6 +23,6 @@
     "dependencies": {
         "surveyjs-widgets": "^1.0.61",
         "vue-router": "^3.0.1",
-        "vuetify": "^1.0.18"
+        "vuetify": "^1.5.21"
     }
 }

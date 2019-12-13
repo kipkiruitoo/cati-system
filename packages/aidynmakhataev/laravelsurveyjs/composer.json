@@ -15,7 +15,8 @@
     ],
     "require": {
         "illuminate/support": "~5",
-        "cviebrock/eloquent-sluggable": "^4.0"
+        "cviebrock/eloquent-sluggable": "^4.0",
+        "laravel-frontend-presets/vuetify": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
