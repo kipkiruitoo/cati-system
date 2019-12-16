@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Projects;
 use App\Respondent;
-use App\interview;
+use App\Interview;
 use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
@@ -46,7 +46,7 @@ class AgentController extends Controller
 
     // display the users interview
     public function interviews(){
-        $interviews = interview::where('agent', Auth::user()->id)->get();
+        $interviews = Interview::where('agent', Auth::user()->id)->get();
 
         return view('agents.interviews', compact('interviews'));
     }
