@@ -13,7 +13,7 @@
 import * as SurveyVue from "survey-vue";
 
 const Survey = SurveyVue.Survey;
-SurveyVue.StylesManager.applyTheme(SurveyConfig.theme);
+Survey.cssType = "bootstrap";
 
 import * as widgets from "surveyjs-widgets";
 
