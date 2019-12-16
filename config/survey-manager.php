@@ -61,15 +61,15 @@ return [
 
         'theme'                 =>  'modern',
 
-        'showEmbededSurveyTab'  =>  false,
+        'showEmbededSurveyTab'  =>  true,
 
-        'showJSONEditorTab'     =>  false,
+        'showJSONEditorTab'     =>  true,
 
         'showTestSurveyTab'     =>  true,
 
         'showPropertyGrid'      =>  true,
 
-        'showOptions'           =>  false,
+        'showOptions'           =>  true,
 
         'showState'             =>  false,
 
@@ -83,28 +83,28 @@ return [
     */
     'widgets'                   =>  [
 
-        'icheck'                =>  false,
+        'icheck'                =>  true,
 
-        'select2'               =>  false,
+        'select2'               =>  true,
 
-        'inputmask'             =>  false,
+        'inputmask'             =>  true,
 
-        'jquerybarrating'       =>  false,
+        'jquerybarrating'       =>  true,
 
-        'jqueryuidatepicker'    =>  false,
+        'jqueryuidatepicker'    =>  true,
 
-        'nouislider'            =>  false,
+        'nouislider'            =>  true,
 
-        'select2tagbox'         =>  false,
+        'select2tagbox'         =>  true,
 
-        'signaturepad'          =>  false,
+        'signaturepad'          =>  true,
 
-        'sortablejs'            =>  false,
+        'sortablejs'            =>  true,
 
-        'ckeditor'              =>  false,
+        'ckeditor'              =>  true,
 
-        'autocomplete'          =>  false,
+        'autocomplete'          =>  true,
 
-        'bootstrapslider'       =>  false,
+        'bootstrapslider'       =>  true,
     ],
 ];
