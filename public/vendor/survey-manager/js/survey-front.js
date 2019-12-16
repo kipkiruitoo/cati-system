@@ -1780,9 +1780,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
-Survey.cssType = "bootstrap";
+Survey.cssType = "material";
 
 
 Object.filter = function (obj, predicate) {

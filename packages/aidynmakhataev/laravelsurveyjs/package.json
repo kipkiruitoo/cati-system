@@ -12,6 +12,7 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^3.4.1",
+        "jquery": "^3.1.1",
         "popper.js": "^1.12",
         "cross-env": "^5.1",
         "laravel-mix": "^4.0.7",
@@ -19,7 +20,7 @@
         "survey-vue": "^1.0.79",
         "surveyjs-widgets": "^1.0.79",
         "survey-creator": "^1.0.79",
-        "survey-knockout": "^1.0.22"
+        "survey-knockout": "^1.1.24"
     },
     "dependencies": {
         "surveyjs-widgets": "^1.0.61",
