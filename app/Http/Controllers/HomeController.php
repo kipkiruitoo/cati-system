@@ -27,8 +27,12 @@ class HomeController extends Controller
             
             return redirect()->route('supervisor');
             
-        }else{
+        }else if(Auth::user()->role_id == 2 ){
             return redirect()->route('agent');
+        }else if(Auth::user()->role_id == 4){
+            return redirect()->route('script');
+        }else{
+             return redirect()->route('voyager.dashboard');
         }
         
     }

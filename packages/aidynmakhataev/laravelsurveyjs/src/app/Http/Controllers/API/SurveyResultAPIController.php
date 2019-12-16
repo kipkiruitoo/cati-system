@@ -44,6 +44,7 @@ class SurveyResultAPIController extends Controller
 
          $interview = new Interview;
          $agent = (object) $request->input('agent');
+
          $respondent = (object) $request->input('respondent');
 
         //  print_r($agent->agent);
@@ -52,8 +53,11 @@ class SurveyResultAPIController extends Controller
 
         $respondent = json_decode($respondent->respondent);
 
-         print_r($respondent) ;
+        //  print_r($respondent) ;
+        print_r($request->input('project'));
          $interview->agent = $agent->agent;
+         $interview->survey = $request->input('survey');
+        //  $iinterview->project = $request->input('project');
          $interview->respondent = $respondent[0]->id;
          $interview->date = $request->input('date');
 

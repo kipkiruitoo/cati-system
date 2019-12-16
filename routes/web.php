@@ -31,7 +31,7 @@ Route::resource('/projects', 'ProjectController');
 
 Route::resource('/surveys', 'SurveyController');
 
-Route::get('/script', 'ScripterController@index');
+Route::get('/script', 'ScripterController@index')->name('script');
 Route::get('/script/surveys/{id}', 'ScripterController@surveys')->name('scriptersurveys');
 
 Route::get('/surveys/create/{id}', 'SurveyController@create')->name('createsurvey');
@@ -69,3 +69,11 @@ Route::post('/addagents/{id}', 'ProjectController@addagents')->name('addagents')
 
 
 Route::post('/removeagents/{id}', 'ProjectController@removeagents')->name('removeagents');
+
+
+
+
+Route::get('/agent/interviews', 'AgentController@interviews')->name('pinterviews');
+
+Route::get('/agent/overview', 'AgentController@overview')->name('poverview');
+Route::post('add-feedback', 'AgentController@addfeedback');

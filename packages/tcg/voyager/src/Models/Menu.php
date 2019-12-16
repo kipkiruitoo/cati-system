@@ -75,13 +75,15 @@ class Menu extends Model
 
         if ($menuName == 'admin' && $type == '_json') {
             $items = static::processItems($items);
+        }else{
+            $items = static::processItems($items);
         }
 
         if ($type == 'admin') {
             $type = 'voyager::menu.'.$type;
         } else {
             if (is_null($type)) {
-                $type = 'voyager::menu.default';
+                $type = 'voyager::menu.'.$type;
             } elseif ($type == 'bootstrap' && !view()->exists($type)) {
                 $type = 'voyager::menu.bootstrap';
             }

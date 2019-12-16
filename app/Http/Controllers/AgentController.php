@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Projects;
 use App\Respondent;
+use App\interview;
+use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 
@@ -38,5 +40,43 @@ class AgentController extends Controller
         // echo $respondent;
 
         return view('agents.thirdpage', compact('survey', 'respondent'));
+    }
+
+
+
+    // display the users interview
+    public function interviews(){
+        $interviews = interview::where('agent', Auth::user()->id)->get();
+
+        return view('agents.interviews', compact('interviews'));
+    }
+
+    // overview graphs
+
+    public function overview(){
+
+        $interviews = Interview::where(DB::raw("(DATE_FORMAT(created_at,'%m'))"),date('m'))->where('agent', Auth::user()->id)->get();
+
+        // print_r($interviews);
+
+        $interviewchart = Charts::database($interviews, 'line', 'fusioncharts')
+			      ->title("Your interviews per day")
+			      ->elementLabel("No of Interviews")
+			      ->dimensions(600, 500)
+			      
+                  ->groupByDay();
+        return view('agents.overview', compact('interviewchart', 'interviews'));
+    }
+
+// add feedback to a client
+    public function addfeedback(Request $request){
+
+        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'), 'feedback' => $request->input('feedback')]);
+
+       return response()->json([
+            'data'      =>  $request->input('feedback'),
+            'message'   =>  'Feedback successfully saved',
+        ], 201);
+
     }
 }

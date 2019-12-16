@@ -38,8 +38,8 @@
                     </td>
                     <td>{{$survey->version}}</td>
                     <td>
-                        <a href="{{url('/survey', $survey->slug)}}" target="_blank"><button
-                                class="btn btn-success">View</button></a>
+                        <!-- <a href="{{url('/survey', $survey->slug)}}" target="_blank"><button
+                                class="btn btn-success">View</button></a> -->
                         @if($survey->stage == "draft")
                         <a href="{{url('/admin/survey',$survey->id )}}" target="_blank"><button
                                 class="btn btn-warning">Script</button></a>
