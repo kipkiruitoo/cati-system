@@ -11,6 +11,14 @@ use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
 
 class SurveyResultAPIController extends Controller
 {
+    public function index(Survey $survey)
+    {
+        $results = $survey->results()->paginate(config('survey-manager.pagination_perPage', 10));
+        return SurveyResultResource::collection($results)
+                ->additional(['meta' => [
+                    'survey'    =>  new SurveyResource($survey),
+                ]]);
+    }
     public function show(Survey $survey, $interview)
     {
         $inter = Interview::find($interview);

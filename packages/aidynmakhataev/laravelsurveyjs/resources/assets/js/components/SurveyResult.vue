@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class="well">
-            <h3 v-bind=""></h3>
-        </div>
         <survey
             :survey="surveyData"
             v-if="Object.keys(surveyData).length"
