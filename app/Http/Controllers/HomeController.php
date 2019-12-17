@@ -31,7 +31,11 @@ class HomeController extends Controller
             return redirect()->route('agent');
         }else if(Auth::user()->role_id == 4){
             return redirect()->route('script');
-        }else{
+
+        }else if(Auth::user()->role_id == 6){
+            return redirect()->route('qc');
+        }
+        else{
              return redirect()->route('voyager.dashboard');
         }
         

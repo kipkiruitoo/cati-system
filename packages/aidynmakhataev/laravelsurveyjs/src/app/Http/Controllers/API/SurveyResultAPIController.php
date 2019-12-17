@@ -11,9 +11,11 @@ use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
 
 class SurveyResultAPIController extends Controller
 {
-    public function index(Survey $survey)
+    public function show(Survey $survey, $interview)
     {
-        $results = $survey->results()->paginate(config('survey-manager.pagination_perPage', 10));
+        $inter = Interview::find($interview);
+
+        $results = $survey->results()->where('interview', $interview)->paginate(config('survey-manager.pagination_perPage', 10));
 
         return SurveyResultResource::collection($results)
                 ->additional(['meta' => [
@@ -35,11 +37,7 @@ class SurveyResultAPIController extends Controller
         // echo $request->input('respondent');
         // Log::debug($request->input('respondent'));
 
-        $result = $survey->results()->create([
-            'json'          =>  $request->input('json'),
-            'ip_address'    =>  $request->ip(),
-        ]);
-
+     
 
 
          $interview = new Interview;
@@ -54,17 +52,31 @@ class SurveyResultAPIController extends Controller
         $respondent = json_decode($respondent->respondent);
 
         //  print_r($respondent) ;
-        print_r($request->input('project'));
+        // print_r($request->input('project'));
          $interview->agent = $agent->agent;
          $interview->survey = $request->input('survey');
         //  $iinterview->project = $request->input('project');
          $interview->respondent = $respondent[0]->id;
          $interview->date = $request->input('date');
 
-         $interview->save();
+         if($interview->save()){
+             $result = $survey->results()->create([
+            
+            'json'          =>  $request->input('json'),
+            'interview' => $interview->id,
+            'ip_address'    =>  $request->ip(),
+         ]);
+         }else{
+             $result = "An error occured";
+         }
+        
+        //  print($interview->id);
+
+       
+
 
         return response()->json([
-            'data'      =>  $request->input(),
+            'data'      =>  $result,
             'message'   =>  'Survey Result successfully created',
         ], 201);
     }

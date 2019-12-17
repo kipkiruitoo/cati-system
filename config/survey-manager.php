@@ -91,7 +91,7 @@ return [
 
         'jquerybarrating'       =>  true,
 
-        'jqueryuidatepicker'    =>  true,
+        'jqueryuidatepicker'    =>  false,
 
         'nouislider'            =>  true,
 

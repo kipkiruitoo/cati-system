@@ -13,7 +13,7 @@ import VueRouter from "vue-router";
 const routes = [
     { path: '/', component: SurveyList, name: 'home'},
     { path: '/:id', component: SurveyEditor, name: 'editor'},
-    { path: '/:id/results', component: SurveyResult, name: 'result'}
+    { path: '/:id/results/:interview/', component: SurveyResult, name: 'result'}
 ];
 
 export default new VueRouter({

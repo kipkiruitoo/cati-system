@@ -77,3 +77,9 @@ Route::get('/agent/interviews', 'AgentController@interviews')->name('pinterviews
 
 Route::get('/agent/overview', 'AgentController@overview')->name('poverview');
 Route::post('add-feedback', 'AgentController@addfeedback');
+
+
+// qc urls
+
+Route::get('/qc', 'QCController@index')->name('qc');
+Route::post('/qc', 'QCController@interviews');

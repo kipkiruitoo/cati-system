@@ -8,7 +8,7 @@ class SurveyResult extends Model
 {
     protected $table = 'survey_results';
     protected $fillable = [
-        'survey_id', 'user_id', 'ip_address', 'json',
+        'survey_id', 'interview', 'ip_address', 'json',
     ];
     protected $casts = [
         'json'  =>  'array',
@@ -27,6 +27,6 @@ class SurveyResult extends Model
      */
     public function user()
     {
-        return $this->belongsTo(config('survey-manager.user_model'), 'user_id');
+        return $this->belongsTo(App\Interview, 'interview');
     }
 }
