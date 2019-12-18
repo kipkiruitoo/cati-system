@@ -1,77 +1,63 @@
 <template>
-    <div>
-        <div id="surveyEditorContainer"></div>
-    </div>
+
+  <div>
+    <div id="surveyEditorContainer"></div>
+  </div>
 </template>
 
 <script>
-import * as SurveyEditor from "survey-creator";
+import * as SurveyCreator from "survey-creator";
 import "survey-creator/survey-creator.css";
-import * as SurveyVue from "survey-vue";
+
 import * as SurveyKo from "survey-knockout";
 import * as widgets from "surveyjs-widgets";
 
-Object.filter = (obj, predicate) =>
-    Object.keys(obj)
-        .filter(key => predicate(obj[key]))
-        .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {});
-
-const widgetsList = Object.filter(
-    SurveyConfig.widgets,
-    widget => widget === true
-);
-
-Object.keys(widgetsList).forEach(function(widget) {
-    widgets[widget](SurveyKo);
-});
-
-SurveyKo.Serializer.addProperty("text", { name: "choices" });
-// widgets.icheck(SurveyVue);
-// widgets.select2(SurveyVue);
-// widgets.inputmask(SurveyVue);
-// widgets.jquerybarrating(SurveyVue);
-// // widgets.jqueryuidatepicker(SurveyVue);
-// widgets.nouislider(SurveyVue);
-// widgets.select2tagbox(SurveyVue);
-// widgets.signaturepad(SurveyVue);
-// widgets.sortablejs(SurveyVue);
-// widgets.ckeditor(SurveyVue);
-// widgets.autocomplete(SurveyVue);
-// widgets.bootstrapslider(SurveyVue);
+widgets.icheck(SurveyKo);
+widgets.select2(SurveyKo);
+widgets.inputmask(SurveyKo);
+widgets.jquerybarrating(SurveyKo);
+widgets.jqueryuidatepicker(SurveyKo);
+widgets.nouislider(SurveyKo);
+widgets.select2tagbox(SurveyKo);
+widgets.signaturepad(SurveyKo);
+widgets.sortablejs(SurveyKo);
+widgets.ckeditor(SurveyKo);
+widgets.autocomplete(SurveyKo);
+widgets.bootstrapslider(SurveyKo);
 
 export default {
-    name: "survey-builder",
-    props: ["json", "id"],
-    data() {
-        return {
-            surveyData: this.json,
-            surveyId: this.id
-        };
-    },
-    mounted() {
-        let editorOptions = SurveyConfig.builder;
-        SurveyEditor.StylesManager.applyTheme("material");
+  name: "survey-builder",
+  props: ["json", "id"],
+  data() {
+    return {
+      surveyData: this.json,
+      surveyId: this.id
+    };
+  },
+  mounted() {
+    let editorOptions =  {showLogicTab: true, showState: true, haveCommercialLicense: true, showPropertyGrid:true,showEmbededSurveyTab:true};;
+    SurveyCreator.StylesManager.applyTheme("orange");
 
-        this.editor = new SurveyEditor.SurveyCreator(
-            "surveyEditorContainer",
-            editorOptions
-        );
-        this.editor.text = JSON.stringify(this.surveyData);
-        let self = this;
+    this.editor = new SurveyCreator.SurveyCreator(
+      "surveyEditorContainer",
+      editorOptions
+    );
+    this.editor.text = JSON.stringify(this.surveyData);
+    let self = this;
 
-        this.editor.saveSurveyFunc = function() {
-            axios
-                .put("/survey/" + self.id, { json: JSON.parse(this.text) })
-                .then(response => {
-                    self.editor.text = JSON.stringify(response.data.data.json);
-                    self.$root.snackbar = true;
-                    self.$root.snackbarMsg = response.data.message;
-                })
-                .catch(error => {
-                    console.error(error.response);
-                });
-        };
-    }
+    this.editor.saveSurveyFunc = function() {
+      axios
+        .put("/survey/" + self.id, { json: JSON.parse(this.text) })
+        .then(response => {
+          self.editor.text = JSON.stringify(response.data.data.json);
+          self.$root.snackbar = true;
+          self.$root.snackbarMsg = response.data.message;
+        })
+        .catch(error => {
+          console.error(error.response);
+        });
+    };
+  }
 };
 </script>
 

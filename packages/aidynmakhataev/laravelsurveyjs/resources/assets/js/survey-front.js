@@ -1,7 +1,7 @@
 require("./base");
 
 import SurveyShow from "./components/SurveyShow.vue";
-import Vuetify from "vuetify";
+// import Vuetify from "vuetify";
 
 window.Vue = require("vue");
 

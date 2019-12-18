@@ -70,6 +70,8 @@ return [
         'showPropertyGrid'      =>  true,
 
         'showOptions'           =>  true,
+        
+        'ShowLogicTab'          => true,
 
         'showState'             =>  false,
 

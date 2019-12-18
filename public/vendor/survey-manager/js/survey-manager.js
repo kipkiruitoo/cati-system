@@ -1767,14 +1767,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var survey_creator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(survey_creator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var survey_creator_survey_creator_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! survey-creator/survey-creator.css */ "./node_modules/survey-creator/survey-creator.css");
 /* harmony import */ var survey_creator_survey_creator_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(survey_creator_survey_creator_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var survey_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! survey-vue */ "./node_modules/survey-vue/survey-vue.js");
-/* harmony import */ var survey_vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(survey_vue__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var survey_knockout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! survey-knockout */ "./node_modules/survey-knockout/survey.ko.js");
-/* harmony import */ var survey_knockout__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(survey_knockout__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! surveyjs-widgets */ "./node_modules/surveyjs-widgets/surveyjs-widgets.js");
-/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(surveyjs_widgets__WEBPACK_IMPORTED_MODULE_4__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var survey_knockout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! survey-knockout */ "./node_modules/survey-knockout/survey.ko.js");
+/* harmony import */ var survey_knockout__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! surveyjs-widgets */ "./node_modules/surveyjs-widgets/surveyjs-widgets.js");
+/* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__);
+//
 //
 //
 //
@@ -1785,37 +1782,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-Object.filter = function (obj, predicate) {
-  return Object.keys(obj).filter(function (key) {
-    return predicate(obj[key]);
-  }).reduce(function (res, key) {
-    return Object.assign(res, _defineProperty({}, key, obj[key]));
-  }, {});
-};
-
-var widgetsList = Object.filter(SurveyConfig.widgets, function (widget) {
-  return widget === true;
-});
-Object.keys(widgetsList).forEach(function (widget) {
-  surveyjs_widgets__WEBPACK_IMPORTED_MODULE_4__[widget](survey_knockout__WEBPACK_IMPORTED_MODULE_3__);
-});
-survey_knockout__WEBPACK_IMPORTED_MODULE_3__["Serializer"].addProperty("text", {
-  name: "choices"
-}); // widgets.icheck(SurveyVue);
-// widgets.select2(SurveyVue);
-// widgets.inputmask(SurveyVue);
-// widgets.jquerybarrating(SurveyVue);
-// // widgets.jqueryuidatepicker(SurveyVue);
-// widgets.nouislider(SurveyVue);
-// widgets.select2tagbox(SurveyVue);
-// widgets.signaturepad(SurveyVue);
-// widgets.sortablejs(SurveyVue);
-// widgets.ckeditor(SurveyVue);
-// widgets.autocomplete(SurveyVue);
-// widgets.bootstrapslider(SurveyVue);
-
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["icheck"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["select2"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["inputmask"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["jquerybarrating"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["jqueryuidatepicker"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["nouislider"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["select2tagbox"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["signaturepad"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["sortablejs"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["ckeditor"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["autocomplete"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_3__["bootstrapslider"](survey_knockout__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "survey-builder",
   props: ["json", "id"],
@@ -1826,8 +1804,15 @@ survey_knockout__WEBPACK_IMPORTED_MODULE_3__["Serializer"].addProperty("text", {
     };
   },
   mounted: function mounted() {
-    var editorOptions = SurveyConfig.builder;
-    survey_creator__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme("material");
+    var editorOptions = {
+      showLogicTab: true,
+      showState: true,
+      haveCommercialLicense: true,
+      showPropertyGrid: true,
+      showEmbededSurveyTab: true
+    };
+    ;
+    survey_creator__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme("orange");
     this.editor = new survey_creator__WEBPACK_IMPORTED_MODULE_0__["SurveyCreator"]("surveyEditorContainer", editorOptions);
     this.editor.text = JSON.stringify(this.surveyData);
     var self = this;
@@ -2241,14 +2226,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var survey_vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(survey_vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! surveyjs-widgets */ "./node_modules/surveyjs-widgets/surveyjs-widgets.js");
 /* harmony import */ var surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2262,23 +2239,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
-Survey.cssType = "material";
+Survey.cssType = "darkblue";
 
-
-Object.filter = function (obj, predicate) {
-  return Object.keys(obj).filter(function (key) {
-    return predicate(obj[key]);
-  }).reduce(function (res, key) {
-    return Object.assign(res, _defineProperty({}, key, obj[key]));
-  }, {});
-};
-
-var widgetsList = Object.filter(SurveyConfig.widgets, function (widget) {
-  return widget === true;
-});
-Object.keys(widgetsList).forEach(function (widget) {
-  surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__[widget](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
-});
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["icheck"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["select2"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["inputmask"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["jquerybarrating"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["jqueryuidatepicker"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["nouislider"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["select2tagbox"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["signaturepad"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["sortablejs"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["ckeditor"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["autocomplete"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
+surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Survey: Survey
