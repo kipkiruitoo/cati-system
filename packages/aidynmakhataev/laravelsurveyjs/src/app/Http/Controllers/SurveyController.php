@@ -16,11 +16,9 @@ class SurveyController extends Controller
     public function runSurvey(Request $request, $slug)
     {
         $survey = Survey::where('slug', $slug)->firstOrFail();
-
         $survey = $survey->toArray();
-
         // print_r($survey) ;
-        array_push($survey, ["respondent" => $request->respondent] );
+        array_push($survey, ["respondent" => $request->respondent]);
         array_push($survey, ['agent' => Auth::user()->id]);
         return view('survey-manager::survey', [
             'survey'    =>  $survey,
@@ -28,5 +26,4 @@ class SurveyController extends Controller
             'agent' => Auth::user()->id,
         ]);
     }
-    
 }

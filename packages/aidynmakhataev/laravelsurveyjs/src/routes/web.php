@@ -1,6 +1,4 @@
 <?php
-
-
 Route::group(
     [
         'namespace'     =>  'AidynMakhataev\LaravelSurveyJs\app\Http\Controllers',
@@ -11,11 +9,10 @@ Route::group(
         Route::post('/{surveySlug}', 'SurveyController@runSurvey')->name('survey-manager.run');
     }
 );
-
 Route::group(
     [
         'namespace'     =>  'AidynMakhataev\LaravelSurveyJs\app\Http\Controllers',
-        'prefix'        =>  config('survey-manager.admin_prefix').'/survey/',
+        'prefix'        =>  config('survey-manager.admin_prefix') . '/survey/',
         'middleware'    =>  config('survey-manager.admin_middleware'),
     ],
     function () {

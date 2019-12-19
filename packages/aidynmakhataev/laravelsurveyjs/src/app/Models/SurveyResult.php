@@ -13,7 +13,6 @@ class SurveyResult extends Model
     protected $casts = [
         'json'  =>  'array',
     ];
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -21,7 +20,6 @@ class SurveyResult extends Model
     {
         return $this->belongsTo('AidynMakhataev\LaravelSurveyJs\app\Models\Survey', 'survey_id');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

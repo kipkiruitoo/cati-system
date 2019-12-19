@@ -1,29 +1,29 @@
 <template>
-
   <div>
     <div id="surveyEditorContainer"></div>
   </div>
 </template>
 
 <script>
-import * as SurveyCreator from "survey-creator";
+import * as SurveyEditor from "survey-creator";
 import "survey-creator/survey-creator.css";
 
 import * as SurveyKo from "survey-knockout";
 import * as widgets from "surveyjs-widgets";
 
-widgets.icheck(SurveyKo);
-widgets.select2(SurveyKo);
-widgets.inputmask(SurveyKo);
-widgets.jquerybarrating(SurveyKo);
-widgets.jqueryuidatepicker(SurveyKo);
-widgets.nouislider(SurveyKo);
-widgets.select2tagbox(SurveyKo);
-widgets.signaturepad(SurveyKo);
-widgets.sortablejs(SurveyKo);
-widgets.ckeditor(SurveyKo);
-widgets.autocomplete(SurveyKo);
-widgets.bootstrapslider(SurveyKo);
+Object.filter = (obj, predicate) =>
+  Object.keys(obj)
+    .filter(key => predicate(obj[key]))
+    .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {});
+
+const widgetsList = Object.filter(
+  SurveyConfig.widgets,
+  widget => widget === true
+);
+
+Object.keys(widgetsList).forEach(function(widget) {
+  widgets[widget](SurveyKo);
+});
 
 export default {
   name: "survey-builder",
@@ -35,16 +35,14 @@ export default {
     };
   },
   mounted() {
-    let editorOptions =  {showLogicTab: true, showState: true, haveCommercialLicense: true, showPropertyGrid:true,showEmbededSurveyTab:true};;
-    SurveyCreator.StylesManager.applyTheme("orange");
-
-    this.editor = new SurveyCreator.SurveyCreator(
+    let editorOptions = SurveyConfig.builder;
+    SurveyEditor.StylesManager.applyTheme("orange");
+    this.editor = new SurveyEditor.SurveyEditor(
       "surveyEditorContainer",
       editorOptions
     );
     this.editor.text = JSON.stringify(this.surveyData);
     let self = this;
-
     this.editor.saveSurveyFunc = function() {
       axios
         .put("/survey/" + self.id, { json: JSON.parse(this.text) })
@@ -61,4 +59,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+.btn-primary {
+  background-color: #253e57 !important;
+}
+</style>

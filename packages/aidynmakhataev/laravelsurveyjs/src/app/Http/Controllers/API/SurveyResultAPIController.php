@@ -15,22 +15,19 @@ class SurveyResultAPIController extends Controller
     {
         $results = $survey->results()->paginate(config('survey-manager.pagination_perPage', 10));
         return SurveyResultResource::collection($results)
-                ->additional(['meta' => [
-                    'survey'    =>  new SurveyResource($survey),
-                ]]);
+            ->additional(['meta' => [
+                'survey'    =>  new SurveyResource($survey),
+            ]]);
     }
     public function show(Survey $survey, $interview)
     {
         $inter = Interview::find($interview);
-
         $results = $survey->results()->where('interview', $interview)->paginate(config('survey-manager.pagination_perPage', 10));
-
         return SurveyResultResource::collection($results)
-                ->additional(['meta' => [
-                    'survey'    =>  new SurveyResource($survey),
-                ]]);
+            ->additional(['meta' => [
+                'survey'    =>  new SurveyResource($survey),
+            ]]);
     }
-
     /**
      * @param Survey $survey
      * @param Request $request
@@ -41,47 +38,34 @@ class SurveyResultAPIController extends Controller
         $request->validate([
             'json'  =>  'required',
         ]);
-
         // echo $request->input('respondent');
         // Log::debug($request->input('respondent'));
 
-     
-
-
-         $interview = new Interview;
-         $agent = (object) $request->input('agent');
-
-         $respondent = (object) $request->input('respondent');
-
+        $interview = new Interview;
+        $agent = (object) $request->input('agent');
+        $respondent = (object) $request->input('respondent');
         //  print_r($agent->agent);
-
         //  echo "<br><hr>";
-
         $respondent = json_decode($respondent->respondent);
-
         //  print_r($respondent) ;
         // print_r($request->input('project'));
-         $interview->agent = $agent->agent;
-         $interview->survey = $request->input('survey');
+        $interview->agent = $agent->agent;
+        $interview->survey = $request->input('survey');
         //  $iinterview->project = $request->input('project');
-         $interview->respondent = $respondent[0]->id;
-         $interview->date = $request->input('date');
+        $interview->respondent = $respondent[0]->id;
+        $interview->date = $request->input('date');
+        if ($interview->save()) {
+            $result = $survey->results()->create([
 
-         if($interview->save()){
-             $result = $survey->results()->create([
-            
-            'json'          =>  $request->input('json'),
-            'interview' => $interview->id,
-            'ip_address'    =>  $request->ip(),
-         ]);
-         }else{
-             $result = "An error occured";
-         }
-        
+                'json'          =>  $request->input('json'),
+                'interview' => $interview->id,
+                'ip_address'    =>  $request->ip(),
+            ]);
+        } else {
+            $result = "An error occured";
+        }
+
         //  print($interview->id);
-
-       
-
 
         return response()->json([
             'data'      =>  $result,
