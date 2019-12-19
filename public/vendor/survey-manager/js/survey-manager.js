@@ -1809,7 +1809,7 @@ Object.keys(widgetsList).forEach(function (widget) {
   },
   mounted: function mounted() {
     var editorOptions = SurveyConfig.builder;
-    survey_creator__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme("bootstrap");
+    survey_creator__WEBPACK_IMPORTED_MODULE_0__["StylesManager"].applyTheme("orange");
     this.editor = new survey_creator__WEBPACK_IMPORTED_MODULE_0__["SurveyEditor"]("surveyEditorContainer", editorOptions);
     this.editor.text = JSON.stringify(this.surveyData);
     var self = this;
@@ -4427,7 +4427,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.btn-primary {\n  background-color: #253e57 !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn-primary {\r\n  background-color: #253e57 !important;\n}\r\n", ""]);
 
 // exports
 

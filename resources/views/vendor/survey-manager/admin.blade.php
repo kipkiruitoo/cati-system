@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="{{app()->getLocale()}}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Survey Manager</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
-     <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/jquery"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/survey-manager/css/survey.css') }}" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
-        <script src="https://unpkg.com/easy-autocomplete"></script>
-        <link rel="stylesheet" href="https://unpkg.com/easy-autocomplete@1.3.5/dist/easy-autocomplete.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/easy-autocomplete"></script>
+    <link rel="stylesheet" href="https://unpkg.com/easy-autocomplete@1.3.5/dist/easy-autocomplete.css" />
 
-          <script src="https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js"></script>
+    <script src="https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js"></script>
 </head>
+
 <body>
 
-<div id="survey-manager">
-</div>
+    <div id="survey-manager">
+    </div>
 
-<script>
-    window.SurveyConfig = {!! json_encode(config('survey-manager')) !!};
-</script>
+    <script>
+        window.SurveyConfig = {!!json_encode(config('survey-manager')) !!};
 
-<script src="{{ asset('vendor/survey-manager/js/survey-manager.js') }}"></script>
+    </script>
+
+    <script src="{{ asset('vendor/survey-manager/js/survey-manager.js') }}"></script>
 
 </body>
 
