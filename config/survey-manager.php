@@ -48,7 +48,7 @@ return [
     'locale'                    =>  'en',
 
     // Default theme for survey
-    'theme'                     =>  'modern',
+    'theme'                     =>  'bootstrap',
 
     /*
     |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ return [
 
     'builder'                   =>  [
 
-        'theme'                 =>  'modern',
+        'theme'                 =>  'bootstrap',
 
         'showEmbededSurveyTab'  =>  true,
 
@@ -70,10 +70,10 @@ return [
         'showPropertyGrid'      =>  true,
 
         'showOptions'           =>  true,
-        
-        'ShowLogicTab'          => true,
 
-        'showState'             =>  false,
+        'showState'             =>  true,
+
+        'showLogicTab'          => true,
 
         'haveCommercialLicense' =>  true,
     ],
@@ -93,7 +93,7 @@ return [
 
         'jquerybarrating'       =>  true,
 
-        'jqueryuidatepicker'    =>  false,
+        'jqueryuidatepicker'    =>  true,
 
         'nouislider'            =>  true,
 
@@ -106,6 +106,7 @@ return [
         'ckeditor'              =>  true,
 
         'autocomplete'          =>  true,
+
 
         'bootstrapslider'       =>  true,
     ],
