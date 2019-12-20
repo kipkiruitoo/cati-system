@@ -137737,15 +137737,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      Object.keys(_vm.surveyData).length
-        ? _c("survey", { attrs: { survey: _vm.surveyData } })
-        : _vm._e()
-    ],
-    1
-  )
+  return _c("div", [_c("survey", { attrs: { survey: _vm.surveyData } })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -169742,7 +169734,7 @@ var routes = [{
   component: _components_SurveyEditor_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
   name: 'editor'
 }, {
-  path: '/:id/results',
+  path: '/:id/results/:interview',
   component: _components_SurveyResult_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: 'result'
 }];

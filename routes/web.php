@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\Exports\RespondentExport;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,14 +44,14 @@ Route::put('/assignclients/{id}', 'ProjectController@assignclient')->name('assig
 Route::put('/assignrespondents/{id}', 'ProjectController@assignrespondents')->name('assignrespondents');
 
 
-Route::get('/respondents/export', function(){
+Route::get('/respondents/export', function () {
 
-     return Excel::download(new RespondentExport, 'respondents.xlsx');
+    return Excel::download(new RespondentExport, 'respondents.xlsx');
 });
 Route::post('/respondents/import', 'ProjectController@importrespondents')->name('uploadrespondents');
-Route::get('/users/export', function(){
+Route::get('/users/export', function () {
 
-     return Excel::download(new UsersExport, 'users.xlsx');
+    return Excel::download(new UsersExport, 'users.xlsx');
 });
 
 

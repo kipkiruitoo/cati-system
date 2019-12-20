@@ -1,6 +1,6 @@
 <template>
   <div>
-    <survey :survey="surveyData" v-if="Object.keys(surveyData).length"></survey>
+    <survey :survey="surveyData" ></survey>
   </div>
 </template>
 

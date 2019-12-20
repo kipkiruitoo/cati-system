@@ -21,7 +21,10 @@
                     <td>{{AidynMakhataev\LaravelSurveyJs\app\Models\Survey::find($interview->survey)->name ?? "Not Available"}}
                     </td>
                     <td>{{$interview->date}}</td>
-                    <td></td>
+                    @php
+                        $feedback =App\Feedback::where('respondent_id', $interview->respondent)->latest()->take(1)->first();
+                    @endphp
+                    <td>{{$feedback['feedback']}}</td>
                     <td>{{$interview->created_at}}</td>
                 </tr>
                 @endforeach
