@@ -36,7 +36,7 @@ class ScripterController extends Controller
         $survey->json = $jsonArray;
 
         if ($survey->save()) {
-            
+
             return redirect()->route('scriptersurveys', $survey->project);
         }else{
             echo "did not work";
@@ -51,7 +51,7 @@ class ScripterController extends Controller
         $survey->stage = $request->stage;
 
         if ($survey->save()) {
-            
+
             return redirect()->back();
         }else{
             echo "Something went wrong";

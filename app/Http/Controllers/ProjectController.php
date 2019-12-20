@@ -170,18 +170,26 @@ class ProjectController extends Controller
         $proj->slug = str_slug($request->name);
         $proj->end_date =  $request->edate;
         // $proj->pm =  $request->pm;
+        $qcs = $request->qcs;
 
         $supervisors = $request->supervisors;
         if ($proj->save()) {
+            DB::table('project_supervisor')->where(['project_id' => $proj->id])->delete();
             foreach ($supervisors as $supervisor) {
                 // DB::
-                DB::table('project_supervisor')->where(['user_id' => $supervisor, 'project_id' => $proj->id])->delete();
+
 
                 DB::table('project_supervisor')->insert(
                     ['user_id' => $supervisor, 'project_id' => $proj->id]
                 );
 
                 // echo $supervisor;
+            }
+            foreach ($qcs as $qc) {
+                DB::table('qc_projects')->where(['user_id' => $qc, 'project_id' => $proj->id])->delete();
+                DB::table('qc_projects')->insert(
+                    ['user_id' => $qc, 'project_id' => $proj->id]
+                );
             }
 
             $projects = Projects::all();

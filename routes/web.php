@@ -84,3 +84,4 @@ Route::post('add-feedback', 'AgentController@addfeedback');
 
 Route::get('/qc', 'QCController@index')->name('qc');
 Route::post('/qc', 'QCController@interviews');
+Route::get('/qc/project/surveys/{id}', 'QCController@surveys')->name('qcsurveys');

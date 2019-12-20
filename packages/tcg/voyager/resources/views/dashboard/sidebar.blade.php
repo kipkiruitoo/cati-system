@@ -38,19 +38,21 @@
             <admin-menu :items="{{ menu('scripters', '_json') }}"></admin-menu>
         </div>
         @elseif( Auth::user()->role_id == 1 || Auth::user()->role_id == 3 )
-        
+
          <div id="adminmenu">
             <admin-menu :items="{{ menu('admin', '_json') }}"></admin-menu>
         </div>
 
-        @elseif(Auth::user()->role_id = 5 )
-        
+        @elseif(Auth::user()->role_id == 5 )
+
          <div id="adminmenu">
             <admin-menu :items="{{ menu('supervisor', '_json') }}"></admin-menu>
         </div>
+        @elseif(Auth::user()->role_id == 6 )
+
+         <div id="adminmenu">
+            <admin-menu :items="{{ menu('qc', '_json') }}"></admin-menu>
+        </div>
         @endif
     </nav>
-    <script>
-    console.log(JSON.stringify({{ menu('supervisor', '_json') }}));
-    </script>
 </div>
