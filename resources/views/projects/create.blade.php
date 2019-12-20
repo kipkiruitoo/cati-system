@@ -1,5 +1,9 @@
 @extends('voyager::master')
-
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
@@ -32,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Assign Supervisors</label>
-                        <select class="form-control select_multiple" id="supervisors" name="supervisors[]" aria-describedby="nameHelp" multiple required>
+                        <select class="form-control js-example-basic-multiple" id="supervisors" name="supervisors[]" aria-describedby="nameHelp" multiple required>
                             @foreach($sups as $sup)
                             <option value="{{$sup->id}}">{{$sup->name}}</option>
                             @endforeach
@@ -50,6 +54,17 @@
                         <small id="nameHelp" class="form-text text-muted">Assign a scripting agent  to this
                             project. Press Ctrl and click to add more than one Scripting Agent</small>
                     </div>
+                     <div class="form-group">
+                        <label for="name">Assign a Qualicty Assurance Agent</label>
+                        <select class="form-control " name="qcs[]" multiple id="supervisors" name="qcs"
+                            aria-describedby="nameHelp" required>
+                            @foreach($qcs as $sup)
+                            <option value="{{$sup->id}}">{{$sup->name}}</option>
+                            @endforeach
+                        </select>
+                        <small id="nameHelp" class="form-text text-muted">Assign a scripting agent to this
+                            project. Press Ctrl and click to add more than one Scripting Agent</small>
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary  btn-block">Submit</button>
                     </div>
@@ -62,10 +77,10 @@
 </div>
 
 <script>
-$(document).ready(function () {
-  $("#test").CreateMultiCheckBox({ width: '230px',
-             defaultText : 'Select Below', height:'250px' });
-});
-</script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2();
+        $('#scripters').select2();
+    });
 
+</script>
 @endsection

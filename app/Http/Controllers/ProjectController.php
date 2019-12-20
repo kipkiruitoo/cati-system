@@ -56,9 +56,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $qcs = User::where('role_id', 6)->get();
         $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users', 'users.id', '=', 'user_roles.user_id')->where('roles.name', 'sup')->get();
         $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users', 'users.id', '=', 'user_roles.user_id')->where('roles.name', 'sa')->get();
-        return view('projects.create', compact('sups', 'sas'));
+        return view('projects.create', compact('sups', 'sas', 'qcs'));
 
         // print_r($pms);
     }
@@ -81,6 +82,7 @@ class ProjectController extends Controller
         $proj->sa = $request->sa;
 
         $supervisors = $request->supervisors;
+        $qcs = $request->qcs;
         // print_r($supervisors);
         if ($proj->save()) {
 
@@ -88,6 +90,11 @@ class ProjectController extends Controller
 
                 DB::table('project_supervisor')->insert(
                     ['user_id' => $supervisor, 'project_id' => $proj->id]
+                );
+            }
+            foreach ($qcs as $qc) {
+                DB::table('qc_projects')->insert(
+                    ['user_id' => $qc, 'project_id' => $proj->id]
                 );
             }
 
@@ -135,9 +142,15 @@ class ProjectController extends Controller
 
         $qcs = User::where('role_id', 6)->get();
 
+        $selectedqcs = DB::table('qc_projects')->where('qc_projects.project_id',  '=', $id)->get()->pluck('user_id');
+
+        $selectedsups = DB::table('project_supervisor')->where('project_supervisor.project_id',  '=', $id)->get()->pluck('user_id');
+
+        // echo $selectedsups;
+        // echo $qcs;
         $sups = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users', 'users.id', '=', 'user_roles.user_id')->where('roles.name', 'sup')->get();
         $sas = DB::table('roles')->join('user_roles', 'user_roles.role_id', '=', 'roles.id')->join('users', 'users.id', '=', 'user_roles.user_id')->where('roles.name', 'sa')->get();
-        return view('projects.edit', compact('sups', 'sas' , 'qcs'))->withProject($project);
+        return view('projects.edit', compact('sups', 'sas', 'qcs', 'selectedsups', 'selectedqcs'))->withProject($project);
         // print_r($project);
     }
 
@@ -156,14 +169,19 @@ class ProjectController extends Controller
         $proj->start_date =  $request->sdate;
         $proj->slug = str_slug($request->name);
         $proj->end_date =  $request->edate;
-        $proj->pm =  $request->pm;
+        // $proj->pm =  $request->pm;
 
         $supervisors = $request->supervisors;
         if ($proj->save()) {
             foreach ($supervisors as $supervisor) {
-                DB::table('project_supervisor')->where('project_id', $id)->update(
+                // DB::
+                DB::table('project_supervisor')->where(['user_id' => $supervisor, 'project_id' => $proj->id])->delete();
+
+                DB::table('project_supervisor')->insert(
                     ['user_id' => $supervisor, 'project_id' => $proj->id]
                 );
+
+                // echo $supervisor;
             }
 
             $projects = Projects::all();
