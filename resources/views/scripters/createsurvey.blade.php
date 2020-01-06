@@ -8,11 +8,14 @@
             <div class="form-group">
                 <input type="text" name="name" id="name" placeholder="Name of the Suurvey" class="form-control">
             </div>
+            <div class="form-group">
+                <input type="number" name="num" id="num" placeholder="Number of interviews per respondent" class="form-control">
+            </div>
             <input type="hidden" name="project" value="{{$id}}">
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary">
             </div>
-        </form> 
+        </form>
 
     </div>
 </div>

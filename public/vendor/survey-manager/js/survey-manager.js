@@ -2227,12 +2227,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
 Survey.cssType = "material";
@@ -2265,11 +2259,13 @@ Object.keys(widgetsList).forEach(function (widget) {
       date: "",
       project: "",
       sid: "",
-      count: 0
+      count: 0,
+      nit: 1
     };
   },
   created: function created() {
     this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](this.surveyData.json);
+    this.nit = this.surveyData.num;
     this.agent = this.surveyData[1];
     this.project = this.surveyData.project;
     this.sid = this.surveyData.id;
@@ -2294,15 +2290,15 @@ Object.keys(widgetsList).forEach(function (widget) {
         localStorage.setItem("count", _this.count);
         console.log(_this.count);
 
-        if (_this.count == 1) {
-          _this.survey.clear();
-
-          toastr.success("The first interview has been successfully saved", "Success");
-
-          _this.survey.render();
-        } else {
+        if (_this.count == _this.nit) {
           toastr.success("Both interviews  have been successfully saved", "Success");
           window.history.back();
+        } else {
+          _this.survey.clear();
+
+          toastr.success("The  interview has been successfully saved", "Success");
+
+          _this.survey.render();
         }
       });
     });

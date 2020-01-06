@@ -7,8 +7,24 @@
             @section('breadcrumbs')
             <ol class="breadcrumb hidden-xs">
                 @php
-                $segments = array_filter(explode('/', str_replace(route('voyager.dashboard'), '', Request::url())));
-                $url = route('voyager.dashboard');
+                if( Auth::user()->role_id == 1 || Auth::user()->role_id == 3 ){
+                    $segments = array_filter(explode('/', str_replace(route('voyager.dashboard'), '', Request::url())));
+                    $url = route('voyager.dashboard');
+                }else if(Auth::user()->role_id == 2){
+                    $segments = array_filter(explode('/', str_replace(route('agent'), '', Request::url())));
+                    $url = route('agent');
+                }else if(Auth::user()->role_id == 4){
+                    $segments = array_filter(explode('/', str_replace(route('script'), '', Request::url())));
+                    $url = route('script');
+                }else if(Auth::user()->role_id == 5){
+                    $segments = array_filter(explode('/', str_replace(route('supervisor'), '', Request::url())));
+                    $url = route('supervisor');
+                }else if(Auth::user()->role_id == 6){
+                    $segments = array_filter(explode('/', str_replace(route('qc'), '', Request::url())));
+                    $url = route('qc');
+                }
+
+
                 @endphp
                 @if(count($segments) == 0)
                     <li class="active"><i class="voyager-boat"></i> {{ __('voyager::generic.dashboard') }}</li>
@@ -43,7 +59,7 @@
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
                             <h6>{{ Auth::user()->email }}</h6>
-                        </div> 
+                        </div>
                     </li>
                     <li class="divider"></li>
                     <?php $nav_items = config('voyager.dashboard.navbar_items'); ?>

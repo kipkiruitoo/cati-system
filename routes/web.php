@@ -64,7 +64,7 @@ Route::post('/agent/project/survey', 'AgentController@thirdpage')->name('agentth
 
 Route::get('/supervisor', 'ProjectController@supervisorview')->name('supervisor');
 
-Route::get('/projectagents/{id}', 'ProjectController@projectagents')->name('projectagents');
+Route::get('/supervisor/projectagents/{id}', 'ProjectController@projectagents')->name('projectagents');
 
 Route::post('/addagents/{id}', 'ProjectController@addagents')->name('addagents');
 

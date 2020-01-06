@@ -36,19 +36,20 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-       $survey =  new Survey;
-       $survey->name = $request->name;
-       $survey->slug = time();
-       $survey->project = $request->project;
-       $jsonArray = json_decode('{"pages":[]}');
-       $survey->json = $jsonArray;
+        $survey =  new Survey;
+        $survey->name = $request->name;
+        $survey->slug = time();
+        $survey->project = $request->project;
+        $survey->num = $request->num;
+        $jsonArray = json_decode('{"pages":[]}');
+        $survey->json = $jsonArray;
 
-       if ($survey->save()) {
-           
-        return redirect()->route('projects.show', $survey->project);
-       }else{
-           echo "did not work";
-       }
+        if ($survey->save()) {
+
+            return redirect()->route('projects.show', $survey->project);
+        } else {
+            echo "did not work";
+        }
     }
 
     /**
@@ -93,17 +94,17 @@ class SurveyController extends Controller
      */
     public function destroy($id)
     {
-       $pj = Survey::find($id);
+        $pj = Survey::find($id);
 
         if ($pj->delete()) {
-               
-        // $projects = Projects::all();
+
+            // $projects = Projects::all();
 
 
-        return redirect()->back();
-        }else{
+            return redirect()->back();
+        } else {
 
-            echo('an error occured while deleting');
+            echo ('an error occured while deleting');
         }
     }
 }
