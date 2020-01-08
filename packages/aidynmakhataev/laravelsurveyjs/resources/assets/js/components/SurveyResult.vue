@@ -1,6 +1,26 @@
 <template>
   <div>
-    <survey :survey="surveyData" ></survey>
+    <div class="container">
+      <div class="row">
+        <survey :survey="surveyData"></survey>
+      </div>
+      <hr />
+      <hr />
+      <div class="row">
+          <h2>Feedback</h2>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 

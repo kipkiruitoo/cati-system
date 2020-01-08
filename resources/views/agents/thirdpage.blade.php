@@ -1,5 +1,9 @@
 @extends('voyager::master')
-
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
@@ -82,7 +86,13 @@
             <div class="modal-body">
 
                     <div class="form-group">
-                        <textarea type="text" id="fback" name="feedback" class="form-control"></textarea>
+                        <select class="form-control js-example-basic-single" name="feedback" id="fback">
+                            @foreach ($feedbacks as $item)
+                                <option value="{{$item->id}}">
+                                    {{$item->name}}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="hidden" id="respondent" name="respondent" value="{{$respondent[0]->id}}">
                     <input type="hidden" name="survey" value={{$survey}}>
@@ -130,6 +140,13 @@
             console.log(error.response.data)
         });
     }
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+
+    });
 
 </script>
 @endsection

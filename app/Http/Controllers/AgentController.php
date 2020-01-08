@@ -10,9 +10,7 @@ use App\Interview;
 use App\Feedback;
 use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
-
-
-
+use App\PanelFeedback;
 use Illuminate\Support\Facades\DB;
 
 class AgentController extends Controller
@@ -40,11 +38,13 @@ class AgentController extends Controller
         $survey =  $request->survey;
         $respondent = Respondent::all()->random(1);
 
+        $feedbacks = PanelFeedback::all();
+
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
 
         // echo $respondent;
 
-        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback'));
+        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback', 'feedbacks'));
     }
 
 
