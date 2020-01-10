@@ -4,7 +4,7 @@
       <label for="date">Pick the date</label>
       <input type="date" id="date" class="form-control" name="date" v-model="date" />
     </div>
-    <survey :survey="survey"></survey>
+    <survey v-if="date" :survey="survey"></survey>
   </div>
 </template>
 

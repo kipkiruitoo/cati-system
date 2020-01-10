@@ -74537,7 +74537,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("survey", { attrs: { survey: _vm.survey } })
+      _vm.date ? _c("survey", { attrs: { survey: _vm.survey } }) : _vm._e()
     ],
     1
   )

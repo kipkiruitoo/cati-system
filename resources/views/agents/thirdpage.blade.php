@@ -52,11 +52,12 @@
                     <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback">Add
                         Feedback</button>
                         <div class="new-table">
-                               <table id="fbacktb" class="table">
+                               <table  class="table">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Feedback</th>
+                                <th>Type</th>
+                                <th>Comment</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,6 +68,9 @@
                                 </td>
                                 <td>
                                     {{ $feedback->feedback}}
+                                </td>
+                                <td>
+                                    {{ $feedback->other }}
                                 </td>
                             </tr>
                             @endforeach
@@ -193,12 +197,13 @@
             feedback = response.data[1];
 
 
-                $('#fbacktb').dataTable().fnDestroy();
 
-                 thead = "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Feedback</th></tr></thead><tbody>";
+
+                 thead = "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
 
                 feedback.forEach(element => {
-                    tbody += "<tr><td>" + element.feedback + "</td><td>" + element.created_at  + "</td></tr>";
+                    date = new Date(element.created_at)
+                    tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback  + "</td>" + element.other + "</tr>";
                 });
 
 
@@ -206,7 +211,6 @@
 
             tbhtml.innerHTML = thead + tbody + tlast;
 
-              $('#fbacktb').dataTable();
 
             console.log(feedback);
 
