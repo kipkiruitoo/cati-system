@@ -1,15 +1,19 @@
 @extends('voyager::master')
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@endsection
 
 @section('content')
 
 <div class="container">
     <div class="row">
-        <h5>These are the Projects assigned to you by your Supervisor</h5>
+        <h3>These are the Projects assigned to you by your Supervisor</h3>
     </div>
-    <hr>
-    <hr>
+
     <div class="row">
-        <table class="table">
+        <table class="table" id="projects">
             <thead>
                 <tr>
                     <th>
@@ -40,5 +44,9 @@
         </table>
     </div>
 </div>
-
+<script>
+ $(document).ready(function () {
+        $('#projects').DataTable();
+    });
+</script>
 @endsection

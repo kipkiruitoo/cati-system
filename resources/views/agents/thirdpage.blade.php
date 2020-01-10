@@ -3,6 +3,9 @@
 <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
 @endsection
 @section('content')
 
@@ -48,7 +51,8 @@
                     <h5>Last Feedback:</h5>
                     <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback">Add
                         Feedback</button>
-                    <table class="table">
+                        <div class="new-table">
+                               <table id="fbacktb" class="table">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -68,6 +72,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                        </div>
+
                 </div>
         </div>
 
@@ -159,20 +165,61 @@
 <script>
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
-
+        $('#fbacktb').dataTable();
     });
 
 
     function getnewuser(){
+        var feedback;
+        var tbhtml =  document.querySelector('.new-table');
+        var thead;
+        var tbody;
+        var tlast;
         axios.get('/get-user').then((response) => {
             console.log(response)
-            document.querySelector('#resname').innerHTML = response.data[0].name;
-            document.querySelector('#resphone').innerHTML = response.data[0].phone;
-            document.querySelector('#rescounty').innerHTML = response.data[0].county;
-            document.querySelector(".respondent").value = response.data[0].id;
-            document.querySelector("#respondent").value = response.data[0].id;
+            document.querySelector('#resname').innerHTML = response.data[0][0].name;
+            document.querySelector('#resphone').innerHTML = response.data[0][0].phone;
+            document.querySelector('#rescounty').innerHTML = response.data[0][0].county;
+            document.querySelector(".respondent").value = response.data[0][0].id;
+            document.querySelector("#respondent").value = response.data[0][0].id;
+            if (response.data[2][0] === undefined || response.data[2][0].length < 1) {
+                document.querySelector("#lin").innerHTML = "Seems No interview yet";
+
+            }else{
+                document.querySelector("#lin").innerHTML = response.data[2][0].date
+            }
+
+
+            feedback = response.data[1];
+
+
+                $('#fbacktb').dataTable().fnDestroy();
+
+                 thead = "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Feedback</th></tr></thead><tbody>";
+
+                feedback.forEach(element => {
+                    tbody += "<tr><td>" + element.feedback + "</td><td>" + element.created_at  + "</td></tr>";
+                });
+
+
+                tlast = "</tbody></table>";
+
+            tbhtml.innerHTML = thead + tbody + tlast;
+
+              $('#fbacktb').dataTable();
+
+            console.log(feedback);
+
+
+            // $('#fbacktb').DataTable({
+            //     "data": feedback,
+            //     columns: [
+            //         {"data": "feedback"},
+            //         {"data": "created_at"}
+            //     ]
+            // });
         }).catch((error) => {
-            console.log(error.response.data)
+            console.log(error)
         });
     }
 

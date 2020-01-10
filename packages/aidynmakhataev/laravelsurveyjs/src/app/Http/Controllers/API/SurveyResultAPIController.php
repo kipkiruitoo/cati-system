@@ -5,6 +5,8 @@ namespace AidynMakhataev\LaravelSurveyJs\app\Http\Controllers\API;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Interview;
+use App\Feedback;
+use Illuminate\Support\Facades\DB;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
@@ -51,6 +53,7 @@ class SurveyResultAPIController extends Controller
         // print_r($request->input('project'));
         $interview->agent = $agent->agent;
         $interview->survey = $request->input('survey');
+
         //  $iinterview->project = $request->input('project');
         $interview->respondent = $respondent;
         $interview->date = $request->input('date');
@@ -61,6 +64,8 @@ class SurveyResultAPIController extends Controller
                 'interview' => $interview->id,
                 'ip_address'    =>  $request->ip(),
             ]);
+
+            DB::insert('insert into feedback (respondent_id, feedback) values (?, ?)', [$respondent, 'Successful']);
         } else {
             $result = "An error occured";
         }

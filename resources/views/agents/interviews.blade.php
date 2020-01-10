@@ -1,10 +1,17 @@
 @extends('voyager::master')
-
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
     <div class="row">
-        <table class="table">
+        <h4>Below is a list of your past interviews</h4>
+    </div>
+    <div class="row">
+        <table class="table" id="interviews">
             <thead>
                 <th>Respondent ID</th>
                 <th>Respondent Name</th>
@@ -34,6 +41,10 @@
 </div>
 
 
-
+<script>
+ $(document).ready(function () {
+        $('#interviews').DataTable();
+    });
+</script>
 
 @endsection

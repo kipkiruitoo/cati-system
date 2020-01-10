@@ -1,5 +1,9 @@
 @extends('voyager::master')
-
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
@@ -8,7 +12,7 @@
         <a href="{{route('screatesurveyform', $id)}}"><button class="btn btn-primary">Create a New Survey</button></a>
     </div>
     <div class="row">
-        <table class="table">
+        <table class="table" id="surveys">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -90,4 +94,10 @@
     </div>
 
 </div>
+<script>
+   $(document).ready(function () {
+        $('#surveys').DataTable();
+    });
+
+</script>
 @endsection

@@ -116,6 +116,12 @@ class AgentController extends Controller
     {
         $respondent = Respondent::all()->random(1);
 
-        return response()->json($respondent);
+        $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
+
+        $lint = Interview::where('respondent',  $respondent[0]->id)->latest()->get();
+
+        // echo $lint;
+
+        return response()->json([$respondent, $feedback, $lint]);
     }
 }

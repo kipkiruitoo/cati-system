@@ -1,5 +1,9 @@
 @extends('voyager::master')
-
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+@endsection
 @section('content')
 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 3 )
 <div class="container">
@@ -7,7 +11,7 @@
         <a href="{{route('projects.create')}}"><button class="btn btn-primary">Add a NEw Project</button></a>
     </div>
     <div class="row">
-        <table class="table">
+        <table class="table" id="projects">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -61,7 +65,15 @@
                     </td>
 
                 </tr>
-                <!-- clients modal -->
+
+
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@foreach($projects as $project)
+ <!-- clients modal -->
                 <div class="modal fade" id="client{{$project->id}}" tabindex="-1" role="dialog"
                     aria-labelledby="client{{$project->id}}" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -132,20 +144,10 @@
                     </div>
                 </div>
                 <!-- end respondents modal -->
-
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
+@endforeach
 <script>
-    $(document).ready(function () {
-        $("#test").CreateMultiCheckBox({
-            width: '230px',
-            defaultText: 'Select Below',
-            height: '250px'
-        });
+   $(document).ready(function () {
+        $('#projects').DataTable();
     });
 
 </script>
