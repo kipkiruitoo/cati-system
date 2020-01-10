@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-     <button class="btn btn-dark" onclick="location.reload()">Refresh</button>
+     <button class="btn btn-dark" onclick="getnewuser()">Refresh</button>
     </div>
 
     <div class="row">
@@ -17,10 +17,19 @@
             <div class="form-group">
                 <label for="respondent">Selected Respondent</label>
                 <div class="well">
-                    <h5>{{$respondent[0]->name}}</h5>
-                    <h6><span>Phone Number: </span>{{$respondent[0]->phone}}</h6>
-                    <h6><span>County: </span>{{$respondent[0]->county}}</h6>
-                    <button class="btn btn-dark btn-small">Manage Phone Numbers</button>
+                    <h5 id="resname">{{$respondent[0]->name}}</h5>
+                    {{-- {{ $respondent[0]->id}} --}}
+                    <h6>Phone Number:  <span id="resphone">{{$respondent[0]->phone}}</span></h6>
+                    <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
+                    @php
+                        if (App\Interview::where('respondent', $respondent[0]->id)->latest()->first()) {
+                           $lastinterviewdate = App\Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
+                        }else {
+                            $lastinterviewdate = "No interview yet";
+                        }
+                    @endphp
+                    <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
+                    {{-- <button class="btn btn-dark btn-small">Manage Phone Numbers</button> --}}
 
                 </div>
 
@@ -29,7 +38,7 @@
         </div>
         <form action="{{route('survey-manager.run', $survey)}}" method="POST">
             @csrf
-            <input type="hidden" name="respondent" value="{{$respondent}}">
+            <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
             <button type="submit" class="btn btn-dark">Start
                 Survey</button>
         </form>
@@ -86,13 +95,18 @@
             <div class="modal-body">
 
                     <div class="form-group">
-                        <select class="form-control js-example-basic-single" name="feedback" id="fback">
+                        <label for="fback">Choose Feedback</label>
+                        <select class=" form-control" required  name="feedback" id="fback">
                             @foreach ($feedbacks as $item)
-                                <option value="{{$item->id}}">
+                                <option value="{{$item->name}}">
                                     {{$item->name}}
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="other">Additional Feedback</label>
+                        <textarea  class="form-control" id="other" cols="10" rows="10" name="other"></textarea>
                     </div>
                     <input type="hidden" id="respondent" name="respondent" value="{{$respondent[0]->id}}">
                     <input type="hidden" name="survey" value={{$survey}}>
@@ -147,6 +161,20 @@
         $('.js-example-basic-single').select2();
 
     });
+
+
+    function getnewuser(){
+        axios.get('/get-user').then((response) => {
+            console.log(response)
+            document.querySelector('#resname').innerHTML = response.data[0].name;
+            document.querySelector('#resphone').innerHTML = response.data[0].phone;
+            document.querySelector('#rescounty').innerHTML = response.data[0].county;
+            document.querySelector(".respondent").value = response.data[0].id;
+            document.querySelector("#respondent").value = response.data[0].id;
+        }).catch((error) => {
+            console.log(error.response.data)
+        });
+    }
 
 </script>
 @endsection

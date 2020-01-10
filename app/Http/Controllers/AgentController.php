@@ -12,6 +12,7 @@ use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\PanelFeedback;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\ToArray;
 
 class AgentController extends Controller
 {
@@ -42,9 +43,10 @@ class AgentController extends Controller
 
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
 
+        // $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
         // echo $respondent;
 
-        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback', 'feedbacks'));
+        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback', 'feedbacks', 'lastinterviewdate'));
     }
 
 
@@ -79,15 +81,41 @@ class AgentController extends Controller
     public function addfeedback(Request $request)
     {
 
-        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'), 'feedback' => $request->input('feedback')]);
-        $feedback = Feedback::where('respondent_id', $request->input('respondent'))->get();
+        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'), 'feedback' => $request->input('feedback'), 'other' => $request->input('other')]);
+
         $respondent = Respondent::where('id', $request->input('respondent'))->get();
         $survey = $request->input('survey');
+        $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
+        $feedbacks = PanelFeedback::all();
+
+
+        $request->survey = $survey;
 
 
 
-        echo ("<script>window.history.back()</script>");
-        // return redirect()->back();
-        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback'));
+        return view('agents.thirdpage', compact('respondent', 'survey', 'feedback', 'feedbacks'));
+    }
+
+    // public function getthirdpage()
+    // {
+    //     // $survey =  $id;
+    //     // $respondent = Respondent::all()->random(1);
+
+    //     // $feedbacks = PanelFeedback::all();
+
+    //     // $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
+
+    //     // $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
+    //     // echo $respondent;
+
+    //     return view('agents.thirdpage');
+    // }
+
+
+    public function getnewuser()
+    {
+        $respondent = Respondent::all()->random(1);
+
+        return response()->json($respondent);
     }
 }

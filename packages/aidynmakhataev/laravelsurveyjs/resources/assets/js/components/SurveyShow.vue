@@ -63,7 +63,7 @@ export default {
         .post(url, {
           json: result.data,
           agent: this.agent,
-          respondent: this.respondent,
+          respondent: this.respondent.respondent,
           survey: this.sid,
           project: this.surveyData.project,
           date: this.date

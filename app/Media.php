@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
 
-    protected $fillable = ['name', 'type'];
+    protected $fillable = ['name', 'media_type_id'];
 
     public function type()
     {

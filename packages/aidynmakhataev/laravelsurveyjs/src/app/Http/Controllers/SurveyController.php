@@ -5,6 +5,7 @@ namespace AidynMakhataev\LaravelSurveyJs\app\Http\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Respondent;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 class SurveyController extends Controller
@@ -22,7 +23,7 @@ class SurveyController extends Controller
         array_push($survey, ['agent' => Auth::user()->id]);
         return view('survey-manager::survey', [
             'survey'    =>  $survey,
-            'respondent' => $request->respondent,
+            'respondent' => Respondent::where('id', $request->respondent)->get(),
             'agent' => Auth::user()->id,
         ]);
     }

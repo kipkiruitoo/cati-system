@@ -13,6 +13,7 @@
 
 use App\Exports\RespondentExport;
 use App\Exports\UsersExport;
+use App\Http\Controllers\AgentController;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
@@ -60,6 +61,7 @@ Route::get('/agent', 'AgentController@firstpage')->name('agent');
 
 Route::get('/agent/project/{id}', 'AgentController@secondpage')->name('agentchoseproject');
 Route::post('/agent/project/survey', 'AgentController@thirdpage')->name('agentthirdpage');
+// Route::get('/agent/project/survey', 'AgentController@thirdpage')->name('agentthirdpage');
 
 
 Route::get('/supervisor', 'ProjectController@supervisorview')->name('supervisor');
@@ -78,6 +80,7 @@ Route::get('/agent/interviews', 'AgentController@interviews')->name('pinterviews
 
 Route::get('/agent/overview', 'AgentController@overview')->name('poverview');
 Route::post('add-feedback', 'AgentController@addfeedback');
+Route::get('/get-user', 'AgentController@getnewuser');
 
 
 // qc urls

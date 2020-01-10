@@ -2300,7 +2300,7 @@ Object.keys(widgetsList).forEach(function (widget) {
       axios.post(url, {
         json: result.data,
         agent: _this.agent,
-        respondent: _this.respondent,
+        respondent: _this.respondent.respondent,
         survey: _this.sid,
         project: _this.surveyData.project,
         date: _this.date

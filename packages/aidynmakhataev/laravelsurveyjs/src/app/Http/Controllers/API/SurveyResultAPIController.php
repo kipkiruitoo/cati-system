@@ -43,16 +43,16 @@ class SurveyResultAPIController extends Controller
 
         $interview = new Interview;
         $agent = (object) $request->input('agent');
-        $respondent = (object) $request->input('respondent');
+        $respondent = $request->input('respondent');
         //  print_r($agent->agent);
         //  echo "<br><hr>";
-        $respondent = json_decode($respondent->respondent);
+        // $respondent = json_decode($respondent->respondent);
         //  print_r($respondent) ;
         // print_r($request->input('project'));
         $interview->agent = $agent->agent;
         $interview->survey = $request->input('survey');
         //  $iinterview->project = $request->input('project');
-        $interview->respondent = $respondent[0]->id;
+        $interview->respondent = $respondent;
         $interview->date = $request->input('date');
         if ($interview->save()) {
             $result = $survey->results()->create([
