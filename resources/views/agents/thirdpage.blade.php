@@ -186,7 +186,7 @@
                 document.querySelector("#lin").innerHTML = "Seems No interview yet";
 
             }else{
-                document.querySelector("#lin").innerHTML = response.data[2][0].date
+                document.querySelector("#lin").innerHTML = response.data[2][0].created_at
             }
 
 
