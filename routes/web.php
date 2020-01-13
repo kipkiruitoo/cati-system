@@ -83,6 +83,10 @@ Route::post('add-feedback', 'AgentController@addfeedback');
 Route::get('/get-user', 'AgentController@getnewuser');
 
 
+
+Route::post('api/check-date', 'AgentController@checkdate');
+
+
 // qc urls
 
 Route::get('/qc', 'QCController@index')->name('qc');

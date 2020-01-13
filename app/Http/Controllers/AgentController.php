@@ -124,4 +124,14 @@ class AgentController extends Controller
 
         return response()->json([$respondent, $feedback, $lint]);
     }
+
+    public function checkdate(Request $request)
+    {
+
+        if (Interview::where('respondent', '=', $request->respondent)->where('date', $request->date)->exists()) {
+            return response()->json(['exists' =>  true]);
+        } else {
+            return response()->json(['exists' =>  false]);
+        }
+    }
 }
