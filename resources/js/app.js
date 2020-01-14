@@ -8,6 +8,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import QC from './components/QC.vue';
+
+var moment = require('moment');
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +24,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('survey-result', require('./components/SurveyResult.vue').default);
+Vue.component('qc-survey', QC);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

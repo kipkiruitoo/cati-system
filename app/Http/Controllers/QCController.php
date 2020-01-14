@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interview;
 use App\Projects;
+use App\QcResult;
 
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\Respondent;
@@ -57,11 +58,29 @@ class QCController extends Controller
 
 
         // echo $respondent;
+        $survey = Survey::where('id', 28)->firstOrFail();
+        $survey = $survey->toArray();
 
 
         // echo $survey . $interview;
         // echo $agentid;
         // echo $respondentid;
-        return view('qc.results', compact('respondent', 'agent', 'interview'));
+        return view('qc.results', compact('respondent', 'agent', 'interview', 'survey'));
+    }
+    public function saveqcresults(Request $request)
+    {
+        $qcresult = new QcResult();
+        $qcresult->json = json_encode($request->json, true);
+        $qcresult->interview = $request->interview;
+        $qcresult->qc =  $request->qc;
+
+        if ($qcresult->save()) {
+            $interview = Interview::find($request->interview);
+            $interview->qcd = 1;
+            $interview->save();
+            return response()->json(['message' => 'Success', 'data' => $request]);
+        } else {
+            return response()->json(['message' => 'failed', 'data' => $request]);
+        }
     }
 }

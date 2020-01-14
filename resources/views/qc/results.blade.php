@@ -7,6 +7,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/easy-autocomplete"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/easy-autocomplete@1.3.5/dist/easy-autocomplete.css" />
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -41,9 +43,16 @@
             Below are the answers entered by the respondents. Go through the audio to acertain the quality of the responces filled!
         </div>
     </div>
+    <div id="results">
     <div class="row">
-      <div id="results">
+
         <survey-result></survey-result>
+
+    </div>
+    <hr><hr>
+    <h4>Fill in the questionnaire below</h4>
+    <div class="row">
+    <qc-survey :survey-data="{{ json_encode($survey) }}" :qc="{{\Auth::user()->id}}"></qc-survey>
     </div>
     </div>
 
