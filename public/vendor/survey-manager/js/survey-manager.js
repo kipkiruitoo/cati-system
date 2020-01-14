@@ -172752,6 +172752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./resources/assets/js/App.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ "./resources/assets/js/router.js");
 /* harmony import */ var _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/SurveyShow.vue */ "./resources/assets/js/components/SurveyShow.vue");
+/* harmony import */ var _components_SurveyResult__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/SurveyResult */ "./resources/assets/js/components/SurveyResult.vue");
 __webpack_require__(/*! ./base */ "./resources/assets/js/base.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -172761,9 +172762,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('survey-show', _components_SurveyShow_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('survey-results', _components_SurveyResult__WEBPACK_IMPORTED_MODULE_6__["default"]);
 new Vue({
   router: _router__WEBPACK_IMPORTED_MODULE_4__["default"],
   data: function data() {

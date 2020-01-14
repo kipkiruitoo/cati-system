@@ -6,8 +6,8 @@ use App\Interview;
 use App\Projects;
 
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
-
-
+use App\Respondent;
+use App\User;
 use Auth;
 
 use Illuminate\Support\Facades\DB;
@@ -32,7 +32,7 @@ class QCController extends Controller
 
         $interviews =  Interview::where('survey', $survey)->where('date', $date)->get();
 
-        return view('qc.results', compact('interviews'));
+        return view('qc.interviews', compact('interviews'));
     }
     public function surveys($id)
     {
@@ -41,5 +41,27 @@ class QCController extends Controller
 
         return view('qc.surveys', compact('surveys', 'id'))->withProject($project);
         // return view('qc.surveys');
+    }
+    public function results($survey, $interview)
+    {
+        $agentid = Interview::where('id', $interview)->first()->agent;
+        $respondentid =  Interview::where('id', $interview)->first()->respondent;
+
+        $agent = User::find($agentid);
+
+        // echo $agent;
+
+        $respondent  = Respondent::find($respondentid);
+
+        $interview = Interview::find($interview);
+
+
+        // echo $respondent;
+
+
+        // echo $survey . $interview;
+        // echo $agentid;
+        // echo $respondentid;
+        return view('qc.results', compact('respondent', 'agent', 'interview'));
     }
 }

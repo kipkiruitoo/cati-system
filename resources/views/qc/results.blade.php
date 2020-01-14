@@ -1,32 +1,58 @@
 @extends('voyager::master')
+@section('head')
+<meta name="csrf-token" content="{{csrf_token()}}">
+    <script src="https://unpkg.com/jquery"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendor/survey-manager/css/survey.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/easy-autocomplete"></script>
+    <link rel="stylesheet" href="https://unpkg.com/easy-autocomplete@1.3.5/dist/easy-autocomplete.css" />
 
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
+
+    <script src="https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js"></script>
+@endsection
 @section('content')
+
 <div class="container">
     <div class="row">
-        <table class="table">
-            <thead>
-                <th>Interviewer</th>
-                <th>Respondent</th>
-                <th>Date of Consumption</th>
-                <th>Date of interview</th>
-                <th>Actions</th>
-            </thead>
-            <tbody>
-                @foreach($interviews as $interview)
-                <tr>
-                    <td>{{App\User::find($interview->agent)->name}}</td>
-                    <td>{{App\Respondent::find($interview->respondent)->name}}</td>
-                    <td>{{$interview->date}}</td>
-                    <td>{{$interview->created_at}}</td>
-                    <td>
-                        <a href="{{url('/admin/survey/' . $interview->survey .'/results/' . $interview->id)}}"><button
-                                class="btn btn-dark">Show Results</button></a>
-                    </td>
-                </tr>
-                @endforeach
+        <div class="col col-md-6">
+            <div class="well">
 
-            </tbody>
-        </table>
+            <h4>This interview was conducted by : </h4><span>{{ $agent->name}}</span>
+        <h4>On:</h4> <span>{{ $interview->created_at}}</span>
+            <h4>The date of consumption was: </h4> <span>{{$interview->date}}</span>
+
+        </div>
+        </div>
+        <div class="col col-md-6">
+            <div class="well">
+            <h4> The Respondent Was:</h4> <span>{{$respondent->name}}</span>
+            <h4>From:</h4> <span>{{$respondent->county}}</span>
+            </div>
+        </div>
+
+
     </div>
+    <div class="row">
+        <div class="well">
+            Below are the answers entered by the respondents. Go through the audio to acertain the quality of the responces filled!
+        </div>
+    </div>
+    <div class="row">
+      <div id="results">
+        <survey-result></survey-result>
+    </div>
+    </div>
+
 </div>
+
+<script>
+        window.SurveyConfig = {!!json_encode(config('survey-manager')) !!};
+
+    </script>
+
+<script src="{{asset('js/app.js')}}"></script>
 @endsection

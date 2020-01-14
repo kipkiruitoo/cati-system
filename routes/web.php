@@ -91,4 +91,5 @@ Route::post('api/check-date', 'AgentController@checkdate');
 
 Route::get('/qc', 'QCController@index')->name('qc');
 Route::post('/qc', 'QCController@interviews');
+Route::get('/qc/{id}/results/{interview}', 'QCController@results');
 Route::get('/qc/project/surveys/{id}', 'QCController@surveys')->name('qcsurveys');
