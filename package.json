@@ -26,7 +26,9 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "dhx-spreadsheet": "^3.1.4",
         "moment": "^2.24.0",
+        "vue-json-csv": "^1.2.10",
         "vue-router": "^3.1.3"
     }
 }

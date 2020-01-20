@@ -95,3 +95,6 @@ Route::get('/qc/{id}/results/{interview}', 'QCController@results');
 Route::get('/qc/project/surveys/{id}', 'QCController@surveys')->name('qcsurveys');
 
 Route::post('/saveqcresults', 'QCController@saveqcresults');
+
+
+Route::post('/getresults', 'SurveyController@getresults')->name('getresults');

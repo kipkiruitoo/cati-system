@@ -26,6 +26,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-         Voyager::addAction(\App\Actions\EditSurvey::class);
+        Voyager::addAction(\App\Actions\EditSurvey::class);
+        \Response::macro('attachment', function ($content, $filename) {
+
+            $headers = [
+                'Content-type'        => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="' . $filename . '.csv"',
+            ];
+
+            return \Response::make($content, 200, $headers);
+        });
     }
 }

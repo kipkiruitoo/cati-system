@@ -8,7 +8,7 @@
 
     <meta name="csrf-token" content="{{csrf_token()}}">
 
-    
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">

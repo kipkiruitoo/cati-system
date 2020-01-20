@@ -4,13 +4,15 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue');
+window.Vue = require("vue");
 
-import QC from './components/QC.vue';
+import QC from "./components/QC.vue";
+import JsonCSV from "vue-json-csv";
+import Spreadsheet from "./components/Spreadsheet.vue";
 
-var moment = require('moment');
+var moment = require("moment");
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,8 +25,13 @@ var moment = require('moment');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('survey-result', require('./components/SurveyResult.vue').default);
-Vue.component('qc-survey', QC);
+Vue.component(
+    "survey-result",
+    require("./components/SurveyResult.vue").default
+);
+Vue.component("qc-survey", QC);
+Vue.component("downloadCsv", JsonCSV);
+Vue.component("spreadsheet", Spreadsheet);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,6 +39,8 @@ Vue.component('qc-survey', QC);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#results',
-});
+window.onload = function() {
+    const app = new Vue({
+        el: "#results"
+    });
+};

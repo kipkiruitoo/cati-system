@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    
+
     <div class="row">
         <table class="table">
             <thead>
@@ -27,6 +27,7 @@
                         <a href="{{route('projectagents', $project->project_id)}}"><button
                                 class="btn btn-primary">Show Agents</button></a>
                     </td>
+
 
                 </tr>
                 @endforeach

@@ -52,6 +52,12 @@
                         @endif
 
                     </td>
+                    <td>
+
+                        <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
+                            results</button>
+
+                    </td>
 
                 </tr>
                 <!-- Modal -->
@@ -71,7 +77,7 @@
                                 <div class="modal-body">
 
                                     <div class="form-group">
-                                        <select class="form-control" name="stage" id="stage">
+                                        <select class="form-control" name="stage" id="stage{{$survey->id}}">
                                             <option value="draft">Draft</option>
                                             <option value="test">Test</option>
                                             <option value="production">Production</option>
@@ -88,6 +94,56 @@
                         </div>
                     </div>
                 </div>
+                {{-- filter modal --}}
+                <div class="modal fade" id="filter{{$survey->id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="estatus{{$survey->id}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{route('getresults')}}" method="POST">
+                                @csrf
+                                <div class="modal-header">
+                                    <h4>Choose data for interviews done between these dates</h4> <strong>Beta</strong>
+                                    <h6>The data will be downloaded in csv format for the period specified.</h6>
+                                </div>
+                                <div class="modal-body">
+
+
+                                    <div class="row">
+                                        <div class="col col-md-6">
+                                            <div class="form-group">
+
+                                                <label for="date1{{$survey->id}}">This date</label>
+                                                <input type="date" class="form-control" name="from"
+                                                    id="date1{{$survey->id}}">
+
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="survey" value="{{$survey->id}}">
+                                        <div class="col col-md-6">
+                                            <div class="form-group">
+
+                                                <label for="date2{{$survey->id}}">To This date</label>
+                                                <input type="date" class="form-control" name="to"
+                                                    id="date2{{$survey->id}}">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
                 @endforeach
             </tbody>
         </table>
@@ -95,9 +151,9 @@
 
 </div>
 <script>
-   $(document).ready(function () {
-        $('#surveys').DataTable();
-    });
+    // $(document).ready(function () {
+    //     $('#surveys').DataTable();
+    // });
 
 </script>
 @endsection
