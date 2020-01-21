@@ -24,9 +24,9 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 5) {
-            
+
             return redirect()->route('supervisor');
-            
+
         }else if(Auth::user()->role_id == 2 ){
             return redirect()->route('agent');
         }else if(Auth::user()->role_id == 4){
@@ -38,6 +38,6 @@ class HomeController extends Controller
         else{
              return redirect()->route('voyager.dashboard');
         }
-        
+
     }
 }

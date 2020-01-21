@@ -80,7 +80,7 @@ Route::get('/agent/interviews', 'AgentController@interviews')->name('pinterviews
 
 Route::get('/agent/overview', 'AgentController@overview')->name('poverview');
 Route::post('add-feedback', 'AgentController@addfeedback');
-Route::get('/get-user', 'AgentController@getnewuser');
+Route::get('/get-user/{project}', 'AgentController@getnewuser');
 
 
 

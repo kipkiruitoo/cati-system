@@ -30,23 +30,35 @@ class AgentController extends Controller
 
         $surveys = Survey::where('project', $id)->where('stage', '!=', 'draft')->get();
 
+        $project = $id;
 
-        return view('agents.surveys', compact('surveys'));
+        return view('agents.surveys', compact('surveys', 'project'));
     }
     public function thirdpage(Request $request)
     {
 
         $survey =  $request->survey;
-        $respondent = Respondent::all()->random(1);
+        // echo $request;
+
+        $respondent = Respondent::where('project', $request->project)->get()->random(1);
+
+        // echo ($respondent);
 
         $feedbacks = PanelFeedback::all();
+        $project = $request->project;
 
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
 
-        // $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
+        $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first();
+        if ($lastinterviewdate == null) {
+            $lastinterviewdate =  'no interview yet';
+        } else {
+            $lastinterviewdate = $lastinterviewdate->date;
+        }
+        // var_dump($lastinterviewdate);
         // echo $respondent;
 
-        return view('agents.thirdpage', compact('survey', 'respondent', 'feedback', 'feedbacks', 'lastinterviewdate'));
+        return view('agents.thirdpage', compact('survey', 'respondent', 'project', 'feedback', 'feedbacks', 'lastinterviewdate'));
     }
 
 
@@ -112,9 +124,9 @@ class AgentController extends Controller
     // }
 
 
-    public function getnewuser()
+    public function getnewuser($project)
     {
-        $respondent = Respondent::all()->random(1);
+        $respondent = Respondent::where('project', $project)->get()->random(1);
 
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
 

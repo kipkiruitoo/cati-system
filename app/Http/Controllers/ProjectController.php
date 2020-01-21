@@ -257,7 +257,7 @@ class ProjectController extends Controller
     }
     public function importrespondents(Request $request)
     {
-        Excel::import(new RespondentsImport, request()->file('upfile'));
+        Excel::import(new RespondentsImport($request->project), request()->file('upfile'));
 
         return redirect()->back();
     }

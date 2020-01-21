@@ -2295,6 +2295,7 @@ Object.keys(widgetsList).forEach(function (widget) {
       project: "",
       sid: "",
       count: 0,
+      requiredate: false,
       showsurvey: false,
       nit: 1
     };
@@ -2334,6 +2335,12 @@ Object.keys(widgetsList).forEach(function (widget) {
   },
   mounted: function mounted() {
     var _this2 = this;
+
+    if (this.project == 24) {
+      this.requiredate = true; //   this.showsurvey = true;
+    } else {
+      this.showsurvey = true;
+    }
 
     this.survey.onComplete.add(function (result) {
       var url = "/survey/".concat(_this2.surveyData.id, "/result");
@@ -140735,39 +140742,41 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-menu",
-        [
-          _c("v-text-field", {
-            attrs: {
-              slot: "activator",
-              value: _vm.date,
-              label: "Pick a date",
-              "prepend-icon": "date_range",
-              readonly: "",
-              "max-width": "290"
-            },
-            slot: "activator"
-          }),
-          _vm._v(" "),
-          _c("v-date-picker", {
-            attrs: {
-              color: "green lighten-1",
-              id: "date",
-              max: new Date().toISOString().substr(0, 10)
-            },
-            on: { change: _vm.checkdate },
-            model: {
-              value: _vm.date,
-              callback: function($$v) {
-                _vm.date = $$v
-              },
-              expression: "date"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.requiredate
+        ? _c(
+            "v-menu",
+            [
+              _c("v-text-field", {
+                attrs: {
+                  slot: "activator",
+                  value: _vm.date,
+                  label: "Pick a date",
+                  "prepend-icon": "date_range",
+                  readonly: "",
+                  "max-width": "290"
+                },
+                slot: "activator"
+              }),
+              _vm._v(" "),
+              _c("v-date-picker", {
+                attrs: {
+                  color: "green lighten-1",
+                  id: "date",
+                  max: new Date().toISOString().substr(0, 10)
+                },
+                on: { change: _vm.checkdate },
+                model: {
+                  value: _vm.date,
+                  callback: function($$v) {
+                    _vm.date = $$v
+                  },
+                  expression: "date"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("survey", {
         directives: [
@@ -172625,14 +172634,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************!*\
   !*** ./resources/assets/js/components/SurveyShow.vue ***!
   \*******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SurveyShow_vue_vue_type_template_id_719d1924___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SurveyShow.vue?vue&type=template&id=719d1924& */ "./resources/assets/js/components/SurveyShow.vue?vue&type=template&id=719d1924&");
 /* harmony import */ var _SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SurveyShow.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SurveyShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -172662,7 +172672,7 @@ component.options.__file = "resources/assets/js/components/SurveyShow.vue"
 /*!********************************************************************************!*\
   !*** ./resources/assets/js/components/SurveyShow.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

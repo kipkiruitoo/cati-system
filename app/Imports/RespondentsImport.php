@@ -12,6 +12,11 @@ class RespondentsImport implements ToModel
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+    public function  __construct($project)
+    {
+        $this->project = $project;
+        echo $this->project;
+    }
     public function model(array $row)
 
     {
@@ -19,9 +24,11 @@ class RespondentsImport implements ToModel
         if ($row[0] == "View interviews") {
             return null;
         }
+
         return new Respondent([
             'res_d' => $row[1],
             'name' => $row[2],
+            'project' => $this->project,
             'phone' => $row[4],
             'email' => $row[3],
             'occupation' => $row[5],

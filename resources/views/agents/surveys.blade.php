@@ -11,6 +11,8 @@
                 <form action="{{route('agentthirdpage')}}" method="POST">
                     @csrf
                     <div class="form-group">
+                        
+                    <input type="hidden" name="project" value="{{$project}}">
                         <select name="survey" class="form-control" id="">
                             @foreach($surveys as $survey)
                             <option value="{{$survey->slug}}">{{$survey->name}}</option>

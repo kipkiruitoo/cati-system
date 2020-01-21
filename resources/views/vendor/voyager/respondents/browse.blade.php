@@ -35,7 +35,9 @@
         @endforeach
         @include('voyager::multilingual.language-selector')
     </div>
-
+@php
+$projects = \App\Projects::all();
+@endphp
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -50,14 +52,22 @@
             @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                         <input class="form-control" type="file" name="upfile" id="upfile">
+                            <label for="project">Choose a Project</label>
+                            <select name="project" class="form-control" id="project">
+                                @foreach ($projects as $project)
+                            <option value="{{$project->id}}">{{$project->name}}</option>
+                                @endforeach
+                            </select>
                     </div>
-                   
+                    <div class="form-group">
+                         <input class="form-control-file" type="file" name="upfile" id="upfile">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Upload</button>
-            
+
         </div>
         </form>
     </div>

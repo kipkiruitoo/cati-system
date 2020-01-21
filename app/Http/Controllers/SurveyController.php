@@ -132,7 +132,7 @@ class SurveyController extends Controller
             $respondent = Respondent::find($interview->respondent);
             // array_push
             array_push($smallarray,  $result->interview);
-            array_push($smallarray, $respondent->name);
+            array_push($smallarray, $respondent->res_d);
             array_push($new_array, $smallarray);
         }
 
