@@ -99,13 +99,13 @@ class AgentController extends Controller
         $survey = $request->input('survey');
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
         $feedbacks = PanelFeedback::all();
-
+        $project = $request->project;
 
         $request->survey = $survey;
 
 
 
-        return view('agents.thirdpage', compact('respondent', 'survey', 'feedback', 'feedbacks'));
+        return view('agents.thirdpage', compact('respondent', 'survey', 'project', 'feedback', 'feedbacks'));
     }
 
     // public function getthirdpage()

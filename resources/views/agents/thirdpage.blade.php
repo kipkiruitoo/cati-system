@@ -113,6 +113,7 @@
                                 </option>
                             @endforeach
                         </select>
+                    <input type="hidden" name="project" value="{{ $project }}">
                     </div>
                     <div class="form-group">
                         <label for="other">Additional Feedback</label>
