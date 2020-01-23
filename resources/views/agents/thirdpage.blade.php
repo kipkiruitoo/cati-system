@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-     <button class="btn btn-dark" onclick="getnewuser({{ $project }})">Refresh</button>
+     <button class="btn btn-dark" onclick="getnewuser({{ $project }}, '{{$survey}}')">Refresh</button>
     </div>
 
     <div class="row">
@@ -174,13 +174,13 @@
     });
 
 
-    function getnewuser(project){
+    function getnewuser(project, survey){
         var feedback;
         var tbhtml =  document.querySelector('.new-table');
         var thead;
         var tbody;
         var tlast;
-        axios.get('/get-user/' + project).then((response) => {
+        axios.get('/get-user/' + project +'/' + survey).then((response) => {
             console.log(response)
             document.querySelector('#resname').innerHTML = response.data[0][0].name;
             document.querySelector('#resphone').innerHTML = response.data[0][0].phone;

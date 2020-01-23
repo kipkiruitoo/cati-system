@@ -11,6 +11,7 @@ use App\Feedback;
 use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\PanelFeedback;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToArray;
 
@@ -40,25 +41,42 @@ class AgentController extends Controller
         $survey =  $request->survey;
         // echo $request;
 
-        $respondent = Respondent::where('project', $request->project)->get()->random(1);
+        $surv = Survey::where('slug', $survey)->first();
+        // echo $surv;
+        $daysbetweeninterviews = $surv->days_between_interview;
 
-        // echo ($respondent);
+        // echo $daysbetweeninterviews;
 
-        $feedbacks = PanelFeedback::all();
-        $project = $request->project;
-
-        $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
-
-        $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first();
-        if ($lastinterviewdate == null) {
-            $lastinterviewdate =  'no interview yet';
-        } else {
-            $lastinterviewdate = $lastinterviewdate->date;
-        }
-        // var_dump($lastinterviewdate);
+        $respondent = $this->fetchuser($request->project, $daysbetweeninterviews);
         // echo $respondent;
+        if ($respondent == "norespondents") {
+            // echo $respondent;
+            return redirect()->back()->with(['message' => "No Respondents have been assigned to the Project Yet. Please ask the Project Manager to do so.", 'alert-type' => 'error']);
+        } else {
 
-        return view('agents.thirdpage', compact('survey', 'respondent', 'project', 'feedback', 'feedbacks', 'lastinterviewdate'));
+            // echo $respondent;
+
+            // echo $lid;
+            // echo  $lid->diffInDays($todaysdate);
+
+            // echo $todaysdate;
+
+            $feedbacks = PanelFeedback::all();
+            $project = $request->project;
+
+            $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
+
+            $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first();
+            if ($lastinterviewdate == null) {
+                $lastinterviewdate =  'no interview yet';
+            } else {
+                $lastinterviewdate = $lastinterviewdate->date;
+            }
+            // var_dump($lastinterviewdate);
+            // echo $respondent;
+
+            return view('agents.thirdpage', compact('survey', 'respondent', 'project', 'feedback', 'feedbacks', 'lastinterviewdate'));
+        }
     }
 
 
@@ -124,9 +142,19 @@ class AgentController extends Controller
     // }
 
 
-    public function getnewuser($project)
+    public function getnewuser($project, $survey)
     {
-        $respondent = Respondent::where('project', $project)->get()->random(1);
+
+        $survey =  $survey;
+        // echo $request;
+
+        $surv = Survey::where('slug', $survey)->first();
+        // echo $surv;
+        $daysbetweeninterviews = $surv->days_between_interview;
+
+        // echo $daysbetweeninterviews;
+
+        $respondent = $this->fetchuser($project, $daysbetweeninterviews);
 
         $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
 
@@ -144,6 +172,31 @@ class AgentController extends Controller
             return response()->json(['exists' =>  true]);
         } else {
             return response()->json(['exists' =>  false]);
+        }
+    }
+    public function fetchuser($project, $daysbetweeninterviews)
+    {
+        $respondents = Respondent::where('project', $project)->get();
+        if ($respondents->isEmpty()) {
+            return "norespondents";
+        } else {
+            $respondent = Respondent::where('project', $project)->get()->random(1);
+            $lid = Interview::where('respondent', $respondent[0]->id)->latest()->first();
+            $todaysdate = Carbon::now();
+            // echo ($respondent);
+            if ($lid == null) {
+                $respondent = $respondent;
+                return $respondent;
+            } else {
+                $diff =  $todaysdate->diffInDays($lid->date);
+
+                if ($diff < $daysbetweeninterviews) {
+
+                    return  $this->fetchuser($project, $daysbetweeninterviews);
+                } else {
+                    return $respondent;
+                }
+            }
         }
     }
 }
