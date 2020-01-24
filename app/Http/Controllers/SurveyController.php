@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ResultsExport;
 use App\Interview;
 use App\Respondent;
+use App\User;
 
 class SurveyController extends Controller
 {
@@ -146,11 +147,19 @@ class SurveyController extends Controller
             }
             $interview = Interview::find($result->interview);
             $respondent = Respondent::find($interview->respondent);
+            // rsort($smallarray);
             // array_push
-            $smallarray['interview id'] = $result->interview;
+            $smallarray = array("date_of_interview" =>  date_format($interview->created_at, "D-d-M-Y H:i:s")) + $smallarray;
+            $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
+            $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
+            $smallarray = array("interview_id" => $result->interview) + $smallarray;
+            // $smallarray['interview id'] = $result->interview;
+            // $smallarray["Interviewer"] = User::find($interview->agent)->name;
 
             // array_push($smallarray,  $result->interview);
-            $smallarray['respondent id'] = $interview->respondent;
+            // $smallarray['respondent id'] = $interview->respondent;
+            // $smallarray['date of interview'] = $interview->created_at;
+            // array_unshift($smallarray, [$smallarray['interview id'], $smallarray["Interviewer"], $smallarray['respondent id'], $smallarray['date of interview']]);
             // array_push($smallarray, $interview->respondent);
             array_push($new_array, $smallarray);
         }
