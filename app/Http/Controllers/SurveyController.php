@@ -128,6 +128,22 @@ class SurveyController extends Controller
             // $smallarray->survey =  $result->survey_id;
             // array_push($smallarray,  $result->survey_id);
             // echo $result->survey_id;
+            foreach ($smallarray as $s) {
+                if (is_array($s)) {
+
+                    foreach ($s as $sm) {
+                        if (is_array($sm)) {
+                            foreach ($sm as $k) {
+                                $key = array_search($s, $smallarray) .  array_search($sm, $s) . array_search($k, $sm);
+                                $smallarray[$key] = $k;
+                                // array_push($smallarray, $k);
+                            }
+                        }
+                    }
+
+                    unset($smallarray[array_search($s, $smallarray)]);
+                }
+            }
             $interview = Interview::find($result->interview);
             $respondent = Respondent::find($interview->respondent);
             // array_push
@@ -139,6 +155,7 @@ class SurveyController extends Controller
             array_push($new_array, $smallarray);
         }
 
+        // var_dump(\json_encode($smallarray));
         $f = fopen(storage_path() . '/csvoutput.csv', 'w+');
 
         // print_r($new_array);
