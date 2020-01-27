@@ -74,6 +74,7 @@ return [
         'showState'             =>  true,
 
         'showLogicTab'          => true,
+        'showTranslationTab' => true,
 
         'haveCommercialLicense' =>  true,
     ],
