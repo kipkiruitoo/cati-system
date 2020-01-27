@@ -77,7 +77,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
     $user_avatar = Voyager::image(Auth::user()->avatar);
 }
 ?>
-@if(Auth::check())
+
 <div class="app-container">
     <div class="fadetoblack visible-xs"></div>
     <div class="row content-container">
