@@ -309,4 +309,8 @@ class ProjectController extends Controller
 
         return redirect()->back();
     }
+    public function reports()
+    {
+        return view('supervisors.reports');
+    }
 }

@@ -14,6 +14,7 @@
 use App\Exports\RespondentExport;
 use App\Exports\UsersExport;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\ProjectController;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
@@ -69,6 +70,7 @@ Route::get('/supervisor', 'ProjectController@supervisorview')->name('supervisor'
 Route::get('/supervisor/projectagents/{id}', 'ProjectController@projectagents')->name('projectagents');
 
 Route::post('/addagents/{id}', 'ProjectController@addagents')->name('addagents');
+Route::get('/supervisor/reports', 'ProjectController@reports')->name('supervisorreports');
 
 
 Route::post('/removeagents/{id}', 'ProjectController@removeagents')->name('removeagents');

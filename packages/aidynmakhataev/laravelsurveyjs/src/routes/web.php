@@ -16,6 +16,6 @@ Route::group(
         'middleware'    =>  config('survey-manager.admin_middleware'),
     ],
     function () {
-        Route::view('{vue?}', 'survey-manager::admin')->where('vue', '[\/\w\.-]*')->name('survey-manager.admin');
+        Route::view('{vue?}', 'survey-manager::admin')->where('vue', '[\/\w\.-]*')->name('survey-manager.admin')->middleware('auth');
     }
 );

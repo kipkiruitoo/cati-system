@@ -14,6 +14,8 @@ class SurveyController extends Controller
      * @param $slug
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
+
     public function runSurvey(Request $request, $slug)
     {
         $survey = Survey::where('slug', $slug)->firstOrFail();
