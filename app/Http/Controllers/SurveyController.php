@@ -118,7 +118,12 @@ class SurveyController extends Controller
     {
         $survey = Survey::find($request->survey);
 
-        $results =  SurveyResult::where('survey_id', $request->survey)->whereBetween('created_at', [$request->from, $request->to])->get();
+        if ($survey->stage == 'test') {
+            $results =  SurveyResult::where('survey_id', $request->survey)->whereBetween('created_at', [$request->from, $request->to])->latest()->take(20)->get();
+        } else {
+            $results =  SurveyResult::where('survey_id', $request->survey)->whereBetween('created_at', [$request->from, $request->to])->get();
+        }
+
 
         // // $results =  new Json($results);
 

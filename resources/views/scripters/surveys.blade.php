@@ -41,23 +41,32 @@
 
                     </td>
                     <td>{{$survey->version}}</td>
+                    @if($survey->stage == "draft")
                     <td>
                         <!-- <a href="{{url('/survey', $survey->slug)}}" target="_blank"><button
                                 class="btn btn-success">View</button></a> -->
-                        @if($survey->stage == "draft")
+
                         <a href="{{url('/admin/survey',$survey->id )}}" target="_blank"><button
                                 class="btn btn-warning">Script</button></a>
-                        @else
-                        <p>Surveys in Production or Test Stage cannot be edited</p>
-                        @endif
+
 
                     </td>
                     <td>
+                        <p>You cannot Download Results When in draft mode</p>
+                    </td>
+
+                     @else
+                     <td>
+                          <p>Change the stage back to draft to edit it. </p>
+                     </td>
+                      <td>
 
                         <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
                             results</button>
 
                     </td>
+
+                        @endif
 
                 </tr>
                 <!-- Modal -->

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6529029ff1befcbe98199663c2f185a",
+    "content-hash": "60f1c2b99fcf8d53bd10409bf7b1149a",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -3668,6 +3668,64 @@
                 "dump"
             ],
             "time": "2019-11-28T13:33:56+00:00"
+        },
+        {
+            "name": "tiamo/spss",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tiamo/spss.git",
+                "reference": "b331302b7c258910c0716b549e152cc90eb8912f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tiamo/spss/zipball/b331302b7c258910c0716b549e152cc90eb8912f",
+                "reference": "b331302b7c258910c0716b549e152cc90eb8912f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "doctrine/instantiator": "1.0.5",
+                "phing/phing": "^2",
+                "phpdocumentor/reflection-docblock": "3.0.2",
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SPSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Korniienko Vladyslav",
+                    "email": "vk.tiamo@gmail.com"
+                }
+            ],
+            "description": "SPSS is a php-based implementation of IBM SPSS Statistics Standard",
+            "keywords": [
+                "cli",
+                "cli-app",
+                "dataset",
+                "ibm",
+                "por",
+                "pspp",
+                "reader",
+                "sav",
+                "spss",
+                "statistics",
+                "writer"
+            ],
+            "time": "2019-06-16T20:08:58+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
