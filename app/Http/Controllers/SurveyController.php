@@ -128,22 +128,31 @@ class SurveyController extends Controller
         // // $results =  new Json($results);
 
         $new_array = array();
-
+        // all the rows
         foreach ($results as $result) {
             $smallarray = $result->json;
             // $smallarray->survey =  $result->survey_id;
             // array_push($smallarray,  $result->survey_id);
             // echo $result->survey_id;
+            // all answers in the row
+
             foreach ($smallarray as $s) {
+                // if the individual answers are arrays
                 if (is_array($s)) {
 
                     foreach ($s as $sm) {
+                        // if the answers themselves are arrays
+
                         if (is_array($sm)) {
+
                             foreach ($sm as $k) {
-                                $key = array_search($s, $smallarray) .  array_search($sm, $s) . array_search($k, $sm);
+                                $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s) .  '_' . array_search($k, $sm);
                                 $smallarray[$key] = $k;
                                 // array_push($smallarray, $k);
                             }
+                        } else {
+                            $key = array_search($s, $smallarray) . '.' .  array_search($sm, $s);
+                            $smallarray[$key] = $sm;
                         }
                     }
 
