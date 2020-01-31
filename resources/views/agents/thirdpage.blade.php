@@ -11,48 +11,49 @@
 
 <div class="container">
     <div class="row">
-     <button class="btn btn-dark" onclick="location.reload()">Refresh</button>
+        <button class="btn btn-dark" onclick="location.reload()">Refresh</button>
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <div class="form">
-            <div class="form-group">
-                <label for="respondent">Selected Respondent</label>
-                <div class="well">
-                    <h5 id="resname">{{$respondent[0]->name}}</h5>
-                    {{-- {{ $respondent[0]->id}} --}}
-                    <h6>Phone Number:  <span id="resphone">{{$respondent[0]->phone}}</span></h6>
-                    <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
-                    @php
+                <div class="form-group">
+                    <label for="respondent">Selected Respondent</label>
+                    <div class="well">
+                        <h5 id="resname">{{$respondent[0]->name}}</h5>
+                        {{-- {{ $respondent[0]->id}} --}}
+                        <h6>Phone Number: <span id="resphone">{{$respondent[0]->phone}}</span></h6>
+                        <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
+                        @php
                         if (App\Interview::where('respondent', $respondent[0]->id)->latest()->first()) {
-                           $lastinterviewdate = App\Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
+                        $lastinterviewdate = App\Interview::where('respondent',
+                        $respondent[0]->id)->latest()->first()->date;
                         }else {
-                            $lastinterviewdate = "Seems No interview yet";
+                        $lastinterviewdate = "Seems No interview yet";
                         }
-                    @endphp
-                    <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
-                    {{-- <button class="btn btn-dark btn-small">Manage Phone Numbers</button> --}}
+                        @endphp
+                        <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
+                        {{-- <button class="btn btn-dark btn-small">Manage Phone Numbers</button> --}}
+
+                    </div>
+
 
                 </div>
-
-
             </div>
-        </div>
-        <form action="{{route('survey-manager.run', $survey)}}" method="POST">
-            @csrf
-            <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
-            <button type="submit" class="btn btn-dark">Start
-                Survey</button>
-        </form>
+            <form action="{{route('survey-manager.run', $survey)}}" method="POST">
+                @csrf
+                <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
+                <button type="submit" class="btn btn-dark">Start
+                    Survey</button>
+            </form>
         </div>
         <div class="col-md-6">
-             <div class="well">
-                    <h5>Last Feedback:</h5>
-                    <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback">Add
-                        Feedback</button>
-                        <div class="new-table">
-                               <table  class="table">
+            <div class="well">
+                <h5>Last Feedback:</h5>
+                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback">Add
+                    Feedback</button>
+                <div class="new-table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -76,9 +77,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                        </div>
-
                 </div>
+
+            </div>
         </div>
 
     </div>
@@ -95,40 +96,41 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Feedback for this Respondent: {{$respondent[0]->name}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Feedback for this Respondent:
+                    {{$respondent[0]->name}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="{{url('/add-feedback')}}" id="feedbackform" method="POST">
                 @csrf
-            <div class="modal-body">
+                <div class="modal-body">
 
                     <div class="form-group">
                         <label for="fback">Choose Feedback</label>
-                        <select class=" form-control" required  name="feedback" id="fback">
+                        <select class=" form-control" required name="feedback" id="fback">
                             @foreach ($feedbacks as $item)
-                                <option value="{{$item->name}}">
-                                    {{$item->name}}
-                                </option>
+                            <option value="{{$item->name}}">
+                                {{$item->name}}
+                            </option>
                             @endforeach
                         </select>
-                    <input type="hidden" name="project" value="{{ $project }}">
+                        <input type="hidden" name="project" value="{{ $project }}">
                     </div>
                     <div class="form-group">
                         <label for="other">Additional Feedback</label>
-                        <textarea  class="form-control" id="other" cols="10" rows="10" name="other"></textarea>
+                        <textarea class="form-control" id="other" cols="10" rows="10" name="other"></textarea>
                     </div>
                     <input type="hidden" id="respondent" name="respondent" value="{{$respondent[0]->id}}">
                     <input type="hidden" name="survey" value={{$survey}}>
 
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-             </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -136,12 +138,16 @@
 <script>
     window.onload = function () {
         var count = localStorage.getItem("count");
-        // if (count === 2) {
-        //     localStorage.setItem("count", 0);
-        //     location.reload();
-        // }
-    }
 
+    }
+    var timesRun = 0;
+   interval =  window.setInterval(function () {
+         timesRun += 1;
+    if(timesRun === 3){
+        clearInterval(interval);
+    }
+        refreshuser({{$respondent[0]->id}});
+    }, 2500);
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 <script type="text/javascript">
@@ -175,13 +181,13 @@
     });
 
 
-    function getnewuser(project, survey){
+    function getnewuser(project, survey) {
         var feedback;
-        var tbhtml =  document.querySelector('.new-table');
+        var tbhtml = document.querySelector('.new-table');
         var thead;
         var tbody;
         var tlast;
-        axios.get('/get-user/' + project +'/' + survey).then((response) => {
+        axios.get('/get-user/' + project + '/' + survey).then((response) => {
             console.log(response)
             document.querySelector('#resname').innerHTML = response.data[0][0].name;
             document.querySelector('#resphone').innerHTML = response.data[0][0].phone;
@@ -191,7 +197,7 @@
             if (response.data[2][0] === undefined || response.data[2][0].length < 1) {
                 document.querySelector("#lin").innerHTML = "Seems No interview yet";
 
-            }else{
+            } else {
                 document.querySelector("#lin").innerHTML = response.data[2][0].created_at
             }
 
@@ -201,15 +207,17 @@
 
 
 
-                 thead = "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
+            thead =
+                "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
 
-                feedback.forEach(element => {
-                    date = new Date(element.created_at)
-                    tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback  + "</td>" + element.other + "</tr>";
-                });
+            feedback.forEach(element => {
+                date = new Date(element.created_at)
+                tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
+                    element.other + "</tr>";
+            });
 
 
-                tlast = "</tbody></table>";
+            tlast = "</tbody></table>";
 
             tbhtml.innerHTML = thead + tbody + tlast;
 
@@ -228,6 +236,48 @@
             console.log(error)
         });
     }
+    function refreshuser (id){
+         var feedback;
+        var tbhtml = document.querySelector('.new-table');
+        axios.get('/refresh-user/' + id).then((response) =>{
+            console.log(response);
+             document.querySelector('#resname').innerHTML = response.data[0].name;
+            document.querySelector('#resphone').innerHTML = response.data[0].phone;
+            document.querySelector('#rescounty').innerHTML = ' ' + response.data[0].county;
+            document.querySelector(".respondent").value = response.data[0].id;
+            document.querySelector("#respondent").value = response.data[0].id;
+            if (response.data[2][0] === undefined || response.data[2][0].length < 1) {
+                document.querySelector("#lin").innerHTML = "Seems No interview yet";
 
+            } else {
+                document.querySelector("#lin").innerHTML = response.data[2][0].created_at
+            }
+
+
+            feedback = response.data[1];
+
+            let tbody = '';
+
+
+           let thead =
+                "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
+
+            feedback.forEach(element => {
+                date = new Date(element.created_at)
+                tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
+                    element.other + "</tr>";
+            });
+
+
+           let tlast = "</tbody></table>";
+
+            tbhtml.innerHTML = thead + tbody + tlast;
+
+
+            console.log(feedback);
+        }).catch((error)=>{
+            console.log(error)
+        });
+    }
 </script>
 @endsection

@@ -83,6 +83,7 @@ Route::get('/agent/interviews', 'AgentController@interviews')->name('pinterviews
 Route::get('/agent/overview', 'AgentController@overview')->name('poverview')->middleware('auth');
 Route::post('add-feedback', 'AgentController@addfeedback');
 Route::get('/get-user/{project}/{survey}', 'AgentController@getnewuser');
+Route::get('/refresh-user/{id}', 'AgentController@refreshuser');
 
 
 

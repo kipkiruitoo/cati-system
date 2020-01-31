@@ -199,4 +199,11 @@ class AgentController extends Controller
             }
         }
     }
+    public function refreshuser($id)
+    {
+        $respondent = Respondent::find($id);
+        $feedback = Feedback::where('respondent_id', $respondent->id)->latest()->take(5)->get();
+        $lint = Interview::where('respondent',  $respondent->id)->latest()->get();
+        return response()->json([$respondent, $feedback, $lint]);
+    }
 }
