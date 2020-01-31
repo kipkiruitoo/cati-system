@@ -146,7 +146,7 @@ class SurveyController extends Controller
                         if (is_array($sm)) {
 
                             foreach ($sm as $k) {
-                                $key =  array_search($k, $sm) . array_search($sm, $s);
+                                $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s) .  '_' . array_search($k, $sm);
                                 $smallarray[$key] = $k;
                                 // array_push($smallarray, $k);
                             }
