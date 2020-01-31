@@ -1891,6 +1891,7 @@ Object.keys(widgetsList).forEach(function (widget) {
 
         if (_this2.count == _this2.nit) {
           toastr.success("Both interviews  have been successfully saved", "Success");
+          window.history.back();
         } else {
           _this2.survey.clear();
 

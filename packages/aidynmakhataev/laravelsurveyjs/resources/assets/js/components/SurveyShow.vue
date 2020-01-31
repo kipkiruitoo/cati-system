@@ -126,6 +126,7 @@ export default {
               "Both interviews  have been successfully saved",
               "Success"
             );
+            window.history.back()
           } else {
             this.survey.clear();
             toastr.success(
