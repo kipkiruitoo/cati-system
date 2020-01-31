@@ -21,6 +21,8 @@ $respondent = json_decode($respondent)
                 County: <p>{{$respondent[0]->county}}</p>
             </div>
         </div>
+
+
         <div class="row">
                     <div class="panel-body" id="surveyElement">
                         <survey-show :survey-data="{{ json_encode($survey) }}"></survey-show>
@@ -31,6 +33,17 @@ $respondent = json_decode($respondent)
 
     <script>
         window.SurveyConfig = {!! json_encode(config('survey-manager')) !!};
+
+        window.onload = function () {
+$('form').on('focus', 'input[type=number]', function (e) {
+  $(this).on('wheel.disableScroll', function (e) {
+    e.preventDefault()
+  })
+})
+$('form').on('blur', 'input[type=number]', function (e) {
+  $(this).off('wheel.disableScroll')
+})
+        }
     </script>
 
     <script src="{{ asset('vendor/survey-manager/js/survey-front.js') }}"></script>

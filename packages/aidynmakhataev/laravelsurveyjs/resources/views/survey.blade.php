@@ -19,6 +19,10 @@
 <body>
     <div class="container">
         <div class="row">
+        <a href="{{ route()->back()}}"></a>
+            <button class=""> Go Back </button>
+        </div>
+        <div class="row">
             <div class="col-xs-12 mt-25">
                 <div class="panel panel-default center-block">
                     <div class="panel-heading">{{$survey->name}}</div>

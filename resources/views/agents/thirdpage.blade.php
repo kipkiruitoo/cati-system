@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-     <button class="btn btn-dark" onclick="getnewuser({{ $project }}, '{{$survey}}')">Refresh</button>
+     <button class="btn btn-dark" onclick="location.reload()">Refresh</button>
     </div>
 
     <div class="row">
@@ -28,7 +28,7 @@
                         if (App\Interview::where('respondent', $respondent[0]->id)->latest()->first()) {
                            $lastinterviewdate = App\Interview::where('respondent', $respondent[0]->id)->latest()->first()->date;
                         }else {
-                            $lastinterviewdate = "No interview yet";
+                            $lastinterviewdate = "Seems No interview yet";
                         }
                     @endphp
                     <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
@@ -136,10 +136,10 @@
 <script>
     window.onload = function () {
         var count = localStorage.getItem("count");
-        if (count === 2) {
-            localStorage.setItem("count", 0);
-            location.reload();
-        }
+        // if (count === 2) {
+        //     localStorage.setItem("count", 0);
+        //     location.reload();
+        // }
     }
 
 </script>
@@ -171,6 +171,7 @@
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
         $('#fbacktb').dataTable();
+        // getnewuser({{ $project }}, {{$survey}})
     });
 
 
