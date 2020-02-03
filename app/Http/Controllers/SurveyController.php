@@ -151,7 +151,7 @@ class SurveyController extends Controller
                                 // array_push($smallarray, $k);
                             }
                         } else {
-                            $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s);
+                            $key = array_search($sm, $s) . '_' .  array_search($s, $smallarray);
                             $smallarray[$key] = $sm;
                         }
                     }
