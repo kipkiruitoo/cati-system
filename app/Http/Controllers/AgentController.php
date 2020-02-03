@@ -123,7 +123,7 @@ class AgentController extends Controller
 
 
 
-        return view('agents.thirdpage', compact('respondent', 'survey', 'project', 'feedback', 'feedbacks'));
+        // return view('agents.thirdpage', compact('respondent', 'survey', 'project', 'feedback', 'feedbacks'));
     }
 
     // public function getthirdpage()

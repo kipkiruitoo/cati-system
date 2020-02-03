@@ -102,7 +102,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{url('/add-feedback')}}" id="feedbackform" method="POST">
+            <form  id="feedbackform" method="POST">
                 @csrf
                 <div class="modal-body">
 
@@ -128,7 +128,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button onclick="addfeedback()" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -158,7 +158,10 @@
     function addfeedback() {
         var feedback = document.getElementById("fback").value
         var respondent = document.getElementById("respondent").value
-
+        var feedbackform = document.getElementById("feedbackform")
+        feedbackform.addEventListener("submit", function(event){
+            event.preventDefault();
+        })
         console.log(feedback)
 
         // send contact form data.
@@ -167,6 +170,14 @@
             respondent: respondent
         }).then((response) => {
             console.log(response)
+            $('.modal').modal('hide');
+             interval =  window.setInterval(function () {
+         timesRun += 1;
+    if(timesRun === 3){
+        clearInterval(interval);
+    }
+        refreshuser({{$respondent[0]->id}});
+    }, 2500);
         }).catch((error) => {
             console.log(error.response.data)
         });
