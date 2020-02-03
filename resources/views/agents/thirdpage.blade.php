@@ -102,7 +102,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form  id="feedbackform" method="POST">
+            <form id="feedbackform" method="POST">
                 @csrf
                 <div class="modal-body">
 
@@ -141,13 +141,14 @@
 
     }
     var timesRun = 0;
-   interval =  window.setInterval(function () {
-         timesRun += 1;
-    if(timesRun === 3){
-        clearInterval(interval);
-    }
+    interval = window.setInterval(function () {
+        timesRun += 1;
+        if (timesRun === 3) {
+            clearInterval(interval);
+        }
         refreshuser({{$respondent[0]->id}});
     }, 2500);
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 <script type="text/javascript">
@@ -158,8 +159,9 @@
     function addfeedback() {
         var feedback = document.getElementById("fback").value
         var respondent = document.getElementById("respondent").value
+        var additionalfeedback = document.getElementById("other").value
         var feedbackform = document.getElementById("feedbackform")
-        feedbackform.addEventListener("submit", function(event){
+        feedbackform.addEventListener("submit", function (event) {
             event.preventDefault();
         })
         console.log(feedback)
@@ -167,17 +169,18 @@
         // send contact form data.
         axios.post('/add-feedback', {
             feedback: feedback,
-            respondent: respondent
+            respondent: respondent,
+            other: additionalfeedback
         }).then((response) => {
-            console.log(response)
+            console.log(other)
             $('.modal').modal('hide');
-             interval =  window.setInterval(function () {
-         timesRun += 1;
-    if(timesRun === 3){
-        clearInterval(interval);
-    }
-        refreshuser({{$respondent[0]->id}});
-    }, 2500);
+            interval = window.setInterval(function () {
+                timesRun += 1;
+                if (timesRun === 3) {
+                    clearInterval(interval);
+                }
+                refreshuser({{$respondent[0]->id}});
+            }, 1000);
         }).catch((error) => {
             console.log(error.response.data)
         });
@@ -247,12 +250,13 @@
             console.log(error)
         });
     }
-    function refreshuser (id){
-         var feedback;
+
+    function refreshuser(id) {
+        var feedback;
         var tbhtml = document.querySelector('.new-table');
-        axios.get('/refresh-user/' + id).then((response) =>{
+        axios.get('/refresh-user/' + id).then((response) => {
             console.log(response);
-             document.querySelector('#resname').innerHTML = response.data[0].name;
+            document.querySelector('#resname').innerHTML = response.data[0].name;
             document.querySelector('#resphone').innerHTML = response.data[0].phone;
             document.querySelector('#rescounty').innerHTML = ' ' + response.data[0].county;
             document.querySelector(".respondent").value = response.data[0].id;
@@ -270,25 +274,27 @@
             let tbody = '';
 
 
-           let thead =
+            let thead =
                 "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
 
             feedback.forEach(element => {
+                console.log(element.other)
                 date = new Date(element.created_at)
                 tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
-                    element.other + "</tr>";
+                    "<td>" + element.other + "</td>" + "</tr>";
             });
 
 
-           let tlast = "</tbody></table>";
+            let tlast = "</tbody></table>";
 
             tbhtml.innerHTML = thead + tbody + tlast;
 
 
             console.log(feedback);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         });
     }
+
 </script>
 @endsection

@@ -122,6 +122,7 @@ class AgentController extends Controller
         $request->survey = $survey;
 
 
+        // return response()->json(["message" => "successful"]);
 
         // return view('agents.thirdpage', compact('respondent', 'survey', 'project', 'feedback', 'feedbacks'));
     }
