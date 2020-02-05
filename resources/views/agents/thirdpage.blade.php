@@ -16,14 +16,32 @@
 
     <div class="row">
         <div class="col-md-6">
-            <div class="form">
+<form action="{{route('survey-manager.run', $survey)}}" method="POST">
                 <div class="form-group">
                     <label for="respondent">Selected Respondent</label>
                     <div class="well">
                         <h5 id="resname">{{$respondent[0]->name}}</h5>
-                        {{-- {{ $respondent[0]->id}} --}}
-                        <h6>Phone Number: <span id="resphone">{{$respondent[0]->phone}}</span></h6>
                         <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
+                        <h5>Call the Phone Numbers in the order and select which one was picked before proceeding</h5>
+                        <div class="form-group">
+                        <label for="resphone">First Phone Number: </label>
+                        <input id="resphone" type="radio" name="phonenumber" required value="{{$respondent[0]->phone}}"><span> {{$respondent[0]->phone}}</span>
+                        </div>
+                        @if ($respondent[0]->phone1)
+                        <div class="form-group">
+                        <label for="phone1">Second Phone Number: </label>
+                        <input id="phone1" type="radio" name="phonenumber" required value="{{$respondent[0]->phone1}}"><span> {{$respondent[0]->phone1}}</span>
+                        </div>
+                        @endif
+                        @if ($respondent[0]->phone2)
+                        <div class="form-group">
+                        <label for="phone1">Third Phone Number: </label>
+                        <input id="phone1" type="radio" name="phonenumber" required value="{{$respondent[0]->phone2}}"><span> {{$respondent[0]->phone2}}</span>
+                        </div>
+                        @endif
+
+
+
                         @php
                         if (App\Interview::where('respondent', $respondent[0]->id)->latest()->first()) {
                         $lastinterviewdate = App\Interview::where('respondent',
@@ -39,8 +57,8 @@
 
 
                 </div>
-            </div>
-            <form action="{{route('survey-manager.run', $survey)}}" method="POST">
+
+
                 @csrf
                 <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
                 <button type="submit" class="btn btn-dark">Start
@@ -265,7 +283,8 @@
                 document.querySelector("#lin").innerHTML = "Seems No interview yet";
 
             } else {
-                document.querySelector("#lin").innerHTML = response.data[2][0].created_at
+                let date = new Date(response.data[2][0].created_at)
+                document.querySelector("#lin").innerHTML = date.toDateString()
             }
 
 

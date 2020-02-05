@@ -26,6 +26,7 @@ class SurveyController extends Controller
         return view('survey-manager::survey', [
             'survey'    =>  $survey,
             'respondent' => Respondent::where('id', $request->respondent)->get(),
+            'selectedphone' => $request->phonenumber,
             'agent' => Auth::user()->id,
         ]);
     }

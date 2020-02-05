@@ -11,13 +11,14 @@
 @section('content')
 @php
 $respondent = json_decode($respondent)
+
 @endphp
     <div class="container">
         <div class="row">
             <h4>You Are interviewing:</h4>
             <div class="well">
                 Name: <p>{{$respondent[0]->name}}</p>
-                Phone Number: <p>{{$respondent[0]->phone}}</p>
+                Phone Number: <p>{{$selectedphone}}</p>
                 County: <p>{{$respondent[0]->county}}</p>
             </div>
         </div>
@@ -25,7 +26,7 @@ $respondent = json_decode($respondent)
 
         <div class="row">
                     <div class="panel-body" id="surveyElement">
-                        <survey-show :survey-data="{{ json_encode($survey) }}"></survey-show>
+                    <survey-show :selectedphone="{{$selectedphone}}" :survey-data="{{ json_encode($survey) }}"></survey-show>
                     </div>
 
             </div>

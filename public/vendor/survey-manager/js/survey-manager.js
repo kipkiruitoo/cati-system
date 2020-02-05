@@ -2285,7 +2285,7 @@ Object.keys(widgetsList).forEach(function (widget) {
   components: {
     Survey: Survey
   },
-  props: ["surveyData"],
+  props: ["surveyData", "selectedphone"],
   data: function data() {
     return {
       survey: {},
@@ -2293,6 +2293,7 @@ Object.keys(widgetsList).forEach(function (widget) {
       agent: "",
       date: "",
       project: "",
+      phonenumber: 0,
       sid: "",
       count: 0,
       requiredate: false,
@@ -2307,7 +2308,9 @@ Object.keys(widgetsList).forEach(function (widget) {
     this.project = this.surveyData.project;
     this.sid = this.surveyData.id;
     this.respondent = this.surveyData[0];
+    this.phonenumber = this.selectedphone;
     localStorage.setItem("count", this.count);
+    localStorage.setItem("phone", this.phonenumber);
   },
   methods: {
     checkdate: function checkdate() {
@@ -2349,6 +2352,7 @@ Object.keys(widgetsList).forEach(function (widget) {
         agent: _this2.agent,
         respondent: _this2.respondent.respondent,
         survey: _this2.sid,
+        phonenumber: _this2.phonenumber,
         project: _this2.surveyData.project,
         date: _this2.date
       }).then(function (response) {

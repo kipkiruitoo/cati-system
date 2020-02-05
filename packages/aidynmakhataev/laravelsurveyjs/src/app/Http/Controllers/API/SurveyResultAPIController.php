@@ -53,7 +53,7 @@ class SurveyResultAPIController extends Controller
         // print_r($request->input('project'));
         $interview->agent = $agent->agent;
         $interview->survey = $request->input('survey');
-
+        $interview->phonenumber = $request->input('phonenumber');
         //  $iinterview->project = $request->input('project');
         $interview->respondent = $respondent;
         $interview->date = $request->input('date');

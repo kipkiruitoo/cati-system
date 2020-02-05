@@ -49,7 +49,7 @@ export default {
   components: {
     Survey
   },
-  props: ["surveyData"],
+  props: ["surveyData", "selectedphone"],
 
   data() {
     return {
@@ -58,6 +58,7 @@ export default {
       agent: "",
       date: "",
       project: "",
+      phonenumber: 0,
       sid: "",
       count: 0,
       requiredate: false,
@@ -72,7 +73,9 @@ export default {
     this.project = this.surveyData.project;
     this.sid = this.surveyData.id;
     this.respondent = this.surveyData[0];
+    this.phonenumber = this.selectedphone;
     localStorage.setItem("count", this.count);
+    localStorage.setItem("phone", this.phonenumber);
   },
   methods: {
     checkdate() {
@@ -113,6 +116,7 @@ export default {
           agent: this.agent,
           respondent: this.respondent.respondent,
           survey: this.sid,
+          phonenumber: this.phonenumber,
           project: this.surveyData.project,
           date: this.date
         })
@@ -126,7 +130,7 @@ export default {
               "Both interviews  have been successfully saved",
               "Success"
             );
-            window.history.back()
+            window.history.back();
           } else {
             this.survey.clear();
             toastr.success(
