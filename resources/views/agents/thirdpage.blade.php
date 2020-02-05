@@ -192,6 +192,7 @@
         }).then((response) => {
             console.log(other)
             $('.modal').modal('hide');
+            var timesRun = 0;
             interval = window.setInterval(function () {
                 timesRun += 1;
                 if (timesRun === 3) {
