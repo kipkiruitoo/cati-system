@@ -31,7 +31,7 @@ class QCController extends Controller
 
         // echo $date;
 
-        $interviews =  Interview::where('survey', $survey)->where('date', $date)->get();
+        $interviews =  Interview::where('survey', $survey)->whereDate('created_at', $date)->get();
 
         return view('qc.interviews', compact('interviews'));
     }
