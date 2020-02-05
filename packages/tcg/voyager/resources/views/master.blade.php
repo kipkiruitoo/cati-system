@@ -127,6 +127,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 
 <script type="text/javascript" src="{{ voyager_asset('js/app.js') }}"></script>
 
+
 <script>
     @if(Session::has('alerts'))
         let alerts = {!! json_encode(Session::get('alerts')) !!};
@@ -147,6 +148,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
     }
     @endif
 </script>
+
 @include('voyager::media.manager')
 @yield('javascript')
 @stack('javascript')

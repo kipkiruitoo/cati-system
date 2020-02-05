@@ -1,5 +1,10 @@
 @extends('voyager::master')
+@section('head')
+<script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
+@endsection
 @section('content')
 
 <div class="container">
@@ -42,7 +47,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Choose Agents 
+                <h5 class="modal-title" id="exampleModalLabel">Choose Agents
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -50,11 +55,11 @@
             </div>
             <form action="{{route('addagents', $id)}}" method="POST">
                 @csrf
-                
+
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <select class="form-control" name="agents[]" multiple id="stage">
+                        <select class="form-control js-example-basic-multiple" style="width: 100%;" name="agents[]" multiple id="stage">
                             @foreach($freeagents as $client)
                             <option value="{{$client->id}}">{{$client->name}}</option>
                             @endforeach
@@ -70,7 +75,13 @@
             </form>
         </div>
     </div>
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2();
+        $('#scripters').select2();
+    });
 
+</script>
 
 
     @endsection

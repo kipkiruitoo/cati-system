@@ -58,10 +58,14 @@
 
 </div>
 
+
 <script>
         window.SurveyConfig = {!!json_encode(config('survey-manager')) !!};
 
     </script>
+
+@endsection
+@section('javascript')
 
 <script src="{{asset('js/app.js')}}"></script>
 @endsection
