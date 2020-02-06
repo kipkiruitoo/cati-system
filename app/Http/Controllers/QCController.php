@@ -98,7 +98,7 @@ class QCController extends Controller
 
         $qcresults = QcResult::where('project', $request->project)->get();
 
-        echo $request->project;
+        // echo $request->project;
 
         // $qcresults = json_decode($qcresults->pluck('json'), true);
         return view('qc.report', compact('qcresults'));
