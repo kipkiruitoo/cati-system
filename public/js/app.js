@@ -1971,7 +1971,7 @@ surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEB
   components: {
     Survey: Survey
   },
-  props: ["surveyData", "qc"],
+  props: ["surveyData", "qc", "project"],
   data: function data() {
     //Define Survey JSON
     //Here is the simplest Survey with one text question
@@ -2001,6 +2001,7 @@ surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEB
     this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](this.surveyData.json);
     this.user = this.qc;
     console.log(this.user);
+    console.log(this.project);
   },
   watch: {
     page: function page() {}
@@ -2015,11 +2016,13 @@ surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEB
       axios.post(url, {
         json: result.data,
         interview: _this.interview,
-        qc: _this.qc
+        qc: _this.qc,
+        project: _this.project
       }).then(function (response) {
         console.log(response);
 
         if (response.data.message == "Success") {
+          console.log(response);
           window.history.back();
         } else {
           alert("Something went wrong");

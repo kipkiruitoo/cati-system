@@ -52,7 +52,7 @@
     <hr><hr>
     <h4>Fill in the questionnaire below</h4>
     <div class="row">
-    <qc-survey :survey-data="{{ json_encode($survey) }}" :qc="{{\Auth::user()->id}}"></qc-survey>
+    <qc-survey :survey-data="{{ json_encode($survey) }}" :project="{{ $surv->project}}" :qc="{{\Auth::user()->id}}"></qc-survey>
     </div>
     </div>
 

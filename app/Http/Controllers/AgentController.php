@@ -14,7 +14,7 @@ use App\PanelFeedback;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToArray;
- 
+
 class AgentController extends Controller
 {
 
@@ -98,7 +98,7 @@ class AgentController extends Controller
 
         // print_r($interviews);
 
-        $interviewchart = Charts::database($interviews, 'line', 'fusioncharts')
+        $interviewchart = Charts::database($interviews, 'line', 'chartjs')
             ->title("Your interviews per day")
             ->elementLabel("No of Interviews")
             ->dimensions(600, 500)

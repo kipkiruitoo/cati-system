@@ -10,6 +10,7 @@ use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\Respondent;
 use App\User;
 use Auth;
+use Charts;
 
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,7 @@ class QCController extends Controller
 
         // echo $date;
 
-        $interviews =  Interview::where('survey', $survey)->whereDate('created_at', $date)->get();
+        $interviews =  Interview::where([['qcd', 0], ['survey', $survey]])->whereDate('created_at', $date)->get();
 
         return view('qc.interviews', compact('interviews'));
     }
@@ -51,6 +52,7 @@ class QCController extends Controller
         $agent = User::find($agentid);
 
         // echo $agent;
+        $surv = Survey::find($survey);
 
         $respondent  = Respondent::find($respondentid);
 
@@ -65,7 +67,7 @@ class QCController extends Controller
         // echo $survey . $interview;
         // echo $agentid;
         // echo $respondentid;
-        return view('qc.results', compact('respondent', 'agent', 'interview', 'survey'));
+        return view('qc.results', compact('respondent', 'agent', 'interview', 'survey', 'surv'));
     }
     public function saveqcresults(Request $request)
     {
@@ -73,7 +75,9 @@ class QCController extends Controller
         $qcresult->json = json_encode($request->json, true);
         $qcresult->interview = $request->interview;
         $qcresult->qc =  $request->qc;
+        $qcresult->project = $request->project;
 
+        // echo $qcresult->project;
         if ($qcresult->save()) {
             $interview = Interview::find($request->interview);
             $interview->qcd = 1;
@@ -82,5 +86,21 @@ class QCController extends Controller
         } else {
             return response()->json(['message' => 'failed', 'data' => $request]);
         }
+    }
+    public function selectproject()
+    {
+        $projects = DB::table('projects')->join('qc_projects', 'qc_projects.project_id', '=', 'projects.id')->where('qc_projects.user_id', Auth::user()->id)->get();
+        return view('qc.select',  compact('projects'));
+    }
+    public function reports(Request $request)
+    {
+
+
+        $qcresults = QcResult::where('project', $request->project)->get();
+
+        echo $request->project;
+
+        // $qcresults = json_decode($qcresults->pluck('json'), true);
+        return view('qc.report', compact('qcresults'));
     }
 }

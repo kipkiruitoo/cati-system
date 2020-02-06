@@ -99,5 +99,7 @@ Route::get('/qc/project/surveys/{id}', 'QCController@surveys')->name('qcsurveys'
 
 Route::post('/saveqcresults', 'QCController@saveqcresults');
 
+Route::get('/qc/reports', 'QCController@selectproject')->name('qcreport');
+Route::post('/qc/reports', 'QCController@reports')->name('projectselected');
 
 Route::post('/getresults', 'SurveyController@getresults')->name('getresults');
