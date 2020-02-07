@@ -17,14 +17,23 @@
         :max="new Date().toISOString().substr(0, 10)"
       ></v-date-picker>
     </v-menu>
+    <div class="form-group">
+      <label for="locale">Select Survey Language</label>
+      <select v-model="slocale" @change="onlocaleChange" id="locale" class="form-control">
+        <option value="en">English</option>
+        <option value="bg">Swahili</option>
+        <option value="it">Vernacular</option>
+      </select>
+    </div>
+
     <survey v-show="showsurvey" :survey="survey"></survey>
   </div>
 </template>
 
 <script>
 import * as SurveyVue from "survey-vue";
-
-const Survey = SurveyVue.Survey;
+import * as swahiliStrings from "../swahili";
+var Survey = SurveyVue.Survey;
 Survey.cssType = "material";
 
 import format from "date-fns/format";
@@ -61,6 +70,7 @@ export default {
       phonenumber: 0,
       sid: "",
       count: 0,
+      slocale: "en",
       requiredate: false,
       showsurvey: false,
       nit: 1
@@ -94,6 +104,11 @@ export default {
             this.showsurvey = true;
           }
         });
+    },
+    onlocaleChange() {
+      this.survey.locale = this.slocale;
+      console.log(this.slocale);
+      this.survey.render();
     }
   },
   computed: {

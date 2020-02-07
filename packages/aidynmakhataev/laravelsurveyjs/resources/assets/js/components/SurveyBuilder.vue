@@ -7,7 +7,7 @@
 <script>
 import * as SurveyEditor from "survey-creator";
 import "survey-creator/survey-creator.css";
-
+import * as swahiliStrings from "../swahili";
 import * as SurveyKo from "survey-knockout";
 import * as widgets from "surveyjs-widgets";
 
@@ -37,10 +37,13 @@ export default {
   mounted() {
     let editorOptions = SurveyConfig.builder;
     SurveyEditor.StylesManager.applyTheme("orange");
+    SurveyEditor.editorLocalization.locales["bg"] = swahiliStrings;
+    // SurveyEditor.editorLocalization.localeNames["bg"] = "Swahili";
     this.editor = new SurveyEditor.SurveyEditor(
       "surveyEditorContainer",
       editorOptions
     );
+
     this.editor.text = JSON.stringify(this.surveyData);
     let self = this;
     this.editor.saveSurveyFunc = function() {

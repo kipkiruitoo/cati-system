@@ -23,7 +23,7 @@
             <tbody>
                 @foreach($interviews as $interview)
                 <tr>
-                    <td>{{App\Respondent::find( $interview->respondent)->res_d}}</td>
+                    <td>{{App\Respondent::find( $interview->respondent)->id}}</td>
                     <td>{{App\Respondent::find( $interview->respondent)->name}}</td>
                     <td>{{AidynMakhataev\LaravelSurveyJs\app\Models\Survey::find($interview->survey)->name ?? "Not Available"}}
                     </td>
