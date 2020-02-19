@@ -14,8 +14,6 @@
                 <th>Interview Id</th>
                 <th>Agent Name</th>
                 <th>Interview Date</th>
-                <th>Code</th>
-                <th>Extension</th>
                 <th>Script Compliant</th>
                 <th>Language</th>
                 <th>Integrity</th>
@@ -37,9 +35,7 @@
             <td>{{$interview->id}}</td>
             <td>{{$agent->name}}</td>
             <td>{{$interview->created_at}}</td>
-            <td>{{$item->code}}</td>
-            <td>{{$item->extension}}</td>
-            <td>{{$item->sc}}</td>
+            <td>{{$item->sc? 'Yes': 'No'}}</td>
             <td>{{$item->language? 'Correct': 'Incorrect'}}</td>
             <td>{{$item->integrity? 'Yes': 'No'}}</td>
             <td>{{$item->ia? 'Yes': 'No'}}</td>
