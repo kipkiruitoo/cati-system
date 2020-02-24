@@ -26,7 +26,7 @@ $respondent = json_decode($respondent)
 
         <div class="row">
                     <div class="panel-body" id="surveyElement">
-                    <survey-show :selectedphone="{{$selectedphone}}" :survey-data="{{ json_encode($survey) }}"></survey-show>
+                    <survey-show :selectedphone="{{$selectedphone}}" :survey-data="{{ json_encode($survey) }}" :json-data="{{ $incomplete }}"></survey-show>
                     </div>
 
             </div>

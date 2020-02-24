@@ -11,6 +11,7 @@
             <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> <span>{{ __('voyager::generic.add_new') }}</span>
             </a>
+        <a href="{{route('getexcel')}}" class="btn btn-link">Get Excel Format</a>
             <button type="button" data-toggle="modal" data-target="#uploadModal"  class="btn btn-dark btn-add-new"><i class="voyager-list-add"></i><span> Import from Excel</span></button>
         @endcan
         @can('delete', app($dataType->model_name))

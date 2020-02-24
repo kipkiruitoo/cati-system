@@ -35,6 +35,7 @@ import * as SurveyVue from "survey-vue";
 import * as swahiliStrings from "../swahili";
 var Survey = SurveyVue.Survey;
 Survey.cssType = "material";
+Survey.sendResultOnPageNext = true;
 
 import format from "date-fns/format";
 
@@ -58,7 +59,7 @@ export default {
   components: {
     Survey
   },
-  props: ["surveyData", "selectedphone"],
+  props: ["surveyData", "selectedphone", "jsonData"],
 
   data() {
     return {
@@ -66,6 +67,7 @@ export default {
       respondent: "",
       agent: "",
       date: "",
+      jsondata: "",
       project: "",
       phonenumber: 0,
       sid: "",
@@ -78,14 +80,18 @@ export default {
   },
   created() {
     this.survey = new SurveyVue.Model(this.surveyData.json);
+    this.survey.sendResultOnPageNext = true;
     this.nit = this.surveyData.num;
     this.agent = this.surveyData[1];
     this.project = this.surveyData.project;
     this.sid = this.surveyData.id;
     this.respondent = this.surveyData[0];
+    this.jsondata = JSON.stringify(this.jsonData);
     this.phonenumber = this.selectedphone;
     localStorage.setItem("count", this.count);
     localStorage.setItem("phone", this.phonenumber);
+
+    // console.log(this.jsondata);
   },
   methods: {
     checkdate() {
@@ -105,6 +111,14 @@ export default {
           }
         });
     },
+    loadResults() {
+      console.log(this.jsondata);
+      this.survey.data = JSON.parse(this.jsondata);
+      if (this.jsondata != "null") {
+        // alert("An incomplete Interview Exists for this user");
+        this.$toastr.i("An Unfinished Interview Exists for this Respondent");
+      }
+    },
     onlocaleChange() {
       this.survey.locale = this.slocale;
       console.log(this.slocale);
@@ -116,13 +130,24 @@ export default {
       return this.date ? format(this.date, "dddd, MMMM Do YYYY") : "";
     }
   },
+  watch: {
+    page() {
+      this.loadResults();
+      this.survey.sendResultOnPageNext = true;
+      this.survey.data = this.jsondata;
+      // console.log(this.survey.data);
+    }
+  },
   mounted() {
+    this.survey.sendResultOnPageNext = true;
+    this.loadResults();
     if (this.project == 24) {
       this.requiredate = true;
       //   this.showsurvey = true;
     } else {
       this.showsurvey = true;
     }
+
     this.survey.onComplete.add(result => {
       let url = `/survey/${this.surveyData.id}/result`;
       axios
@@ -141,14 +166,11 @@ export default {
           localStorage.setItem("count", this.count);
           console.log(this.count);
           if (this.count == this.nit) {
-            toastr.success(
-              "Both interviews  have been successfully saved",
-              "Success"
-            );
+            this.$toastr.s("Interview Successfully Finished");
             window.history.back();
           } else {
             this.survey.clear();
-            toastr.success(
+            this.$toastr.i(
               "The  interview has been successfully saved",
               "Success"
             );
@@ -156,6 +178,37 @@ export default {
           }
         });
     });
+    this.survey.onPartialSend.add(result => {
+      let url = "/incomplete";
+      var resultAsString = JSON.stringify(this.survey.data);
+      // alert(resultAsString); //send Ajax request to your web server.
+
+      axios
+        .post(url, {
+          json: this.survey.data,
+          agent: this.agent,
+          respondent: this.respondent.respondent,
+          survey: this.sid,
+          // phonenumber: this.phonenumber,
+          project: this.surveyData.project
+          // date: this.date
+        })
+        .then(result => {
+          console.log(result);
+          if (result.data.message === "Success") {
+            this.$toastr.i("Progress Successfully Saved");
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
   }
 };
 </script>
+<style lang="scss">
+.sv_q_description span {
+  color: red;
+  font-size: large;
+}
+</style>

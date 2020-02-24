@@ -8,6 +8,7 @@ use App\Projects;
 use App\Respondent;
 use App\Interview;
 use App\Feedback;
+use App\Incomplete;
 use Charts;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\PanelFeedback;
@@ -111,7 +112,7 @@ class AgentController extends Controller
     public function addfeedback(Request $request)
     {
 
-        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'), 'feedback' => $request->input('feedback'), 'other' => $request->input('other')]);
+        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'),'agent'=> Auth::user()->id, 'feedback' => $request->input('feedback'), 'other' => $request->input('other')]);
 
         $respondent = Respondent::where('id', $request->input('respondent'))->get();
         $survey = $request->input('survey');
@@ -206,5 +207,23 @@ class AgentController extends Controller
         $feedback = Feedback::where('respondent_id', $respondent->id)->latest()->take(5)->get();
         $lint = Interview::where('respondent',  $respondent->id)->latest()->get();
         return response()->json([$respondent, $feedback, $lint]);
+    }
+
+    public function save_incomplete(Request $request){
+        $incomplete =  new Incomplete();
+        $agent = (object) $request->input('agent');
+        $respondent = $request->input('respondent');
+        // echo $respondent;
+        $incomplete->agent = $agent->agent;
+        $incomplete->survey = $request->input('survey');
+        $incomplete->respondent = $respondent;
+        $incomplete->json = json_encode($request->input('json'));
+
+        if ($incomplete->save()) {
+          return response()->json(['message'=>'Success', 'data'=>$incomplete]);
+        }else{
+            return response()->json(['message'=>'error occured']);
+        }
+        
     }
 }

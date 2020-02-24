@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Interview;
 use App\Feedback;
+use App\Incomplete;
+use Auth;
 use Illuminate\Support\Facades\DB;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
@@ -64,8 +66,9 @@ class SurveyResultAPIController extends Controller
                 'interview' => $interview->id,
                 'ip_address'    =>  $request->ip(),
             ]);
+            DB::table('incomplete')->where('respondent', '=', $respondent)->delete();
+            DB::insert('insert into feedback (respondent_id, feedback, agent) values (?, ?, ?)', [$respondent, 'Successful', Auth::id()]);
 
-            DB::insert('insert into feedback (respondent_id, feedback) values (?, ?)', [$respondent, 'Successful']);
         } else {
             $result = "An error occured";
         }

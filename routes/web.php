@@ -13,9 +13,11 @@
 
 use App\Exports\RespondentExport;
 use App\Exports\UsersExport;
+use App\Exports\FeedbackExport;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProjectController;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Response;
 
 Route::get('/', function () {
     return redirect()->route('home');
@@ -103,3 +105,19 @@ Route::get('/qc/reports', 'QCController@selectproject')->name('qcreport');
 Route::post('/qc/reports', 'QCController@reports')->name('projectselected');
 
 Route::post('/getresults', 'SurveyController@getresults')->name('getresults');
+
+Route::post('/api/incomplete', 'AgentController@save_incomplete')->name('incomplete');
+
+
+Route::get('/feedbackexports', function(){
+    return  Excel::download(new FeedbackExport, 'feedback.xlsx' );
+})->name('feedbackexports');
+
+
+
+Route::get('/getexcel', function(){
+    $file=Storage::disk('public')->get('format.xlsx');
+
+    return (new Response($file, 200))
+              ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+})->name('getexcel');

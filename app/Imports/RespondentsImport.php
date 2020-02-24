@@ -30,15 +30,18 @@ class RespondentsImport implements ToModel
             'name' => $row[2],
             'project' => $this->project,
             'phone' => $row[4],
+		'phone1' => $row[5],
+		'phone2' => $row[6],
+		'phhone3' =>$row[7],
             'email' => $row[3],
-            'occupation' => $row[5],
-            'county' => $row[6],
-            'town' => $row[7],
-            'education' => $row[8],
-            'sex' => $row[9],
-            'lsm' => $row[10],
-            'age' => $row[11],
-            'status' => $row[12]
+            'occupation' => $row[8],
+            'county' => $row[9],
+            'town' => $row[10],
+            'education' => $row[11],
+            'sex' => $row[12],
+            'lsm' => $row[13],
+            'age' => $row[14],
+            'status' => $row[15] 
 
 
         ]);
