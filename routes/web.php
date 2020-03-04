@@ -121,3 +121,6 @@ Route::get('/getexcel', function(){
     return (new Response($file, 200))
               ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 })->name('getexcel');
+
+
+Route::get('/analytics/{id}', 'AnalyticsController@index' )->name('analytics');

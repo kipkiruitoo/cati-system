@@ -60,9 +60,11 @@
                           <p>Change the stage back to draft to edit it. </p>
                      </td>
                       <td>
+                          {{$survey->id}}
 
                         <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
                             results</button>
+                        <a href="{{route('analytics', $survey->id )}}"><button class="btn btn-info"> Analytics</button></a>
 
                     </td>
 
