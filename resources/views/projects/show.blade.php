@@ -25,11 +25,44 @@
                         <td>
                             {{$survey->name}}
                         </td>
-                        <td>
-                            <a href="{{url('/survey', $survey->slug)}}"><button class="btn btn-success">View</button></a>
-                            <a href="{{url('/admin/survey',$survey->id )}}"><button class="btn btn-warning">Script</button></a>
-                            
-                        </td>
+                              <td>
+                        <p class="mb-0 mt-1 text-muted btn-group">
+                            <label class="btn btn-success badge">
+                                Stage </label>
+                            <label class="btn btn-dark badge" data-toggle="modal" data-target="#status{{$survey->id}}">
+                                {{ucfirst($survey->stage)}} </label>
+                        </p>
+
+                    </td>
+                    <td>{{$survey->version}}</td>
+                    @if($survey->stage == "draft")
+                    <td>
+                        <!-- <a href="{{url('/survey', $survey->slug)}}" target="_blank"><button
+                                class="btn btn-success">View</button></a> -->
+
+                        <a href="{{url('/admin/survey',$survey->id )}}" target="_blank"><button
+                                class="btn btn-warning">Script</button></a>
+
+
+                    </td>
+                    <td>
+                        <p>You cannot Download Results When in draft mode</p>
+                    </td>
+
+                     @else
+                     <td>
+                          <p>Change the stage back to draft to edit it. </p>
+                     </td>
+                      <td>
+                          {{$survey->id}}
+
+                        <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
+                            results</button>
+                        <a href="{{route('analytics', $survey->id )}}" target="__blank"><button class="btn btn-info"> Analytics</button></a>
+
+                    </td>
+
+                        @endif
                         <td>
                             <form action="{{ route('surveys.destroy',$survey->id) }}" method="POST">
                             @csrf
@@ -38,6 +71,57 @@
                         </td>
                         
                     </tr>
+
+                     {{-- filter modal --}}
+                <div class="modal fade" id="filter{{$survey->id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="estatus{{$survey->id}}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{route('getresults')}}" method="POST">
+                                @csrf
+                                <div class="modal-header">
+                                    <h4>Choose data for interviews done between these dates</h4> <strong>Beta</strong>
+                                    <h6>The data will be downloaded in csv format for the period specified.</h6>
+                                </div>
+                                <div class="modal-body">
+
+
+                                    <div class="row">
+                                        <div class="col col-md-6">
+                                            <div class="form-group">
+
+                                                <label for="date1{{$survey->id}}">This date</label>
+                                                <input type="date" class="form-control" name="from"
+                                                    id="date1{{$survey->id}}">
+
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="survey" value="{{$survey->id}}">
+                                        <div class="col col-md-6">
+                                            <div class="form-group">
+
+                                                <label for="date2{{$survey->id}}">To This date</label>
+                                                <input type="date" class="form-control" name="to"
+                                                    id="date2{{$survey->id}}">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name = "submit" class="btn btn-primary" value="csv" >CSV</button>
+                                    <button type="submit" name = "submit" class="btn btn-dark" value="json" >JSON</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
                 @endforeach
             </tbody>
         </table>
