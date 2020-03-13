@@ -4,7 +4,7 @@
       <v-text-field
         slot="activator"
         :value="date"
-        label="Pick a date"
+        label="Date of Consumption"
         prepend-icon="date_range"
         readonly
         max-width="290"
@@ -105,6 +105,7 @@ export default {
         .then(response => {
           console.log(response.data.exists);
           if (response.data.exists) {
+            this.$toastr.i("An  Interview Already Exists for this Respondent for that Date");
             this.showsurvey = false;
           } else {
             this.showsurvey = true;
@@ -207,6 +208,8 @@ export default {
 };
 </script>
 <style lang="scss">
+
+
 .sv_q_description span {
   color: red;
   font-size: large;

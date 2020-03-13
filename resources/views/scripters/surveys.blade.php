@@ -64,7 +64,7 @@
 
                         <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
                             results</button>
-                        <a href="{{route('analytics', $survey->id )}}"><button class="btn btn-info"> Analytics</button></a>
+                        <a href="{{route('analytics', $survey->id )}}" target="__blank"><button class="btn btn-info"> Analytics</button></a>
 
                     </td>
 
@@ -146,7 +146,8 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" >Download</button>
+                                    <button type="submit" name = "submit" class="btn btn-primary" value="csv" >CSV</button>
+                                    <button type="submit" name = "submit" class="btn btn-dark" value="json" >JSON</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </form>

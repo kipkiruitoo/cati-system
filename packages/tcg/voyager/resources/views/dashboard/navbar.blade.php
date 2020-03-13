@@ -22,6 +22,10 @@
                 }else if(Auth::user()->role_id == 6){
                     $segments = array_filter(explode('/', str_replace(route('qc'), '', Request::url())));
                     $url = route('qc');
+                
+                }else if(Auth::user()->role_id == 4){
+                    $segments = array_filter(explode('/', str_replace(route('script'), '', Request::url())));
+                    $url = route('script');
                 }
 
 

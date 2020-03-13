@@ -12,6 +12,7 @@ use App\Exports\ResultsExport;
 use App\Interview;
 use App\Respondent;
 use App\User;
+use File;
 
 class SurveyController extends Controller
 {
@@ -135,8 +136,8 @@ class SurveyController extends Controller
             // array_push($smallarray,  $result->survey_id);
             // echo $result->survey_id;
             // all answers in the row
-
-            foreach ($smallarray as $s) {
+            if ($request->submit == "csv") {
+                foreach ($smallarray as $s) {
                 // if the individual answers are arrays
                 if (is_array($s)) {
 
@@ -158,7 +159,9 @@ class SurveyController extends Controller
 
                     unset($smallarray[array_search($s, $smallarray)]);
                 }
+            } 
             }
+           
             $interview = Interview::find($result->interview);
             $respondent = Respondent::find($interview->respondent);
             // rsort($smallarray);
@@ -167,6 +170,12 @@ class SurveyController extends Controller
             $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
+
+            if ($interview->date != "null") {
+                # code...
+                 $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
+
+            }
             // $smallarray['interview id'] = $result->interview;
             // $smallarray["Interviewer"] = User::find($interview->agent)->name;
 
@@ -177,14 +186,15 @@ class SurveyController extends Controller
             // array_push($smallarray, $interview->respondent);
             array_push($new_array, $smallarray);
         }
-
+        
         // var_dump(\json_encode($smallarray));
         $f = fopen(storage_path() . '/csvoutput.csv', 'w+');
 
         // print_r($new_array);
         // var_dump(json_encode($new_array));
         $new_array =  json_encode($new_array);
-        $url = 'https://json-csv.com/api/getcsv';
+        if ($request->submit == "csv") {
+            $url = 'https://json-csv.com/api/getcsv';
         $email = 'davis.too@tifaresearch.com';
         $json = $new_array;
         // $json = '{"test":true,"test2":false}';
@@ -222,6 +232,19 @@ class SurveyController extends Controller
         } else {
             return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
         }
+        }else if($request->submit == "json"){
+            if ($results->first()) {
+                $fileName = time() . '_datafile.json';
+                $handle = fopen($fileName, 'w+');
+                fputs($handle, $new_array);
+                fclose($handle);
+                $headers = array('Content-type'=> 'application/json');
+           return response()->download($fileName,time() . '_datafile.json',$headers);
+        } else {
+            return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
+        }          
+        }
+        
 
 
 
