@@ -105,7 +105,9 @@ export default {
         .then(response => {
           console.log(response.data.exists);
           if (response.data.exists) {
-            this.$toastr.i("An  Interview Already Exists for this Respondent for that Date");
+            this.$toastr.i(
+              "An  Interview Already Exists for this Respondent for that Date"
+            );
             this.showsurvey = false;
           } else {
             this.showsurvey = true;
@@ -150,10 +152,22 @@ export default {
     }
 
     this.survey.onComplete.add(result => {
+      var data = [];
+      for (var key in result.data) {
+        var question = result.getQuestionByValueName(key);
+        if (!question) continue;
+        var questionResult = {
+          name: key,
+          value: result.data[key],
+          title: question.title,
+          displayValue: question.displayValue
+        };
+        data.push(questionResult);
+      }
       let url = `/survey/${this.surveyData.id}/result`;
       axios
         .post(url, {
-          json: result.data,
+          json: data,
           agent: this.agent,
           respondent: this.respondent.respondent,
           survey: this.sid,
@@ -181,7 +195,7 @@ export default {
     });
     this.survey.onPartialSend.add(result => {
       let url = "/incomplete";
-      var resultAsString = JSON.stringify(this.survey.data);
+      var resultAsString = JSON.stringify(this.survey.getPlainData);
       // alert(resultAsString); //send Ajax request to your web server.
 
       axios
@@ -208,8 +222,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
-
 .sv_q_description span {
   color: red;
   font-size: large;
