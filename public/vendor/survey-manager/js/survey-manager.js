@@ -2392,23 +2392,9 @@ Object.keys(widgetsList).forEach(function (widget) {
     }
 
     this.survey.onComplete.add(function (result) {
-      var data = [];
-
-      for (var key in result.data) {
-        var question = result.getQuestionByValueName(key);
-        if (!question) continue;
-        var questionResult = {
-          name: key,
-          value: result.data[key],
-          title: question.title,
-          displayValue: question.displayValue
-        };
-        data.push(questionResult);
-      }
-
       var url = "/survey/".concat(_this2.surveyData.id, "/result");
       axios.post(url, {
-        json: data,
+        json: _this2.survey.data,
         agent: _this2.agent,
         respondent: _this2.respondent.respondent,
         survey: _this2.sid,
@@ -2439,7 +2425,7 @@ Object.keys(widgetsList).forEach(function (widget) {
       var resultAsString = JSON.stringify(_this2.survey.getPlainData); // alert(resultAsString); //send Ajax request to your web server.
 
       axios.post(url, {
-        json: _this2.survey.data,
+        json: result.data,
         agent: _this2.agent,
         respondent: _this2.respondent.respondent,
         survey: _this2.sid,

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Radio",
+        "value": [
+            {
+                "Q3": [
+                    "01:00:00 - 01:29:59",
+                    "05:30:00 - 05:59:59"
+                ],
+                "Radio": "1097"
+            }
+        ]
+    },
+    {
+        "name": "TV",
+        "value": [
+            []
+        ]
+    },
+    {
+        "name": "Newspaper",
+        "value": [
+            []
+        ]
+    },
+    {
+        "name": "Q1. Did you use any of the following?",
+        "value": [
+            "1"
+        ]
+    }
+]

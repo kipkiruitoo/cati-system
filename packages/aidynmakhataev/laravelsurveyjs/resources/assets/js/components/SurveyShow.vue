@@ -152,22 +152,10 @@ export default {
     }
 
     this.survey.onComplete.add(result => {
-      var data = [];
-      for (var key in result.data) {
-        var question = result.getQuestionByValueName(key);
-        if (!question) continue;
-        var questionResult = {
-          name: key,
-          value: result.data[key],
-          title: question.title,
-          displayValue: question.displayValue
-        };
-        data.push(questionResult);
-      }
       let url = `/survey/${this.surveyData.id}/result`;
       axios
         .post(url, {
-          json: data,
+          json: this.survey.data,
           agent: this.agent,
           respondent: this.respondent.respondent,
           survey: this.sid,
@@ -197,10 +185,9 @@ export default {
       let url = "/incomplete";
       var resultAsString = JSON.stringify(this.survey.getPlainData);
       // alert(resultAsString); //send Ajax request to your web server.
-
       axios
         .post(url, {
-          json: this.survey.data,
+          json: result.data,
           agent: this.agent,
           respondent: this.respondent.respondent,
           survey: this.sid,

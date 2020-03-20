@@ -5,21 +5,23 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
 
 <div class="container">
     <div class="row">
-        <button class="btn btn-dark" onclick="location.reload()">Refresh</button>
+        <button class="btn btn-dark" onclick="location.reload()"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
     </div>
+    <br>
 
     <div class="row">
         <div class="col-md-6">
 <form action="{{route('survey-manager.run', $survey)}}" method="POST">
                 <div class="form-group">
-                    <label for="respondent">Selected Respondent</label>
+                    
                     <div class="well">
+                        <label for="respondent">Selected Respondent</label>
                         <h5 id="resname">{{$respondent[0]->name}}</h5>
                         <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
                         <h5>Call the Phone Numbers in the order and select which one was picked before proceeding</h5>
@@ -61,14 +63,14 @@
 
                 @csrf
                 <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
-                <button type="submit" class="btn btn-dark">Start
-                    Survey</button>
+                <button type="submit" class="btn btn-dark"> Start
+                    Survey  <span><i class="fa fa-play-circle"></i></span></button>
             </form>
         </div>
         <div class="col-md-6">
             <div class="well">
                 <h5>Last Feedback:</h5>
-                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback">Add
+                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback"> <span><i class="fa fa-plus"></i></i></span> Add
                     Feedback</button>
                 <div class="new-table">
                     <table class="table">
@@ -146,7 +148,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button onclick="addfeedback()" class="btn btn-primary">Save changes</button>
+                    <button onclick="addfeedback()" class="btn btn-dark"><span><i class="fa fa-save"></i> Save</span> </button>
                 </div>
             </form>
         </div>
@@ -244,6 +246,10 @@
                 "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
 
             feedback.forEach(element => {
+                // console.log(typeof element.other)
+                // if (element.other ) {
+                    
+                // }
                 date = new Date(element.created_at)
                 tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
                     element.other + "</tr>";
@@ -298,7 +304,7 @@
                 "<table id='fbacktb' class='table'><thead><tr><th>Date</th>  <th>Type</th><th>Comment</th></tr></thead><tbody>";
 
             feedback.forEach(element => {
-                console.log(element.other)
+                console.log( typeof element.other)
                 date = new Date(element.created_at)
                 tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
                     "<td>" + element.other + "</td>" + "</tr>";

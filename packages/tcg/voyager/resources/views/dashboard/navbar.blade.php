@@ -7,26 +7,31 @@
             @section('breadcrumbs')
             <ol class="breadcrumb hidden-xs">
                 @php
+                $segments = [];
                 if( Auth::user()->role_id == 1 || Auth::user()->role_id == 3 ){
-                    $segments = array_filter(explode('/', str_replace(route('voyager.dashboard'), '', Request::url())));
+                    $segments = ["Administration"];
+                    // $segments = array_filter(explode('/', str_replace(route('voyager.dashboard'), '', Request::url())));
                     $url = route('voyager.dashboard');
                 }else if(Auth::user()->role_id == 2){
-                    $segments = array_filter(explode('/', str_replace(route('agent'), '', Request::url())));
+                     $segments = ["Calling Agent"];
+                    // $segments = array_filter(explode('/', str_replace(route('agent'), '', Request::url())));
                     $url = route('agent');
                 }else if(Auth::user()->role_id == 4){
-                    $segments = array_filter(explode('/', str_replace(route('script'), '', Request::url())));
+                    $segments = ["Scripting Agent"];
+                    // $segments = array_filter(explode('/', str_replace(route('script'), '', Request::url())));
                     $url = route('script');
                 }else if(Auth::user()->role_id == 5){
-                    $segments = array_filter(explode('/', str_replace(route('supervisor'), '', Request::url())));
+                    $segments = ["Supervision"];
+                    // $segments = array_filter(explode('/', str_replace(route('supervisor'), '', Request::url())));
                     $url = route('supervisor');
                 }else if(Auth::user()->role_id == 6){
-                    $segments = array_filter(explode('/', str_replace(route('qc'), '', Request::url())));
+                    $segments = ["Quality Control"];
+                    // $segments = array_filter(explode('/', str_replace(route('qc'), '', Request::url())));
                     $url = route('qc');
                 
-                }else if(Auth::user()->role_id == 4){
-                    $segments = array_filter(explode('/', str_replace(route('script'), '', Request::url())));
-                    $url = route('script');
                 }
+
+                
 
 
                 @endphp

@@ -136,31 +136,31 @@ class SurveyController extends Controller
             // array_push($smallarray,  $result->survey_id);
             // echo $result->survey_id;
             // all answers in the row
-            if ($request->submit == "csv") {
-                foreach ($smallarray as $s) {
-                // if the individual answers are arrays
-                if (is_array($s)) {
+            // if ($request->submit == "csv") {
+            //     foreach ($smallarray as $s) {
+            //     // if the individual answers are arrays
+            //     if (is_array($s)) {
 
-                    foreach ($s as $sm) {
-                        // if the answers themselves are arrays
+            //         foreach ($s as $sm) {
+            //             // if the answers themselves are arrays
 
-                        if (is_array($sm)) {
+            //             if (is_array($sm)) {
 
-                            foreach ($sm as $k) {
-                                $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s) .  '_' . array_search($k, $sm);
-                                $smallarray[$key] = $k;
-                                // array_push($smallarray, $k);
-                            }
-                        } else {
-                            $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s);
-                            $smallarray[$key] = $sm;
-                        }
-                    }
+            //                 foreach ($sm as $k) {
+            //                     $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s) .  '_' . array_search($k, $sm);
+            //                     $smallarray[$key] = $k;
+            //                     // array_push($smallarray, $k);
+            //                 }
+            //             } else {
+            //                 $key =  array_search($sm, $s) . '_' . array_search($s, $smallarray) ;
+            //                 $smallarray[$key] = $sm;
+            //             }
+            //         }
 
-                    unset($smallarray[array_search($s, $smallarray)]);
-                }
-            } 
-            }
+            //         unset($smallarray[array_search($s, $smallarray)]);
+            //     }
+            // } 
+            // }
            
             $interview = Interview::find($result->interview);
             $respondent = Respondent::find($interview->respondent);
