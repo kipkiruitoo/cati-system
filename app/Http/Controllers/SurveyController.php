@@ -152,7 +152,7 @@ class SurveyController extends Controller
                                 // array_push($smallarray, $k);
                             }
                         } else {
-                            $key = array_search($sm, $s) . '_' .  array_search($s, $smallarray);
+                            $key = array_search($s, $smallarray) . '_' .  array_search($sm, $s);
                             $smallarray[$key] = $sm;
                         }
                     }
@@ -175,6 +175,9 @@ class SurveyController extends Controller
                 # code...
                  $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
 
+            }else{
+                $smallarray = array("consumptiondate" => "N/A") + $smallarray;
+
             }
             // $smallarray['interview id'] = $result->interview;
             // $smallarray["Interviewer"] = User::find($interview->agent)->name;
@@ -188,33 +191,45 @@ class SurveyController extends Controller
         }
         
         // var_dump(\json_encode($smallarray));
-        $f = fopen(storage_path() . '/csvoutput.csv', 'w+');
+        // $f = fopen(storage_path() . '/csvoutput.csv', 'w+');
 
         // print_r($new_array);
         // var_dump(json_encode($new_array));
         $new_array =  json_encode($new_array);
+
         if ($request->submit == "csv") {
-            $url = 'https://json-csv.com/api/getcsv';
-        $email = 'davis.too@tifaresearch.com';
-        $json = $new_array;
-        // $json = '{"test":true,"test2":false}';
 
-        $postdata = http_build_query(
-            array(
-                'email' => $email,
-                'json' => $json
-            )
-        );
+             $fileName = $survey->name .'.json';
+                $handle = fopen($fileName, 'w+');
+                fputs($handle, $new_array);
+                fclose($handle);
 
-        $opts = array(
-            'http' => array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        $context  = stream_context_create($opts);
-        $result = file_get_contents($url, false, $context);
+
+
+            
+            $json = new Json($fileName);
+            $json->setConversionKey('utf8_encoding', true);
+        //     $url = 'https://json-csv.com/api/getcsv';
+        // $email = 'davis.too@tifaresearch.com';
+        // $json = $new_array;
+        // // $json = '{"test":true,"test2":false}';
+
+        // $postdata = http_build_query(
+        //     array(
+        //         'email' => $email,
+        //         'json' => $json
+        //     )
+        // );
+
+        // $opts = array(
+        //     'http' => array(
+        //         'method'  => 'POST',
+        //         'header'  => 'Content-type: application/x-www-form-urlencoded',
+        //         'content' => $postdata
+        //     )
+        // );
+        // $context  = stream_context_create($opts);
+        // $result = file_get_contents($url, false, $context);
         // return response()->attachment($result, $survey->name . time());
 
         // file_put_contents($f, $result);
@@ -228,13 +243,14 @@ class SurveyController extends Controller
         // fpassthru($f);
 
         if ($results->first()) {
-            return response()->attachment($result, $survey->name . time());
+            $json->convertAndDownload();
+            // return response()->attachment($result, $survey->name . time());
         } else {
             return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
         }
         }else if($request->submit == "json"){
             if ($results->first()) {
-                $fileName = time() . '_datafile.json';
+                $fileName = $survey->name . '_datafile.json';
                 $handle = fopen($fileName, 'w+');
                 fputs($handle, $new_array);
                 fclose($handle);
