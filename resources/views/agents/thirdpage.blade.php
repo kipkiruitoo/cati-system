@@ -19,7 +19,7 @@
         <div class="col-md-6">
 <form action="{{route('survey-manager.run', $survey)}}" method="POST">
                 <div class="form-group">
-                    
+
                     <div class="well">
                         <label for="respondent">Selected Respondent</label>
                         <h5 id="resname">{{$respondent[0]->name}}</h5>
@@ -54,6 +54,8 @@
                         @endphp
                         <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
                         {{-- <button class="btn btn-dark btn-small">Manage Phone Numbers</button> --}}
+
+                        <button class="btn btn-dark" type="button" onclick="make_call()"> <span><i class="fa fa-phone"> </i> </span> Call</button>
 
                     </div>
 
@@ -248,7 +250,7 @@
             feedback.forEach(element => {
                 // console.log(typeof element.other)
                 // if (element.other ) {
-                    
+
                 // }
                 date = new Date(element.created_at)
                 tbody += "<tr><td>" + date.toDateString() + "</td><td>" + element.feedback + "</td>" +
@@ -320,6 +322,33 @@
         }).catch((error) => {
             console.log(error)
         });
+    }
+
+    function make_call() {
+   var form = new FormData();
+form.append("from", "+254711082023");
+form.append("username", "TIFACommodityPrices");
+form.append("to", " +254755682620,254715686316");
+form.append("clientRequestId", "25");
+
+var settings = {
+  "url": "https://voice.africastalking.com/call",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/form-data",
+    "apiKey": "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75"
+  },
+  "processData": false,
+  "mimeType": "multipart/form-data",
+  "contentType": false,
+  "data": form
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
     }
 
 </script>

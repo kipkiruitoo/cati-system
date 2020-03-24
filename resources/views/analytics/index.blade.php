@@ -84,6 +84,7 @@ window.onload = function () {
                 });
 
             var visPanel = new SurveyAnalytics.VisualizationPanel(surveyResultNode, survey.getAllQuestions(), normalizedData);
+            visPanel.showHeader = true;
             visPanel.render();
     
         
