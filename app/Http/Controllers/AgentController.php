@@ -246,7 +246,7 @@ class AgentController extends Controller
         $from     = "+254711082023";
 
         // Set the numbers you want to call to in a comma-separated list
-        $to       = "+254715686316";
+        $to       = Auth::user()->phone;
 
         try {
             // Make the call
