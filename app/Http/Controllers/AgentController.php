@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Call;
 use App\Projects;
 use App\Respondent;
 use App\Interview;
@@ -255,6 +256,18 @@ class AgentController extends Controller
                 'clientRequestId' => strval($request->respondent)
             ]);
             echo $request->respondent;
+
+            $call = new Call();
+            $call->respondent = $request->respondent;
+            $call->session_id = $results->session_id;
+            $call->agent = Auth::user()->id;
+
+            if ($call->save()) {
+                # code...
+                echo "saved";
+            } else {
+                echo "not saved";
+            }
 
             Log::info($results);
 
