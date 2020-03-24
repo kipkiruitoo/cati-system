@@ -265,6 +265,6 @@ class AgentController extends Controller
 
     public function calls_callback(Request $request)
     {
-        Log::debug($request);
+        Log::debug("i have been Called");
     }
 }
