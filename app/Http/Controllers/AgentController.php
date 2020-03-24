@@ -286,11 +286,13 @@ class AgentController extends Controller
 
         $call = Call::where('session_id',  $sessionId);
 
+        Log::info($call);
+
         // Check to see whether this call is active
         $isActive  = $request->isActive;
 
         if ($isActive == 1) {
-            $call->status = "Active";
+            Call::where('session_id',  $sessionId)->status = 'Active';
             // Forward by dialing customer service numbers and record the conversation
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -302,7 +304,7 @@ class AgentController extends Controller
             header('Content-type: application/xml');
             echo $response;
         } else {
-            $call->status = "Ended";
+            Call::where('session_id',  $sessionId)->status = 'Ended';
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
 
