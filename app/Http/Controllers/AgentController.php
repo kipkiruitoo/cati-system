@@ -295,19 +295,19 @@ class AgentController extends Controller
 
             // Forward by dialing customer service numbers and record the conversation
 
-            // Call::where('session_id',  $sessionId)->update('status', 'Active');
+
 
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
             $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254728554902" ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
+            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254702027307" ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
             $response .= '</Response>';
 
             // Print the response onto the page so that our gateway can read it
             header('Content-type: application/xml');
             echo $response;
         } else {
-            Call::where('session_id',  $sessionId)->update('status', 'Ended');
+
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
 
@@ -319,8 +319,10 @@ class AgentController extends Controller
             $recording    = $_POST['recordingUrl'];
             Log::info($recording);
             Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
+            Call::where('session_id',  $sessionId)->update('status', 'Ended');
             // You can then store this information in the database for your records
         }
+        Call::where('session_id',  $sessionId)->update('status', $isActive);
     }
     public function calls_events(Request $request)
     {
