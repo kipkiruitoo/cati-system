@@ -15,6 +15,8 @@ use App\PanelFeedback;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToArray;
+use AfricasTalking\SDK\AfricasTalking;
+use Illuminate\Support\Facades\Log;
 
 class AgentController extends Controller
 {
@@ -112,7 +114,7 @@ class AgentController extends Controller
     public function addfeedback(Request $request)
     {
 
-        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'),'agent'=> Auth::user()->id, 'feedback' => $request->input('feedback'), 'other' => $request->input('other')]);
+        DB::table('feedback')->insert(['respondent_id' => $request->input('respondent'), 'agent' => Auth::user()->id, 'feedback' => $request->input('feedback'), 'other' => $request->input('other')]);
 
         $respondent = Respondent::where('id', $request->input('respondent'))->get();
         $survey = $request->input('survey');
@@ -209,7 +211,8 @@ class AgentController extends Controller
         return response()->json([$respondent, $feedback, $lint]);
     }
 
-    public function save_incomplete(Request $request){
+    public function save_incomplete(Request $request)
+    {
         $incomplete =  new Incomplete();
         $agent = (object) $request->input('agent');
         $respondent = $request->input('respondent');
@@ -220,10 +223,48 @@ class AgentController extends Controller
         $incomplete->json = json_encode($request->input('json'));
 
         if ($incomplete->save()) {
-          return response()->json(['message'=>'Success', 'data'=>$incomplete]);
-        }else{
-            return response()->json(['message'=>'error occured']);
+            return response()->json(['message' => 'Success', 'data' => $incomplete]);
+        } else {
+            return response()->json(['message' => 'error occured']);
         }
-        
+    }
+    public function make_call(Request $request)
+    {
+
+        // Set your app credentials
+        $username = "TIFACommodityPrices";
+        $apiKey   = "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75";
+
+        // Initialize the SDK
+        $AT       = new AfricasTalking($username, $apiKey);
+
+        // Get the voice service
+        $voice    = $AT->voice();
+
+        // Set your Africa's Talking phone number in international format
+        $from     = "+254711082023";
+
+        // Set the numbers you want to call to in a comma-separated list
+        $to       = "+254715686316,+254702027307";
+
+        try {
+            // Make the call
+            $results = $voice->call([
+                'from' => $from,
+                'to'   => $to,
+                'clientRequestId' => 'respondent'
+            ]);
+
+            Log::debug($results);
+
+            print_r($results);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function calls_callback(Request $request)
+    {
+        Log::debug($request->clientRequestId);
     }
 }

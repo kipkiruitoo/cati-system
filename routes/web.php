@@ -17,6 +17,9 @@ use App\Exports\FeedbackExport;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProjectController;
 use Maatwebsite\Excel\Facades\Excel;
+// use Illuminate\Routing\Route;
+// use TCG\Voyager\Voyager;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 
 Route::get('/', function () {
@@ -109,18 +112,22 @@ Route::post('/getresults', 'SurveyController@getresults')->name('getresults');
 Route::post('/api/incomplete', 'AgentController@save_incomplete')->name('incomplete');
 
 
-Route::get('/feedbackexports', function(){
-    return  Excel::download(new FeedbackExport, 'feedback.xlsx' );
+Route::get('/feedbackexports', function () {
+    return  Excel::download(new FeedbackExport, 'feedback.xlsx');
 })->name('feedbackexports');
 
 
 
-Route::get('/getexcel', function(){
-    $file=Storage::disk('public')->get('format.xlsx');
+Route::get('/getexcel', function () {
+    $file = Storage::disk('public')->get('format.xlsx');
 
     return (new Response($file, 200))
-              ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        ->header('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 })->name('getexcel');
 
 
-Route::get('/analytics/{id}', 'AnalyticsController@index' )->name('analytics');
+Route::get('/analytics/{id}', 'AnalyticsController@index')->name('analytics');
+
+
+Route::post('/agent/call', 'AgentController@make_call')->name('makecall');
+Route::post('/calls/callback', 'AgentController@calls_callback');

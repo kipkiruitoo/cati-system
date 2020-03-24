@@ -55,7 +55,7 @@
                         <h6>Last Interview : <span id="lin">{{ $lastinterviewdate }}</span></h6>
                         {{-- <button class="btn btn-dark btn-small">Manage Phone Numbers</button> --}}
 
-                        <button class="btn btn-dark" type="button" onclick="make_call()"> <span><i class="fa fa-phone"> </i> </span> Call</button>
+
 
                     </div>
 
@@ -67,6 +67,10 @@
                 <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
                 <button type="submit" class="btn btn-dark"> Start
                     Survey  <span><i class="fa fa-play-circle"></i></span></button>
+            </form>
+        <form action="{{route('makecall')}}" method="POST">
+            @csrf
+                 <button class="btn btn-dark" type="submit" > <span><i class="fa fa-phone"> </i> </span> Call</button>
             </form>
         </div>
         <div class="col-md-6">
