@@ -254,6 +254,7 @@ class AgentController extends Controller
                 'to'   => $to,
                 'clientRequestId' => $request->respondent
             ]);
+            echo $request->respondent;
 
             Log::info($results);
 
@@ -265,6 +266,6 @@ class AgentController extends Controller
 
     public function calls_callback(Request $request)
     {
-        Log::debug($request->clientRequestId);
+        Log::debug($request);
     }
 }
