@@ -295,7 +295,7 @@ class AgentController extends Controller
 
             // Forward by dialing customer service numbers and record the conversation
 
-            Call::where('session_id',  $sessionId)->update('status', 'Active');
+            // Call::where('session_id',  $sessionId)->update('status', 'Active');
 
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
