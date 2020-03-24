@@ -252,7 +252,7 @@ class AgentController extends Controller
             $results = $voice->call([
                 'from' => $from,
                 'to'   => $to,
-                'clientRequestId' => $request->respondent
+                'clientRequestId' => strval($request->respondent)
             ]);
             echo $request->respondent;
 
@@ -265,6 +265,10 @@ class AgentController extends Controller
     }
 
     public function calls_callback(Request $request)
+    {
+        // Log::debug($request);
+    }
+    public function calls_events(Request $request)
     {
         Log::debug($request);
     }
