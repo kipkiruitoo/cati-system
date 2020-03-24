@@ -257,9 +257,11 @@ class AgentController extends Controller
             ]);
             echo $request->respondent;
 
+            print_r($results);
             $call = new Call();
             $call->respondent = $request->respondent;
-            $call->session_id = $results->session_id;
+            $call->session_id = $results['data']->entries[0]->sessionId;
+            $call->status = $results['data']->entries[0]->status;
             $call->agent = Auth::user()->id;
 
             if ($call->save()) {
@@ -282,10 +284,13 @@ class AgentController extends Controller
         Log::warning($request);
         $sessionId = $request->sessionId;
 
+        $call = Call::where('session_id',  $sessionId);
+
         // Check to see whether this call is active
         $isActive  = $request->isActive;
 
         if ($isActive == 1) {
+            $call->status = "Active";
             // Forward by dialing customer service numbers and record the conversation
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -297,6 +302,7 @@ class AgentController extends Controller
             header('Content-type: application/xml');
             echo $response;
         } else {
+            $call->status = "Ended";
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
 
@@ -307,8 +313,10 @@ class AgentController extends Controller
             // Be sure to read in the URL of the recorded conversation
             $recording    = $_POST['recordingUrl'];
 
+            $call->recording_link = $_POST['recordingUrl'];
             // You can then store this information in the database for your records
         }
+        $call->save();
     }
     public function calls_events(Request $request)
     {
