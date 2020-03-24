@@ -307,8 +307,8 @@ class AgentController extends Controller
             header('Content-type: application/xml');
             echo $response;
         } else {
-            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed']);
-            DB::table('calls')->where('session_id',  $sessionId)->update(['recording_link' =>  $_POST['recordingUrl']]);
+            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
 
@@ -319,7 +319,9 @@ class AgentController extends Controller
             // Be sure to read in the URL of the recorded conversation
             $recording    = $_POST['recordingUrl'];
             Log::info($recording);
-            Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
+
+
+            // Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
 
             // You can then store this information in the database for your records
         }
