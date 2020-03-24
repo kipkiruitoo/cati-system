@@ -255,7 +255,7 @@ class AgentController extends Controller
                 'clientRequestId' => 'respondent'
             ]);
 
-            Log::debug($results);
+            Log::info($results);
 
             print_r($results);
         } catch (Exception $e) {
