@@ -252,7 +252,7 @@ class AgentController extends Controller
             $results = $voice->call([
                 'from' => $from,
                 'to'   => $to,
-                'clientRequestId' => 'respondent'
+                'clientRequestId' => $request->respondent
             ]);
 
             Log::info($results);
@@ -265,6 +265,6 @@ class AgentController extends Controller
 
     public function calls_callback(Request $request)
     {
-        Log::debug($request->isActive);
+        Log::debug($request->clientRequestId);
     }
 }

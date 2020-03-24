@@ -69,6 +69,7 @@
                     Survey  <span><i class="fa fa-play-circle"></i></span></button>
             </form>
         <form action="{{route('makecall')}}" method="POST">
+        <input type="hidden" name="respondent" value="{{$respondent[0]->id}}">
             @csrf
                  <button class="btn btn-dark" type="submit" > <span><i class="fa fa-phone"> </i> </span> Call</button>
             </form>
