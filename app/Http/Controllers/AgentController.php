@@ -292,7 +292,7 @@ class AgentController extends Controller
         $isActive  = $request->isActive;
 
         if ($isActive == 1) {
-
+            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
             // Forward by dialing customer service numbers and record the conversation
 
 
@@ -319,10 +319,10 @@ class AgentController extends Controller
             $recording    = $_POST['recordingUrl'];
             Log::info($recording);
             Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
-            Call::where('session_id',  $sessionId)->update('status', 'Ended');
+            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Ended']);
             // You can then store this information in the database for your records
         }
-        Call::where('session_id',  $sessionId)->update('status', $isActive);
+        // DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Ended']);
     }
     public function calls_events(Request $request)
     {
