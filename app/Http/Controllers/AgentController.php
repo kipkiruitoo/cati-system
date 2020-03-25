@@ -287,13 +287,15 @@ class AgentController extends Controller
 
         $call = Call::where('session_id',  $sessionId)->first();
 
-        // Log::info($call);
+        Log::info($call);
 
         // Check to see whether this call is active
         $isActive  = $request->isActive;
 
-        $respondents_phone = Respondent::where('id', $call->respondent)->first()->phone;
-        Log::info($respondents_phone);
+        $respondent = Respondent::where('id', $call->respondent)->first()->phone;
+
+        Log::info($respondent);
+        // Log::info($respondents_phone);
 
         if ($isActive == 1) {
             DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
