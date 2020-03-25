@@ -309,7 +309,7 @@ class AgentController extends Controller
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
             $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254755682620"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
+            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254' . $respondent . '"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
             $response .= '</Response>';
 
             // Print the response onto the page so that our gateway can read it
