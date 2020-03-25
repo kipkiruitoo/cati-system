@@ -246,8 +246,8 @@ class AgentController extends Controller
         $from     = "+254711082023";
 
         // Set the numbers you want to call to in a comma-separated list
-        $to       = '+254' . Auth::user()->phone;
-        echo $to;
+        $to       = '+254722723337';
+        // echo $to;
 
         try {
             // Make the call
@@ -256,9 +256,9 @@ class AgentController extends Controller
                 'to'   => $to,
                 'clientRequestId' => strval($request->respondent)
             ]);
-            echo $request->respondent;
+            // echo $request->respondent;
 
-            print_r($results);
+            // print_r($results);
             $call = new Call();
             $call->respondent = $request->respondent;
             $call->session_id = $results['data']->entries[0]->sessionId;
@@ -267,10 +267,8 @@ class AgentController extends Controller
 
             if ($call->save()) {
                 # code...
-                echo "saved";
-                return redirect()->back();
+                return response()->json(["message" => "Call Initiated"]);
             } else {
-                echo "not saved";
             }
 
             // Log::info($results);
@@ -307,7 +305,7 @@ class AgentController extends Controller
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
             $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254702027307"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
+            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254722472385"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
             $response .= '</Response>';
 
             // Print the response onto the page so that our gateway can read it

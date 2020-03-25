@@ -6,6 +6,50 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .call{
+        background: #2b333b;
+    }
+    .call-animation {
+    background: #fff;
+    width: 135px;
+    height: 135px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 100%;
+    border: solid 5px #fff;
+    animation: play 2s ease infinite;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+}
+ img {
+        width: 135px;
+        height: 135px;
+        border-radius: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+@keyframes play {
+
+    0% {
+        transform: scale(1);
+    }
+    15% {
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+    25% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4), 0 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    25% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.4), 0 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+
+}
+</style>
 @endsection
 @section('content')
 
@@ -68,11 +112,11 @@
                 <button type="submit" class="btn btn-dark"> Start
                     Survey  <span><i class="fa fa-play-circle"></i></span></button>
             </form>
-        <form action="{{route('makecall')}}" method="POST">
-        <input type="hidden" name="respondent" value="{{$respondent[0]->id}}">
-            @csrf
-                 <button class="btn btn-dark" type="submit" > <span><i class="fa fa-phone"> </i> </span> Call</button>
-            </form>
+        {{-- <form action="{{route('makecall')}}" method="POST"> --}}
+        {{-- <input type="hidden" name="respondent" value="{{$respondent[0]->id}}"> --}}
+            {{-- @csrf --}}
+                 <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Initiate Call</button>
+            {{-- </form> --}}
         </div>
         <div class="col-md-6">
             <div class="well">
@@ -161,7 +205,25 @@
         </div>
     </div>
 </div>
+{{-- Calling Card --}}
+<div class="modal fade" id="calling" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  " role="document">
+        <div class="modal-content modal-dialog-centered  call">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Initiating Call</h5>
+            </div>
+            <div class="modal-body">
+                <div class="call-animation">
+               <img class="img-circle" src="{{env('APP_URL') . '/calling.png'}}" alt="Icon" width="135">
+            </div>
+            </div>
 
+
+        </div>
+    </div>
+</div>
+{{-- Calling Card --}}
 <script>
     window.onload = function () {
         var count = localStorage.getItem("count");
@@ -330,30 +392,15 @@
     }
 
     function make_call() {
-   var form = new FormData();
-form.append("from", "+254711082023");
-form.append("username", "TIFACommodityPrices");
-form.append("to", " +254755682620,254715686316");
-form.append("clientRequestId", "25");
+        console.log("i have been called");
+            var respondent = {{$respondent[0]->id}};
+            console.log(respondent);
+            var url = '{{route('makecall')}}';
 
-var settings = {
-  "url": "https://voice.africastalking.com/call",
-  "method": "POST",
-  "timeout": 0,
-  "headers": {
-    "Content-Type": "application/form-data",
-    "apiKey": "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75"
-  },
-  "processData": false,
-  "mimeType": "multipart/form-data",
-  "contentType": false,
-  "data": form
-};
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
-
+        axios.post(url, {respondent: respondent}).then(response=>{
+            console.log(response);
+        })
     }
 
 </script>
