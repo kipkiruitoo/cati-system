@@ -224,6 +224,7 @@
     </div>
 </div>
 {{-- Calling Card --}}
+<script src="{{asset('js\app.js')}}"></script>
 <script>
     window.onload = function () {
         var count = localStorage.getItem("count");
@@ -400,6 +401,13 @@
 
         axios.post(url, {respondent: respondent}).then(response=>{
             console.log(response);
+            let sessionId = response.data.sessionId;
+            console.log(sessionId);
+
+            Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
+                // alert(e)
+                console.log(e)
+            })
         })
     }
 

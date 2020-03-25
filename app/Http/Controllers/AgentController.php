@@ -11,6 +11,7 @@ use App\Interview;
 use App\Feedback;
 use App\Incomplete;
 use Charts;
+use App\Events\ChangeCallStatus;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\PanelFeedback;
 use Carbon\Carbon;
@@ -246,7 +247,7 @@ class AgentController extends Controller
         $from     = "+254711082023";
 
         // Set the numbers you want to call to in a comma-separated list
-        $to       = '+254722723337';
+        $to       =  "+254" . Auth::user()->phone;
         // echo $to;
 
         try {
@@ -267,7 +268,8 @@ class AgentController extends Controller
 
             if ($call->save()) {
                 # code...
-                return response()->json(["message" => "Call Initiated"]);
+                new ChangeCallStatus($results['data']->entries[0]->sessionId, "started");
+                return response()->json(["message" => "Call Initiated", "sessionId" => $results['data']->entries[0]->sessionId]);
             } else {
             }
 
@@ -283,6 +285,8 @@ class AgentController extends Controller
     {
         Log::warning($request);
         $sessionId = $request->sessionId;
+
+
 
         $call = Call::where('session_id',  $sessionId)->first();
 
@@ -305,15 +309,13 @@ class AgentController extends Controller
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
             $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254722472385"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
+            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254755682620"  ringbackTone="http://cati.tifaresearch.com/callbackringtone.mp3" />';
             $response .= '</Response>';
 
             // Print the response onto the page so that our gateway can read it
             header('Content-type: application/xml');
             echo $response;
         } else {
-            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
-
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
 
@@ -325,6 +327,7 @@ class AgentController extends Controller
             $recording    = $_POST['recordingUrl'];
             Log::info($recording);
 
+            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
 
             // Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
 
