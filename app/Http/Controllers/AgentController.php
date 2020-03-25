@@ -246,7 +246,8 @@ class AgentController extends Controller
         $from     = "+254711082023";
 
         // Set the numbers you want to call to in a comma-separated list
-        $to       = Auth::user()->phone;
+        $to       = '+254' . Auth::user()->phone;
+        echo $to;
 
         try {
             // Make the call
@@ -290,7 +291,7 @@ class AgentController extends Controller
 
         // Check to see whether this call is active
         $isActive  = $request->isActive;
-
+        
         if ($isActive == 1) {
             DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
             // Forward by dialing customer service numbers and record the conversation
