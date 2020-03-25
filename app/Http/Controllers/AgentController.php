@@ -268,13 +268,14 @@ class AgentController extends Controller
             if ($call->save()) {
                 # code...
                 echo "saved";
+                return redirect()->back();
             } else {
                 echo "not saved";
             }
 
-            Log::info($results);
+            // Log::info($results);
 
-            print_r($results);
+            // print_r($results);
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
