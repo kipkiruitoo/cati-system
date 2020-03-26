@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     .call{
-        background: #94A0A3;
+        background: #293138;
     }
     .call-animation {
     background: #fff;
@@ -49,7 +49,107 @@
     }
 
 }
+
+#hellobar-bar {
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    margin: 0;
+    height: 20px;
+    display: none;
+    font-size: 17px;
+    font-weight: 400;
+    padding: .33em .5em;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    position: fixed;
+    background-color: #293138;
+    box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
+}
+#hellobar-bar.regular {
+    height: 20px;
+    font-size: 14px;
+    padding: .2em .5em;
+}
+.hb-content-wrapper {
+    text-align: center;
+    text-align: center;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+}
+.hb-content-wrapper p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.hb-text-wrapper {
+    margin-right: .67em;
+    display: inline-block;
+    line-height: 1.3;
+}
+.hb-text-wrapper .hb-headline-text {
+    font-size: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+#hellobar-bar .hb-cta {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px 0;
+    color: #ffffff;
+    background-color: #0099cc;
+    border-color: #0099cc;
+}
+.hb-cta-button {
+    opacity: 1;
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    line-height: 1.5;
+    max-width: 22.5em;
+    text-align: center;
+    position: relative;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin: 1.75em auto 0;
+    text-decoration: none;
+    padding: 0;
+    overflow: hidden;
+}
+.hb-cta-button .hb-text-holder {
+    border-radius: inherit;
+    padding: 5px 15px;
+}
+.hb-close-wrapper {
+    display: table-cell;
+    width: 1.6em;
+}
+.hb-close-wrapper .icon-close {
+    font-size: 14px;
+    top: 15px;
+    right: 25px;
+    width: 15px;
+    height: 15px;
+    opacity: .3;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    line-height: 15px;
+    z-index: 1000;
+    text-decoration: none;
+}
 </style>
+@endsection
+@section('headbar')
+<div id="hellobar-bar" class="regular animated infinite pulse">
+    <div class="hb-content-wrapper">
+        <div class="hb-text-wrapper">
+            <div class="hb-headline-text">
+                <p><span > <i class="fa fa-headset" style="color: white;"></i> <h4 id="barmessage">Initiating Call</h4></span></p>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('content')
 
@@ -393,11 +493,13 @@
     }
 
     function make_call() {
-        console.log("i have been called");
+        // console.log("i have been called");
             var respondent = {{$respondent[0]->id}};
-            console.log(respondent);
+            // console.log(respondent);
+            var hellobar = document.querySelector('#hellobar-bar');
             var url = '{{route('makecall')}}';
-
+            hellobar.style.display = "table";
+            var barmessage = document.querySelector('#barmessage');
 
         axios.post(url, {respondent: respondent}).then(response=>{
             console.log(response);
@@ -413,18 +515,31 @@
                 if(e.callstatus === "NotAnswered"){
                     statusmessage.style.cssText += 'color: red;';
                     animationdiv.style.background = "red";
+                    hellobar.style.background = "red";
+                    barmessage.innerHTML = "Phone not Answered";
                      animationdiv.style.border = "solid 5px red";
                     statusmessage.innerHTML = "Phone not Answered"
                 }else if(e.callstatus === "Dialing"){
                     statusmessage.style.cssText += 'color: yellow;';
                     animationdiv.style.border = "solid 5px yellow";
+                    hellobar.style.background = "yellow";
+                    barmessage.innerHTML = "Dialing the Respondent";
                     animationdiv.style.background = "yellow";
                     statusmessage.innerHTML = "Dialing the Respondent"
                 }else if (e.callstatus === "Bridged") {
                     statusmessage.style.cssText += 'color: green;';
                     animationdiv.style.border = "solid 5px green";
+                    hellobar.style.background = "green";
+                    barmessage.innerHTML = "Connected with the Respondent";
                     animationdiv.style.background = "green";
                     statusmessage.innerHTML = "Connected with the Respondent"
+                }else if (e.callstatus === "Completed") {
+                    // statusmessage.style.cssText += 'color: white;';
+                    // animationdiv.style.border = "solid 5px green";
+                    // hellobar.style.background = "green";
+                    // barmessage.innerHTML = "Connected with the Respondent";
+                    // animationdiv.style.background = "green";
+                    // statusmessage.innerHTML = "Connected with the Respondent"
                 }
             })
         })

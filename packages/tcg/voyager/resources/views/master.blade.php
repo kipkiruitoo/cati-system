@@ -58,7 +58,7 @@
 
     @yield('head')
 </head>
-
+{{-- @yield('headbar') --}}
 <body class="voyager @if(isset($dataType) && isset($dataType->slug)){{ $dataType->slug }}@endif">
 
 <div id="voyager-loader">
@@ -79,6 +79,7 @@ if (\Illuminate\Support\Str::startsWith(Auth::user()->avatar, 'http://') || \Ill
 ?>
 
 <div class="app-container">
+    
     <div class="fadetoblack visible-xs"></div>
     <div class="row content-container">
         @include('voyager::dashboard.navbar')

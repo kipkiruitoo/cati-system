@@ -28,10 +28,10 @@
                     $segments = ["Quality Control"];
                     // $segments = array_filter(explode('/', str_replace(route('qc'), '', Request::url())));
                     $url = route('qc');
-                
+
                 }
 
-                
+
 
 
                 @endphp
@@ -100,4 +100,6 @@
             </li>
         </ul>
     </div>
+    @yield('headbar')
 </nav>
+
