@@ -408,7 +408,11 @@
                 // alert(e)
                 let statusmessage = document.querySelector("#callstatus");
                 console.log(e)
-                statusmessage.innerHTML = e.callstatus
+                // statusmessage.innerHTML = e.callstatus
+                if(e.callstatus === "NotAnswered"){
+                    statusmessage.style.cssText += 'color: red;';
+                    statusmessage.innerHTML = "Phone not Answered"
+                }
             })
         })
     }
