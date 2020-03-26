@@ -54,9 +54,9 @@
     font-family: "Open Sans", sans-serif;
     width: 100%;
     margin: 0;
-    height: 20px;
+    height: 15px;
     display: none;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 400;
     padding: .33em .5em;
     -webkit-font-smoothing: antialiased;
@@ -66,8 +66,8 @@
     box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
 }
 #hellobar-bar.regular {
-    height: 20px;
-    font-size: 14px;
+    height: 15px;
+    font-size: 13px;
     padding: .2em .5em;
 }
 .hb-content-wrapper {
