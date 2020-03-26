@@ -407,11 +407,17 @@
             Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
                 // alert(e)
                 let statusmessage = document.querySelector("#callstatus");
+                let animationdiv = document.querySelector(".call-animation");
                 console.log(e)
                 // statusmessage.innerHTML = e.callstatus
                 if(e.callstatus === "NotAnswered"){
                     statusmessage.style.cssText += 'color: red;';
+                    animationdiv.style.background = "red";
                     statusmessage.innerHTML = "Phone not Answered"
+                }else if(e.callstatus === "Dialing"){
+                    statusmessage.style.cssText += 'color: yellow;';
+                    animationdiv.style.background = "yellow";
+                    statusmessage.innerHTML = "Dialing the Respondent"
                 }
             })
         })
