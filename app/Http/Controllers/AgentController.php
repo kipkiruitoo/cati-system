@@ -244,7 +244,7 @@ class AgentController extends Controller
         $voice    = $AT->voice();
 
         // Set your Africa's Talking phone number in international format
-        $from     = "+254711082023";
+        $from     = "+254711082144";
 
         // Set the numbers you want to call to in a comma-separated list
         $to       =  "+254" . Auth::user()->phone;
