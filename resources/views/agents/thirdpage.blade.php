@@ -211,7 +211,7 @@
     <div class="modal-dialog modal-dialog-centered  " role="document">
         <div class="modal-content modal-dialog-centered  call">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Initiating Call</h5>
+                <h5 class="modal-title" id="callstatus">Initiating Call</h5>
             </div>
             <div class="modal-body">
                 <div class="call-animation">
@@ -406,7 +406,9 @@
 
             Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
                 // alert(e)
+                let statusmessage = document.querySelector("#callstatus");
                 console.log(e)
+                statusmessage.innerHTML = e.callstatus
             })
         })
     }

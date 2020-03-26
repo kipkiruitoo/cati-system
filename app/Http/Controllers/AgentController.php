@@ -283,7 +283,7 @@ class AgentController extends Controller
 
     public function calls_callback(Request $request)
     {
-        Log::warning($request);
+        // Log::warning($request);
         $sessionId = $request->sessionId;
 
 
@@ -337,6 +337,11 @@ class AgentController extends Controller
     }
     public function calls_events(Request $request)
     {
+        $callSessionState = $_POST['callSessionState'];
+        $sessionId = $request->sessionId;
+
+        broadcast(new ChangeCallStatus($sessionId, $callSessionState));
+
         Log::warning($request);
     }
 }
