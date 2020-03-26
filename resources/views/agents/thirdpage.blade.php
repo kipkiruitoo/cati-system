@@ -12,8 +12,8 @@
     }
     .call-animation {
     background: #fff;
-    width: 135px;
-    height: 135px;
+    width: 140px;
+    height: 140px;
     position: relative;
     margin: 0 auto;
     border-radius: 100%;
@@ -26,8 +26,8 @@
 
 }
  img {
-        width: 135px;
-        height: 135px;
+        width: 130px;
+        height: 130px;
         border-radius: 100%;
         position: absolute;
         left: 0px;
@@ -413,11 +413,18 @@
                 if(e.callstatus === "NotAnswered"){
                     statusmessage.style.cssText += 'color: red;';
                     animationdiv.style.background = "red";
+                     animationdiv.style.border = "solid 5px red";
                     statusmessage.innerHTML = "Phone not Answered"
                 }else if(e.callstatus === "Dialing"){
                     statusmessage.style.cssText += 'color: yellow;';
+                    animationdiv.style.border = "solid 5px yellow";
                     animationdiv.style.background = "yellow";
                     statusmessage.innerHTML = "Dialing the Respondent"
+                }else if (e.callstatus === "Bridged") {
+                    statusmessage.style.cssText += 'color: green;';
+                    animationdiv.style.border = "solid 5px green";
+                    animationdiv.style.background = "green";
+                    statusmessage.innerHTML = "Connected with the Respondent"
                 }
             })
         })
