@@ -145,7 +145,7 @@
     <div class="hb-content-wrapper">
         <div class="hb-text-wrapper">
             <div class="hb-headline-text">
-                <p><span > <i class="fa fa-headset" style="color: white;"></i> <h4 id="barmessage">Initiating Call</h4></span></p>
+                <p><span > <i class="fa fa-headset"></i> <h4 id="barmessage">Initiating Call</h4></span></p>
             </div>
         </div>
     </div>
@@ -522,7 +522,8 @@
                 }else if(e.callstatus === "Dialing"){
                     statusmessage.style.cssText += 'color: yellow;';
                     animationdiv.style.border = "solid 5px yellow";
-                    hellobar.style.background = "yellow";
+                    hellobar.style.color = "yellow";
+
                     barmessage.innerHTML = "Dialing the Respondent";
                     animationdiv.style.background = "yellow";
                     statusmessage.innerHTML = "Dialing the Respondent"
@@ -534,12 +535,13 @@
                     animationdiv.style.background = "green";
                     statusmessage.innerHTML = "Connected with the Respondent"
                 }else if (e.callstatus === "Completed") {
-                    // statusmessage.style.cssText += 'color: white;';
-                    // animationdiv.style.border = "solid 5px green";
-                    // hellobar.style.background = "green";
-                    // barmessage.innerHTML = "Connected with the Respondent";
-                    // animationdiv.style.background = "green";
-                    // statusmessage.innerHTML = "Connected with the Respondent"
+                    statusmessage.style.cssText += 'color: white;';
+                    animationdiv.style.border = "solid 5px green";
+                    hellobar.style.background = "green";
+                    barmessage.innerHTML = "Call Completed";
+                    hellobar.style.display = "None";
+                    animationdiv.style.background = "green";
+                    statusmessage.innerHTML = "Connected with the Respondent"
                 }
             })
         })
