@@ -449,7 +449,7 @@
                 if(e.callstatus === "NotAnswered"){
                     statusmessage.style.cssText += 'color: red;';
                     animationdiv.style.background = "red";
-                    hellobar.style.background = "red";
+                    hellobar.style.background = "#55040F";
                     toastr["error"]("Phone Was not Answered . Please try again")
                     barmessage.innerHTML = "Phone not Answered . Please try again";
                      animationdiv.style.border = "solid 5px red";
@@ -457,7 +457,7 @@
                 }else if(e.callstatus === "Dialing"){
                     statusmessage.style.cssText += 'color: yellow;';
                     animationdiv.style.border = "solid 5px #57a9c1";
-                    hellobar.style.color = "#57a9c1";
+                    hellobar.style.background = "#61045A";
                     toastr["info"]("Dialing the Respondent");
                     barmessage.innerHTML = "Dialing the Respondent";
                     animationdiv.style.background = "#57a9c1";
@@ -466,14 +466,14 @@
                     statusmessage.style.cssText += 'color: green;';
                     animationdiv.style.border = "solid 5px green";
                     toastr["success"]("Connected with  the Respondent");
-                    hellobar.style.background = "green";
+                   hellobar.style.background = "#030B37";
                     barmessage.innerHTML = "Connected with the Respondent";
                     animationdiv.style.background = "green";
                     statusmessage.innerHTML = "Connected with the Respondent"
                 }else if (e.callstatus === "Completed") {
                     statusmessage.style.cssText += 'color: white;';
                     animationdiv.style.border = "solid 5px green";
-                    hellobar.style.background = "green";
+                     hellobar.style.background = "#033018";
                     toastr["success"]("Phone Call Completed");
                     barmessage.innerHTML = "Call Completed";
                     hellobar.style.display = "None";

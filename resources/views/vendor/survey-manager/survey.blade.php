@@ -91,7 +91,7 @@ Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
 };
                 // statusmessage.innerHTML = e.callstatus
                 if(e.callstatus === "NotAnswered"){
-                    hellobar.style.background = "##55040F";
+                    hellobar.style.background = "#55040F";
                     toastr["error"]("Phone Was not Answered . Please try again")
                     barmessage.innerHTML = "Phone not Answered . Please try again";
                 }else if(e.callstatus === "Dialing"){
