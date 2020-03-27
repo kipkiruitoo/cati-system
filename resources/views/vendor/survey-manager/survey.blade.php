@@ -91,21 +91,21 @@ Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
 };
                 // statusmessage.innerHTML = e.callstatus
                 if(e.callstatus === "NotAnswered"){
-                    hellobar.style.background = "red";
+                    hellobar.style.background = "##55040F";
                     toastr["error"]("Phone Was not Answered . Please try again")
                     barmessage.innerHTML = "Phone not Answered . Please try again";
                 }else if(e.callstatus === "Dialing"){
-                    hellobar.style.color = "#57a9c1";
+                    hellobar.style.background = "#61045A";
                     toastr["info"]("Dialing the Respondent");
                     barmessage.innerHTML = "Dialing the Respondent";
                 }else if (e.callstatus === "Bridged") {
                     toastr["success"]("Connected with  the Respondent");
-                    hellobar.style.background = "green";
+                    hellobar.style.background = "#030B37";
                     barmessage.innerHTML = "Connected with the Respondent";
                 }else if (e.callstatus === "Completed") {
-
-                    hellobar.style.background = "green";
+                    hellobar.style.background = "#033018";
                     toastr["success"]("Phone Call Completed");
+                    barmessage.style.color = "#ffff"
                     barmessage.innerHTML = "Call Completed";
                     hellobar.style.display = "None";
                 }
