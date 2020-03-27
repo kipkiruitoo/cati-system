@@ -65,7 +65,7 @@ $('form').on('focus', 'input[type=number]', function (e) {
 $('form').on('blur', 'input[type=number]', function (e) {
   $(this).off('wheel.disableScroll')
 })
-var sessionId = {{$callsession}};
+var sessionId = "{{$callsession}}";
 var barmessage = document.querySelector('#barmessage');
 Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
                 // alert(e)
