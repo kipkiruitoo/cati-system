@@ -50,94 +50,7 @@
 
 }
 
-#hellobar-bar {
-    font-family: "Open Sans", sans-serif;
-    width: 100%;
-    margin: 0;
-    height: 15px;
-    display: none;
-    font-size: 13px;
-    font-weight: 400;
-    padding: .33em .5em;
-    -webkit-font-smoothing: antialiased;
-    color: #fff;
-    position: fixed;
-    background-color: #293138;
-    box-shadow: 0 1px 3px 2px rgba(0,0,0,0.15);
-}
-#hellobar-bar.regular {
-    height: 15px;
-    font-size: 13px;
-    padding: .2em .5em;
-}
-.hb-content-wrapper {
-    text-align: center;
-    text-align: center;
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-}
-.hb-content-wrapper p {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.hb-text-wrapper {
-    margin-right: .67em;
-    display: inline-block;
-    line-height: 1.3;
-}
-.hb-text-wrapper .hb-headline-text {
-    font-size: 1em;
-    display: inline-block;
-    vertical-align: middle;
-}
-#hellobar-bar .hb-cta {
-    display: inline-block;
-    vertical-align: middle;
-    margin: 5px 0;
-    color: #ffffff;
-    background-color: #0099cc;
-    border-color: #0099cc;
-}
-.hb-cta-button {
-    opacity: 1;
-    color: #fff;
-    display: block;
-    cursor: pointer;
-    line-height: 1.5;
-    max-width: 22.5em;
-    text-align: center;
-    position: relative;
-    border-radius: 3px;
-    white-space: nowrap;
-    margin: 1.75em auto 0;
-    text-decoration: none;
-    padding: 0;
-    overflow: hidden;
-}
-.hb-cta-button .hb-text-holder {
-    border-radius: inherit;
-    padding: 5px 15px;
-}
-.hb-close-wrapper {
-    display: table-cell;
-    width: 1.6em;
-}
-.hb-close-wrapper .icon-close {
-    font-size: 14px;
-    top: 15px;
-    right: 25px;
-    width: 15px;
-    height: 15px;
-    opacity: .3;
-    color: #000;
-    cursor: pointer;
-    position: absolute;
-    text-align: center;
-    line-height: 15px;
-    z-index: 1000;
-    text-decoration: none;
-}
+
 </style>
 @endsection
 @section('headbar')
@@ -149,7 +62,7 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection
 @section('content')
 
@@ -209,7 +122,8 @@
 
                 @csrf
                 <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
-                <button type="submit" class="btn btn-dark"> Start
+                <input type="hidden" name="callsession" required id="callsession"/>
+                <button type="submit" disabled id="startsurvey" class="btn btn-dark"> Start
                     Survey  <span><i class="fa fa-play-circle"></i></span></button>
             </form>
         {{-- <form action="{{route('makecall')}}" method="POST"> --}}
@@ -496,16 +410,19 @@
         // console.log("i have been called");
             var respondent = {{$respondent[0]->id}};
             // console.log(respondent);
+            var sessionInput = document.querySelector("#callsession");
             var hellobar = document.querySelector('#hellobar-bar');
             var url = '{{route('makecall')}}';
             hellobar.style.display = "table";
             var barmessage = document.querySelector('#barmessage');
+            var startsurvey = document.querySelector("#startsurvey");
 
         axios.post(url, {respondent: respondent}).then(response=>{
             console.log(response);
             let sessionId = response.data.sessionId;
             console.log(sessionId);
-
+            sessionInput.value = sessionId;
+            startsurvey.disabled = false;
             Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
                 // alert(e)
                 let statusmessage = document.querySelector("#callstatus");
@@ -539,11 +456,11 @@
                     statusmessage.innerHTML = "Phone not Answered"
                 }else if(e.callstatus === "Dialing"){
                     statusmessage.style.cssText += 'color: yellow;';
-                    animationdiv.style.border = "solid 5px yellow";
-                    hellobar.style.color = "yellow";
-                    toastr["success"]("Dialing the Respondent");
+                    animationdiv.style.border = "solid 5px #57a9c1";
+                    hellobar.style.color = "#57a9c1";
+                    toastr["info"]("Dialing the Respondent");
                     barmessage.innerHTML = "Dialing the Respondent";
-                    animationdiv.style.background = "yellow";
+                    animationdiv.style.background = "#57a9c1";
                     statusmessage.innerHTML = "Dialing the Respondent"
                 }else if (e.callstatus === "Bridged") {
                     statusmessage.style.cssText += 'color: green;';
