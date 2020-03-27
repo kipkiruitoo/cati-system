@@ -516,6 +516,7 @@
                     statusmessage.style.cssText += 'color: red;';
                     animationdiv.style.background = "red";
                     hellobar.style.background = "red";
+                    toastr["error"]("Phone Was not Answered . Please try again")
                     barmessage.innerHTML = "Phone not Answered";
                      animationdiv.style.border = "solid 5px red";
                     statusmessage.innerHTML = "Phone not Answered"
@@ -523,13 +524,14 @@
                     statusmessage.style.cssText += 'color: yellow;';
                     animationdiv.style.border = "solid 5px yellow";
                     hellobar.style.color = "yellow";
-
+                    toastr["success"]("Dialing the Respondent");
                     barmessage.innerHTML = "Dialing the Respondent";
                     animationdiv.style.background = "yellow";
                     statusmessage.innerHTML = "Dialing the Respondent"
                 }else if (e.callstatus === "Bridged") {
                     statusmessage.style.cssText += 'color: green;';
                     animationdiv.style.border = "solid 5px green";
+                    toastr["success"]("Connected with  the Respondent");
                     hellobar.style.background = "green";
                     barmessage.innerHTML = "Connected with the Respondent";
                     animationdiv.style.background = "green";
@@ -538,6 +540,7 @@
                     statusmessage.style.cssText += 'color: white;';
                     animationdiv.style.border = "solid 5px green";
                     hellobar.style.background = "green";
+                    toastr["success"]("Phone Call Completed");
                     barmessage.innerHTML = "Call Completed";
                     hellobar.style.display = "None";
                     animationdiv.style.background = "green";
