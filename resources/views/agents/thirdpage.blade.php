@@ -511,13 +511,30 @@
                 let statusmessage = document.querySelector("#callstatus");
                 let animationdiv = document.querySelector(".call-animation");
                 console.log(e)
+                toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-bottom-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
                 // statusmessage.innerHTML = e.callstatus
                 if(e.callstatus === "NotAnswered"){
                     statusmessage.style.cssText += 'color: red;';
                     animationdiv.style.background = "red";
                     hellobar.style.background = "red";
                     toastr["error"]("Phone Was not Answered . Please try again")
-                    barmessage.innerHTML = "Phone not Answered";
+                    barmessage.innerHTML = "Phone not Answered . Please try again";
                      animationdiv.style.border = "solid 5px red";
                     statusmessage.innerHTML = "Phone not Answered"
                 }else if(e.callstatus === "Dialing"){
