@@ -28,7 +28,7 @@ $respondent = json_decode($respondent)
 
 
 @endphp
-{{$callsession}}
+
     <div class="container">
       <div class="row">
       <button  onclick="window.history.back()" class="btn btn-dark"> <span><i class="fa fa-chevron-left"></i> Go Back</span> </button>
@@ -45,7 +45,7 @@ $respondent = json_decode($respondent)
 
         <div class="row">
                     <div class="panel-body" id="surveyElement">
-                    <survey-show :selectedphone="{{$selectedphone}}" :survey-data="{{ json_encode($survey) }}" :json-data="{{ $incomplete }}"></survey-show>
+                    <survey-show :selectedphone="{{$selectedphone}}"  :survey-data="{{ json_encode($survey) }}" :json-data="{{ $incomplete }}"></survey-show>
                     </div>
 
             </div>
@@ -54,6 +54,7 @@ $respondent = json_decode($respondent)
     <script>
          var hellobar = document.querySelector('#hellobar-bar');
         window.SurveyConfig = {!! json_encode(config('survey-manager')) !!};
+        window.CallSession = "{{$callsession}}";
 
         window.onload = function () {
              hellobar.style.display = "table";

@@ -39,6 +39,25 @@
 
     </div>
     <div class="row">
+        @if($interview->call_session)
+        @php
+         $audiolink = App\Call::where('session_id', $interview->call_session)->latest()->first()->recording_link;
+        echo $audiolink
+         @endphp
+        <audio controls>
+  {{-- <source src="horse.ogg" type="audio/ogg"> --}}
+  <source src="{{$audiolink}}" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+        @else
+<audio controls>
+  <source src="horse.ogg" type="audio/ogg">
+  <source src="horse.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+        @endif
+    </div>
+    <div class="row">
         <div class="well">
             Below are the answers entered by the respondents. Go through the audio to acertain the quality of the responces filled!
         </div>
