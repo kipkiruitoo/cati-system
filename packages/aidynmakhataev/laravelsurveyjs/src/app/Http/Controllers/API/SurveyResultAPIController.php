@@ -56,7 +56,8 @@ class SurveyResultAPIController extends Controller
         $interview->agent = $agent->agent;
         $interview->survey = $request->input('survey');
         $interview->phonenumber = $request->input('phonenumber');
-        //  $iinterview->project = $request->input('project');
+        $interview->project = $request->input('project');
+        $interview->call_session = $request->input('callsession');
         $interview->respondent = $respondent;
         $interview->date = $request->input('date');
         if ($interview->save()) {
@@ -68,7 +69,6 @@ class SurveyResultAPIController extends Controller
             ]);
             DB::table('incomplete')->where('respondent', '=', $respondent)->delete();
             DB::insert('insert into feedback (respondent_id, feedback, agent) values (?, ?, ?)', [$respondent, 'Successful', Auth::id()]);
-
         } else {
             $result = "An error occured";
         }
