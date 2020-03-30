@@ -297,9 +297,6 @@
         $('.js-example-basic-single').select2();
         $('#fbacktb').dataTable();
         // getnewuser({{ $project }}, {{$survey}})
-
-
-        var hellobar = document.querySelector('#hellobar-bar');
     });
 
 
@@ -414,7 +411,7 @@
             var respondent = {{$respondent[0]->id}};
             // console.log(respondent);
             var sessionInput = document.querySelector("#callsession");
-
+            let hellobar = document.querySelector('#hellobar-bar');
             var url = '{{route('makecall')}}';
             hellobar.style.display = "table";
             var barmessage = document.querySelector('#barmessage');
