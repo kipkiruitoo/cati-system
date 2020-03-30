@@ -327,8 +327,8 @@ class AgentController extends Controller
             $recording    = $_POST['recordingUrl'];
             // Log::info($recording);
 
-            $respondent = Call::where('session_id',  $sessionId)->respondent;
-            $project = Respondent::where('id', $respondent)->project;
+            $respondent = Call::where('session_id',  $sessionId)->first()->respondent;
+            $project = Respondent::where('id', $respondent)->first()->project;
             $pm = $project->project_manager;
 
             $credit = $duration * 4;
