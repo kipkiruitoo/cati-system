@@ -327,15 +327,15 @@ class AgentController extends Controller
             $recording    = $_POST['recordingUrl'];
             // Log::info($recording);
 
-            $respondent = Call::where('session_id',  $sessionId)->first()->respondent;
-            $project = Respondent::where('id', $respondent)->first()->project;
-            $pm = $project->project_manager;
+            // $respondent = Call::where('session_id',  $sessionId)->first()->respondent;
+            // $project = Respondent::where('id', $respondent)->first()->project;
+            // $pm = $project->project_manager;
 
-            $credit = $duration * 4;
-            Log::info($credit);
+            // $credit = $duration * 4;
+            // Log::info($credit);
 
-            $pm->credit =  $pm->credit - $credit;
-            $pm->save();
+            // $pm->credit =  $pm->credit - $credit;
+            // $pm->save();
 
             DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
 
