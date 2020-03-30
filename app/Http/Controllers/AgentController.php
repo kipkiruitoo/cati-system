@@ -325,7 +325,17 @@ class AgentController extends Controller
 
             // Be sure to read in the URL of the recorded conversation
             $recording    = $_POST['recordingUrl'];
-            Log::info($recording);
+            // Log::info($recording);
+
+            $respondent = Call::where('session_id',  $sessionId)->respondent;
+            $project = Respondent::where('id', $respondent)->project;
+            $pm = $project->project_manager;
+
+            $credit = $duration * 4;
+            Log::info($credit);
+
+            $pm->credit =  $pm->credit - $credit;
+            $pm->save();
 
             DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
 

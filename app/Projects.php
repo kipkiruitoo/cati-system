@@ -10,4 +10,8 @@ class Projects extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    public function project_manager()
+    {
+        return $this->belongsTo(User::class, 'pm');
+    }
 }

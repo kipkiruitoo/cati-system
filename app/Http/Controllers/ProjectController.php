@@ -313,4 +313,9 @@ class ProjectController extends Controller
     {
         return view('supervisors.reports');
     }
+
+    public function show_credits()
+    {
+        return view('projects.credits');
+    }
 }

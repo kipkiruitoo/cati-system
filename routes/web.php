@@ -132,3 +132,6 @@ Route::get('/analytics/{id}', 'AnalyticsController@index')->name('analytics')->m
 Route::post('/agent/call', 'AgentController@make_call')->name('makecall');
 Route::post('/calls/callback', 'AgentController@calls_callback');
 Route::post('/calls/events', 'AgentController@calls_events');
+
+
+Route::get('/project/credit', 'ProjectController@show_credits')->name('showcredits')->middleware('auth');
