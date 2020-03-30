@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Cashier\Billable;
+// use Laravel\Cashier\Billable;
 
 class User extends \TCG\Voyager\Models\User
 {
-    use Notifiable, Billable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
