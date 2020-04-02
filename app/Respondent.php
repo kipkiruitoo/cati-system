@@ -9,7 +9,7 @@ class Respondent extends Model
 
     public function project()
     {
-        return $this->belongsTo('App\Projects', 'project');
+        return $this->belongsTo('App\Projects', 'projects');
     }
     protected $fillable = ['name', 'res_d', 'phone', 'phone1', 'phone2', 'phone3', 'email', 'occupation', 'county', 'town', 'education', 'sex', 'lsm', 'age', 'status', 'project'];
 }
