@@ -47,10 +47,8 @@
          <div class="well">
              <h5>Audio File.</h5>
              {{-- <a download="{{$audiolink}}" class="btn btn-dark">Download Audio File</a> --}}
-                   <audio controls>
+                   <audio controls src="{{$audiolink}}" download type="audio/mpeg">
   {{-- <source src="horse.ogg" type="audio/ogg"> --}}
-                         <source src="{{$audiolink}}" type="audio/mpeg">
-                            Your browser does not support the audio element.
             </audio>
          </div>
 
