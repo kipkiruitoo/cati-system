@@ -135,3 +135,6 @@ Route::post('/calls/events', 'AgentController@calls_events');
 
 
 Route::get('/project/credit', 'ProjectController@show_credits')->name('showcredits')->middleware('auth');
+
+
+Route::get('walletballance', 'ProjectController@get_wallet_balance')->name('walletbalance');

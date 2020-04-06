@@ -8,7 +8,21 @@
 @if(Auth::user()->role_id == 1 || Auth::user()->role_id == 3 )
 <div class="container">
     <div class="row">
-        <a href="{{route('projects.create')}}"><button class="btn btn-primary">Add a NEw Project</button></a>
+        <div class="col-sm-6">
+<a href="{{route('projects.create')}}"><button class="btn btn-primary">Add a New Project</button></a>
+        </div>
+        <div class="col-sm-6">
+            <div class="well">
+                <div class="card">
+    <div class="card-body">
+        Phone Credit Balance is: <span class="cash font-weight-bold font-italic" id="cash"></span>
+    </div>
+</div>
+            </div>
+
+        </div>
+
+
     </div>
     <div class="row">
         <table class="table" id="projects">
@@ -17,8 +31,8 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Project Manager</th>
-                    <th>Assign Client</th>
-                    <th>Respondents</th>
+                    {{-- <th>Assign Client</th> --}}
+                    {{-- <th>Respondents</th> --}}
                     <th>Start Data</th>
                     <th>End Date</th>
                     <th>Actions</th>
@@ -30,7 +44,7 @@
                     <td>{{$project->id}}</td>
                     <td>{{$project->name}}</td>
                     <td>{{ \App\User::find( $project->pm)->name}}</td>
-
+{{--
                     <td>
                         @if($project->client)
                         {{ App\Client::find($project->client)->name}}
@@ -38,15 +52,15 @@
                         <button class="btn btn-dark btn-small" data-toggle="modal"
                             data-target="#client{{$project->id}}">Assign Client </button>
                         @endif
-                    </td>
-                    <td>
+                    </td> --}}
+                    {{-- <td>
                         @if($project->respondents)
                         {{App\RespondentTypes::find($project->respondents)->name}}
                         @else
                         <button class="btn btn-dark btn-small" data-toggle="modal"
                             data-target="#resp{{$project->id}}">Assign Respondents </button>
                         @endif
-                    </td>
+                    </td> --}}
                     <td>{{$project->start_date}}</td>
                     <td>{{$project->end_date}}</td>
                     <td>
@@ -145,10 +159,42 @@
                 </div>
                 <!-- end respondents modal -->
 @endforeach
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 <script>
+
+window.setInterval(function(){
+let walletdom = document.getElementById("cash");
+        let url = "{{ route('walletbalance')}}";
+
+        axios.get(url).then(result=>{
+            console.log(result.data.UserData.balance)
+            walletdom.innerHTML = result.data.UserData.balance
+        }).catch(error =>{
+            console.log(error)
+        });
+}, 6000);
+      var token = document.head.querySelector('meta[name="csrf-token"]');
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
    $(document).ready(function () {
-        $('#projects').DataTable();
+        // $('#projects').DataTable();
+
+getwalletbalance();
+
+
     });
+
+    function getwalletbalance(){
+let walletdom = document.getElementById("cash");
+        let url = "{{ route('walletbalance')}}";
+
+        axios.get(url).then(result=>{
+            console.log(result.data.UserData.balance)
+            walletdom.innerHTML = result.data.UserData.balance
+        }).catch(error =>{
+            console.log(error)
+        });
+        // console.log('called')
+    }
 
 </script>
 

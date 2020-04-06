@@ -8,6 +8,9 @@ use App\Client;
 use Auth;
 use App\RespondentTypes;
 
+use GuzzleHttp\Client as Http;
+
+
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 
 use Illuminate\Support\Facades\DB;
@@ -20,6 +23,7 @@ use App\Exports\UsersExport;
 use App\Imports\RespondentsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use AfricasTalking\SDK\AfricasTalking;
 
 class ProjectController extends Controller
 {
@@ -317,5 +321,37 @@ class ProjectController extends Controller
     public function show_credits()
     {
         return view('projects.credits');
+    }
+
+    public function get_wallet_balance()
+    {
+        // Set your app credentials
+        $username = "TIFACommodityPrices";
+        $apiKey   = "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75";
+
+        $endpoint = "https://api.africastalking.com/version1/user?username=TIFACommodityPrices";
+        $client = new \GuzzleHttp\Client();
+
+        $headers = [
+            'headers' => [
+                'Accept'     => 'application/json',
+                'apiKey'      => $apiKey
+            ]
+        ];
+        // Initialize the SDK
+        // $AT       = new AfricasTalking($username, $apiKey);
+
+        // Get the payments service
+        // $payments = $AT->payments();
+
+        // Fetch the wallet balance
+        try {
+            $response = $client->request('GET', $endpoint, $headers);
+
+            $content = json_decode($response->getBody(), true);
+            return response()->json($content);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 }
