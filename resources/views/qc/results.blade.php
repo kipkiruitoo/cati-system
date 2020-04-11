@@ -39,26 +39,33 @@
 
     </div>
     <div class="row">
-        @if($interview->call_session)
+        {{-- @if($interview->call_session) --}}
         @php
-         $audiolink = App\Call::where('session_id', $interview->call_session)->latest()->first()->recording_link;
+         $audiolinks = App\Call::where('respondent', $interview->respondent)->where('agent', $interview->agent )->get()->pluck('recording_link');
         // echo $audiolink
+        // print_r($audiolinks)
          @endphp
          <div class="well">
-             <h5>Audio File.</h5>
+             <h5>Audio File(s).</h5>
+             @foreach ($audiolinks as $audiolink)
+         <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg">
+                    <a href="{{$audiolink}}" class="btn btn-dark" download="filename.mp3">Download</a>
+             @endforeach
              {{-- <a download="{{$audiolink}}" class="btn btn-dark">Download Audio File</a> --}}
-                   <audio controls src="{{$audiolink}}" download type="audio/mpeg">
+
+
   {{-- <source src="horse.ogg" type="audio/ogg"> --}}
             </audio>
+
          </div>
 
-        @else
-        <audio controls>
+        {{-- @else --}}
+        {{-- <audio controls>
                 <source src="horse.ogg" type="audio/ogg">
                 <source src="horse.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
-        </audio>
-        @endif
+        </audio> --}}
+        {{-- @endif --}}
     </div>
     <div class="row">
         <div class="well">
