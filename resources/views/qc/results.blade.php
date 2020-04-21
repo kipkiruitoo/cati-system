@@ -49,9 +49,10 @@
              <h5>Audio File(s).</h5>
              @foreach ($audiolinks as $audiolink)
 
-             {{$audiolink}}
+             {{-- {{$audiolink}} --}}
          <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg"></audio>
                     <a href="{{$audiolink}}" class="btn btn-dark" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}">Download</a>
+                    <hr>
              @endforeach
              {{-- <a download="{{$audiolink}}" class="btn btn-dark">Download Audio File</a> --}}
 
