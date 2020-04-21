@@ -48,8 +48,10 @@
          <div class="well">
              <h5>Audio File(s).</h5>
              @foreach ($audiolinks as $audiolink)
-         <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg">
-                    <a href="{{$audiolink}}" class="btn btn-dark" download="filename.mp3">Download</a>
+
+             {{$audiolink}}
+         {{-- <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg">
+                    <a href="{{$audiolink}}" class="btn btn-dark" download="filename.mp3">Download</a> --}}
              @endforeach
              {{-- <a download="{{$audiolink}}" class="btn btn-dark">Download Audio File</a> --}}
 
