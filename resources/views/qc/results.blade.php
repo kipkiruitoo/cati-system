@@ -50,8 +50,8 @@
              @foreach ($audiolinks as $audiolink)
 
              {{$audiolink}}
-         {{-- <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg">
-                    <a href="{{$audiolink}}" class="btn btn-dark" download="filename.mp3">Download</a> --}}
+         <audio controls src="{{$audiolink}}" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}"  type="audio/mpeg">
+                    <a href="{{$audiolink}}" class="btn btn-dark" download="{{$interview->agent . '_' . $interview->respondent . '_' . $interview->phonenumber }}">Download</a>
              @endforeach
              {{-- <a download="{{$audiolink}}" class="btn btn-dark">Download Audio File</a> --}}
 
