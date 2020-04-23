@@ -361,7 +361,7 @@ class ProjectController extends Controller
     public function billing($project)
     {
         $name = Projects::find($project)->name;
-        $interview_count = Interview::where('project', $project)->get()->count();
+        $interview_count = Interview::where('project', $project)->distinct('respondent')->count();
         $calls_count = Projects::find($project)->calls()->count();
         $calls_avg_duration = Projects::find($project)->calls()->sum('duration');
         $calls_sum =  Projects::find($project)->calls()->sum('amount');
