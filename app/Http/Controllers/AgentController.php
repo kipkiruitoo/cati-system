@@ -350,12 +350,7 @@ class AgentController extends Controller
         $callSessionState = $_POST['callSessionState'];
         $sessionId = $request->sessionId;
 
-
-
         broadcast(new ChangeCallStatus($sessionId, $callSessionState));
-
-        DB::table('calls')->where('session_id',  $sessionId)->update(['status' =>  $callSessionState]);
-
 
         Log::warning($request);
     }
