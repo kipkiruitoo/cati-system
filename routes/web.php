@@ -138,3 +138,8 @@ Route::get('/project/credit', 'ProjectController@show_credits')->name('showcredi
 
 
 Route::get('walletballance', 'ProjectController@get_wallet_balance')->name('walletbalance');
+
+
+Route::get('/project/{id}/billing', 'ProjectController@billing')->name('billing');
+
+Route::get('/project/{id}/billing/calls', 'ProjectController@call_details_excel')->name('callsexcel');

@@ -14,4 +14,13 @@ class Projects extends Model
     {
         return $this->belongsTo(User::class, 'pm');
     }
+    public function respondents()
+    {
+        return $this->hasMany('App\Respondent');
+    }
+
+    public function calls()
+    {
+        return $this->hasManyThrough('App\Call', 'App\Respondent', 'project', 'respondent');
+    }
 }

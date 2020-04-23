@@ -71,6 +71,10 @@
                         <a href="{{route('projects.edit', $project->id)}}"><button
                                 class="btn btn-warning">Edit</button></a>
                     </td>
+                     <td>
+                        <a href="{{route('billing', $project->id)}}"><button
+                                class="btn btn-primary">Billing</button></a>
+                    </td>
                     <td>
                         <form action="{{ route('projects.destroy',$project->id) }}" method="POST">
                             @csrf

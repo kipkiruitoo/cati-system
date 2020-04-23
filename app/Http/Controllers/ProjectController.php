@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Projects;
 use App\User;
 use App\Client;
+use App\Interview;
 use Auth;
+use App\Exports\CallsExport;
 use App\RespondentTypes;
 
 use GuzzleHttp\Client as Http;
@@ -353,5 +355,21 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
+    }
+
+
+    public function billing($project)
+    {
+        $name = Projects::find($project)->name;
+        $interview_count = Interview::where('project', $project)->get()->count();
+        $calls_count = Projects::find($project)->calls()->count();
+        $calls_avg_duration = Projects::find($project)->calls()->sum('duration');
+        $calls_sum =  Projects::find($project)->calls()->sum('amount');
+
+        return view('projects.billing', compact('interview_count', 'calls_count', 'calls_sum', 'project', 'name',  'calls_avg_duration'));
+    }
+    public function call_details_excel($project)
+    {
+        return Excel::download(new CallsExport($project), 'calls_' . $project . '.xlsx');
     }
 }
