@@ -172,12 +172,12 @@ class SurveyController extends Controller
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
 
-            if ($interview->date != "null") {
-                # code...
-                $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
-            } else {
-                $smallarray = array("consumptiondate" => "N/A") + $smallarray;
-            }
+            // if ($interview->date != "null") {
+            //     # code...
+            //     $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
+            // } else {
+            //     $smallarray = array("consumptiondate" => "N/A") + $smallarray;
+            // }
             // $smallarray['interview id'] = $result->interview;
             // $smallarray["Interviewer"] = User::find($interview->agent)->name;
 
