@@ -159,25 +159,24 @@ class SurveyController extends Controller
 
             //         unset($smallarray[array_search($s, $smallarray)]);
             //     }
-            // } 
             // }
-           
+            // }
+
             $interview = Interview::find($result->interview);
             $respondent = Respondent::find($interview->respondent);
             // rsort($smallarray);
             // array_push
             $smallarray = array("date_of_interview" =>  date_format($interview->created_at, "D-d-M-Y H:i:s")) + $smallarray;
             $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
+            $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
 
             if ($interview->date != "null") {
                 # code...
-                 $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
-
-            }else{
+                $smallarray = array("consumptiondate" => $interview->date) + $smallarray;
+            } else {
                 $smallarray = array("consumptiondate" => "N/A") + $smallarray;
-
             }
             // $smallarray['interview id'] = $result->interview;
             // $smallarray["Interviewer"] = User::find($interview->agent)->name;
@@ -189,7 +188,7 @@ class SurveyController extends Controller
             // array_push($smallarray, $interview->respondent);
             array_push($new_array, $smallarray);
         }
-        
+
         // var_dump(\json_encode($smallarray));
         // $f = fopen(storage_path() . '/csvoutput.csv', 'w+');
 
@@ -199,68 +198,68 @@ class SurveyController extends Controller
 
         if ($request->submit == "csv") {
 
-             $fileName = $survey->name .'.json';
-                $handle = fopen($fileName, 'w+');
-                fputs($handle, $new_array);
-                fclose($handle);
+            $fileName = $survey->name . '.json';
+            $handle = fopen($fileName, 'w+');
+            fputs($handle, $new_array);
+            fclose($handle);
 
 
 
-            
+
             $json = new Json($fileName);
             $json->setConversionKey('utf8_encoding', true);
-        //     $url = 'https://json-csv.com/api/getcsv';
-        // $email = 'davis.too@tifaresearch.com';
-        // $json = $new_array;
-        // // $json = '{"test":true,"test2":false}';
+            //     $url = 'https://json-csv.com/api/getcsv';
+            // $email = 'davis.too@tifaresearch.com';
+            // $json = $new_array;
+            // // $json = '{"test":true,"test2":false}';
 
-        // $postdata = http_build_query(
-        //     array(
-        //         'email' => $email,
-        //         'json' => $json
-        //     )
-        // );
+            // $postdata = http_build_query(
+            //     array(
+            //         'email' => $email,
+            //         'json' => $json
+            //     )
+            // );
 
-        // $opts = array(
-        //     'http' => array(
-        //         'method'  => 'POST',
-        //         'header'  => 'Content-type: application/x-www-form-urlencoded',
-        //         'content' => $postdata
-        //     )
-        // );
-        // $context  = stream_context_create($opts);
-        // $result = file_get_contents($url, false, $context);
-        // return response()->attachment($result, $survey->name . time());
-
-        // file_put_contents($f, $result);
-
-        // header('Content-Type: application/csv');
-        // // tell the browser we want to save it instead of displaying it
-        // header('Content-Disposition: attachment; filename="' . $survey->name . '.csv";');
-
-
-
-        // fpassthru($f);
-
-        if ($results->first()) {
-            $json->convertAndDownload();
+            // $opts = array(
+            //     'http' => array(
+            //         'method'  => 'POST',
+            //         'header'  => 'Content-type: application/x-www-form-urlencoded',
+            //         'content' => $postdata
+            //     )
+            // );
+            // $context  = stream_context_create($opts);
+            // $result = file_get_contents($url, false, $context);
             // return response()->attachment($result, $survey->name . time());
-        } else {
-            return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
-        }
-        }else if($request->submit == "json"){
+
+            // file_put_contents($f, $result);
+
+            // header('Content-Type: application/csv');
+            // // tell the browser we want to save it instead of displaying it
+            // header('Content-Disposition: attachment; filename="' . $survey->name . '.csv";');
+
+
+
+            // fpassthru($f);
+
+            if ($results->first()) {
+                $json->convertAndDownload();
+                // return response()->attachment($result, $survey->name . time());
+            } else {
+                return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
+            }
+        } else if ($request->submit == "json") {
             if ($results->first()) {
                 $fileName = $survey->name . '_datafile.json';
                 $handle = fopen($fileName, 'w+');
                 fputs($handle, $new_array);
                 fclose($handle);
-                $headers = array('Content-type'=> 'application/json');
-           return response()->download($fileName,time() . '_datafile.json',$headers);
-        } else {
-            return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
-        }          
+                $headers = array('Content-type' => 'application/json');
+                return response()->download($fileName, time() . '_datafile.json', $headers);
+            } else {
+                return redirect()->back()->with(['message' => "Results from the specified period could not be found", 'alert-type' => 'error']);
+            }
         }
-        
+
 
 
 
