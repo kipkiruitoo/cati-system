@@ -189,11 +189,17 @@ class AgentController extends Controller
             $respondent = Respondent::where('project', $project)->get()->random(1);
             $lid = Interview::where('respondent', $respondent[0]->id)->latest()->first();
             $todaysdate = Carbon::now();
-            // echo ($respondent);
-            if ($lid == null) {
+            $feedbacks = Feedback::where('respondent_id', $respondent[0]->id)->where('feedback',  'Not interested')->exists();
+            echo ($feedbacks);
+            if ($feedbacks) {
+                # code...
+                Log::alert($feedbacks);
+            }
+
+            if ($lid == null && !$feedbacks) {
                 $respondent = $respondent;
                 return $respondent;
-            } else {
+            } else if (!$feedbacks) {
                 $diff =  $todaysdate->diffInDays($lid->date);
 
                 if ($diff < $daysbetweeninterviews) {
