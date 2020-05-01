@@ -191,23 +191,22 @@ class AgentController extends Controller
             $todaysdate = Carbon::now();
             $feedbacks = Feedback::where('respondent_id', $respondent[0]->id)->where('feedback',  'Not interested')->exists();
             echo ($feedbacks);
-            if ($feedbacks) {
+            if (!$feedbacks) {
                 # code...
                 Log::alert($feedbacks);
-            }
-
-            if ($lid == null && !$feedbacks) {
-                $respondent = $respondent;
-                return $respondent;
-            } else if (!$feedbacks) {
-                $diff =  $todaysdate->diffInDays($lid->date);
-
-                if ($diff < $daysbetweeninterviews) {
-
-                    return  $this->fetchuser($project, $daysbetweeninterviews);
-                } else {
+                if ($lid == null) {
+                    $respondent = $respondent;
                     return $respondent;
+                } else {
+                    $diff =  $todaysdate->diffInDays($lid->date);
+
+                    if ($diff < $daysbetweeninterviews) {
+                    } else {
+                        return $respondent;
+                    }
                 }
+            } else {
+                return  $this->fetchuser($project, $daysbetweeninterviews);
             }
         }
     }
