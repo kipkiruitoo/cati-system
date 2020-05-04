@@ -315,7 +315,7 @@ class AgentController extends Controller
             // Compose the response
             $response  = '<?xml version="1.0" encoding="UTF-8"?>';
             $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="+254' . $respondent . '"  />';
+            $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
             $response .= '</Response>';
 
             // Print the response onto the page so that our gateway can read it
