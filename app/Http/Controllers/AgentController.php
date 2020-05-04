@@ -296,7 +296,7 @@ class AgentController extends Controller
 
         // $call = Call::where('session_id',  $sessionId)->first();
 
-        Log::info($call);
+        // Log::info($call);
 
         // Check to see whether this call is active
         $isActive  = $request->isActive;
