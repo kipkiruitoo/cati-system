@@ -293,17 +293,10 @@ class AgentController extends Controller
         $sessionId = $request->sessionId;
 
 
-
-        $call = Call::where('session_id',  $sessionId)->first();
-
-        Log::info($call);
-
         // Check to see whether this call is active
         $isActive  = $request->isActive;
 
-        $respondent = Respondent::where('id', $call->respondent)->first()->phone;
 
-        Log::info($respondent);
         // Log::info($respondents_phone);
 
         if ($isActive == 1) {
@@ -317,10 +310,15 @@ class AgentController extends Controller
                 header('Content-type: application/xml');
                 echo $response;
             } else {
+                $call = Call::where('session_id',  $sessionId)->first();
+
+                Log::info($call);
                 DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
                 // Forward by dialing customer service numbers and record the conversation
 
+                $respondent = Respondent::where('id', $call->respondent)->first()->phone;
 
+                Log::info($respondent);
 
                 // Compose the response
                 $response  = '<?xml version="1.0" encoding="UTF-8"?>';
