@@ -294,33 +294,44 @@ class AgentController extends Controller
 
 
 
-        // $call = Call::where('session_id',  $sessionId)->first();
+        $call = Call::where('session_id',  $sessionId)->first();
 
-        // Log::info($call);
+        Log::info($call);
 
         // Check to see whether this call is active
         $isActive  = $request->isActive;
 
-        // $respondent = Respondent::where('id', $call->respondent)->first()->phone;
+        $respondent = Respondent::where('id', $call->respondent)->first()->phone;
 
-        // Log::info($respondent);
+        Log::info($respondent);
         // Log::info($respondents_phone);
 
         if ($isActive == 1) {
-            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
-            // Forward by dialing customer service numbers and record the conversation
+            if ($request->direction == 'Inbound') {
+                $response  = '<?xml version="1.0" encoding="UTF-8"?>';
+                $response .= '<Response>';
+                $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
+                $response .= '</Response>';
+
+                // Print the response onto the page so that our gateway can read it
+                header('Content-type: application/xml');
+                echo $response;
+            } else {
+                DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Active']);
+                // Forward by dialing customer service numbers and record the conversation
 
 
 
-            // Compose the response
-            $response  = '<?xml version="1.0" encoding="UTF-8"?>';
-            $response .= '<Response>';
-            $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
-            $response .= '</Response>';
+                // Compose the response
+                $response  = '<?xml version="1.0" encoding="UTF-8"?>';
+                $response .= '<Response>';
+                $response .= '<Dial record="true" sequential="true" phoneNumbers="+254' . $respondent . '"  />';
+                $response .= '</Response>';
 
-            // Print the response onto the page so that our gateway can read it
-            header('Content-type: application/xml');
-            echo $response;
+                // Print the response onto the page so that our gateway can read it
+                header('Content-type: application/xml');
+                echo $response;
+            }
         } else {
             // Read in call details (duration, cost). This flag is set once the call is completed.
             // Note that the gateway does not expect a response in thie case
@@ -342,8 +353,12 @@ class AgentController extends Controller
 
             // $pm->credit =  $pm->credit - $credit;
             // $pm->save();
+            if ($request->direction == 'Inbound') {
 
-            DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+                DB::table('calls')->insert(['status' => 'Completed', 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+            } else {
+                DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+            }
 
             // Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
 
