@@ -186,7 +186,7 @@ class AgentController extends Controller
         if ($respondents->isEmpty()) {
             return "norespondents";
         } else {
-            $respondent = Respondent::where('project', $project)->get()->random(1);
+            $respondent = Respondent::where('project', $project)->where('status', 'Active')->get()->random(1);
             $lid = Interview::where('respondent', $respondent[0]->id)->latest()->first();
             $todaysdate = Carbon::now();
             $feedbacks = Feedback::where('respondent_id', $respondent[0]->id)->where('feedback',  'Not interested')->exists();
