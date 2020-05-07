@@ -355,7 +355,7 @@ class AgentController extends Controller
 
                 DB::table('calls')->insert(['status' => 'Completed', 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
             } else {
-                DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+                DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'call_duration' => $_POST['dialDurationInSeconds'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
             }
 
             // Call::where('session_id',  $sessionId)->update('recording_link', $request->recordingUrl);
