@@ -3,7 +3,7 @@
         @if (rand(1,100) == 100)
             <i class="voyager-rum-1"></i> {{ __('voyager::theme.footer_copyright2') }}
         @else
-            <a href="http://tifaresearch.com" target="_blank">TIFA Research </a>
+            <a href="#" target="_blank">2020</a>
         @endif
         @php $version = Voyager::getVersion(); @endphp
         @if (!empty($version))
