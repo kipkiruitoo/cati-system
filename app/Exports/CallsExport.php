@@ -37,6 +37,7 @@ class CallsExport implements FromQuery, WithHeadings,  withMapping
             $call->session_id,
             $call->respondent,
             ($call->duration / 60),
+            ($call->call_duration / 60),
             $call->amount,
             Respondent::find($call->respondent)->name,
             Respondent::find($call->respondent)->phone,
@@ -52,7 +53,7 @@ class CallsExport implements FromQuery, WithHeadings,  withMapping
     public function headings(): array
     {
         return [
-            ['#', 'Session ID', 'Respondent ID', 'Call Duration', 'Call Cost', 'Respondent Name', 'Respondent Phone number', 'Created_at'],
+            ['#', 'Session ID', 'Respondent ID', 'Agent Duration', 'Dial Duration', 'Call Cost', 'Respondent Name', 'Respondent Phone number', 'Created_at'],
 
         ];
     }

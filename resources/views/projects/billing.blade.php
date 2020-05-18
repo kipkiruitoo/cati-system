@@ -14,9 +14,9 @@
             <div class="row">
                 <div class="col-xs-4 col-sm-6 col-md-4">
                     <address>
-                        <strong>TIFA RESEARCH Limited</strong>
+                        {{-- <strong>TIFA RESEARCH Limited</strong>
                         <br>
-                        The Campus, Kabasiran
+                        The Campus, Kabasiran --}}
                         <br>
                         Nairobi, Nairobi Area KE 00511
                         <br>

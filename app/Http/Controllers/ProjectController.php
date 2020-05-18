@@ -363,7 +363,7 @@ class ProjectController extends Controller
         $name = Projects::find($project)->name;
         $interview_count = Interview::where('project', $project)->distinct('respondent')->count();
         $calls_count = Projects::find($project)->calls()->count();
-        $calls_avg_duration = Projects::find($project)->calls()->sum('duration');
+        $calls_avg_duration = Projects::find($project)->calls()->sum('duration') + Projects::find($project)->calls()->sum('call_duration');
         $calls_sum =  Projects::find($project)->calls()->sum('amount');
 
         return view('projects.billing', compact('interview_count', 'calls_count', 'calls_sum', 'project', 'name',  'calls_avg_duration'));
