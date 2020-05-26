@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <h2>These are the Surveys Related to this Project</h2>
-        <a href="{{route('screatesurveyform', $id)}}"><button class="btn btn-primary">Create a New Survey</button></a>
+        {{-- <a href="{{route('screatesurveyform', $id)}}"><button class="btn btn-primary">Create a New Survey</button></a> --}}
     </div>
     <div class="row">
         <table class="table" id="surveys">
