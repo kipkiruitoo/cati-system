@@ -3,10 +3,10 @@
 @section('content')
 <div class="container-fluid">
             <div class="row">
-    <iframe
-    src="http://dashboard.tifaresearch.com:2100/public/dashboard/948f9618-4da0-42e8-8c13-f9748b3965d7"
+                <iframe
+    src="http://161.35.125.7:3000/public/dashboard/3ddcc819-bfa2-4cd3-9b80-dead3cb0a9cf"
     frameborder="0"
-    width="1450"
+     width="1450"
     height="700"
     allowtransparency
     allowfullscreen
