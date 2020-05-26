@@ -35,7 +35,7 @@
                         <p class="mb-0 mt-1 text-muted btn-group">
                             <label class="btn btn-success badge">
                                 Stage </label>
-                            <label class="btn btn-dark badge" data-toggle="modal" data-target="#status{{$survey->id}}">
+                            <label class="btn btn-dark badge" data-toggle="modal" data-target="#staus{{$survey->id}}">
                                 {{ucfirst($survey->stage)}} </label>
                         </p>
 
