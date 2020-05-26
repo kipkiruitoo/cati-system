@@ -42,6 +42,12 @@
          <div id="adminmenu">
             <admin-menu :items="{{ menu('admin', '_json') }}"></admin-menu>
         </div>
+        @elseif(Auth::user()->role_id == 7 )
+
+         <div id="adminmenu">
+            <admin-menu :items="{{ menu('client', '_json') }}"></admin-menu>
+        </div>
+
 
         @elseif(Auth::user()->role_id == 5 )
 
