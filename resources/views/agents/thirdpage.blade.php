@@ -123,13 +123,16 @@
                 @csrf
                 <input type="hidden" name="respondent" class="respondent" value="{{$respondent[0]->id}}">
                 <input type="hidden" name="callsession" required id="callsession"/>
-                <button type="submit" disabled id="startsurvey" class="btn btn-dark"> Start
+                <button type="submit"  id="startsurvey" class="btn btn-dark"> Start
                     Survey  <span><i class="fa fa-play-circle"></i></span></button>
             </form>
         {{-- <form action="{{route('makecall')}}" method="POST"> --}}
         {{-- <input type="hidden" name="respondent" value="{{$respondent[0]->id}}"> --}}
             {{-- @csrf --}}
-                 <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Initiate Call</button>
+            @if ($respondent[0]->project != 51)
+                 <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Make Call</button>
+            @endif
+
             {{-- </form> --}}
         </div>
         <div class="col-md-6">
