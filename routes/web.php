@@ -112,9 +112,7 @@ Route::post('/getresults', 'SurveyController@getresults')->name('getresults');
 Route::post('/api/incomplete', 'AgentController@save_incomplete')->name('incomplete');
 
 
-Route::get('/feedbackexports', function () {
-    return  Excel::download(new FeedbackExport, 'feedback.xlsx');
-})->name('feedbackexports');
+Route::post('/feedbackexports', 'SurveyController@exportfeedback')->name('feedbackexports');
 
 
 

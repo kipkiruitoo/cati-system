@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\SurveyResult;
+use App\Exports\FeedbackExport;
 use OzdemirBurak\JsonCsv\File\Json;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ResultsExport;
@@ -114,6 +115,11 @@ class SurveyController extends Controller
 
             echo ('an error occured while deleting');
         }
+    }
+    public function exportfeedback(Request $request)
+    {
+        // dd($request);
+        return  Excel::download(new FeedbackExport($request->project), 'feedback.xlsx');
     }
     public function getresults(Request $request)
     {

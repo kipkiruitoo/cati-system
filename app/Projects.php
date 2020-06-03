@@ -23,4 +23,9 @@ class Projects extends Model
     {
         return $this->hasManyThrough('App\Call', 'App\Respondent', 'project', 'respondent');
     }
+
+    public function feedbacks()
+    {
+        return $this->hasManyThrough('App\Feedback', 'App\Respondent', 'project', 'respondent_id');
+    }
 }

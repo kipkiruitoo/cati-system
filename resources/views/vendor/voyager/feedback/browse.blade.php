@@ -23,7 +23,7 @@
                 </a>
             @endif
         @endcan
-            <a href="{{route('feedbackexports')}}" class="btn  btn-dark"><i class="voyager-download"></i><span> Export</span></a>
+            <button  data-toggle="modal" data-target="#export" class="btn  btn-dark"><i class="voyager-download"></i><span> Export</span></button>
         @can('delete', app($dataType->model_name))
             @if($usesSoftDeletes)
                 <input type="checkbox" @if ($showSoftDeleted) checked @endif id="show_soft_deletes" data-toggle="toggle" data-on="{{ __('voyager::bread.soft_deletes_off') }}" data-off="{{ __('voyager::bread.soft_deletes_on') }}">
@@ -289,7 +289,34 @@
             </div>
         </div>
     </div>
+@php
+    $projects = App\Projects::all();
+@endphp
+<div class="modal fade" id="export" tabindex="-1" role="dialog"
+                    aria-labelledby="export" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Select Project</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <form action="{{route('feedbackexports')}}" method="POST">
+                            @csrf
+                                <div class="form-control">
+                                    <select name="project" id="">
+                                        @foreach ($projects as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button type="submit"> Export</button>
+                            </form>
 
+                        </div>
+                    </div>
+                </div>
     {{-- Single delete modal --}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
         <div class="modal-dialog">
