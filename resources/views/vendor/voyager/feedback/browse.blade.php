@@ -302,16 +302,17 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        <form action="{{route('feedbackexports')}}" method="POST">
-                            @csrf
-                                <div class="form-control">
-                                    <select name="project" id="">
+                            <form action="{{route('feedbackexports')}}" method="POST">
+                             @csrf
+                                  <div class="form-group">
+                                      <label for="projet"> select project</label>
+                                    <select class="form-control" name="project" id="project">
                                         @foreach ($projects as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <button type="submit"> Export</button>
+                                <button class="btn btn-dark" type="submit"> Export</button>
                             </form>
 
                         </div>
