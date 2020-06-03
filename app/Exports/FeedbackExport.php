@@ -9,10 +9,11 @@ use App\Projects;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class FeedbackExport implements FromQuery, WithHeadings, withMapping
+class FeedbackExport implements FromCollection, WithHeadings, withMapping
 {
 
     /**
@@ -23,7 +24,7 @@ class FeedbackExport implements FromQuery, WithHeadings, withMapping
     {
         $this->project = $project;
     }
-    public function query()
+    public function collection()
     {
 
         return Projects::find($this->project)->feedbacks;
