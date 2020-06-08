@@ -177,6 +177,7 @@ class SurveyController extends Controller
             $smallarray = array("respondent name" => $respondent->name) + $smallarray;
             $smallarray = array("county" => $respondent->county) + $smallarray;
             $smallarray = array("region" => $respondent->town) + $smallarray;
+            $smallarray = array("phonenumber" => $interview->phonenumber) + $smallarray;
             $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;

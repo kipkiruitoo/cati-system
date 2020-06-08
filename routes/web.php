@@ -141,3 +141,8 @@ Route::get('walletballance', 'ProjectController@get_wallet_balance')->name('wall
 Route::get('/project/{id}/billing', 'ProjectController@billing')->name('billing');
 
 Route::get('/project/{id}/billing/calls', 'ProjectController@call_details_excel')->name('callsexcel');
+
+
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
