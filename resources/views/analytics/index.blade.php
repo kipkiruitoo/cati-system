@@ -82,12 +82,15 @@ newdatas = arrayRemove(datas.pages, obj);
 anotherdata = arrayRemove(newdatas, obj1);
 
 
-console.log(newdatas)
+// console.log(newdatas)
 
 datas.pages = anotherdata
+
+console.log(data.pages);
+
 var json =  JSON.stringify(datas);
 
-console.log(newdatas)
+// console.log(newdatas)
 
 function arrayRemove(arr, value) { return arr.filter(function(ele){ return ele != value; });}
 
