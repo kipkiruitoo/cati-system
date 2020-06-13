@@ -72,14 +72,19 @@ var datas = {!! json_encode($survey[0]) !!};
 var newdatas;
 
 // datas.pages.forEach()
-let obj = datas.pages.find(o => o.name === 's5' && o.name === 's6')
+let obj1 = datas.pages.find(o => o.name === 's5')
+
+let obj = datas.pages.find(o => o.name === 's6')
 // console.log(obj)
 
 newdatas = arrayRemove(datas.pages, obj);
 
-// console.log(newdatas)
+anotherdata = arrayRemove(newdatas, obj1);
 
-datas.pages = newdatas
+
+console.log(newdatas)
+
+datas.pages = anotherdata
 var json =  JSON.stringify(datas);
 
 console.log(newdatas)
