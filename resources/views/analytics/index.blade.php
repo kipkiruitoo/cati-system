@@ -86,7 +86,7 @@ anotherdata = arrayRemove(newdatas, obj1);
 
 datas.pages = anotherdata
 
-console.log(data.pages);
+console.log(datas.pages);
 
 var json =  JSON.stringify(datas);
 
