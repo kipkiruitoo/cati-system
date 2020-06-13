@@ -129,7 +129,7 @@
         {{-- <form action="{{route('makecall')}}" method="POST"> --}}
         {{-- <input type="hidden" name="respondent" value="{{$respondent[0]->id}}"> --}}
             {{-- @csrf --}}
-            @if ($respondent[0]->project != 51)
+            @if ($respondent[0]->project != 51 || $respondent[0]->project != 55 )
                  <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Make Call</button>
             @endif
 
