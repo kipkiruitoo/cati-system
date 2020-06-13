@@ -1,0 +1,4314 @@
+{
+    "pages": [
+        {
+            "name": "SECTION 1: INTRODUCTION",
+            "elements": [
+                {
+                    "name": "Intro",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Habari yako. Jina langu ni …………………… na nakupigia kutoka TIFA Research, kampuni ya utafiti wa soko nchini Kenya. Ningependa kuchukua dakika 10 hadi 15 za wakati wako kukuuliza maswali machache kuhusu Covid-19 na jinsi mashirika yanajibu nchini Kenya. Ningependa pia kukuhakikishia kwamba habari zote ambazo utatupatia zitatumiwa kwa usiri. Je, ungependa kuendelea?",
+                        "default": "Good morning/afternoon, my name is ………………………….and I am calling you from TIFA Research, a market research company in Kenya.  I would like to take 10 to 15 minutes of your time to ask a few questions on the Covid-19 and how organizations are responding in Kenya. I would also like to assure you that all the information that you share with use will be treated with confidentiality. Do you want to continue?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Ndiyo",
+                                "default": "Yes"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "La",
+                                "default": "No"
+                            },
+                            "value": "2"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Exit1",
+                    "type": "expression",
+                    "title": "Select another respondent",
+                    "visibleIf": "{Intro} = \"2\"",
+                    "isRequired": true,
+                    "commentText": "Other (describe)"
+                }
+            ]
+        },
+        {
+            "name": "SECTION 2: DEMOGRAPHICS",
+            "elements": [
+                {
+                    "name": "A1",
+                    "type": "dropdown",
+                    "title": {
+                        "bg": "A1. Unaishi katika Kaunti gani?",
+                        "default": "A1. Which county do you live in?"
+                    },
+                    "choices": [
+                        {
+                            "text": "Baringo",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Bomet",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Bungoma",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Busia",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Elgeyo-Marakwet",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Embu",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Garissa",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Homa Bay",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Isiolo",
+                            "value": "9"
+                        },
+                        {
+                            "text": "Kajiado",
+                            "value": "10"
+                        },
+                        {
+                            "text": "Kakamega",
+                            "value": "11"
+                        },
+                        {
+                            "text": "Kericho",
+                            "value": "12"
+                        },
+                        {
+                            "text": "Kiambu",
+                            "value": "13"
+                        },
+                        {
+                            "text": "Kilifi",
+                            "value": "14"
+                        },
+                        {
+                            "text": "Kirinyaga",
+                            "value": "15"
+                        },
+                        {
+                            "text": "Kisii",
+                            "value": "16"
+                        },
+                        {
+                            "text": "Kisumu",
+                            "value": "17"
+                        },
+                        {
+                            "text": "Kitui",
+                            "value": "18"
+                        },
+                        {
+                            "text": "Kwale",
+                            "value": "19"
+                        },
+                        {
+                            "text": "Laikipia",
+                            "value": "20"
+                        },
+                        {
+                            "text": "Lamu",
+                            "value": "21"
+                        },
+                        {
+                            "text": "Machakos",
+                            "value": "22"
+                        },
+                        {
+                            "text": "Makueni",
+                            "value": "23"
+                        },
+                        {
+                            "text": "Mandera",
+                            "value": "24"
+                        },
+                        {
+                            "text": "Marsabit",
+                            "value": "25"
+                        },
+                        {
+                            "text": "Meru",
+                            "value": "26"
+                        },
+                        {
+                            "text": "Migori",
+                            "value": "27"
+                        },
+                        {
+                            "text": "Mombasa ",
+                            "value": "28"
+                        },
+                        {
+                            "text": "Murang'a",
+                            "value": "29"
+                        },
+                        {
+                            "text": "Nairobi",
+                            "value": "30"
+                        },
+                        {
+                            "text": "Nakuru",
+                            "value": "31"
+                        },
+                        {
+                            "text": "Nandi",
+                            "value": "32"
+                        },
+                        {
+                            "text": "Narok",
+                            "value": "33"
+                        },
+                        {
+                            "text": "Nyamira",
+                            "value": "34"
+                        },
+                        {
+                            "text": "Nyandarua",
+                            "value": "35"
+                        },
+                        {
+                            "text": "Nyeri",
+                            "value": "36"
+                        },
+                        {
+                            "text": "Samburu",
+                            "value": "37"
+                        },
+                        {
+                            "text": "Siaya",
+                            "value": "38"
+                        },
+                        {
+                            "text": "Taita–Taveta",
+                            "value": "39"
+                        },
+                        {
+                            "text": "Tana River",
+                            "value": "40"
+                        },
+                        {
+                            "text": "Tharaka-Nithi",
+                            "value": "41"
+                        },
+                        {
+                            "text": "Trans-Nzoia",
+                            "value": "42"
+                        },
+                        {
+                            "text": "Turkana",
+                            "value": "43"
+                        },
+                        {
+                            "text": "Uasin Gishu",
+                            "value": "44"
+                        },
+                        {
+                            "text": "Vihiga",
+                            "value": "45"
+                        },
+                        {
+                            "text": "Wajir",
+                            "value": "46"
+                        },
+                        {
+                            "text": "West Pokot",
+                            "value": "47"
+                        }
+                    ],
+                    "renderAs": "select2",
+                    "isRequired": true
+                },
+                {
+                    "name": "A2",
+                    "type": "dropdown",
+                    "title": "A2. Which subcounty do you live in?",
+                    "choices": [
+                        {
+                            "text": "Baringo South",
+                            "value": "1",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": "Mogotio",
+                            "value": "2",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": "Eldama Ravine",
+                            "value": "3",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": " Baringo Central",
+                            "value": "4",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": " Baringo North",
+                            "value": "5",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": "Tiaty",
+                            "value": "6",
+                            "visibleIf": "{A1} = \"1\""
+                        },
+                        {
+                            "text": "Bomet Central",
+                            "value": "7",
+                            "visibleIf": "{A1} = \"2\""
+                        },
+                        {
+                            "text": "Bomet East",
+                            "value": "8",
+                            "visibleIf": "{A1} = \"2\""
+                        },
+                        {
+                            "text": "Chepalungu",
+                            "value": "9",
+                            "visibleIf": "{A1} = \"2\""
+                        },
+                        {
+                            "text": "Sotik",
+                            "value": "10",
+                            "visibleIf": "{A1} = \"2\""
+                        },
+                        {
+                            "text": "Konoin",
+                            "value": "11",
+                            "visibleIf": "{A1} = \"2\""
+                        },
+                        {
+                            "text": "Bumula",
+                            "value": "12",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": "Kanduyi",
+                            "value": "13",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": "Sirisia",
+                            "value": "14",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": "Kabuchai",
+                            "value": "15",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": " Kimilili Tongaren",
+                            "value": "16",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": " Webuye West",
+                            "value": "17",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": " Webuye East",
+                            "value": "18",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": "Mt Elgon",
+                            "value": "19",
+                            "visibleIf": "{A1} = \"3\""
+                        },
+                        {
+                            "text": "Nambale ",
+                            "value": "20",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Butula",
+                            "value": "21",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Funyula",
+                            "value": "22",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Budalangi",
+                            "value": "23",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Matayos",
+                            "value": "24",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Teso North",
+                            "value": "25",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Teso South",
+                            "value": "26",
+                            "visibleIf": "{A1} = \"4\""
+                        },
+                        {
+                            "text": "Marakwet East",
+                            "value": "27",
+                            "visibleIf": "{A1} = \"5\""
+                        },
+                        {
+                            "text": "Marakwet West",
+                            "value": "28",
+                            "visibleIf": "{A1} = \"5\""
+                        },
+                        {
+                            "text": "Keiyo North",
+                            "value": "29",
+                            "visibleIf": "{A1} = \"5\""
+                        },
+                        {
+                            "text": "Keiyo South",
+                            "value": "30",
+                            "visibleIf": "{A1} = \"5\""
+                        },
+                        {
+                            "text": "Manyatta",
+                            "value": "31",
+                            "visibleIf": "{A1} = \"6\""
+                        },
+                        {
+                            "text": "Embu East",
+                            "value": "32",
+                            "visibleIf": "{A1} = \"6\""
+                        },
+                        {
+                            "text": "Mbeere North",
+                            "value": "33",
+                            "visibleIf": "{A1} = \"6\""
+                        },
+                        {
+                            "text": "Mbeere South",
+                            "value": "34",
+                            "visibleIf": "{A1} = \"6\""
+                        },
+                        {
+                            "text": "Fafi",
+                            "value": "35",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": " Garissa town",
+                            "value": "36",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Ijara",
+                            "value": "37",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Hulugho",
+                            "value": "38",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Lagdera",
+                            "value": "39",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Balambala",
+                            "value": "40",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Dadaab",
+                            "value": "41",
+                            "visibleIf": "{A1} = \"7\""
+                        },
+                        {
+                            "text": "Mbita",
+                            "value": "42",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Ndhiwa",
+                            "value": "43",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Homa Bay Town",
+                            "value": "44",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Rangwe",
+                            "value": "45",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": "Karachuonyo",
+                            "value": "46",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Kabondo",
+                            "value": "47",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Kasipul",
+                            "value": "48",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": "Suba",
+                            "value": "49",
+                            "visibleIf": "{A1} = \"8\""
+                        },
+                        {
+                            "text": " Merti",
+                            "value": "50",
+                            "visibleIf": "{A1} = \"9\""
+                        },
+                        {
+                            "text": "Garbatulla",
+                            "value": "51",
+                            "visibleIf": "{A1} = \"9\""
+                        },
+                        {
+                            "text": " Isiolo",
+                            "value": "52",
+                            "visibleIf": "{A1} = \"9\""
+                        },
+                        {
+                            "text": " Kajiado Central",
+                            "value": "53",
+                            "visibleIf": "{A1} = \"10\""
+                        },
+                        {
+                            "text": " Kajiado North",
+                            "value": "54",
+                            "visibleIf": "{A1} = \"10\""
+                        },
+                        {
+                            "text": " Kajiado East",
+                            "value": "55",
+                            "visibleIf": "{A1} = \"10\""
+                        },
+                        {
+                            "text": " Kajiado West",
+                            "value": "56",
+                            "visibleIf": "{A1} = \"10\""
+                        },
+                        {
+                            "text": " Kajiado South",
+                            "value": "57",
+                            "visibleIf": "{A1} = \"10\""
+                        },
+                        {
+                            "text": "Shinyalu",
+                            "value": "58",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Navakholo",
+                            "value": "59",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Mumias East",
+                            "value": "60",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Mumias West",
+                            "value": "61",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Matungu",
+                            "value": "62",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Malava",
+                            "value": "63",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Lurambi",
+                            "value": "64",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Lugari",
+                            "value": "65",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Likuyani",
+                            "value": "66",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Khwisero",
+                            "value": "67",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Ikolomani",
+                            "value": "68",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Butere",
+                            "value": "69",
+                            "visibleIf": "{A1} = \"11\""
+                        },
+                        {
+                            "text": "Bureti",
+                            "value": "70",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Belgut",
+                            "value": "71",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Ainamoi",
+                            "value": "72",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Soin/ Sigowet",
+                            "value": "73",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Kipkelion East",
+                            "value": "74",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Kipkelion West",
+                            "value": "75",
+                            "visibleIf": "{A1} = \"12\""
+                        },
+                        {
+                            "text": "Githunguri",
+                            "value": "76",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Kiambaa",
+                            "value": "77",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Lari",
+                            "value": "78",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Limuru",
+                            "value": "79",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Kabete",
+                            "value": "80",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Gatundu North",
+                            "value": "81",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Gatundu South",
+                            "value": "82",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Juja",
+                            "value": "83",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Kikuyu",
+                            "value": "84",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Thika town",
+                            "value": "85",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Ruiru",
+                            "value": "86",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Kiambu Town",
+                            "value": "87",
+                            "visibleIf": "{A1} = \"13\""
+                        },
+                        {
+                            "text": "Kilifi",
+                            "value": "88",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": " Ganze",
+                            "value": "89",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": " Malindi",
+                            "value": "90",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": " Magarini",
+                            "value": "91",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": " Rabai",
+                            "value": "92",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": " Kaloleni",
+                            "value": "93",
+                            "visibleIf": "{A1} = \"14\""
+                        },
+                        {
+                            "text": "Kirinyaga East",
+                            "value": "94",
+                            "visibleIf": "{A1} = \"15\""
+                        },
+                        {
+                            "text": "Kirinyaga West",
+                            "value": "95",
+                            "visibleIf": "{A1} = \"15\""
+                        },
+                        {
+                            "text": " Mwea East",
+                            "value": "96",
+                            "visibleIf": "{A1} = \"15\""
+                        },
+                        {
+                            "text": " Mwea West",
+                            "value": "97",
+                            "visibleIf": "{A1} = \"15\""
+                        },
+                        {
+                            "text": "Kirinyaga Central",
+                            "value": "98",
+                            "visibleIf": "{A1} = \"15\""
+                        },
+                        {
+                            "text": "Kitutu Chache North",
+                            "value": "99",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Kitutu Chache",
+                            "value": "100",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Nyaribari Masaba",
+                            "value": "101",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Nyaribari Chache",
+                            "value": "102",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Bomachoge Borabu",
+                            "value": "103",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Bomachoge Chache",
+                            "value": "104",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Bobasi",
+                            "value": "105",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "South Mugirango",
+                            "value": "106",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Bonchari",
+                            "value": "107",
+                            "visibleIf": "{A1} = \"16\""
+                        },
+                        {
+                            "text": "Kisumu West",
+                            "value": "108",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Kisumu Central",
+                            "value": "109",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Kisumu East",
+                            "value": "110",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Seme",
+                            "value": "111",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Muhoroni",
+                            "value": "112",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Nyando",
+                            "value": "113",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Nyakach",
+                            "value": "114",
+                            "visibleIf": "{A1} = \"17\""
+                        },
+                        {
+                            "text": "Kitui West",
+                            "value": "115",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Kitui Central",
+                            "value": "116",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Kitui Rural",
+                            "value": "117",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Kitui South",
+                            "value": "118",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Kitui East",
+                            "value": "119",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Mwingi North",
+                            "value": "120",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Mwingi West",
+                            "value": "121",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Mwingi Central",
+                            "value": "122",
+                            "visibleIf": "{A1} = \"18\""
+                        },
+                        {
+                            "text": "Msambweni",
+                            "value": "123",
+                            "visibleIf": "{A1} = \"19\""
+                        },
+                        {
+                            "text": "Lunga Lunga",
+                            "value": "124",
+                            "visibleIf": "{A1} = \"19\""
+                        },
+                        {
+                            "text": "Kinango",
+                            "value": "125",
+                            "visibleIf": "{A1} = \"19\""
+                        },
+                        {
+                            "text": "Matuga",
+                            "value": "126",
+                            "visibleIf": "{A1} = \"19\""
+                        },
+                        {
+                            "text": "Laikipia East",
+                            "value": "127",
+                            "visibleIf": "{A1} = \"20\""
+                        },
+                        {
+                            "text": " Laikipia North",
+                            "value": "128",
+                            "visibleIf": "{A1} = \"20\""
+                        },
+                        {
+                            "text": "Laikipia West ",
+                            "value": "129",
+                            "visibleIf": "{A1} = \"20\""
+                        },
+                        {
+                            "text": "Lamu West",
+                            "value": "130",
+                            "visibleIf": "{A1} = \"21\""
+                        },
+                        {
+                            "text": " Lamu East",
+                            "value": "131",
+                            "visibleIf": "{A1} = \"21\""
+                        },
+                        {
+                            "text": "Machakos Town",
+                            "value": "132",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": " Mavoko",
+                            "value": "133",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Masinga",
+                            "value": "134",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Yatta",
+                            "value": "135",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Kangundo",
+                            "value": "136",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": " Kathiani",
+                            "value": "137",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Matungulu",
+                            "value": "138",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Mwala",
+                            "value": "139",
+                            "visibleIf": "{A1} = \"22\""
+                        },
+                        {
+                            "text": "Makueni",
+                            "value": "140",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Kaiti",
+                            "value": "141",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Kilome",
+                            "value": "142",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Kibwezi East",
+                            "value": "143",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Kibwezi West",
+                            "value": "144",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Mbooni",
+                            "value": "145",
+                            "visibleIf": "{A1} = \"23\""
+                        },
+                        {
+                            "text": "Mandera West",
+                            "value": "146",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": " Mandera South",
+                            "value": "147",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": "Banisa",
+                            "value": "148",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": " Mandera North",
+                            "value": "149",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": " Mandera East",
+                            "value": "150",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": "Lafey",
+                            "value": "151",
+                            "visibleIf": "{A1} = \"24\""
+                        },
+                        {
+                            "text": "North Horr",
+                            "value": "152",
+                            "visibleIf": "{A1} = \"25\""
+                        },
+                        {
+                            "text": "Moyale",
+                            "value": "153",
+                            "visibleIf": "{A1} = \"25\""
+                        },
+                        {
+                            "text": "Saku",
+                            "value": "154",
+                            "visibleIf": "{A1} = \"25\""
+                        },
+                        {
+                            "text": "Laisamis",
+                            "value": "155",
+                            "visibleIf": "{A1} = \"25\""
+                        },
+                        {
+                            "text": "Igembe north",
+                            "value": "156",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Igembe central",
+                            "value": "157",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": " Igembe south",
+                            "value": "158",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": " Tigania east",
+                            "value": "159",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Tigania west",
+                            "value": "160",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Buuri",
+                            "value": "161",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Imenti central",
+                            "value": "162",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Imenti south",
+                            "value": "163",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Imenti north",
+                            "value": "164",
+                            "visibleIf": "{A1} = \"26\""
+                        },
+                        {
+                            "text": "Rongo",
+                            "value": "165",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Awendo",
+                            "value": "166",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Suna east",
+                            "value": "167",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Suna West",
+                            "value": "168",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Uriri",
+                            "value": "169",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Nyatike",
+                            "value": "170",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Kuria East",
+                            "value": "171",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Kuria West",
+                            "value": "172",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Ntimaru",
+                            "value": "173",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Mabera",
+                            "value": "174",
+                            "visibleIf": "{A1} = \"27\""
+                        },
+                        {
+                            "text": "Mvita",
+                            "value": "175",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": "Jomvu",
+                            "value": "176",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": "Changamwe",
+                            "value": "177",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": " Kisauni",
+                            "value": "178",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": "Nyali",
+                            "value": "179",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": "Likoni",
+                            "value": "180",
+                            "visibleIf": "{A1} = \"28\""
+                        },
+                        {
+                            "text": "Kiharu",
+                            "value": "181",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": "Maragua",
+                            "value": "182",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": "Kigumo",
+                            "value": "183",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": " Kangema",
+                            "value": "184",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": "Kandara",
+                            "value": "185",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": "Gatanga",
+                            "value": "186",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": " Mathioya",
+                            "value": "187",
+                            "visibleIf": "{A1} = \"29\""
+                        },
+                        {
+                            "text": "Westlands",
+                            "value": "188",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Dagoretti North",
+                            "value": "189",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Dagoretti South",
+                            "value": "190",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Langata",
+                            "value": "191",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Kibra",
+                            "value": "192",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Roysambu",
+                            "value": "193",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Kasarani",
+                            "value": "194",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Ruaraka",
+                            "value": "195",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Embakasi South",
+                            "value": "196",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Embakasi North",
+                            "value": "197",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Embakasi Central",
+                            "value": "198",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Embakasi East",
+                            "value": "199",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Embakasi West",
+                            "value": "200",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Makadara",
+                            "value": "201",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Kamukunji",
+                            "value": "202",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Starehe",
+                            "value": "203",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Mathare",
+                            "value": "204",
+                            "visibleIf": "{A1} = \"30\""
+                        },
+                        {
+                            "text": "Nakuru East",
+                            "value": "205",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": " Nakuru West",
+                            "value": "206",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": " Nakuru North",
+                            "value": "207",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Subukia",
+                            "value": "208",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Naivasha",
+                            "value": "209",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Gilgil",
+                            "value": "210",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Molo",
+                            "value": "211",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Njoro",
+                            "value": "212",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Kuresoi North",
+                            "value": "213",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Kuresoi South",
+                            "value": "214",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Rongai",
+                            "value": "215",
+                            "visibleIf": "{A1} = \"31\""
+                        },
+                        {
+                            "text": "Aldai",
+                            "value": "216",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": "Mosop",
+                            "value": "217",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": " Nandi Hills",
+                            "value": "218",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": "Tindiret",
+                            "value": "219",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": "Emgwen",
+                            "value": "220",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": "Chesumei",
+                            "value": "221",
+                            "visibleIf": "{A1} = \"32\""
+                        },
+                        {
+                            "text": "Transmara West",
+                            "value": "222",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": " Transmara East",
+                            "value": "223",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": "Narok North",
+                            "value": "224",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": " Narok South",
+                            "value": "225",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": " Narok West",
+                            "value": "226",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": "Narok East",
+                            "value": "227",
+                            "visibleIf": "{A1} = \"33\""
+                        },
+                        {
+                            "text": "MANGA.",
+                            "value": "228",
+                            "visibleIf": "{A1} = \"34\""
+                        },
+                        {
+                            "text": "NYAMIRA SOUTH.",
+                            "value": "229",
+                            "visibleIf": "{A1} = \"34\""
+                        },
+                        {
+                            "text": "NYAMIRA NORTH.",
+                            "value": "230",
+                            "visibleIf": "{A1} = \"34\""
+                        },
+                        {
+                            "text": "BORABU.",
+                            "value": "231",
+                            "visibleIf": "{A1} = \"34\""
+                        },
+                        {
+                            "text": "MASABA NORTH",
+                            "value": "232",
+                            "visibleIf": "{A1} = \"34\""
+                        },
+                        {
+                            "text": "Kinangop",
+                            "value": "233",
+                            "visibleIf": "{A1} = \"35\""
+                        },
+                        {
+                            "text": "Kipipiri",
+                            "value": "234",
+                            "visibleIf": "{A1} = \"35\""
+                        },
+                        {
+                            "text": "ol Joro Orok",
+                            "value": "235",
+                            "visibleIf": "{A1} = \"35\""
+                        },
+                        {
+                            "text": "Ndaragwa",
+                            "value": "236",
+                            "visibleIf": "{A1} = \"35\""
+                        },
+                        {
+                            "text": "Ol Kalou",
+                            "value": "237",
+                            "visibleIf": "{A1} = \"35\""
+                        },
+                        {
+                            "text": "Kieni East",
+                            "value": "238",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Kieni West",
+                            "value": "239",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Mathira East",
+                            "value": "240",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Mathira West",
+                            "value": "241",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Nyeri Central",
+                            "value": "242",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Mukurweini",
+                            "value": "243",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Tetu",
+                            "value": "244",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Othaya",
+                            "value": "245",
+                            "visibleIf": "{A1} = \"36\""
+                        },
+                        {
+                            "text": "Samburu East",
+                            "value": "246",
+                            "visibleIf": "{A1} = \"37\""
+                        },
+                        {
+                            "text": " Samburu North",
+                            "value": "247",
+                            "visibleIf": "{A1} = \"37\""
+                        },
+                        {
+                            "text": " Samburu West",
+                            "value": "248",
+                            "visibleIf": "{A1} = \"37\""
+                        },
+                        {
+                            "text": "Gem",
+                            "value": "249",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": "Ugunja",
+                            "value": "250",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": "Ugenya",
+                            "value": "251",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": "Alego-Usonga",
+                            "value": "252",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": " Bondo",
+                            "value": "253",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": "Rarieda",
+                            "value": "254",
+                            "visibleIf": "{A1} = \"38\""
+                        },
+                        {
+                            "text": "Mwatate",
+                            "value": "255",
+                            "visibleIf": "{A1} = \"39\""
+                        },
+                        {
+                            "text": "Taveta",
+                            "value": "256",
+                            "visibleIf": "{A1} = \"39\""
+                        },
+                        {
+                            "text": "Voi",
+                            "value": "257",
+                            "visibleIf": "{A1} = \"39\""
+                        },
+                        {
+                            "text": "Wundanyi",
+                            "value": "258",
+                            "visibleIf": "{A1} = \"39\""
+                        },
+                        {
+                            "text": "Bura",
+                            "value": "259",
+                            "visibleIf": "{A1} = \"40\""
+                        },
+                        {
+                            "text": "Galole",
+                            "value": "260",
+                            "visibleIf": "{A1} = \"40\""
+                        },
+                        {
+                            "text": "Garsen",
+                            "value": "261",
+                            "visibleIf": "{A1} = \"40\""
+                        },
+                        {
+                            "text": "Tharaka North",
+                            "value": "262",
+                            "visibleIf": "{A1} = \"41\""
+                        },
+                        {
+                            "text": "Tharaka South",
+                            "value": "263",
+                            "visibleIf": "{A1} = \"41\""
+                        },
+                        {
+                            "text": "Maara",
+                            "value": "264",
+                            "visibleIf": "{A1} = \"41\""
+                        },
+                        {
+                            "text": " Chuka",
+                            "value": "265",
+                            "visibleIf": "{A1} = \"41\""
+                        },
+                        {
+                            "text": "Kwanza",
+                            "value": "266",
+                            "visibleIf": "{A1} = \"42\""
+                        },
+                        {
+                            "text": "Endebess",
+                            "value": "267",
+                            "visibleIf": "{A1} = \"42\""
+                        },
+                        {
+                            "text": "Saboti",
+                            "value": "268",
+                            "visibleIf": "{A1} = \"42\""
+                        },
+                        {
+                            "text": "Kiminini",
+                            "value": "269",
+                            "visibleIf": "{A1} = \"42\""
+                        },
+                        {
+                            "text": "Cherangany",
+                            "value": "270",
+                            "visibleIf": "{A1} = \"42\""
+                        },
+                        {
+                            "text": "Loima",
+                            "value": "271",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Turkana West",
+                            "value": "272",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Turkana East",
+                            "value": "273",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Turkana South",
+                            "value": "274",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Turkana North",
+                            "value": "275",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Turkana Central",
+                            "value": "276",
+                            "visibleIf": "{A1} = \"43\""
+                        },
+                        {
+                            "text": "Soy",
+                            "value": "277",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Turbo",
+                            "value": "278",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Moiben",
+                            "value": "279",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Ainabkoi",
+                            "value": "280",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Kapseret",
+                            "value": "281",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Kesses",
+                            "value": "282",
+                            "visibleIf": "{A1} = \"44\""
+                        },
+                        {
+                            "text": "Sabatia",
+                            "value": "283",
+                            "visibleIf": "{A1} = \"45\""
+                        },
+                        {
+                            "text": "Vihiga",
+                            "value": "284",
+                            "visibleIf": "{A1} = \"45\""
+                        },
+                        {
+                            "text": "Hamisi",
+                            "value": "285",
+                            "visibleIf": "{A1} = \"45\""
+                        },
+                        {
+                            "text": "Emuhaya",
+                            "value": "286",
+                            "visibleIf": "{A1} = \"45\""
+                        },
+                        {
+                            "text": "Luanda",
+                            "value": "287",
+                            "visibleIf": "{A1} = \"45\""
+                        },
+                        {
+                            "text": "Wajir East",
+                            "value": "288",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "Wajir West",
+                            "value": "289",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "Wajir North",
+                            "value": "290",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "Wajir South",
+                            "value": "291",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "Eldas",
+                            "value": "292",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "Tarbaj",
+                            "value": "293",
+                            "visibleIf": "{A1} = \"46\""
+                        },
+                        {
+                            "text": "West Pokot",
+                            "value": "294",
+                            "visibleIf": "{A1} = \"47\""
+                        },
+                        {
+                            "text": "North Pokot",
+                            "value": "295",
+                            "visibleIf": "{A1} = \"47\""
+                        },
+                        {
+                            "text": "Central Pokot",
+                            "value": "296",
+                            "visibleIf": "{A1} = \"47\""
+                        },
+                        {
+                            "text": " Pokot South",
+                            "value": "297",
+                            "visibleIf": "{A1} = \"47\""
+                        }
+                    ],
+                    "renderAs": "select2",
+                    "isRequired": true
+                },
+                {
+                    "name": "A3",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "A3. Je, wewe ni...?",
+                        "default": "A3. Are you?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Mwanaume",
+                                "default": "Male"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mwanamke",
+                                "default": "Female"
+                            },
+                            "value": "2"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "A4",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "A4. Je, una miaka mingapi?",
+                        "default": "A4. How old are you?"
+                    },
+                    "choices": [
+                        {
+                            "text": "18-24 years",
+                            "value": "1"
+                        },
+                        {
+                            "text": "25-29 years",
+                            "value": "2"
+                        },
+                        {
+                            "text": "30-34 years",
+                            "value": "3"
+                        },
+                        {
+                            "text": "35-39 years",
+                            "value": "4"
+                        },
+                        {
+                            "text": "40-44 years",
+                            "value": "5"
+                        },
+                        {
+                            "text": "45-49 years",
+                            "value": "6"
+                        },
+                        {
+                            "text": "50-54 years",
+                            "value": "7"
+                        },
+                        {
+                            "text": "55-64",
+                            "value": "8"
+                        },
+                        {
+                            "text": "65+",
+                            "value": "9"
+                        },
+                        {
+                            "text": "Prefer not to say",
+                            "value": "10"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "A5",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "A5.  Je, ni ipi kati ya hizi ambayo ni taasisi ya juu kabisa ya elimu ambayo umehudhuria?",
+                        "default": "A5. Which of these is the highest educational institute you have attended?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "shule ya msingi",
+                                "default": "Primary school"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "shule ya upili",
+                                "default": "Secondary school"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "chuo cha ufundi",
+                                "default": "Technical college"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "chuo kikuu au sawia",
+                                "default": "University or equivalent"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Singependa kusema",
+                                "default": "Prefer not to say"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "A6",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "A6. Hali yako ya ajira kwa sasa ni ipi?",
+                        "default": "A6. What is your current employment situation?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Nimeajiriwa wakati wote- kama bado anafanya kazi kwa wakati wote / sehemu ya muda",
+                                "default": "Employed full-time– whether still working full-time/part-time"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hana kazi / kutopata mapato: nilipoteza kazi katika mwezi mmoja uliopita",
+                                "default": "Jobless/not earning: lost job in the last one month"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina kazi wala sijawahi kuajiriwa",
+                                "default": "Jobless have never been employed"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nimejiajiri lakini kwa sasa sina kazi",
+                                "default": "Self-employed but now without work"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nimejiajiri na bado nafanya kazi",
+                                "default": "Self-employed and still doing some work"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "SINGLE RESPONSE – DO NOT READ BUT PROMPT TO GET NECESSARY DETAILS"
+                }
+            ]
+        },
+        {
+            "name": "SECTION 3: MAIN QUESTIONNIARE",
+            "elements": [
+                {
+                    "name": "Q1",
+                    "rows": [
+                        {
+                            "text": {
+                                "bg": "Kuenea kwa Covid-19",
+                                "default": "Spread of Covid-19"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Athari za Covid-19 kwenye uchumi wa Kenya",
+                                "default": "Impact of Covid-19 on Kenya’s economy"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kupoteza mapatu kwa sababu ya Covid-19",
+                                "default": "Loss of income due to Covid-19"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Upimaji wa hiari wa Covid-19",
+                                "default": "Voluntary testing for Covid-19"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Muendelezo wa saa ya kurudi (curfew) kwa siku nyingine 30",
+                                "default": "Curfew continuation for another 30 days"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutokuwa na uwezo wa kusafiri kutoka kaunti moja hadi nyingine",
+                                "default": "Inability to move from one county to another"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Maswala ya kisiasa karibu na uchaguzi mkuu wa 2022",
+                                "default": "Political activity around the 2022 presidential elections"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kufungwa kwa shule na taasisi nyingine za elimu",
+                                "default": "Closure of schools and other educational institutions"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "type": "matrix",
+                    "title": {
+                        "bg": "Q1. Unajali kwa kiwango kipi juu ya yafuatayo",
+                        "default": "Q1. How concerned are you about the following?"
+                    },
+                    "columns": [
+                        {
+                            "text": {
+                                "bg": "Sijali sana",
+                                "default": "Not too concerned"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Najali kidogo",
+                                "default": "Somewhat concerned"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Najali sana",
+                                "default": "Very concerned"
+                            },
+                            "value": "3"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "Select one answer for each",
+                    "isAllRowRequired": true
+                },
+                {
+                    "name": "Q2",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q2. Ukitafuta Habari kuhusu virusi vya Korona, ni vyanzo gani unaangalia/ kuamini Zaidi?",
+                        "default": "Q2.\tWhen you are looking for information about coronavirus, what sources do you look to/trust the most?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Wizara ya Afya na wataalam wake wa matibabu",
+                                "default": "Ministry of Health and its medical experts,"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Rais",
+                                "default": "The President"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Serikali za kaunti (Magavana kutoka kaunti tofauti, mawaziri wa kaunti)",
+                                "default": "County Governments (Governors from different counties, County Ministers)"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Wanasiasa (Wabunge, maseneta, wawakilishi wa wanawake, MCAs)",
+                                "default": "Politicians ( MPs, Senators, Women Rep, MCAs)"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Vyombo vya habari (kama runinga, magazeti, redio)",
+                                "default": "Media (e.g., TV, newspapers, radio)"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mtandao wa kijamii",
+                                "default": "Social media"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mashirika yasiyo ya serikali (NGOs)",
+                                "default": "Non-governmental organizations (NGOs)"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Makampuni ya kitaifa/ biashara",
+                                "default": "National companies or businesses"
+                            },
+                            "value": "8"
+                        },
+                        {
+                            "text": {
+                                "bg": "Wizara zingine za serikali na mashirika (Wizara ya Mambo ya ndani, Chifu)",
+                                "default": "Other government ministries and agencies (Ministry of Interior, Chiefs)"
+                            },
+                            "value": "9"
+                        },
+                        {
+                            "text": {
+                                "bg": "Asasi za kidini",
+                                "default": "Religious or faith-based organizations"
+                            },
+                            "value": "10"
+                        }
+                    ],
+                    "hasNone": true,
+                    "hasOther": true,
+                    "noneText": "Don't know",
+                    "otherText": {
+                        "bg": "Nyingine taja",
+                        "default": "Other [Please specify]"
+                    },
+                    "isRequired": true,
+                    "description": "[Select as many as apply] DO NOT READ OUT"
+                },
+                {
+                    "name": "Q3",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q3. Je, ni viwanda gani unaamini vinafanya kazi bora kuunga mkono juhudi za coronavirus?",
+                        "default": "Q3.\tWhat industries do you believe are doing the best job supporting coronavirus efforts?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Huduma za Chakula (k.v, maduka makubwa, mikahawa, baa, nk)",
+                                "default": "Food Services (e.g., supermarkets, restaurants, cafes, pub chains, etc.)"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kampuni za mawasiliano ya simu (kwa mfano, simu za rununu na kampuni za mtandao",
+                                "default": "Telecommunications (e.g mobile phone and internet companies)"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kampuni za utunzaji wa afya (k.m hospitali na kampuni za dawa)",
+                                "default": "Health care companies (e.g hospitals and pharmaceuticals)"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Duka za rejareja / za jumla za bidhaa (wachuuzi, vibanda, na duka)",
+                                "default": "Retail/general merchandise stores (hawkers, kiosks, and duka’s)"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Huduma za kifedha (kwa mfano, benki)",
+                                "default": "Financial services (e.g banking)"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Viwanda",
+                                "default": "Manufacturing"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Vyombo vya habari, magazeti na matangazo- redio, Runinga",
+                                "default": "Media, newspapers and broadcasting- radio, TV"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Usafiri (mabasi na matatu)",
+                                "default": "Transportation (buses and matatu’s)"
+                            },
+                            "value": "8"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mashirika yasiyo ya serikali",
+                                "default": "NGOs"
+                            },
+                            "value": "9"
+                        },
+                        {
+                            "text": {
+                                "bg": "Wasanii – waimbaji na wachekeshaji",
+                                "default": "Artist – Musician and Comedians"
+                            },
+                            "value": "10"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": {
+                        "bg": "Nyingine [taja]",
+                        "default": "Other [Please specify]"
+                    },
+                    "isRequired": true,
+                    "validators": [
+                        {
+                            "text": "Please select the top 3",
+                            "type": "answercount",
+                            "maxCount": 3,
+                            "minCount": 1
+                        }
+                    ],
+                    "description": "[Select up to three answers]"
+                },
+                {
+                    "name": "Q4",
+                    "type": "matrixdynamic",
+                    "title": {
+                        "bg": "Q4. Katika sentensi 1-2, ni kampuni/ chapa gani TATU ambazo unadhani zinafanya kazi bora zaidi kusaidia juhudi za kupambana na Korona, fafanua kwa nini.",
+                        "default": "Q4.\tIn 1-2 sentences, give THREE companies/brand that you think are doing the best job supporting coronavirus efforts right now, and explain why."
+                    },
+                    "choices": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "columns": [
+                        {
+                            "name": "1",
+                            "title": {
+                                "bg": "Jina la kampuni",
+                                "default": "Name of company"
+                            },
+                            "cellType": "text"
+                        },
+                        {
+                            "name": "2",
+                            "title": {
+                                "bg": "Sababu ya uteuzi",
+                                "default": "Reason for selection"
+                            },
+                            "cellType": "text"
+                        }
+                    ],
+                    "addRowText": "Add company",
+                    "isRequired": true,
+                    "description": "[Please type in your response]",
+                    "maxRowCount": 3,
+                    "minRowCount": 1
+                },
+                {
+                    "name": "Q5",
+                    "rows": [
+                        {
+                            "text": {
+                                "bg": "Jinsi kampuni zinavyofanya kazi sasa itaathiri mtazamo wangu juu yao katika siku zijazo",
+                                "default": "How companies act now will impact my perception of them in the future"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Naamini biashara ambazo zinaweka kipaumbele juhudi za misaada ya coronavirus na suluhisho zitarudi haraka baada ya janga la coronavirus kumalizika",
+                                "default": "I believe businesses that are prioritizing coronavirus relief efforts and solutions will bounce back faster after the coronavirus pandemic is over"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ninaamini kampuni lazima zifanye maamuzi ambayo ni kwa faida ya wafanyikazi wao, kwa mfano, kutowarudisha wafanyikazi kazini ikiwa wanaona sio salama, hata ikiwa hiyo inamaanisha kupoteza biashara)",
+                                "default": "I believe companies must make the decisions that are in the interest of their employees, (e.g., not sending employees back to work if they feel it’s unsafe, even if that means losing business)"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ninaamini kampuni lazima zifanye maamuzi ambayo ni kwa faida ya jamii pana sasa",
+                                "default": "I believe companies must make the decisions that are in the interest of the broader community right now"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani biashara inaweza kuunda suluhisho bora / ya haraka kuhusu coronavirus kuliko serikali",
+                                "default": "I think business can create better/faster coronavirus solutions than government"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina imani zaidi katika biashara au sekta binafsi kutatua janga la coronavirus kuliko vyombo vingine (kwa mfano, serikali, mashirika yasiyo ya faida)",
+                                "default": "I have more faith in business or private sector to solve the coronavirus pandemic than other entities (e.g., government, nonprofits)"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani gonjwa la coronavirus litalazimisha kampuni kutanguliza mahitaji ya wadau wao (kama waajiriwa, jamii), sio tu ujira wa kifedha, kwa muda mrefu",
+                                "default": "I think the coronavirus pandemic will force companies to prioritize the needs of their stakeholders (e.g., employees, communities), not just the financial reward, in the long-term"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ninahisi kwamba kampuni zinazoendeshwa na kusudi (hiyo ni, biashara ambazo hutengeneza pesa wakati huo huo huchangia ustawi wa jamii yetu na mazingira) zimekuwa bora wakati wa janga la coronavirus",
+                                "default": "I feel that “PURPOSE-DRIVEN” companies (i.e., businesses that make money while at the same time contribute to the well-being of our society and the environment) have fared better during the coronavirus pandemic"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "type": "matrix",
+                    "title": {
+                        "bg": "Q5. Unakubaliana na kauli hizi kwa kiwango gani?",
+                        "default": "Q5.\tHow much do you agree with the following statements?"
+                    },
+                    "columns": [
+                        {
+                            "text": {
+                                "bg": "Nakubaliana kabisa",
+                                "default": "Strongly agree"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nakubaliana kiasi",
+                                "default": "Somewhat agree"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina maoni",
+                                "default": "Neutral"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kiasi",
+                                "default": "Somewhat disagree"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kabisa",
+                                "default": "Strongly disagree"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "[Select one answer for each.]",
+                    "isAllRowRequired": true
+                },
+                {
+                    "name": "Definition",
+                    "type": "expression",
+                    "title": {
+                        "bg": "Kwa \"inayoendeshwa na kusudi\", tunamaanisha kampuni inayojitahidi kuleta athari chanya/mzuri katika jamii, zaidi ya kupata pesa tu \". Hiyo ni, kwa kujali mazingira, inasaidia mikakati ya kijamii, inachangia pesa kwa mipango ya afya, hujali wafanyikazi wake… na kadhalika.",
+                        "default": "By “purpose-driven”, we mean a company that strives to make a positive impact in society, beyond just making money”. That is, by caring for the environment, supports social causes, contributes money for health programs, cares for its employees… etc."
+                    },
+                    "commentText": "Other (describe)"
+                },
+                {
+                    "name": "Q6",
+                    "rows": [
+                        {
+                            "text": {
+                                "bg": "Nitakumbuka kampuni zilizoinuka kutoa msaada wa Korona wakati haya yote yamekamilika",
+                                "default": "I will remember which companies stepped up to provide coronavirus support when this is all over"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nitakumbuka kampuni ambazo zilifanya maamuzi mabaya wakati wa janga la coronavirus (kwa mfano, maamuzi ambayo yameathiri vibaya wafanyikazi wake, wateja, jamii)",
+                                "default": "I will remember the companies that made bad decisions during the coronavirus pandemic (e.g., decisions that negatively impacted its employees, customers, community)"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nitakumbuka viongozi wa biashara ambao waliibuka na kusaidia wakati wa janga la coronavirus",
+                                "default": "I will remember the business leaders who stepped up and helped during the coronavirus pandemic"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina uwezekano mkubwa wa kuamini kampuni ambazo zinatoa msaada wa coronavirus",
+                                "default": "I am more likely to trust companies that are providing coronavirus support"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina uwezekano mkubwa wa kusaidia / kuwa mwaminifu kwa kampuni ambazo zinatoa msaada wa coronavirus",
+                                "default": "I am more likely to support/be loyal to companies that are providing coronavirus support"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina uwezekano mkubwa wa kununua kutoka kwa kampuni ambazo zinatoa msaada wa coronavirus",
+                                "default": "I am more likely to purchase from companies that are providing coronavirus support"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ningekuwa na pesa nyingi kuwekeza katika hisa, nina uwezekano mkubwa wa kuwekeza katika kampuni ambazo zinatoa msaada wa coronavirus",
+                                "default": "If I had a lot of money to invest in shares, I am more likely to invest in companies that are providing coronavirus support"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina uwezekano mkubwa wa kutaka kufanya kazi kwa kampuni ambazo zinatoa msaada wa coronavirus",
+                                "default": "I am more likely to want to work for companies that are providing coronavirus support"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "type": "matrix",
+                    "title": {
+                        "bg": "Q6. Unakubaliana na kauli hizi kwa kiwango gani?",
+                        "default": "Q6.\tHow much do you agree with the following statements?"
+                    },
+                    "columns": [
+                        {
+                            "text": {
+                                "bg": "Nakubaiana zaidi",
+                                "default": "Strongly agree"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nakubaliana kiasi",
+                                "default": "Somewhat agree"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina maoni",
+                                "default": "Neutral"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kiasi",
+                                "default": "Somewhat disagree"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kabisa",
+                                "default": "Strongly disagree"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "[Select one answer for each.]",
+                    "isAllRowRequired": true
+                },
+                {
+                    "name": "Q7",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q7. Unajifunza wapi juu ya / kutafuta habari kuhusu majibu ya kampuni kwa Koroba na juhudi za msaada?",
+                        "default": "Q7.\tWhere do you learn about/look for information about companies’ coronavirus responses and support efforts?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Kwenye bidhaa au kifurushi chake / lebo",
+                                "default": "On the product or its package/label"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Katika duka au kutoka kwa wafanyikazi wa kampuni",
+                                "default": "In-store or from a company’s employees"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Barua pepe",
+                                "default": "Email"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hadithi za vyombo vya habari au mahojiano (k.v., kwenye habari au kwenye gazeti la hapa)",
+                                "default": "Media stories or interviews (e.g., on the news or in the local paper)"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Matangazo (kwa mfano, matangazo ya Runinga, matangazo ya kuchapisha au mkondoni, n.k.)",
+                                "default": "Advertisements (e.g., TV commercials, print or online ads, etc.)"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Matangazo (kwa mfano, matangazo ya Runinga, matangazo ya kuchapisha au mkondoni, n.k.)",
+                                "default": "The company’s website"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mitandao ya kijamii (k.m., Facebook, Instagram, au Twitter, WhatsApp)",
+                                "default": "Social media (e.g., Facebook, Instagram, or Twitter, WhatsApp)"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Watu mashuhuri, wanasiasa, au washawishi wa mitandao ya kijamii",
+                                "default": "Celebrities, politicians, or social media influencers"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": {
+                        "bg": "Nyingine (taja)",
+                        "default": "Other [Please specify]"
+                    },
+                    "isRequired": true,
+                    "description": "[Select as many as apply."
+                },
+                {
+                    "name": "Q8",
+                    "rows": [
+                        {
+                            "text": {
+                                "bg": "Ninasikia vizuri juu ya kampuni ambazo zinatangaza hadharani kile wanachofanya ili kutoa msaada wa coronavirus (k.v. Kubadilisha viwanda kutengeneza PPE, sanitizer, na kutowafuta kazi wafanyikazi wowote)",
+                                "default": "I feel better about companies that publicly announce what they are doing to provide coronavirus support (e.g., converting manufacturing plants to make PPEs, sanitizers, not laying off any employees)"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina uwezekano mkubwa wa kuamini juhudi za msaada wa kampuni ni halisi nikisikia kutoka kwa vyanzo vingine (k.v. kutoka kwa vyombo vya habari, serikali au washawishi) dhidi ya kusikia kutoka kwa kampuni yenyewe",
+                                "default": "I am more likely to believe a company’s coronavirus support efforts are authentic if I hear about it from third-party sources (e.g., from media, government, influencers) vs. from the company itself"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ninauliza ukweli au uhalisi wa juhudi za msaada wa Korona wa kampuni fulani",
+                                "default": "I question the sincerity/authenticity of some companies’ coronavirus support efforts"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kampuni ambazo zinakuza bidhaa / huduma ambazo hazihusiani na juhudi za Korona zinaonekana kujishughulisha au kutojali",
+                                "default": "Companies that are promoting products/services not related to coronavirus efforts look self-serving or uncaring"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nina maoni bora ya biashara na makampuni, kwa ujumla, kwa sababu ya jinsi walivyoinuka wakati wa janga la Korona",
+                                "default": "I have a better opinion of business and companies, in general, because of how they have stepped up during the coronavirus pandemic"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nataka kampuni zaidi zianze kuongea juu ya zinavyofanya ili kurudisha hali ya kawaida baada ya janga la Korona",
+                                "default": "I want more companies to start talking about how they are working to get things back to normal after the coronavirus pandemic"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani ni mapema sana kwa kampuni kuongea juu ya kurudisha hali ya kawaida baada ya janga la Korona",
+                                "default": "I think it’s too soon for companies to be talking about getting things back to normal after the coronavirus pandemic"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hata wakati wa janga la coronavirus, ninatarajia kampuni kuendelea na juhudi za maswala ya kijamii na mazingira (k.v. njaa, afya ya ulimwengu, mabadiliko ya hali ya hewa)",
+                                "default": "Even during the coronavirus pandemic, I expect companies to continue efforts around social and environmental issues (e.g., hunger, global health, climate change)"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "type": "matrix",
+                    "title": {
+                        "bg": "Q8. Unakubaliana na kauli hizi kwa kiwango gani?",
+                        "default": "Q8.\tHow much do you agree with the following statements?"
+                    },
+                    "columns": [
+                        {
+                            "text": {
+                                "bg": "Nakubaliana zaidi",
+                                "default": "Strongly agree"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nakubaliana kiasi",
+                                "default": "Somewhat agree"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina maoni",
+                                "default": "Neutral"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kiasi",
+                                "default": "Somewhat disagree"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kabisa",
+                                "default": "Strongly disagree"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "Select one answer for each.",
+                    "isAllRowRequired": true
+                },
+                {
+                    "name": "Q9",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q9. Ni yapi yafuatayo ni njia bora kwa kampuni kusaidia wakati wa janga la coronavirus?",
+                        "default": "Q9.\tWhich of the following are the best ways for companies to help during the coronavirus pandemic?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Kuhakikisha kuwa wafanyikazi wao wanaendelea kupokea mshahara na faida",
+                                "default": "Ensuring that their own employees continue receiving salary and benefits"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutekeleza sera za kulinda afya na usalama wa wafanyikazi wao",
+                                "default": "Implementing policies to protect the health and safety of their own employees"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kuondoa kwa muda ada au vizuizi kwa ufikiaji wa huduma zao (k.v. kuvuja ada ya malipo ya kuchelewa kwa bili, kutoa ufikiaji wa bure kwa huduma ambazo kawaida hulipa, nk.)",
+                                "default": "Temporarily eliminating fees or barriers to access for their services (e.g., waiving late payments fees for bills, offering free access to services that you normally pay for, etc.)"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kuendesha biashara kama kawaida, kuhakikisha mwendelezo wa huduma na \"hali ya kawaida\"",
+                                "default": "Conducting business as usual, to ensure continuity of services and “normalcy”"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutoa pesa kwa juhudi za misaada (k.v., kutoa pesa kwa mahospitali, jamii, watu binafsi, mashirika yasiyo ya faida, au mashirika ya misaada ya serikali)",
+                                "default": "Donating money to relief efforts (e.g., donating cash to hospitals,   communities, individuals, nonprofits, or government aid agencies)"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutoa bidhaa au huduma kwa juhudi za misaada (k.v., kutoa bidhaa kama chakula au huduma kwa hospitali, jamii, watu binafsi, mashirika yasiyo ya faida, au mashirika ya serikali ya misaada )",
+                                "default": "Donating products or services to relief efforts (e.g., donating products  such as food or services to hospitals, communities, individuals, nonprofits, or government aid agencies)"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutumia majengo/ vifaa vyao na wakati wa wafanyikazi wao kusaidia katika juhudi za kutoa misaada (k.v. kutengeneza/ kusambaza vifaa muhimu kama vile sanitizer, vituo vya kuosha mikono na vifuniko vya hewa)",
+                                "default": "Using their buildings/equipment and employee time to aid in relief efforts (e.g., producing/distributing critical supplies such as sanitizers, hand washing stations and ventilators)"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutoa habari au fursa zinazotusaidia kujitunza na kuwa na afya",
+                                "default": "Providing information or opportunities that help us take care of ourselves and stay healthy"
+                            },
+                            "value": "8"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kutumia rasilimali za matangazo na uuzaji kuwasiliana habari za afya ya umma",
+                                "default": "Using advertising and marketing resources to communicate public health information"
+                            },
+                            "value": "9"
+                        }
+                    ],
+                    "hasNone": true,
+                    "noneText": {
+                        "bg": "Hakuna hata mmoja wa hii - sidhani kama ni jukumu la kampuni kusaidia wakati wa janga la coronavirus",
+                        "default": "None of these – I don’t think that it is the responsibility of companies to help during the coronavirus pandemic"
+                    },
+                    "isRequired": true,
+                    "description": "Select as many as apply. READ OUT"
+                },
+                {
+                    "name": "Q10",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q10. Ikiwa ungetaka kutoa wakati au pesa kwa juhudi za misaada ya coronavirus (au ikiwa tayari unayo), ni yapi ya yafuatayo ungepatia kipaumbele?",
+                        "default": "Q10.\tIf you were going to donate time or money to coronavirus relief efforts (or if you already have), which of the following would you prioritize?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Mashirika yasiyo ya serikali ya hapa (NGOs), kwa sababu ya jinsi coronavirus inayoathiri jamii yangu",
+                                "default": "Local NGOs, because of the impact coronavirus is having on my community"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mashirika yasiyo ya faida ya kimataifa, kwa sababu ya jinsi inavyoathiri ulimwengu wote",
+                                "default": "Global nonprofits, because of the impact coronavirus is having across the world"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Juhudi za misaada ya njaa (k.m. vyakula kwa walio na shida  au walio katika hatari kubwa ambao hawawezi kupata duka la mboga wakati huu)",
+                                "default": "Hunger relief efforts (e.g., meals and food items for disadvantaged individuals or high-risk individuals who are not able to access grocery stores at this time)"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Msaada wa wafanyikazi wa huduma ya afya (k.m., pesa kusaidia wafanyikazi wa afya kununua vifaa vinavyohitajika kama vifaa vya kinga vya kibinafsi)",
+                                "default": "Healthcare workforce support (e.g., funds to help healthcare workers buy needed supplies such as personal protective equipment)"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Huduma ya wazee (k.m. rasilimali na utunzaji haswa kwa raia wazee kama vile milo, vituo vya ukaguzi, n.k)",
+                                "default": "Elderly care (e.g., resources and care specifically for elderly citizens such as meals, check-ins, etc.)"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ufikiaji wa huduma ya afya (k.v., Msaada kwa watu ambao hawana chanjo kidogo ya huduma ya afya kupata huduma ya afya, upimaji, n.k.)",
+                                "default": "Healthcare access (e.g., help for individuals who have little or no healthcare coverage to get the healthcare, testing, etc.)"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Msaada kwa watoto (k.m. fedha au programu zilizopewa mahsusi kwa watoto walioathiriwa na ugonjwa wa Korona, ambao wanaweza kukosa huduma ya afya ya watoto au ufikiaji wa milo)",
+                                "default": "Aid for children (e.g., funds or programs specifically dedicated to children impacted by coronavirus, who may not have childcare or access to meals)"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Huduma kwa wafanyikazi waliohamishwa (k.m., programu au msaada wa kifedha kwa watu waliopoteza kazi kwa sababu ya janga la coronavirus)",
+                                "default": "Services for displaced workers (e.g., programs or financial support for individuals who lost their job as a result of the coronavirus pandemic)"
+                            },
+                            "value": "8"
+                        },
+                        {
+                            "text": {
+                                "bg": "Msaada wa biashara ndogo (k.m., pesa kusaidia biashara ndogo kubaki kwenye biashara)",
+                                "default": "Small business support (e.g., funds to help small businesses stay in business)"
+                            },
+                            "value": "9"
+                        }
+                    ],
+                    "hasNone": true,
+                    "noneText": {
+                        "bg": "Hakuna hata haya - hata kama ningependa kuchangia zaidi kwa juhudi za uokoaji wa coronavirus, nina wasiwasi sana juu ya fedha zangu / uchumi wakati huu.",
+                        "default": "None of these – even if I would like to donate more to coronavirus relief efforts, I’m too worried about my finances/the economy at this time"
+                    },
+                    "isRequired": true,
+                    "description": "[Select as many as apply"
+                },
+                {
+                    "name": "Q11",
+                    "rows": [
+                        {
+                            "text": {
+                                "bg": "Ikiwa ningesikia kampuni yangu ikifanya jambo la kusaidia juhudi za uokoaji wa coronavirus, itanifanya nijisifu kufanyia kazi kampuni yangu",
+                                "default": "If I heard my company was doing something to support coronavirus relief efforts, it would make me feel proud to work for my company"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ikiwa ningesikia kampuni yangu ikifanya jambo la kusaidia juhudi za uokoaji wa coronavirus, itanifanya nitake kuhusika",
+                                "default": "If I heard my company was doing something to support coronavirus relief efforts, it would make me want to get involved"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ikiwa ningesikia kampuni yangu ikifanya jambo la kusaidia juhudi za uokoaji wa coronavirus, itanifanya nijisikie mwaminifu zaidi kwa kampuni yangu",
+                                "default": "If I heard my company was doing something to support coronavirus relief efforts, it would make me feel more loyal to my company"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ikiwa ningesikia kampuni yangu ikifanya jambo la kusaidia juhudi za uokoaji wa coronavirus, itanifanya uwezekano mkubwa wa kupendekeza kampuni yangu kwa wengine",
+                                "default": "If I heard my company was doing something to support coronavirus relief efforts, it would make me more likely to recommend my company to others"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Ikiwa ningesikia kampuni yangu ikifanya kitu kuunga mkono juhudi za uokoaji wa coronavirus, itanitia msukumo",
+                                "default": "If I heard my company was doing something to support coronavirus relief efforts, it would make me feel inspired"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani kampuni yangu inaweza kufanya zaidi kusaidia wafanyikazi wakati wa janga la coronavirus",
+                                "default": "I think my company could be doing more to support employees during the coronavirus \tpandemic"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani kampuni yangu inafanya kazi nzuri kusaidia jamii wakati wa janga la coronavirus",
+                                "default": "I think my company is doing a good job supporting the community during the \tcoronavirus pandemic"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nadhani kampuni yangu inapaswa kuchukua hatua haraka kuweka mipango / sera mpya katika kukabiliana na janga la coronavirus",
+                                "default": "I think my company should have acted faster to put new programs/policies in place in \tresponse to the coronavirus pandemic"
+                            },
+                            "value": "8"
+                        }
+                    ],
+                    "type": "matrix",
+                    "title": {
+                        "bg": "Q11. Je, unakubaliana na kauli hizi kwa kiwango gani?",
+                        "default": "Q11.\tHow much do you agree with the following statements?"
+                    },
+                    "columns": [
+                        {
+                            "text": {
+                                "bg": "Nakubaliana zaidi",
+                                "default": "Strongly agree"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Nakubaliana kiasi",
+                                "default": "Somewhat agree"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina maoni",
+                                "default": "Neutral"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kiasi",
+                                "default": "Somewhat   disagree"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sikubaliani kabisa",
+                                "default": "Strongly disagree"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "visibleIf": "{A6} = \"1\"",
+                    "isRequired": true,
+                    "description": "[Select one answer for each.",
+                    "isAllRowRequired": true
+                }
+            ]
+        },
+        {
+            "name": "SECTION 4: POLITICAL QUESTIONS",
+            "elements": [
+                {
+                    "name": "Q12",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q12. Je! Ni chama gani cha siasa au umoja unaunga mkono au unahisi karibu zaidi, ikiwa kipo?",
+                        "default": "Q12. Which political party or coalition do you support or feel closest to, if any?"
+                    },
+                    "choices": [
+                        {
+                            "text": "Jubilee",
+                            "value": "1"
+                        },
+                        {
+                            "text": "NASA",
+                            "value": "2"
+                        },
+                        {
+                            "text": "ODM",
+                            "value": "3"
+                        },
+                        {
+                            "text": "ANC",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Wiper",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Maendeleo Chap-Chap",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Chama cha Mashinani",
+                            "value": "6"
+                        },
+                        {
+                            "text": "None",
+                            "value": "7"
+                        },
+                        {
+                            "text": "No response",
+                            "value": "8"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": {
+                        "bg": "Nhyingine (taja)",
+                        "default": "Other (specify)"
+                    },
+                    "isRequired": true
+                },
+                {
+                    "name": "Q13",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q13. Ikiwa kulikuwa na chama chochote cha siasa uliouunga mkono hapo zamani, kilikuwa ni kipi, au cha hivi karibuni zaidi ikiwa ulikuwa umeunga mkono zaidi ya chama kimoja katika miaka iliyopita?",
+                        "default": "Q13. If there was any political party you supported in the past, what was it, or the most recent one if you had supported more than one of them over the years?"
+                    },
+                    "choices": [
+                        {
+                            "text": "Jubilee",
+                            "value": "1"
+                        },
+                        {
+                            "text": "NASA",
+                            "value": "2"
+                        },
+                        {
+                            "text": "ODM",
+                            "value": "3"
+                        },
+                        {
+                            "text": "ANC",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Wiper",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Maendeleo Chap-Chap",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Chama cha Mashinani",
+                            "value": "6"
+                        },
+                        {
+                            "text": "None",
+                            "value": "7"
+                        },
+                        {
+                            "text": "No response",
+                            "value": "8"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Other (specify)",
+                    "isRequired": true
+                },
+                {
+                    "name": "Q14",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q14. Unaunga mkono kufanya mabadiliko yoyote kwa Katiba kabla ya uchaguzi ujao?",
+                        "default": "Q14. Do you support making any changes to the Constitution before the next election?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Ndiyo",
+                                "default": "Yes"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "La",
+                                "default": "No"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina uhakika",
+                                "default": "Not sure"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hajatoa jibu",
+                                "default": "No response"
+                            },
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q15",
+                    "type": "checkbox",
+                    "title": {
+                        "bg": "Q15. Ikiwa kutakuwa na mabadiliko yoyote kwa Katiba ya 2010, ni yapi matatu ambayo ungeunga mkono kwa dhati ikiwa mengine yamependekezwa?",
+                        "default": "Q15. If there are going to be any changes to the 2010 Constitution, which three would you most strongly support if some are proposed?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "kupungua kwa idadi ya kaunti na / au maeneo bunge",
+                                "default": "reduction in the number of counties and/or constituencies"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Mabadiliko ya mfumo wa sasa wa urais kuwa wa ubunge / mabadiliko katika mfumo wa Utendaji (Executive) ili (a) Rais Uhuru aweze kuongoza nchi baada ya uchaguzi ujao kama waziri mkuu",
+                                "default": "change of the current presidential system to a parliamentary one/change in the system of the Executive so that (a) President Uhuru could lead the country after the next election as prime minister"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "ibadilishwe ili kuongeza idadi ya nafasi za Utendaji ili kufanya mfumo ujumuishe watu zaidi",
+                                "default": "change it to increase the number of Executive positions to make the system more inclusive"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Kuongezewa kwa mapato yanayopewa kaunti",
+                                "default": "increase in revenue allocated to the counties"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "uhamishaji wa jukumu la pamoja la huduma za matibabu kutoka kaunti kwenda serikali ya kitaifa tu",
+                                "default": "transfer of shared responsibility for medical services from counties to national government only"
+                            },
+                            "value": "5"
+                        },
+                        {
+                            "text": {
+                                "bg": "mabadiliko ya kuhakikisha utekelezaji wa sharti la jinsia (hiyo ni, sio zaidi ya 2/3 ya jinsia yoyote katika chombo chochote cha uchaguzi)",
+                                "default": "changes to ensure implementation of the gender requirement  (i.e., no more than 2/3 of either gender in any elective body)"
+                            },
+                            "value": "6"
+                        },
+                        {
+                            "text": {
+                                "bg": "Njia mpya ya uteuzi wa makamishna wa IEBC / kubadilishwa kwa IEBC ya sasa",
+                                "default": "new method of appointment of IEBC commissioners/replacement of current IEBC"
+                            },
+                            "value": "7"
+                        },
+                        {
+                            "text": {
+                                "bg": "mabadiliko katika mfumo wa uchaguzi kutoka kwa mshindi-anachukua-yote kuwa uwakilishi wa usawa",
+                                "default": "change in the electoral system from the current winner-takes-all to a PR (proportional representation) one"
+                            },
+                            "value": "8"
+                        },
+                        {
+                            "text": {
+                                "bg": "kuongezeka kwa nguvu kwa vyombo vya uchunguzi-ufisadi / mashtaka",
+                                "default": "increased power to corruption-investigation/prosecution bodies"
+                            },
+                            "value": "9"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina uhakika",
+                                "default": "Not sure"
+                            },
+                            "value": "10"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sijui yoyote",
+                                "default": "Don’t know any"
+                            },
+                            "value": "11"
+                        }
+                    ],
+                    "hasNone": true,
+                    "hasOther": true,
+                    "otherText": {
+                        "bg": "Nyingine (taja)",
+                        "default": "Other (specify)"
+                    },
+                    "isRequired": true,
+                    "validators": [
+                        {
+                            "text": "Please select top 3",
+                            "type": "answercount",
+                            "maxCount": 3,
+                            "minCount": 1
+                        }
+                    ],
+                    "description": "3 RESPONSES – DO NOT READ – PROBE IF NECESSARY FOR CLARITY BUT IF UNCLEAR RECORD AS “OTHER”"
+                },
+                {
+                    "name": "Q16",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q16. Kwa ujumla, je, unaunga mkono 'handshake' kati ya Rais Uhuru na Waziri Mkuu wa zamani wa Raila?",
+                        "default": "Q16. Overall, do you support the ‘hand-shake’ between President Uhuru and former Prime Minister Raila?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Ndiyo",
+                                "default": "Yes"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "La",
+                                "default": "No"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Sina uhakika",
+                                "default": "Not Sure"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hajatoa jibu",
+                                "default": "No response"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": "Don't know",
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q17",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q17. Ikiwa hakuna mabadiliko kwa Katiba, ikimaanisha kuwa Rais Kenyatta lazima ajiuzulu mnamo 2022 na Rais ajaye atachaguliwa na wapiga kura, unafikiria ni nani Rais Kenyatta atamuunga mkono kama Rais ajaye?",
+                        "default": "Q17. If there is no change to the Constitution, meaning President Kenyatta must retire in 2022 and the next president will be elected by voters, whom do you think President Kenyatta will support to be the next president?"
+                    },
+                    "choices": [
+                        {
+                            "text": "William Ruto",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Raila Odinga",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Gideon Moi",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Musalia Mudavadi",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Kalonzo Musyoka",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Fred Matiang'i",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Alfred Mutua",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "8"
+                        },
+                        {
+                            "text": "No one",
+                            "value": "9"
+                        },
+                        {
+                            "text": "No response",
+                            "value": "10"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": {
+                        "bg": "Mwingine (taja)",
+                        "default": "Other (specify)"
+                    },
+                    "isRequired": true
+                },
+                {
+                    "name": "Q18",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q18. Na nani unataka kumpigia kura kama rais ajaye baada ya Uhuru kustaafu?",
+                        "default": "Q18. And who do you want to vote for as the next president after Uhuru retires?"
+                    },
+                    "choices": [
+                        {
+                            "text": "William Ruto",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Gideon Moi",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Raila Odinga",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Musalia Mudavadi",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Kalonzo Musyoka",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Alfred Mutua",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Joho Hansan",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Ekuru Aukot",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Uhuru should remain",
+                            "value": "9"
+                        },
+                        {
+                            "text": "Fred Matiang'i",
+                            "value": "10"
+                        },
+                        {
+                            "text": "Alfred Mutua",
+                            "value": "11"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "12"
+                        },
+                        {
+                            "text": "Refused",
+                            "value": "13"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Other (specify)",
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19",
+                    "type": "expression",
+                    "title": {
+                        "bg": "Q19. Ukipewa chaguzi kati ya wagombea wawili wafuatao wa urais katika uchaguzi ujao, ni nani angempigia kura kati ya:",
+                        "default": "Q19. Given a choice between the following two presidential candidates in the next election, whom would you vote for between:"
+                    },
+                    "commentText": "Other (describe)"
+                },
+                {
+                    "name": "Q19.1",
+                    "type": "radiogroup",
+                    "title": "Q19.1. Raila vs. Ruto?",
+                    "choices": [
+                        {
+                            "text": "Raila",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Ruto",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.2",
+                    "type": "radiogroup",
+                    "title": "Q19.2. Ruto vs. Kalonzo?",
+                    "choices": [
+                        {
+                            "text": "Ruto",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kalonzo",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.3",
+                    "type": "radiogroup",
+                    "title": "Q19.3. Mudavadi vs. Ruto?",
+                    "choices": [
+                        {
+                            "text": "Mudavadi",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Ruto",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.4",
+                    "type": "radiogroup",
+                    "title": "Q19.4. Mudavadi vs. Raila?",
+                    "choices": [
+                        {
+                            "text": "Mudavadi",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Raila",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.5",
+                    "type": "radiogroup",
+                    "title": "Q19.5. Ruto vs. Alfred Mutua",
+                    "choices": [
+                        {
+                            "text": "Ruto",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Alfred Mutua",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.6",
+                    "type": "radiogroup",
+                    "title": "Q19.6. Raila vs. Gideon Moi",
+                    "choices": [
+                        {
+                            "text": "Raila",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Gideon Moi",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.7",
+                    "type": "radiogroup",
+                    "title": "Q19.7. Gideon vs. Mudavadi?",
+                    "choices": [
+                        {
+                            "text": "Gideon Moi",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Mudavadi",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.8",
+                    "type": "radiogroup",
+                    "title": "Q19.8. Kalonzo vs. Mudavadi?",
+                    "choices": [
+                        {
+                            "text": "Kalonzo",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Mudavadi",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.9",
+                    "type": "radiogroup",
+                    "title": "Q19.9. Ruto vs. Matiang’i?",
+                    "choices": [
+                        {
+                            "text": "Ruto",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Matiang'i",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.10",
+                    "type": "radiogroup",
+                    "title": "Q19.10. Martha Karua vs Ruto?",
+                    "choices": [
+                        {
+                            "text": "Martha Karua",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Ruto",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q19.11",
+                    "type": "radiogroup",
+                    "title": "Q19.11. Martha Karua vs Gideon Moi?",
+                    "choices": [
+                        {
+                            "text": "Martha Karua",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Gideon Moi",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Neither [DO NOT READ]",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Not sure",
+                            "value": "4"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q20",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q20. Ikiwa ulipiga kura, ulimpigia kura nani kama Rais katika Uchaguzi Mkuu wa Agosti 2017?",
+                        "default": "Q20. If you voted, whom did you vote for as president in the August 2017 General Election?"
+                    },
+                    "choices": [
+                        {
+                            "text": "Uhuru",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Raila",
+                            "value": "2"
+                        },
+                        {
+                            "text": "No response",
+                            "value": "3"
+                        },
+                        {
+                            "text": "I did not vote",
+                            "value": "4"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Other (specify)",
+                    "isRequired": true
+                },
+                {
+                    "name": "Q21",
+                    "type": "radiogroup",
+                    "title": {
+                        "bg": "Q21. Kuhusu hatma ya DP William Ruto, ni yapi yafuatayo ni karibu na maoni yako mwenyewe?",
+                        "default": "Q21. Regarding the future of DP William Ruto, which of the following is closest to your own view?"
+                    },
+                    "choices": [
+                        {
+                            "text": {
+                                "bg": "Anapaswa kugombea urais mnamo 2022",
+                                "default": "He should contest the presidency in 2022"
+                            },
+                            "value": "1"
+                        },
+                        {
+                            "text": {
+                                "bg": "Haifai kugombea mnamo 2022 lakini badala yake asubiri hadi 2027",
+                                "default": "He should not contest in 2022 but instead wait until 2027"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "text": {
+                                "bg": "Anapaswa kumuunga mkono mgombea mwingine wa chaguo lake",
+                                "default": "He should support another candidate of his choice"
+                            },
+                            "value": "3"
+                        },
+                        {
+                            "text": {
+                                "bg": "Anapaswa kustaafu kutoka kwa siasa kabisa",
+                                "default": "He should retire from politics completely"
+                            },
+                            "value": "4"
+                        },
+                        {
+                            "text": {
+                                "bg": "Hajatoa jibu",
+                                "default": "No response"
+                            },
+                            "value": "5"
+                        }
+                    ],
+                    "otherText": "Other (describe)",
+                    "isRequired": true,
+                    "description": "SINGLE RESPONSE – READ OUT"
+                }
+            ]
+        },
+        {
+            "name": "SECTION 5: NATIONAL OPINION POLLING",
+            "elements": [
+                {
+                    "name": "Q22",
+                    "rows": [
+                        {
+                            "text": "Uhuru Kenyatta",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Raila Odinga",
+                            "value": "2"
+                        },
+                        {
+                            "text": "William Ruto",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Fred Matiang’i",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Mutahi Kagwe",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kalonzo Musyoka",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Musalia Mudavadi",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Hassan Joho",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Wycliff Oparanya",
+                            "value": "9"
+                        },
+                        {
+                            "text": "Peter Munya",
+                            "value": "10"
+                        }
+                    ],
+                    "type": "matrixdropdown",
+                    "title": "Q22. On a scale of 1 to 10 where one is “DOES NOT APPROVE AT ALL” not approve and 10 is STRONGLY APPROVE, to what extent do you approve of the following leaders?",
+                    "choices": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "columns": [
+                        {
+                            "name": "1",
+                            "title": "Rating",
+                            "choices": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10"
+                            ],
+                            "cellType": "dropdown",
+                            "isRequired": true
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q23",
+                    "type": "radiogroup",
+                    "title": "Q23. Which of the following Kenyan leader inspires you the most?",
+                    "choices": [
+                        {
+                            "text": "Uhuru Kenyatta",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Raila Odinga",
+                            "value": "2"
+                        },
+                        {
+                            "text": "William Ruto",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Fred Matiang’i",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Mutahi Kagwe",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kalonzo Musyoka",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Musalia Mudavadi",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Hassan Joho",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Wycliff Oparanya",
+                            "value": "9"
+                        },
+                        {
+                            "text": "Peter Munya",
+                            "value": "10"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q24",
+                    "type": "matrixdynamic",
+                    "title": "Q24. Which Cabinet Secretary is the best performer in Kenya?  Which one do you rank second?",
+                    "choices": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "columns": [
+                        {
+                            "name": "1",
+                            "title": "Best",
+                            "choices": [
+                                {
+                                    "text": "Fred Matiang’i (Interior)",
+                                    "value": "1"
+                                },
+                                {
+                                    "text": "Mutahi Kagwe (Health)",
+                                    "value": "2"
+                                },
+                                {
+                                    "text": "Peter Munya (Agriculture)",
+                                    "value": "3"
+                                },
+                                {
+                                    "text": "Amina Mohamed (Sports)",
+                                    "value": "4"
+                                },
+                                {
+                                    "text": "Eugene Wamalwa (Devolution)",
+                                    "value": "5"
+                                }
+                            ],
+                            "cellType": "dropdown",
+                            "hasOther": true,
+                            "otherText": "Others specify",
+                            "isRequired": true
+                        },
+                        {
+                            "name": "2",
+                            "title": "Ranked 2nd",
+                            "choices": [
+                                {
+                                    "text": "Fred Matiang’i (Interior)",
+                                    "value": "1"
+                                },
+                                {
+                                    "text": "Mutahi Kagwe (Health)",
+                                    "value": "2"
+                                },
+                                {
+                                    "text": "Peter Munya (Agriculture)",
+                                    "value": "3"
+                                },
+                                {
+                                    "text": "Amina Mohamed (Sports)",
+                                    "value": "4"
+                                },
+                                {
+                                    "text": "Eugene Wamalwa (Devolution)",
+                                    "value": "5"
+                                }
+                            ],
+                            "cellType": "dropdown",
+                            "hasOther": true,
+                            "otherText": "Others specify",
+                            "isRequired": true
+                        }
+                    ],
+                    "rowCount": 1,
+                    "isRequired": true,
+                    "maxRowCount": 1,
+                    "minRowCount": 1
+                },
+                {
+                    "name": "Q25",
+                    "type": "radiogroup",
+                    "title": "Q25. Which pair of leaders would you support in 2022 ?",
+                    "choices": [
+                        {
+                            "text": "Ruto - Kiunjuri",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Matiang’i- Kagwe",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Raila - Waiguru",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Raila – Kagwe",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Matiang’i- Munya",
+                            "value": "5"
+                        }
+                    ],
+                    "isRequired": true,
+                    "description": "SINGLE RESPONSE"
+                },
+                {
+                    "name": "Q26",
+                    "type": "checkbox",
+                    "title": "Q26. What are the values and ethos must any leader possess to earn your support?",
+                    "choices": [
+                        {
+                            "text": "No corrupt",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Has a track record of delivery",
+                            "value": "2"
+                        },
+                        {
+                            "text": "From my community/tribe",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Includes Youth in his/her government",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Includes women in his/her government",
+                            "value": "5"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Others specify…",
+                    "isRequired": true,
+                    "validators": [
+                        {
+                            "text": "Please select the top 3",
+                            "type": "answercount",
+                            "maxCount": 3,
+                            "minCount": 1
+                        }
+                    ],
+                    "description": "UPTO THREE RESPONSES"
+                },
+                {
+                    "name": "Q27",
+                    "type": "text",
+                    "title": "Q27. Which leader in Kenya best embodies those values?",
+                    "isRequired": true,
+                    "description": "SINGLE RESPONSE"
+                },
+                {
+                    "name": "Q28",
+                    "rows": [
+                        {
+                            "text": "Corruption",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Dictatorship",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Tribalism",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Divisive politics",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Family Heritage (Dynasty)",
+                            "value": "5"
+                        }
+                    ],
+                    "type": "matrixdropdown",
+                    "title": "Q28. What of the following negative attributes influences you towards or away from a leader?” Use a scale  of 1 to 10 where 1 is NO INFLUENCE AT ALL and 10 is NEGATIVE INFLUENCE.",
+                    "choices": [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5
+                    ],
+                    "columns": [
+                        {
+                            "name": "1",
+                            "title": "Rating",
+                            "choices": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10"
+                            ],
+                            "cellType": "dropdown",
+                            "isRequired": true
+                        }
+                    ],
+                    "isRequired": true
+                }
+            ]
+        },
+        {
+            "name": "SECTION 6: TEA CONSUMPTION",
+            "elements": [
+                {
+                    "name": "Q29",
+                    "type": "radiogroup",
+                    "title": "Q29. What tea brands are you AWARE OF?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Others specify",
+                    "isRequired": true,
+                    "description": "[DO NOT PROMPT - RECORD FIRST BRAND MENTIONED]"
+                },
+                {
+                    "name": "Q30",
+                    "type": "checkbox",
+                    "title": "Q30. What tea brands are you AWARE OF?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "hasNone": true,
+                    "hasOther": true,
+                    "otherText": "Others specify",
+                    "isRequired": true,
+                    "description": "[DO NOT PROMPT - RECORD BRANDS MENTIONED]"
+                },
+                {
+                    "name": "Q31",
+                    "type": "checkbox",
+                    "title": "Q31. Which of the following tea brand are YOU AWARE OF?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "otherText": "Others specify",
+                    "isRequired": true,
+                    "description": "[ READ OUT LIST]"
+                },
+                {
+                    "name": "Q32",
+                    "type": "checkbox",
+                    "title": "Q32. Which ones have you EVER USED?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "hasNone": true,
+                    "hasOther": true,
+                    "otherText": "Others specify",
+                    "visibleIf": "{Q31} contains {item}",
+                    "isRequired": true,
+                    "description": "[ READ OUT LIST]"
+                },
+                {
+                    "name": "Q33",
+                    "type": "checkbox",
+                    "title": "Q33. Which one have you used in the PAST 12 MONTHS?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "hasNone": true,
+                    "hasOther": true,
+                    "otherText": "Others specify",
+                    "visibleIf": "{Q32} contains {item}",
+                    "isRequired": true,
+                    "description": "[ READ OUT LIST]"
+                },
+                {
+                    "name": "Q34",
+                    "type": "radiogroup",
+                    "title": "Q34. Which one is your favourite?",
+                    "choices": [
+                        {
+                            "text": "Ketepa Tea",
+                            "value": "1"
+                        },
+                        {
+                            "text": "Kericho Gold",
+                            "value": "2"
+                        },
+                        {
+                            "text": "Melvins Tea",
+                            "value": "3"
+                        },
+                        {
+                            "text": "Eden Tea",
+                            "value": "4"
+                        },
+                        {
+                            "text": "Angies Tea",
+                            "value": "5"
+                        },
+                        {
+                            "text": "Kilimanjaro Tea",
+                            "value": "6"
+                        },
+                        {
+                            "text": "Safari Tea",
+                            "value": "7"
+                        },
+                        {
+                            "text": "Baraka Tea",
+                            "value": "8"
+                        },
+                        {
+                            "text": "Liptons",
+                            "value": "9"
+                        }
+                    ],
+                    "hasOther": true,
+                    "otherText": "Others specify",
+                    "visibleIf": "{Q32} contains {item}",
+                    "isRequired": true
+                }
+            ]
+        },
+        {
+            "name": "page1",
+            "elements": [
+                {
+                    "name": "Q21.1",
+                    "type": "radiogroup",
+                    "title": "Altogether, did you enjoy this interview?",
+                    "choices": [
+                        {
+                            "text": "Yes",
+                            "value": "1"
+                        },
+                        {
+                            "text": "No",
+                            "value": "2"
+                        }
+                    ],
+                    "isRequired": true
+                },
+                {
+                    "name": "Q21.2",
+                    "type": "text",
+                    "title": "Please tell me why you did not like it.",
+                    "visibleIf": "{Q21.1} = \"2\"",
+                    "isRequired": true
+                }
+            ]
+        }
+    ],
+    "showQuestionNumbers": "off"
+}

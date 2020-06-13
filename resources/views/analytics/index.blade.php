@@ -3,7 +3,7 @@
         <script src="https://unpkg.com/jquery"></script>
         <script src="https://surveyjs.azureedge.net/1.5.12/survey.jquery.js"></script>
         <link href="https://surveyjs.azureedge.net/1.5.12/modern.css" type="text/css" rel="stylesheet"/>
-       
+
 
 
           <script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
@@ -41,35 +41,56 @@
 @section('content')
 
 <div class="container-fluid">
-   
- 
+
+
 
       <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="summaryContainer"></div>
-  
-  
+
+
 </div>
 
 
-   
-     
+
+
 
 
 <script>
 
 
-    
+
 Survey
     .StylesManager
     .applyTheme("modern");
 
-var json =JSON.stringify({!! json_encode($survey[0]) !!}) ;
+
+var datas = {!! json_encode($survey[0]) !!};
+// var json =JSON.stringify({!! json_encode($survey[0]) !!}) ;
+
+// console.log(datas.pages);
+
+var newdatas;
+
+// datas.pages.forEach()
+let obj = datas.pages.find(o => o.name === 's5' || o.name === 's6')
+// console.log(obj)
+
+newdatas = arrayRemove(datas.pages, obj);
+
+// console.log(newdatas)
+
+datas.pages = newdatas
+var json =  JSON.stringify(datas);
+
+console.log(newdatas)
+
+function arrayRemove(arr, value) { return arr.filter(function(ele){ return ele != value; });}
 
 window.survey = new Survey.Model(json);
 window.onload = function () {
         var surveyResultNode = document.getElementById("summaryContainer");
         surveyResultNode.innerHTML = "";
-        console.log(@json($results)) 
+        console.log(@json($results))
        var data = @json($results);
          var normalizedData = data
                 .map(function (item) {
@@ -86,8 +107,8 @@ window.onload = function () {
             var visPanel = new SurveyAnalytics.VisualizationPanel(surveyResultNode, survey.getAllQuestions(), normalizedData);
             visPanel.showHeader = true;
             visPanel.render();
-    
-        
+
+
     };
 // survey
 //     .onComplete
