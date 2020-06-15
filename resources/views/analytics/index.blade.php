@@ -71,20 +71,20 @@ var datas = {!! json_encode($survey[0]) !!};
 
 var newdatas;
 
-// // datas.pages.forEach()
-// let obj1 = datas.pages.find(o => o.name === 's5')
+// datas.pages.forEach()
+let obj1 = datas.pages.find(o => o.name === 's5')
 
-// let obj = datas.pages.find(o => o.name === 's6')
-// // console.log(obj)
+let obj = datas.pages.find(o => o.name === 's6')
+// console.log(obj)
 
-// newdatas = arrayRemove(datas.pages, obj);
+newdatas = arrayRemove(datas.pages, obj);
 
-// anotherdata = arrayRemove(newdatas, obj1);
+anotherdata = arrayRemove(newdatas, obj1);
 
 
-// console.log(newdatas)
+console.log(newdatas)
 
-// datas.pages = anotherdata
+datas.pages = anotherdata
 
 console.log(datas.pages);
 
