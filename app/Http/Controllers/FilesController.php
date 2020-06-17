@@ -38,7 +38,7 @@ class FilesController extends Controller
             echo "could not open zip";
         }
 
-        // return response()->download('call_recordings.zip');
+        return response()->download('call_recordings.zip');
         // return response()->download('');
         // print_r($calls);
 
