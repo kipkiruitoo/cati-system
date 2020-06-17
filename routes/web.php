@@ -146,3 +146,6 @@ Route::get('/project/{id}/billing/calls', 'ProjectController@call_details_excel'
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+
+
+Route::get('download/recordings', 'FilesController@downloadfiles');
