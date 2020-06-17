@@ -9,11 +9,12 @@ class FilesController extends Controller
 {
     public function downloadfiles()
     {
-        $calls = Projects::find(35)->calls()->where('recording_link', '!=', 'null')->pluck('recording_link');
+        $project = trim(Projects::find(41)->name);
+        $calls = Projects::find(41)->calls()->where('recording_link', '!=', 'null')->pluck('recording_link');
         // $calls = array_slice($calls->toArray(), 0, 5);
 
         $zip = new \ZipArchive;
-        fopen('call_recordings.zip', 'w+');
+        fopen($project . '.zip', 'w+');
         if ($zip->open('call_recordings.zip', \ZipArchive::OVERWRITE) === TRUE) {
             // Add file to the zip file
             // $zip->addFile('test.txt');
