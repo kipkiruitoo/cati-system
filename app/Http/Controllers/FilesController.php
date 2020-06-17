@@ -10,10 +10,11 @@ class FilesController extends Controller
     public function downloadfiles()
     {
         $calls = Projects::find(35)->calls()->where('recording_link', '!=', 'null')->pluck('recording_link');
-        $calls = array_slice($calls->toArray(), 0, 20);
+        $calls = array_slice($calls->toArray(), 0, 5);
 
         $zip = new \ZipArchive;
-        if ($zip->open('call_recordings.zip', \ZipArchive::CREATE) === TRUE) {
+        fopen('call_recordings.zip', 'w+');
+        if ($zip->open('call_recordings.zip', \ZipArchive::OVERWRITE) === TRUE) {
             // Add file to the zip file
             // $zip->addFile('test.txt');
             // $zip->addFile('test.pdf');
