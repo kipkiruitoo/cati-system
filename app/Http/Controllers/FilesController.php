@@ -15,7 +15,7 @@ class FilesController extends Controller
 
         $zip = new \ZipArchive;
         fopen($project . '.zip', 'w+');
-        if ($zip->open('call_recordings.zip', \ZipArchive::OVERWRITE) === TRUE) {
+        if ($zip->open($project . '.zip', \ZipArchive::OVERWRITE) === TRUE) {
             // Add file to the zip file
             // $zip->addFile('test.txt');
             // $zip->addFile('test.pdf');
@@ -48,7 +48,7 @@ class FilesController extends Controller
             unlink($filename);
         }
 
-        return response()->download('call_recordings.zip');
+        return response()->download($project . '.zip');
         // return response()->download('');
         // print_r($calls);
 
