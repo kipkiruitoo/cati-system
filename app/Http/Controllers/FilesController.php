@@ -13,7 +13,7 @@ class FilesController extends Controller
         $calls = array_slice($calls->toArray(), 0, 20);
 
         $zip = new \ZipArchive;
-        if ($zip->open('call_recoedings.zip', \ZipArchive::OVERWRITE) === TRUE) {
+        if ($zip->open('call_recordings.zip', \ZipArchive::OVERWRITE) === TRUE) {
             // Add file to the zip file
             // $zip->addFile('test.txt');
             // $zip->addFile('test.pdf');
@@ -36,7 +36,8 @@ class FilesController extends Controller
             $zip->close();
         }
 
-        return response()->download($zip);
+        return response()->download('call_recordings.zip');
+        // return response()->download('');
         // print_r($calls);
 
     }
