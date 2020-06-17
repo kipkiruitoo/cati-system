@@ -11,6 +11,13 @@ class FilesController extends Controller
     {
         $calls = Projects::find(35)->calls()->where('recording_link', '!=', 'null')->pluck('recording_link');
         $calls = array_slice($calls->toArray(), 0, 20);
-        print_r($calls);
+        // print_r($calls);
+        foreach ($calls as $link) {
+            // # code...
+            echo $link;
+            $filename =  explode('/', $link);
+            $filename = end($filename);
+            echo $filename;
+        }
     }
 }
