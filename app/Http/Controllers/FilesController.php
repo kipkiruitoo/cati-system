@@ -30,7 +30,7 @@ class FilesController extends Controller
 
                 $zip->addFile($filename);
 
-                unlink($filename);
+                // unlink($filename);
             }
 
             // All files are added, so close the zip file.
@@ -40,6 +40,12 @@ class FilesController extends Controller
         }
 
         $zip->close();
+
+        foreach ($calls as $link) {
+            $filename =  explode('/', $link);
+            $filename = end($filename);
+            unlink($filename);
+        }
 
         return response()->download('call_recordings.zip');
         // return response()->download('');
