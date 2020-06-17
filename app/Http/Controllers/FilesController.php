@@ -34,6 +34,8 @@ class FilesController extends Controller
 
             // All files are added, so close the zip file.
             $zip->close();
+        } else {
+            echo "could not open zip";
         }
 
         // return response()->download('call_recordings.zip');
