@@ -36,7 +36,7 @@ class FilesController extends Controller
             $zip->close();
         }
 
-        return response()->download('call_recordings.zip');
+        // return response()->download('call_recordings.zip');
         // return response()->download('');
         // print_r($calls);
 
