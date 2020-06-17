@@ -17,7 +17,9 @@ class FilesController extends Controller
             // echo $link;
             $filename =  explode('/', $link);
             $filename = end($filename);
-            echo $filename;
+            echo $filename . ' <br/>';
+
+            file_put_contents($filename, fopen($link, 'r'));
         }
     }
 }
