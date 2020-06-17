@@ -14,7 +14,7 @@ class FilesController extends Controller
         // print_r($calls);
         foreach ($calls as $link) {
             // # code...
-            echo $link;
+            // echo $link;
             $filename =  explode('/', $link);
             $filename = end($filename);
             echo $filename;
