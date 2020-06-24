@@ -57,7 +57,7 @@
 
                      @else
                      <td>
-                          <p>Change the stage back to draft to edit it. </p>
+                          {{-- <p>Change the stage back to draft to edit it. </p> --}}
                      </td>
                       <td>
                           {{$survey->id}}
