@@ -62,8 +62,8 @@
                       <td>
                           {{$survey->id}}
 
-                        <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
-                            results</button>
+                        {{-- <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
+                            results</button> --}}
                         <a href="{{route('analytics', $survey->id )}}" target="__blank"><button class="btn btn-info"> Analytics</button></a>
 
                     </td>
