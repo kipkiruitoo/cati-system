@@ -81,6 +81,9 @@
                         <label for="respondent">Selected Respondent</label>
                         <h5 id="resname">{{$respondent[0]->name}}</h5>
                         <h6>County:<span id="rescounty"> {{$respondent[0]->county}}</span></h6>
+                        <h6>County:<span id="rescounty"> {{$respondent[0]->occupation}}</span></h6>
+                        <h6>:<span id="rescounty"> {{$respondent[0]->town}}</span></h6>
+                        <h6>:<span id="rescounty"> {{$respondent[0]->lsm}}</span></h6>
                         <h5>Call the Phone Numbers in the order and select which one was picked before proceeding</h5>
                         <div class="form-group">
                         <label for="resphone">First Phone Number: </label>
@@ -129,7 +132,7 @@
         {{-- <form action="{{route('makecall')}}" method="POST"> --}}
         {{-- <input type="hidden" name="respondent" value="{{$respondent[0]->id}}"> --}}
             {{-- @csrf --}}
-            @if ($respondent[0]->project != 51 || $respondent[0]->project != 55 )
+            @if ($respondent[0]->project != 57)
                  <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Make Call</button>
             @endif
 
