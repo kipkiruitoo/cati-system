@@ -2,16 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-            <div class="row">
-                <iframe
-    src="http://161.35.125.7:3000/public/dashboard/3ddcc819-bfa2-4cd3-9b80-dead3cb0a9cf"
-    frameborder="0"
-     width="1450"
-    height="700"
-    allowtransparency
-    allowfullscreen
-></iframe>
-            </div>
+
         </div>
     <div class="page-content">
         @include('voyager::alerts')
