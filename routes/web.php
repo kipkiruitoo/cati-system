@@ -151,4 +151,9 @@ Route::get('/debug-sentry', function () {
 Route::get('/survey/structure/{survey}', 'SurveyController@getSurveyStrucrure')->name('surveystructure');
 
 
+Route::get('manage/respondents/{project}', 'RespondentsController@index')->name('respondents.index');
+Route::post('manage/respondents', 'RespondentsController@runquery')->name('respondents.query');
+// respondentsquery
+
+
 Route::get('download/recordings', 'FilesController@downloadfiles');

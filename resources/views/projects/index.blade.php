@@ -64,9 +64,9 @@
                     <td>{{$project->start_date}}</td>
                     <td>{{$project->end_date}}</td>
                     <td>
-                         <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Coming soon">
+                         <a href="{{route('respondents.index', $project->id)}}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Coming soon">
   Respondent Management
-</button>
+</a>
                     </td>
                     <td>
                         <a href="{{route('projects.show', $project->id)}}"><button
