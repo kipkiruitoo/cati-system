@@ -11,10 +11,10 @@ class Survey extends Model
     protected $table = 'surveys';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'slug', 'json',
+        'name', 'slug', 'json', 'structure',
     ];
     protected $casts = [
-        'json'  =>  'array',
+        'json'  =>  'array', 'structure'=> 'array',
     ];
     public static function boot()
     {
