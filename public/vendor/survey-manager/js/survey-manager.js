@@ -1780,6 +1780,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1806,8 +1823,94 @@ Object.keys(widgetsList).forEach(function (widget) {
   data: function data() {
     return {
       surveyData: this.json,
-      surveyId: this.id
+      surveyId: this.id,
+      structure: {}
     };
+  },
+  methods: {
+    getcsv: function getcsv() {
+      //   this.surveyData.subscribe(data =>{
+      //         let json =
+      //   })
+      var questions = this.getjson();
+      var finalArray = [];
+      finalArray.push(questions);
+      axios.post("/getcsvstring", {
+        finalArray: finalArray
+      }).then(function (result) {
+        // console.log(result.data);
+        var csvContent = "data:text/csv;charset=utf-8," + result.data;
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "test.csv");
+        document.body.appendChild(link); // Required for FF
+
+        link.click(); // let self = this;
+      });
+    },
+    getjson: function getjson() {
+      var json = JSON.stringify(this.surveyData);
+      json = JSON.parse(json); //   console.log(json);
+
+      var pages = json.pages; //   console.log(pages);
+
+      var questions = {};
+      pages.forEach(function (element) {
+        console.log(element);
+        var elements = element.elements; // console.log(elements);
+
+        elements.forEach(function (el) {
+          // console.log(el)
+          //   if (el.type === "dropdown") {
+          //     let question = {};
+          //     let name = el.name;
+          //     let choices = el.choices;
+          //     //   console.log(el.choices);
+          //     choices.forEach(element => {
+          //       // console.log(choices.indexOf(element));
+          //       question[choices.indexOf(element)] = "answer";
+          //     });
+          //     questions[name] = question;
+          //   } else
+          if (el.type === "checkbox") {
+            var question = [];
+            var name = el.name;
+            var rows = el.choices;
+            rows.forEach(function (row) {
+              //   console.log(row)
+              question[rows.indexOf(row)] = "";
+            });
+            questions[name] = question;
+          } else if (el.type === "") {
+            var _question = {};
+            var _name = el.name;
+            var _rows = el.rows;
+
+            _rows.forEach(function (row) {
+              //   console.log(row)
+              _question[_rows.indexOf(row)] = "";
+            });
+
+            questions[_name] = _question;
+          } else {
+            var _name2 = el.name; //   let question = `${name} : null`;
+            //   questions.push(question);
+
+            questions[_name2] = ""; // console.log(questions)
+          }
+        }); //   console.log(questions);
+      }); // console.log(questions);
+      // console.log(jsonArray);
+      //   var finalArray = [];
+      //   finalArray.push(questions);
+      //   console.log(finalArray);
+      //   this.structure = JSON.stringify(questions);
+      //   this.structure = JSON.parse(this.structure);
+      //   console.log(this.structure);
+
+      return questions;
+    }
   },
   mounted: function mounted() {
     var editorOptions = SurveyConfig.builder;
@@ -1815,14 +1918,19 @@ Object.keys(widgetsList).forEach(function (widget) {
     survey_creator__WEBPACK_IMPORTED_MODULE_0__["editorLocalization"].locales["bg"] = _swahili__WEBPACK_IMPORTED_MODULE_2__; // SurveyEditor.editorLocalization.localeNames["bg"] = "Swahili";
 
     this.editor = new survey_creator__WEBPACK_IMPORTED_MODULE_0__["SurveyEditor"]("surveyEditorContainer", editorOptions);
+    var structure = this.getjson();
     this.editor.text = JSON.stringify(this.surveyData);
     var self = this;
 
     this.editor.saveSurveyFunc = function () {
+      var _this = this;
+
       axios.put("/survey/" + self.id, {
-        json: JSON.parse(this.text)
+        json: JSON.parse(this.text),
+        structure: structure
       }).then(function (response) {
         self.editor.text = JSON.stringify(response.data.data.json);
+        _this.surveyData = response.data.data;
         self.$root.snackbar = true;
         self.$root.snackbarMsg = response.data.message;
       })["catch"](function (error) {
@@ -140443,14 +140551,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group ml-5 mt-1" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark",
+              on: {
+                click: function($event) {
+                  return _vm.getcsv()
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-industry",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(" Generate Csv Structure\n        ")
+            ]
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("small", [
+            _vm._v(
+              "Please note that this feature is under development and might not be accurate if your survey consists of complex panels"
+            )
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr")
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "surveyEditorContainer" } })
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("div", { attrs: { id: "surveyEditorContainer" } })])
+    return _c("small", [
+      _vm._v("\n          Contact the developer:\n          "),
+      _c("a", { attrs: { href: "mailto:daviskipkiruitoo@gmail.com" } }, [
+        _vm._v("Davis Too")
+      ]),
+      _vm._v(" for any enquiries\n        ")
+    ])
   }
 ]
 render._withStripped = true

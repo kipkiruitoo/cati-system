@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-// use App\Survey;
+
 use Illuminate\Http\Request;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\SurveyResult;
-use App\Exports\FeedbackExport;
 use OzdemirBurak\JsonCsv\File\Json;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ResultsExport;
@@ -116,14 +115,10 @@ class SurveyController extends Controller
             echo ('an error occured while deleting');
         }
     }
-    public function exportfeedback(Request $request)
-    {
-        // dd($request);
-        return  Excel::download(new FeedbackExport($request->project), 'feedback.xlsx');
-    }
     public function getresults(Request $request)
     {
         $survey = Survey::find($request->survey);
+        $structure = $survey->structure;
 
         if ($survey->stage == 'test') {
             $results =  SurveyResult::where('survey_id', $request->survey)->whereBetween('created_at', [$request->from, $request->to])->latest()->take(20)->get();
@@ -177,7 +172,6 @@ class SurveyController extends Controller
             $smallarray = array("respondent name" => $respondent->name) + $smallarray;
             $smallarray = array("county" => $respondent->county) + $smallarray;
             $smallarray = array("region" => $respondent->town) + $smallarray;
-            $smallarray = array("phonenumber" => $interview->phonenumber) + $smallarray;
             $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
@@ -204,7 +198,20 @@ class SurveyController extends Controller
 
         // print_r($new_array);
         // var_dump(json_encode($new_array));
+        // dd($structure);
+        $structure = array("date_of_interview" => null) + $structure;
+        $structure = array("respondent_id" => null) + $structure;
+        $structure = array("respondent name" => null) + $structure;
+        $structure = array("county" => null) + $structure;
+        $structure = array("region" => null) + $structure;
+        $structure = array("original_id" => null) + $structure;
+        $structure = array("interviewer" => null) + $structure;
+        $structure = array("interview_id" => null) + $structure;
+
+
+        array_unshift($new_array, $structure);
         $new_array =  json_encode($new_array);
+
 
         if ($request->submit == "csv") {
 
@@ -371,5 +378,51 @@ class SurveyController extends Controller
 
         // Delete the temp file
         unlink($strTempFile);
+    }
+
+    public function getcsvstring(Request $request)
+    {
+        $fileName = time() . '.json';
+        $handle = fopen($fileName, 'w') or die("could not create file");
+        fputs($handle, json_encode($request->finalArray));
+        fclose($handle);
+
+
+
+
+        $json = new Json($fileName);
+        $json->setConversionKey('utf8_encoding', true);
+
+
+        $csvString = $json->convert();
+
+        unlink($fileName);
+        // $json->convertAndDownload();
+        return $csvString;
+    }
+
+    public function getSurveyStrucrure($survey)
+    {
+        $survey = Survey::where('id', $survey)->get()->first();
+        // dd($survey);
+        // $fileName = time() . '.json';
+        // $handle = fopen($fileName, 'w') or die("could not create file");
+        // fputs($handle, json_encode($survey));
+        // fclose($handle);
+
+
+
+
+        // $json = new Json($fileName);
+        // $json->setConversionKey('utf8_encoding', true);
+
+
+        // $csvString = $json->convert();
+
+        // unlink($fileName);
+        // $json->convertAndDownload();
+        // return $csvString;
+
+        return json_encode($survey);
     }
 }

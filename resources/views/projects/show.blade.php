@@ -1,5 +1,10 @@
 @extends('voyager::master')
-
+@section('header')
+        <link href="https://surveyjs.azureedge.net/1.7.12/modern.css" type="text/css" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+        <script src="https://surveyjs.azureedge.net/1.7.12/survey.pdf.js"></script>
+@endsection
 @section('content')
 
 <div class="container">
@@ -55,6 +60,7 @@
                      </td>
                       <td>
                           {{$survey->id}}
+                       <button class="btn btn-success" type="button" id="savepdf" onclick="savepdf({{$survey->id}})"><span><i class="fa fa-plus"></i></span>Generate PDF</button>
 
                         <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
                             results</button>
@@ -69,7 +75,7 @@
                             @method('DELETE')<button type="submit" class="btn  btn-danger">Delete</a>
                         </form>
                         </td>
-                        
+
                     </tr>
                      <!-- Modal -->
                 <div class="modal fade" id="status{{$survey->id}}" tabindex="-1" role="dialog"
@@ -159,6 +165,35 @@
             </tbody>
         </table>
     </div>
-    
+
 </div>
+ <script src="https://unpkg.com/jquery"></script>
+<script src="https://surveyjs.azureedge.net/1.7.12/survey.jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+        <script src="https://surveyjs.azureedge.net/1.7.12/survey.pdf.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<script>
+    var json;
+    function savepdf(survey) {
+        console.log(survey);
+        let savebtn = document.getElementById('savepdf');
+        savebtn.innerHTML = '<span class="animate__animated animate__bounce"><i class="fa fa-spinner fa-spin"> Generating</span>';
+        let url = `/survey/structure/${survey}`;
+        axios.get(url).then(result=>{
+            console.log(result)
+            window.survey = new Survey.Model(result.data.json);
+            json = result.data.json;
+             saveSurveyToPdf(result.data.name, survey);
+        });
+    }
+    function saveSurveyToPdf(filename, surveyModel) {
+    var surveyPDF = new SurveyPDF.SurveyPDF(json, {commercial: true});
+    surveyPDF.data = surveyModel.data;
+    surveyPDF.save(filename);
+    let savebtn = document.getElementById('savepdf');
+        savebtn.innerHTML = '<span><i class="fa fa-plus"></i></span>Generate PDF';
+}
+</script>
 @endsection

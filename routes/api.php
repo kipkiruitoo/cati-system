@@ -18,3 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('media', 'MediaController');
+
+
+Route::post('getcsvstring', 'SurveyController@getcsvstring');

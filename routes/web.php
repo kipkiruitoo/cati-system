@@ -148,4 +148,7 @@ Route::get('/debug-sentry', function () {
 });
 
 
+Route::get('/survey/structure/{survey}', 'SurveyController@getSurveyStrucrure')->name('surveystructure');
+
+
 Route::get('download/recordings', 'FilesController@downloadfiles');

@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://unpkg.com/easy-autocomplete@1.3.5/dist/easy-autocomplete.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <script src="https://unpkg.com/emotion-ratings@2.0.1/dist/emotion-ratings.js"></script>
 </head>
@@ -29,7 +30,6 @@
 
     <script>
         window.SurveyConfig = {!!json_encode(config('survey-manager')) !!};
-
     </script>
 
     <script src="{{ asset('vendor/survey-manager/js/survey-manager.js') }}"></script>
