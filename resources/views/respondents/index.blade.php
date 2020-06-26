@@ -1,7 +1,7 @@
 @extends('voyager::master')
 
 @section('content')
-
+<h1>This Page is under development. Do not use it yet</h1>
 <div class="container">
 <form action="{{route('respondents.query')}}" method="post">
 @csrf
