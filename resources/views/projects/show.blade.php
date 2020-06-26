@@ -60,8 +60,8 @@
                      </td>
                       <td>
                           <!-- {{$survey->id}} -->
-                        <a href="{{route('surveytool', $survey->id)}}">
-                        <button class = "btn btn-warning">View Tool</button>
+                        <a href="{{route('surveytool', $survey->id)}}" target="_blank">
+                        <button class = "btn btn-danger">View Tool</button>
                         </a>
                        <button class="btn btn-success" type="button" id="savepdf" onclick="savepdf({{$survey->id}})"><span><i class="fa fa-plus"></i></span>Generate PDF</button>
 
