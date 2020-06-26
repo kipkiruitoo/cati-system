@@ -59,7 +59,10 @@
                           <p>Change the stage back to draft to edit it. </p>
                      </td>
                       <td>
-                          {{$survey->id}}
+                          <!-- {{$survey->id}} -->
+                        <a href="{{route('surveytool', $survey->id)}}">
+                        <button class = "btn btn-warning">View Tool</button>
+                        </a>
                        <button class="btn btn-success" type="button" id="savepdf" onclick="savepdf({{$survey->id}})"><span><i class="fa fa-plus"></i></span>Generate PDF</button>
 
                         <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download

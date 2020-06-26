@@ -150,6 +150,8 @@ Route::get('/debug-sentry', function () {
 
 Route::get('/survey/structure/{survey}', 'SurveyController@getSurveyStrucrure')->name('surveystructure');
 
+Route::get('/survey/tool/{survey}', 'SurveyController@getSurveyTool')->name('surveytool');
+
 
 Route::get('manage/respondents/{project}', 'RespondentsController@index')->name('respondents.index');
 Route::post('manage/respondents', 'RespondentsController@runquery')->name('respondents.query');

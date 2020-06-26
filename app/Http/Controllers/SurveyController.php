@@ -425,4 +425,10 @@ class SurveyController extends Controller
 
         return json_encode($survey);
     }
+
+    public function getSurveyTool($tool){
+
+        $survey =  Survey::find($tool);
+        return view('surveys.tool', compact('survey'));
+    }
 }
