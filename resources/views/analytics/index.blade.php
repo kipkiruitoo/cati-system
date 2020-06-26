@@ -75,12 +75,15 @@ var newdatas;
 let obj1 = datas.pages.find(o => o.name === 's5')
 
 let obj = datas.pages.find(o => o.name === 's6')
+
+let obj2 = datas.pages.find(o => o.name === 's7')
 // console.log(obj)
 
 newdatas = arrayRemove(datas.pages, obj);
 
 anotherdata = arrayRemove(newdatas, obj1);
 
+anotherdata = arrayRemove(newdatas, obj2);
 
 console.log(newdatas)
 
