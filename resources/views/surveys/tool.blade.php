@@ -84,6 +84,8 @@
             let content = document.documentElement.innerHTML;
             var converted = htmlDocx.asBlob(content, {orientation: 'landscape', margins: {top: 720}});
             saveAs(converted, 'test.docx');
+
+            alert('Please enable editing in word to view the document properly')
         }
     </script>
     <!-- session_create_id -->
