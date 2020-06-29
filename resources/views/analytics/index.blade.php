@@ -83,7 +83,7 @@ newdatas = arrayRemove(datas.pages, obj);
 
 anotherdata = arrayRemove(newdatas, obj1);
 
-anotherdata = arrayRemove(newdatas, obj2);
+anotherdata = arrayRemove(anotherdata, obj2);
 
 console.log(newdatas)
 
