@@ -124,7 +124,7 @@ Route::get('/getexcel', function () {
 })->name('getexcel');
 
 
-Route::get('/analytics/{id}', 'AnalyticsController@index')->name('analytics')->middleware('auth');
+Route::get('/analytics/{id}/view/{slug}', 'AnalyticsController@index')->name('analytics')->middleware('auth');
 
 
 Route::post('/agent/call', 'AgentController@make_call')->name('makecall');

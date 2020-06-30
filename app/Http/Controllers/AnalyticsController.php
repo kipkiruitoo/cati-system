@@ -8,8 +8,8 @@ class AnalyticsController extends Controller
 {
     //
 
-    public function index($id){
-        $survey = Survey::where('id', $id)->pluck('json');
+    public function index($id, $slug){
+        $survey = Survey::where('id', $id)->where('slug', $slug)->pluck('json');
         $results = SurveyResult::where('survey_id', $id)->get()->pluck('json');
         // var_dump($results);
         $survey = $survey->toArray();
