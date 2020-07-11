@@ -143,6 +143,8 @@
                 <h5>Last Feedback:</h5>
                 <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback"> <span><i class="fa fa-plus"></i></i></span> Add
                     Feedback</button>
+                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#schedule"> <span><i class="fa fa-calendar "></i></i></span> 
+                    Schedule Call</button>
                 <div class="new-table">
                     <table class="table">
                         <thead>
@@ -220,6 +222,43 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button onclick="addfeedback()" class="btn btn-dark"><span><i class="fa fa-save"></i> Save</span> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Schedule Call for this Respondent:
+                    {{$respondent[0]->name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="scheduleform" method="POST">
+                @csrf
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="schedule">Schedule Call</label>
+
+                        <input class="form-control" type="datetime-local" name="time" id="schedule" >
+
+                        <small>the respondent will reappear again at the scheduled time</small>
+                     </div>
+                        <input type="hidden" name="project" value="{{ $project }}">
+                    </div>
+                    <input type="hidden" id="respondent" name="respondent" value="{{$respondent[0]->id}}">
+                    <input type="hidden" name="survey" value={{$survey}}>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onclick="schedule()" class="btn btn-dark"><span><i class="fa fa-save"></i> Schedule</span> </button>
                 </div>
             </form>
         </div>
