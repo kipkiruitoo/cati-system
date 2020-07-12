@@ -170,6 +170,8 @@ class SurveyController extends Controller
             $smallarray = array("date_of_interview" =>  date_format($interview->created_at, "D-d-M-Y H:i:s")) + $smallarray;
             $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
             $smallarray = array("respondent name" => $respondent->name) + $smallarray;
+            $smallarray = array("Iterview Start time" => $interview->start_time) + $smallarray;
+            $smallarray = array("Iterview End  time" => $interview->end_time) + $smallarray;
             $smallarray = array("county" => $respondent->county) + $smallarray;
             $smallarray = array("region" => $respondent->town) + $smallarray;
             $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
@@ -426,7 +428,8 @@ class SurveyController extends Controller
         return json_encode($survey);
     }
 
-    public function getSurveyTool($tool){
+    public function getSurveyTool($tool)
+    {
 
         $survey =  Survey::find($tool);
         return view('surveys.tool', compact('survey'));
