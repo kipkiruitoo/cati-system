@@ -74,6 +74,8 @@ export default {
       phonenumber: 0,
       sid: "",
       count: 0,
+      starttime: "",
+      endtime: "",
       sessionId: "",
       slocale: "en",
       requiredate: false,
@@ -94,6 +96,10 @@ export default {
     // this.sessionId = this.callSession;
     localStorage.setItem("count", this.count);
     localStorage.setItem("phone", this.phonenumber);
+    // let today = new Date();
+    this.starttime = this.gettime();
+
+    console.log(this.starttime);
 
     // console.log(this.jsondata);
   },
@@ -130,6 +136,20 @@ export default {
       this.survey.locale = this.slocale;
       console.log(this.slocale);
       this.survey.render();
+    },
+    gettime() {
+      var today = new Date();
+      var date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date + " " + time;
+
+      return dateTime;
     }
   },
   computed: {
@@ -163,6 +183,8 @@ export default {
           agent: this.agent,
           respondent: this.respondent.respondent,
           survey: this.sid,
+          start_time: this.starttime,
+          end_time: this.gettime(),
           callsession: window.CallSession,
           phonenumber: this.phonenumber,
           project: this.surveyData.project,

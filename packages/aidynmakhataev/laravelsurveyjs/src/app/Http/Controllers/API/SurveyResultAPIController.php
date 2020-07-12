@@ -9,6 +9,7 @@ use App\Feedback;
 use App\Incomplete;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
@@ -57,6 +58,11 @@ class SurveyResultAPIController extends Controller
         $interview->survey = $request->input('survey');
         $interview->phonenumber = $request->input('phonenumber');
         $interview->project = $request->input('project');
+        $interview->start_time
+            = $request->input('start_time');
+
+        $interview->end_time =
+            $request->input('end_time');
         $interview->call_session = $request->input('callsession');
         $interview->respondent = $respondent;
         $interview->date = $request->input('date');

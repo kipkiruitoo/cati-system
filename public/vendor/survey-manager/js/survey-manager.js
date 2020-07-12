@@ -2423,6 +2423,8 @@ Object.keys(widgetsList).forEach(function (widget) {
       phonenumber: 0,
       sid: "",
       count: 0,
+      starttime: "",
+      endtime: "",
       sessionId: "",
       slocale: "en",
       requiredate: false,
@@ -2442,7 +2444,10 @@ Object.keys(widgetsList).forEach(function (widget) {
     this.phonenumber = this.selectedphone; // this.sessionId = this.callSession;
 
     localStorage.setItem("count", this.count);
-    localStorage.setItem("phone", this.phonenumber); // console.log(this.jsondata);
+    localStorage.setItem("phone", this.phonenumber); // let today = new Date();
+
+    this.starttime = this.gettime();
+    console.log(this.starttime); // console.log(this.jsondata);
   },
   methods: {
     checkdate: function checkdate() {
@@ -2477,6 +2482,13 @@ Object.keys(widgetsList).forEach(function (widget) {
       this.survey.locale = this.slocale;
       console.log(this.slocale);
       this.survey.render();
+    },
+    gettime: function gettime() {
+      var today = new Date();
+      var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date + " " + time;
+      return dateTime;
     }
   },
   computed: {
@@ -2510,6 +2522,8 @@ Object.keys(widgetsList).forEach(function (widget) {
         agent: _this2.agent,
         respondent: _this2.respondent.respondent,
         survey: _this2.sid,
+        start_time: _this2.starttime,
+        end_time: _this2.gettime(),
         callsession: window.CallSession,
         phonenumber: _this2.phonenumber,
         project: _this2.surveyData.project,
