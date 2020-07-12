@@ -439,11 +439,11 @@
         // console.log("i have been called");
             var respondent = {{$respondent[0]->id}};
             // console.log(respondent);
-            var sessionInput = document.querySelector("#callsession");
-            let hellobar = document.querySelector('#hellobar-bar');
+            // var sessionInput = document.querySelector("#callsession");
+            // let hellobar = document.querySelector('#hellobar-bar');
             var url = '{{route('makecall')}}';
-            hellobar.style.display = "table";
-            var barmessage = document.querySelector('#barmessage');
+            // hellobar.style.display = "table";
+            // var barmessage = document.querySelector('#barmessage');
             var startsurvey = document.querySelector("#startsurvey");
 
         axios.post(url, {respondent: respondent}).then(response=>{
@@ -454,60 +454,44 @@
             startsurvey.disabled = false;
             Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
                 // alert(e)
-                let statusmessage = document.querySelector("#callstatus");
-                let animationdiv = document.querySelector(".call-animation");
+                // let statusmessage = document.querySelector("#callstatus");
+                // let animationdiv = document.querySelector(".call-animation");
                 console.log(e)
-                toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-bottom-full-width",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-};
+
                 // statusmessage.innerHTML = e.callstatus
                 if(e.callstatus === "NotAnswered"){
-                    statusmessage.style.cssText += 'color: red;';
-                    animationdiv.style.background = "red";
-                    hellobar.style.background = "#55040F";
+                    // statusmessage.style.cssText += 'color: red;';
+                    // animationdiv.style.background = "red";
+                    // hellobar.style.background = "#55040F";
                     toastr["error"]("Phone Was not Answered . Please try again")
-                    barmessage.innerHTML = "Phone not Answered . Please try again";
-                     animationdiv.style.border = "solid 5px red";
-                    statusmessage.innerHTML = "Phone not Answered"
+                    // barmessage.innerHTML = "Phone not Answered . Please try again";
+                    //  animationdiv.style.border = "solid 5px red";
+                    // statusmessage.innerHTML = "Phone not Answered"
                 }else if(e.callstatus === "Dialing"){
-                    statusmessage.style.cssText += 'color: yellow;';
-                    animationdiv.style.border = "solid 5px #57a9c1";
-                    hellobar.style.background = "#61045A";
+                    // statusmessage.style.cssText += 'color: yellow;';
+                    // animationdiv.style.border = "solid 5px #57a9c1";
+                    // hellobar.style.background = "#61045A";
                     toastr["info"]("Dialing the Respondent");
-                    barmessage.innerHTML = "Dialing the Respondent";
-                    animationdiv.style.background = "#57a9c1";
-                    statusmessage.innerHTML = "Dialing the Respondent"
+                    // barmessage.innerHTML = "Dialing the Respondent";
+                    // animationdiv.style.background = "#57a9c1";
+                    // statusmessage.innerHTML = "Dialing the Respondent"
                 }else if (e.callstatus === "Bridged") {
-                    statusmessage.style.cssText += 'color: green;';
-                    animationdiv.style.border = "solid 5px green";
+                    // statusmessage.style.cssText += 'color: green;';
+                    // animationdiv.style.border = "solid 5px green";
                     toastr["success"]("Connected with  the Respondent");
-                   hellobar.style.background = "#030B37";
-                    barmessage.innerHTML = "Connected with the Respondent";
-                    animationdiv.style.background = "green";
-                    statusmessage.innerHTML = "Connected with the Respondent"
+                //    hellobar.style.background = "#030B37";
+                //     barmessage.innerHTML = "Connected with the Respondent";
+                //     animationdiv.style.background = "green";
+                //     statusmessage.innerHTML = "Connected with the Respondent"
                 }else if (e.callstatus === "Completed") {
-                    statusmessage.style.cssText += 'color: white;';
-                    animationdiv.style.border = "solid 5px green";
-                     hellobar.style.background = "#033018";
+                    // statusmessage.style.cssText += 'color: white;';
+                    // animationdiv.style.border = "solid 5px green";
+                    //  hellobar.style.background = "#033018";
                     toastr["success"]("Phone Call Completed");
-                    barmessage.innerHTML = "Call Completed";
-                    hellobar.style.display = "None";
-                    animationdiv.style.background = "green";
-                    statusmessage.innerHTML = "Connected with the Respondent"
+                    // barmessage.innerHTML = "Call Completed";
+                    // hellobar.style.display = "None";
+                    // animationdiv.style.background = "green";
+                    // statusmessage.innerHTML = "Connected with the Respondent"
                 }
             })
         })
