@@ -118,7 +118,7 @@ class SurveyController extends Controller
     public function getresults(Request $request)
     {
         $survey = Survey::find($request->survey);
-        $structure = $survey->structure;
+        // $structure = $survey->structure;
 
         if ($survey->stage == 'test') {
             $results =  SurveyResult::where('survey_id', $request->survey)->whereBetween('created_at', [$request->from, $request->to])->latest()->take(20)->get();
@@ -201,17 +201,17 @@ class SurveyController extends Controller
         // print_r($new_array);
         // var_dump(json_encode($new_array));
         // dd($structure);
-        $structure = array("date_of_interview" => 'null') + $structure;
-        $structure = array("respondent_id" => 'null') + $structure;
-        $structure = array("respondent name" => 'null') + $structure;
-        $structure = array("county" => 'null') + $structure;
-        $structure = array("region" => 'null') + $structure;
-        $structure = array("original_id" => 'null') + $structure;
-        $structure = array("interviewer" => 'null') + $structure;
-        $structure = array("interview_id" => 'null') + $structure;
+        // $structure = array("date_of_interview" => 'null') + $structure;
+        // $structure = array("respondent_id" => 'null') + $structure;
+        // $structure = array("respondent name" => 'null') + $structure;
+        // $structure = array("county" => 'null') + $structure;
+        // $structure = array("region" => 'null') + $structure;
+        // $structure = array("original_id" => 'null') + $structure;
+        // $structure = array("interviewer" => 'null') + $structure;
+        // $structure = array("interview_id" => 'null') + $structure;
 
 
-        array_unshift($new_array, $structure);
+        // array_unshift($new_array, $structure);
         $new_array =  json_encode($new_array);
 
 
