@@ -12,15 +12,7 @@
 
 @stop
 @section('headbar')
-<div id="hellobar-bar" class="regular animated infinite pulse">
-    <div class="hb-content-wrapper">
-        <div class="hb-text-wrapper">
-            <div class="hb-headline-text">
-                <p><span > <i class="fa fa-headset"></i> <h4 id="barmessage">Initiating Call</h4></span></p>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 @section('content')
 @php

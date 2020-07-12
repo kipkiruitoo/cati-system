@@ -143,7 +143,7 @@
                 <h5>Last Feedback:</h5>
                 <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback"> <span><i class="fa fa-plus"></i></i></span> Add
                     Feedback</button>
-                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#schedule"> <span><i class="fa fa-calendar "></i></i></span> 
+                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#schedule"> <span><i class="fa fa-calendar "></i></i></span>
                     Schedule Call</button>
                 <div class="new-table">
                     <table class="table">
@@ -265,23 +265,7 @@
     </div>
 </div>
 {{-- Calling Card --}}
-<div class="modal fade" id="calling" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered  " role="document">
-        <div class="modal-content modal-dialog-centered  call">
-            <div class="modal-header">
-                <h5 class="modal-title" id="callstatus">Initiating Call</h5>
-            </div>
-            <div class="modal-body">
-                <div class="call-animation">
-               <img class="img-circle" src="{{env('APP_URL') . '/calling.png'}}" alt="Icon" width="135">
-            </div>
-            </div>
 
-
-        </div>
-    </div>
-</div>
 {{-- Calling Card --}}
 <script src="{{asset('js\app.js')}}"></script>
 <script>
