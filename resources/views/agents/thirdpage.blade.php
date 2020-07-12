@@ -450,6 +450,7 @@
             console.log(response);
             let sessionId = response.data.sessionId;
             console.log(sessionId);
+            toastr["success"]('Call successfully initiated, you should receive a call on your cell soon')
             sessionInput.value = sessionId;
             startsurvey.disabled = false;
             Echo.channel('call_status' + sessionId).listen('ChangeCallStatus', (e)=>{
