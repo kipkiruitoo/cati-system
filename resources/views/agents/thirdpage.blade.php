@@ -439,7 +439,7 @@
         // console.log("i have been called");
             var respondent = {{$respondent[0]->id}};
             // console.log(respondent);
-            // var sessionInput = document.querySelector("#callsession");
+            var sessionInput = document.querySelector("#callsession");
             // let hellobar = document.querySelector('#hellobar-bar');
             var url = '{{route('makecall')}}';
             // hellobar.style.display = "table";
