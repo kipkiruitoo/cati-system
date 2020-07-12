@@ -1805,6 +1805,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 var Survey = survey_vue__WEBPACK_IMPORTED_MODULE_0__["Survey"];
@@ -78276,7 +78281,7 @@ var render = function() {
             _vm._v(" "),
             _c("option", { attrs: { value: "de" } }, [_vm._v("Maasai")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "pl" } }, [_vm._v("Borana")])
+            _c("option", { attrs: { value: "pl" } }, [_vm._v("Somali")])
           ]
         )
       ]),
