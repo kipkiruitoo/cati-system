@@ -25,13 +25,16 @@
 
             <h4>This interview was conducted by : </h4><span>{{ $agent->name}}</span>
         <h4>On:</h4> <span>{{ $interview->created_at}}</span>
-            <h4>The date of consumption was: </h4> <span>{{$interview->date}}</span>
+        <h4>Number Selected by agent was:</h4> <span>{{ $interview->phonenumber}}</span>
+            {{-- <h4>The date of consumption was: </h4> <span>{{$interview->date}}</span>
+             --}}
 
         </div>
         </div>
         <div class="col col-md-6">
             <div class="well">
             <h4> The Respondent Was:</h4> <span>{{$respondent->name}}</span>
+            <h4>From:</h4> <span>{{$respondent->county}}</span>
             <h4>From:</h4> <span>{{$respondent->county}}</span>
             </div>
         </div>
