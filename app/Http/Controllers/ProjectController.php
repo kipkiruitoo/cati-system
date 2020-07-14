@@ -6,6 +6,7 @@ use App\Projects;
 use App\User;
 use App\Client;
 use App\Interview;
+use Carbon\Carbon;
 use Auth;
 use App\Exports\CallsExport;
 use App\RespondentTypes;
@@ -270,8 +271,12 @@ class ProjectController extends Controller
 
     public function supervisorview()
     {
+        $day =
+            Carbon::now();
 
-        $projects = DB::table('projects')->join('project_supervisor', 'project_supervisor.project_id', '=', 'projects.id')->where('project_supervisor.user_id', Auth::user()->id)->get();
+        $date = $day->toDateString();
+
+        $projects = DB::table('projects')->where('end_date', '>', $date)->join('project_supervisor', 'project_supervisor.project_id', '=', 'projects.id')->where('project_supervisor.user_id', Auth::user()->id)->get();
         return view('supervisors.index')->withProjects($projects);
     }
 
