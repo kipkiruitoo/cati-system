@@ -34,7 +34,7 @@ class AgentController extends Controller
     public function secondpage($id)
     {
 
-        $surveys = Survey::where('project', $id)->where('stage', '!=', 'draft')->get();
+        $surveys = Survey::where('project', $id)->where('stage', '!=', 'draft')->where('stage', '!=', 'closed')->get();
 
         $project = $id;
 

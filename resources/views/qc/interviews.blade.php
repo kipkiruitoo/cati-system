@@ -17,7 +17,12 @@
                     <td>{{App\User::find($interview->agent)->name}}</td>
                     <td>{{App\Respondent::find($interview->respondent)->name}}</td>
                     <td>{{$interview->date}}</td>
-                    <td>{{$interview->created_at}}</td>
+                     @php
+                        $tz = $interview->created_at;
+                         $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tz, 'UTC');
+                         $date->setTimezone('Africa/Nairobi');
+                     @endphp
+                    <td>{{$date}}</td>
                     <td>
                         <a href="{{url('/qc/' . $interview->survey .'/results/' . $interview->id)}}"><button
                                 class="btn btn-dark">Show Results</button></a>

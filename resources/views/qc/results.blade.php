@@ -24,7 +24,12 @@
             <div class="well">
 
             <h4>This interview was conducted by : </h4><span>{{ $agent->name}}</span>
-        <h4>On:</h4> <span>{{ $interview->created_at}}</span>
+            @php
+            $tz = $interview->created_at;
+                $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tz, 'UTC');
+                $date->setTimezone('Africa/Nairobi');
+            @endphp
+        <h4>On:</h4> <span>{{ $date }}</span>
         <h4>Number Selected by agent was:</h4> <span>{{ $interview->phonenumber}}</span>
             {{-- <h4>The date of consumption was: </h4> <span>{{$interview->date}}</span>
              --}}

@@ -100,7 +100,9 @@
                                         <select class="form-control" name="stage" id="stage{{$survey->id}}">
                                             <option value="draft">Draft</option>
                                             <option value="test">Test</option>
+
                                             <option value="production">Production</option>
+                                            <option value="closed">Closed</option>
                                         </select>
                                     </div>
 
