@@ -25,8 +25,12 @@ class AgentController extends Controller
 
     public function firstpage()
     {
+        $day =
+            Carbon::now();
 
-        $projects = DB::table('projects')->join('projects_agents', 'projects_agents.project_id', '=', 'projects.id')->where('projects_agents.user_id', Auth::user()->id)->get();
+        $date = $day->toDateString();
+
+        $projects = DB::table('projects')->where('end_date', '>', $date)->join('projects_agents', 'projects_agents.project_id', '=', 'projects.id')->where('projects_agents.user_id', Auth::user()->id)->get();
 
         return view('agents.index', compact('projects'));
     }
