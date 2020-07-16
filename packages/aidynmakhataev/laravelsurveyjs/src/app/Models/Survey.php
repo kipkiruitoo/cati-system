@@ -14,7 +14,7 @@ class Survey extends Model
         'name', 'slug', 'json', 'structure',
     ];
     protected $casts = [
-        'json'  =>  'array', 'structure'=> 'array',
+        'json'  =>  'array', 'structure' => 'array',
     ];
     public static function boot()
     {
@@ -37,5 +37,10 @@ class Survey extends Model
     public function results()
     {
         return $this->hasMany('AidynMakhataev\LaravelSurveyJs\app\Models\SurveyResult', 'survey_id');
+    }
+
+    public function project()
+    {
+        $this->belongsTo('App\Projects', 'project');
     }
 }

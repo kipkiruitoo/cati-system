@@ -29,7 +29,7 @@ class QCController extends Controller
 
         $date = $request->date;
         $survey = $request->survey;
-
+        // $project = Survey::find($survey)->project()->name;
         // echo $date;
 
         $interviews =  Interview::where([['qcd', 0], ['survey', $survey]])->whereDate('created_at', $date)->get();
@@ -96,11 +96,15 @@ class QCController extends Controller
     {
 
 
+
         $qcresults = QcResult::where('project', $request->project)->get();
 
+        $project = str_replace(' ', '_', Projects::find($request->project)->name);
+
+        // dd($project);
         // echo $request->project;
 
         // $qcresults = json_decode($qcresults->pluck('json'), true);
-        return view('qc.report', compact('qcresults'));
+        return view('qc.report', compact('qcresults', 'project'));
     }
 }
