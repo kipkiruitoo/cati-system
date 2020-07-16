@@ -11,6 +11,7 @@ use App\Interview;
 use App\Feedback;
 use App\Incomplete;
 use Charts;
+use App\Spedule;
 use App\Events\ChangeCallStatus;
 use  AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use App\PanelFeedback;
@@ -186,6 +187,14 @@ class AgentController extends Controller
     }
     public function fetchuser($project, $daysbetweeninterviews)
     {
+        $now = Carbon::now('+3:00');
+        // $starttime = $now->subMinutes(30);
+
+        $spedules = Spedule::where('schedule', '>', Carbon::now('+3:00')->subMinutes(10)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(10)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+
+        
+
+        // dd($spedules);
         $respondents = Respondent::where('project', $project)->get();
         if ($respondents->isEmpty()) {
             return "norespondents";
@@ -376,5 +385,23 @@ class AgentController extends Controller
         broadcast(new ChangeCallStatus($sessionId, $callSessionState));
 
         Log::warning($request);
+    }
+
+    public function pauseinterview(Request $request)
+    {
+        // dd($request);
+        $respondent  = Respondent::find($request->respondent);
+        $respondent->spedules()->create([
+            'schedule' => $request->time,
+            'user_id' =>  Auth::user()->id
+        ]);
+
+        $surveys = Survey::where('project', $respondent->project)->where('stage', '!=', 'draft')->get();
+
+        $project = $respondent->project;
+
+        // dd($respondent->spedules);
+
+        return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " . $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
     }
 }

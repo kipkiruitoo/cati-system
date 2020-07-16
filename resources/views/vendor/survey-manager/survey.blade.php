@@ -33,6 +33,31 @@ $respondent = json_decode($respondent)
                 County: <p>{{$respondent[0]->county}}</p>
             </div>
         </div>
+        <div class="row">
+            <h4>Pause Interview and Continue later</h4>
+        <form action="{{route('pauseinterview')}}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="date">Select Date</label>
+                <input type="date" required id="date" name="date" class="form-control">
+                <small>This respondent will start appearing a few minutes before the time selected</small>
+            </div>
+            <div class="form-group">
+                <label for="time">Select time to Continue</label>
+                <input type="time" required id="time" name="time" class="form-control">
+                <small>This respondent will start appearing a few minutes before the time selected</small>
+            </div>
+        <input type="hidden" name="respondent" name="respondent" value="{{$respondent[0]->id}}">
+
+            @php
+                // dd($survey['id']);
+            @endphp
+        <input type="hidden" name="survey" value="{{$survey['id']}}">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Pause</button>
+            </div>
+        </form>
+        </div>
 
 
         <div class="row">

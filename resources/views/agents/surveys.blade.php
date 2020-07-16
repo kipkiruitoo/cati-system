@@ -1,6 +1,13 @@
 @extends('voyager::master')
 
 @section('content')
+@php
+    if(session()->has('surveys'))
+    {
+        $surveys = session('surveys');
+        $project = session('project');
+    }
+@endphp
 <div class="container">
     <div class="row">
         <h4>Pick a Survey to continue</h4>
@@ -11,7 +18,7 @@
                 <form action="{{route('agentthirdpage')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                        
+
                     <input type="hidden" name="project" value="{{$project}}">
                         <select name="survey" class="form-control" id="">
                             @foreach($surveys as $survey)

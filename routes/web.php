@@ -159,3 +159,6 @@ Route::post('manage/respondents', 'RespondentsController@runquery')->name('respo
 
 
 Route::get('download/recordings', 'FilesController@downloadfiles');
+
+
+Route::post('pauseinterview', 'AgentController@pauseinterview')->name('pauseinterview');
