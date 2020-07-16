@@ -7,12 +7,14 @@ use Illuminate\Routing\Controller;
 use App\Interview;
 use App\Feedback;
 use App\Incomplete;
+use App\Spedule;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
 use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
+use App\Respondent;
 
 class SurveyResultAPIController extends Controller
 {
@@ -51,6 +53,11 @@ class SurveyResultAPIController extends Controller
         $respondent = $request->input('respondent');
         //  print_r($agent->agent);
         //  echo "<br><hr>";
+
+        Spedule::where('respondent_id', $respondent)->delete();
+        // $res->interviews()->delete();
+        // $res->spedules()->delete();
+        // $res->save();
         // $respondent = json_decode($respondent->respondent);
         //  print_r($respondent) ;
         // print_r($request->input('project'));

@@ -19,5 +19,5 @@ class Spedule extends Model
         return $this->belongsTo('App\Respondent');
     }
 
-    protected $fillable = ['schedule'];
+    protected $fillable = ['schedule', 'date', 'time', 'user_id'];
 }

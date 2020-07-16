@@ -188,11 +188,22 @@ class AgentController extends Controller
     public function fetchuser($project, $daysbetweeninterviews)
     {
         $now = Carbon::now('+3:00');
+
+
+        $date = $now->toDateString();
+
+        // dd($date);
         // $starttime = $now->subMinutes(30);
 
-        $spedules = Spedule::where('schedule', '>', Carbon::now('+3:00')->subMinutes(10)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(10)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+        $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(10)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(10)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
-        
+        // dd($spedules);
+
+        if (!$spedules->isEmpty()) {
+            return  $spedules->random(1);
+        }
+
+
 
         // dd($spedules);
         $respondents = Respondent::where('project', $project)->get();
@@ -393,7 +404,8 @@ class AgentController extends Controller
         $respondent  = Respondent::find($request->respondent);
         $respondent->spedules()->create([
             'schedule' => $request->time,
-            'user_id' =>  Auth::user()->id
+            'user_id' =>  Auth::user()->id,
+            'date' => $request->date
         ]);
 
         $surveys = Survey::where('project', $respondent->project)->where('stage', '!=', 'draft')->get();
