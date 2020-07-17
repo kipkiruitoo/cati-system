@@ -17,8 +17,6 @@
 @section('content')
 @php
 $respondent = json_decode($respondent)
-
-
 @endphp
 
     <div class="container">

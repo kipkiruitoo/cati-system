@@ -84,7 +84,14 @@
     }
 
 
+
 @endphp
+
+@if (session()->has('scheduled'))
+    <script>
+        toastr["info"]('You had rescheduled this respondent to appear at around this time');
+    </script>
+@endif
 
 <div class="container">
     <div class="row">
@@ -96,7 +103,12 @@
         <div class="col-md-6">
 <form action="{{route('survey-manager.run', $survey)}}" method="POST">
                 <div class="form-group">
+                    @if (session()->has('scheduled'))
+                        <div class="alert alert-success" role="alert">
+                            <p style="color: black" >You had scheduled this respondent to this time</p>
 
+                        </div>
+                    @endif
                     <div class="well">
                         <label for="respondent">Selected Respondent</label>
                         <h5 id="resname">{{$respondent[0]->name}}</h5>

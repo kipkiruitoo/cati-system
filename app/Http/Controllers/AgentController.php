@@ -200,6 +200,7 @@ class AgentController extends Controller
         // dd($spedules);
 
         if (!$spedules->isEmpty()) {
+            request()->session()->flash('scheduled', 'true');
             return  $spedules->random(1);
         }
 
@@ -413,6 +414,9 @@ class AgentController extends Controller
         $project = $respondent->project;
 
         // dd($respondent->spedules);
+
+
+
 
         return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " . $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
     }
