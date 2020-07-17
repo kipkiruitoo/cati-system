@@ -22,7 +22,7 @@
       <select v-model="slocale" @change="onlocaleChange" id="locale" class="form-control">
         <option value="en">English</option>
         <option value="bg">Swahili</option>
-        <option value="it" disabled>Vernacular</option>
+        <option value="it" >Vernacular</option>
         <option value="de">Maasai</option>
         <option value="pl">Somali</option>
       </select>
