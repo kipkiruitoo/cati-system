@@ -42,6 +42,9 @@
 
 <div class="container-fluid">
 
+    <div class="row">
+    <h4>{{$name}}</h4>
+    </div>
 
 
       <div id="surveyElement" style="display:inline-block;width:100%;"></div>

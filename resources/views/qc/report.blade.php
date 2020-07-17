@@ -34,6 +34,7 @@
                 <th>Interviewee audible</th>
                 <th>interviewee responsive</th>
                 <th>Interview Complete?</th>
+                <th>QC name</th>
             </tr>
         </thead>
     <tbody>
@@ -47,17 +48,22 @@
          $interview = \App\Interview::find($item->interview);
         // dd($interview);
         // dd($interview);
+         $qcer =  \App\User::find($item->qc)->name;
         $agent = \App\User::find($interview->agent);
         $respondent = \App\Respondent::find($interview->respondent);
         $item = (object) json_decode($item->json, true);
+
+        // dd($item);
+
+        // dd($qcer)
         // var_dump($item);
         @endphp
         <tr>
             <td>{{$interview->id}}</td>
             <td>{{$agent->name}}</td>
-        <td>{{$interview->respondent}}</td>
-        <td>{{$interview->phonenumber}}</td>
-        <td>{{$respondent->name}}</td>
+            <td>{{$interview->respondent}}</td>
+            <td>{{$interview->phonenumber}}</td>
+            <td>{{$respondent->name}}</td>
             <td>{{$interview->created_at}}</td>
             <td>{{$item->sc? 'Yes': 'No'}}</td>
             <td>{{$item->language? 'Correct': 'Incorrect'}}</td>
@@ -65,6 +71,7 @@
             <td>{{$item->ia? 'Yes': 'No'}}</td>
             <td>{{$item->ir? 'Yes': 'No'}}</td>
             <td>{{$item->ic? 'Yes': 'No'}}</td>
+            <td>{{$qcer}}</td>
         </tr>
         @endforeach
     </tbody>
