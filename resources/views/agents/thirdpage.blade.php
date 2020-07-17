@@ -65,6 +65,26 @@
 </div>
 @endsection
 @section('content')
+@php
+    if($respondent[0]->project == 60){
+        // $feedbacks = new stdClass;
+        $feedbacks = array(
+           (object) ['name'=> 'Call me back later'],
+           (object)  ['name'=> 'Hung up the call'],
+           (object)  ['name'=> 'Not interested'],
+           (object)  ['name'=> 'Destination busy'],
+           (object)  ['name'=> 'Voice mail'],
+           (object)  ['name'=> 'Phone Not Reachable'],
+           (object)  ['name'=> 'Network Issues'],
+           (object)  ['name'=> 'Not picking the call'],
+           (object)  ['name'=> 'Phone out of service']
+    );
+    // $feedbacks = (object) $feedbacks;
+    // dd($feedbacks);
+    }
+
+
+@endphp
 
 <div class="container">
     <div class="row">
@@ -143,8 +163,8 @@
                 <h5>Last Feedback:</h5>
                 <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#feedback"> <span><i class="fa fa-plus"></i></i></span> Add
                     Feedback</button>
-                <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#schedule"> <span><i class="fa fa-calendar "></i></i></span>
-                    Schedule Call</button>
+                {{-- <button class="btn btn-dark btn-small" data-toggle="modal" data-target="#schedule"> <span><i class="fa fa-calendar "></i></i></span>
+                    Schedule Call</button> --}}
                 <div class="new-table">
                     <table class="table">
                         <thead>
