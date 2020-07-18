@@ -62,8 +62,8 @@
                       <td>
                           {{$survey->id}}
 
-                        {{-- <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
-                            results</button> --}}
+                        <button class="btn btn-info" data-toggle="modal" data-target="#filter{{$survey->id}}">Download
+                            results</button>
                           <a href="{{route('analytics', [$survey->id, $survey->slug])}}" target="__blank"><button class="btn btn-info"> Analytics</button></a>
 
                     </td>
@@ -113,7 +113,7 @@
                             <form action="{{route('getresults')}}" method="POST">
                                 @csrf
                                 <div class="modal-header">
-                                    <h4>Choose data for interviews done between these dates</h4> <strong>Beta</strong>
+                                    <h4>Choose data for interviews done between these dates</h4>
                                     <h6>The data will be downloaded in csv format for the period specified.</h6>
                                 </div>
                                 <div class="modal-body">
