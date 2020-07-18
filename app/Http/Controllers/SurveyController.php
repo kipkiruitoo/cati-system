@@ -177,6 +177,7 @@ class SurveyController extends Controller
             $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
+            $smallarray = array("Phone Number Called" => $interview->phonenumber) + $smallarray;
 
             // if ($interview->date != "null") {
             //     # code...
