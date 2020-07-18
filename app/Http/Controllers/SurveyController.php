@@ -167,6 +167,7 @@ class SurveyController extends Controller
             $respondent = Respondent::find($interview->respondent);
             // rsort($smallarray);
             // array_push
+            $smallarray = array("Phone Number Called" => $interview->phonenumber) + $smallarray;
             $smallarray = array("date_of_interview" =>  date_format($interview->created_at, "D-d-M-Y H:i:s")) + $smallarray;
             $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
             $smallarray = array("respondent name" => $respondent->name) + $smallarray;
@@ -177,7 +178,7 @@ class SurveyController extends Controller
             $smallarray = array("original_id" => $respondent->res_d) + $smallarray;
             $smallarray = array("interviewer" => User::find($interview->agent)->name) + $smallarray;
             $smallarray = array("interview_id" => $result->interview) + $smallarray;
-            $smallarray = array("Phone Number Called" => $interview->phonenumber) + $smallarray;
+
 
             // if ($interview->date != "null") {
             //     # code...
