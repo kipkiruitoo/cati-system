@@ -15,14 +15,15 @@
                 @foreach($interviews as $interview)
                 <tr>
                     <td>{{App\User::find($interview->agent)->name}}</td>
-                    <td>{{App\Respondent::find($interview->respondent)->name}}</td>
+                    <td>@if (App\Respondent::where('id',$interview->respondent)->exists())
+                        {{App\Respondent::find($interview->respondent)->name}}
+                    @else
+                        Deleted Respondent
+                    @endif
+
+                    </td>
                     <td>{{$interview->date}}</td>
-                     @php
-                        $tz = $interview->created_at;
-                         $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $tz, 'UTC');
-                         $date->setTimezone('Africa/Nairobi');
-                     @endphp
-                    <td>{{$date}}</td>
+                    <td>{{$interview->created_at}}</td>
                     <td>
                         <a href="{{url('/qc/' . $interview->survey .'/results/' . $interview->id)}}"><button
                                 class="btn btn-dark">Show Results</button></a>
@@ -32,6 +33,21 @@
 
             </tbody>
         </table>
+
     </div>
 </div>
+<script>
+    window.onload = function (){
+        let load = localStorage.getItem("reload");
+        if (load === "true") {
+            toastr["info"]("Removing QCd interviews, please wait");
+            localStorage.setItem("reload", false);
+            window.setTimeout(function(){
+               location.reload();
+            }, 100);
+
+        }
+    }
+
+</script>
 @endsection
