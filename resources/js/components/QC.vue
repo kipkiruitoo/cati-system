@@ -93,6 +93,7 @@ export default {
           console.log(response);
           if (response.data.message == "Success") {
             console.log(response);
+            localStorage.setItem("reload", true);
             window.history.back();
           } else {
             alert("Something went wrong");

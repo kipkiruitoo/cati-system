@@ -2023,6 +2023,7 @@ surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEB
 
         if (response.data.message == "Success") {
           console.log(response);
+          localStorage.setItem("reload", true);
           window.history.back();
         } else {
           alert("Something went wrong");

@@ -10,6 +10,7 @@ use OzdemirBurak\JsonCsv\File\Json;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ResultsExport;
 use App\Interview;
+use Carbon\Carbon;
 use App\Respondent;
 use App\User;
 use File;
@@ -167,8 +168,10 @@ class SurveyController extends Controller
             $respondent = Respondent::find($interview->respondent);
             // rsort($smallarray);
             // array_push
+            $datetime = Carbon::createFromFormat('Y-m-d H:i:s', $interview->created_at, 'UTC')
+                ->setTimezone('Africa/Nairobi');
             $smallarray = array("Phone Number Called" => $interview->phonenumber) + $smallarray;
-            $smallarray = array("date_of_interview" =>  date_format($interview->created_at, "D-d-M-Y H:i:s")) + $smallarray;
+            $smallarray = array("date_of_interview" =>  date_format($datetime, "D-d-M-Y H:i:s")) + $smallarray;
             $smallarray = array("respondent_id" => $interview->respondent) + $smallarray;
             $smallarray = array("respondent name" => $respondent->name) + $smallarray;
             $smallarray = array("Iterview Start time" => $interview->start_time) + $smallarray;
