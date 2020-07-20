@@ -29,11 +29,14 @@ class SurveyResultAPIController extends Controller
     public function show(Survey $survey, $interview)
     {
         $inter = Interview::find($interview);
-        $results = $survey->results()->where('interview', $interview)->paginate(config('survey-manager.pagination_perPage', 10));
-        return SurveyResultResource::collection($results)
-            ->additional(['meta' => [
-                'survey'    =>  new SurveyResource($survey),
-            ]]);
+        $results = $survey->results()->where('interview', $interview)->get()->first();
+        // return SurveyResultResource::collection($results);
+        // dd($results);
+
+        return array("result" => $results->json, "survey" => $survey);
+        //     ->additional(['meta' => [
+        //         'survey'    =>  new SurveyResource($survey),
+        //     ]]);
     }
     /**
      * @param Survey $survey

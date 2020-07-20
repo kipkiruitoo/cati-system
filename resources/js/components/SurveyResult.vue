@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <survey :survey="survey"></survey>
-    </div>
+  <div>
+    <survey :survey="survey"></survey>
+  </div>
 </template>
 <script>
 //In your VueJS App.vue or yourComponent.vue file add these lines to import
@@ -31,65 +31,64 @@ widgets.autocomplete(SurveyVue);
 widgets.bootstrapslider(SurveyVue);
 
 export default {
-    name: "survey-result",
-    components: {
-        Survey
-    },
-    data() {
-        //Define Survey JSON
-        //Here is the simplest Survey with one text question
-        var json = {
-            elements: [
-                {
-                    type: "text",
-                    name: "customerName",
-                    title: "What is your name?",
-                    isRequired: true
-                }
-            ]
-        };
-
-        var url = window.location.href.split("/");
-        console.log(url);
-
-        //Create the model and pass it into VueSJ Survey component
-        // var model = new SurveyVue.Model(json);
-        //You may set model properties
-        // model.mode="display"
-
-        return {
-            survey: {},
-            results: [],
-            id: url[4],
-            interview: url.pop()
-        };
-    },
-    mounted() {
-        this.getResults(this.id, this.interview);
-    },
-    watch: {
-        page() {
-            this.getResults();
-            this.survey.data = this.results.json;
+  name: "survey-result",
+  components: {
+    Survey
+  },
+  data() {
+    //Define Survey JSON
+    //Here is the simplest Survey with one text question
+    var json = {
+      elements: [
+        {
+          type: "text",
+          name: "customerName",
+          title: "What is your name?",
+          isRequired: true
         }
-    },
-    methods: {
-        getResults(id = this.id, interview = this.interview) {
-            axios
-                .get("/api/survey/" + id + "/result/" + interview)
-                .then(response => {
-                    this.results = response.data.data;
-                    this.survey = new SurveyVue.Model(
-                        response.data.meta.survey.json
-                    );
-                    this.survey.mode = "display";
-                    this.survey.data = this.results[0].json;
-                })
-                .catch(error => {
-                    console.info(error.response);
-                    this.loading = false;
-                });
-        }
+      ]
+    };
+
+    var url = window.location.href.split("/");
+    console.log(url);
+
+    //Create the model and pass it into VueSJ Survey component
+    // var model = new SurveyVue.Model(json);
+    //You may set model properties
+    // model.mode="display"
+
+    return {
+      survey: {},
+      results: [],
+      id: url[4],
+      interview: url.pop()
+    };
+  },
+  mounted() {
+    this.getResults(this.id, this.interview);
+  },
+  watch: {
+    page() {
+      this.getResults();
+      this.survey.data = this.results.json;
     }
+  },
+  methods: {
+    getResults(id = this.id, interview = this.interview) {
+      axios
+        .get("/api/survey/" + id + "/result/" + interview)
+        .then(response => {
+          this.results = response.data.result;
+          this.survey = new SurveyVue.Model(response.data.survey.json);
+          console.log(response.data.result);
+          this.survey.mode = "display";
+          this.survey.data = this.results;
+        })
+        .catch(error => {
+          console.info(error.response);
+          this.loading = false;
+        });
+    }
+  }
 };
 </script>

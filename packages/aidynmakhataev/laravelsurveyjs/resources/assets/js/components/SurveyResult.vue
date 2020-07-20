@@ -7,7 +7,7 @@
       <hr />
       <hr />
       <div class="row">
-          <h2>Feedback</h2>
+        <h2>Feedback</h2>
         <form>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -78,16 +78,19 @@ export default {
       this.loading = true;
       axios
         .get("/survey/" + id + "/result/" + interview + "?page=" + this.page)
+
         .then(response => {
           this.results = response.data.data;
+          console.log(response.data.data);
           this.survey = response.data.meta.survey;
           this.pageLength = Math.ceil(
             response.data.meta.total / response.data.meta.per_page
           );
           this.loading = false;
-          this.surveyData = new SurveyVue.Model(response.data.meta.survey.json);
-          this.surveyData.mode = "display";
+          this.surveyData = new SurveyVue.Model(response.data[0].json);
+        //   this.surveyData.mode = "display";
           this.surveyData.data = this.results[0].json;
+        //   console.log(this.surveyData.data);
         })
         .catch(error => {
           console.info(error.response);

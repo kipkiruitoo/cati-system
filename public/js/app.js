@@ -2171,10 +2171,11 @@ surveyjs_widgets__WEBPACK_IMPORTED_MODULE_1__["bootstrapslider"](survey_vue__WEB
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.id;
       var interview = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.interview;
       axios.get("/api/survey/" + id + "/result/" + interview).then(function (response) {
-        _this.results = response.data.data;
-        _this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](response.data.meta.survey.json);
+        _this.results = response.data.result;
+        _this.survey = new survey_vue__WEBPACK_IMPORTED_MODULE_0__["Model"](response.data.survey.json);
+        console.log(response.data.result);
         _this.survey.mode = "display";
-        _this.survey.data = _this.results[0].json;
+        _this.survey.data = _this.results;
       })["catch"](function (error) {
         console.info(error.response);
         _this.loading = false;
