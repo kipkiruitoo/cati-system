@@ -336,6 +336,15 @@ class AgentController extends Controller
 
         if ($isActive == 1) {
             if ($request->direction == 'Inbound') {
+                if (isset($request->clientDialedNumber)) {
+                    # code...
+                    $response  = '<?xml version="1.0" encoding="UTF-8"?>';
+                    $response .= '<Response>';
+                    $response .= '<Dial record="true" sequential="true" phoneNumbers="' . $request->clientDialedNumber . '"  />';
+                    $response .= '</Response>';
+                    header('Content-type: application/xml');
+                    echo $response;
+                }
                 $response  = '<?xml version="1.0" encoding="UTF-8"?>';
                 $response .= '<Response>';
                 $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
@@ -387,7 +396,6 @@ class AgentController extends Controller
             // $pm->credit =  $pm->credit - $credit;
             // $pm->save();
             if ($request->direction == 'Inbound') {
-
                 DB::table('calls')->insert(['status' => 'Completed', 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
             } else {
                 DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'call_duration' => $_POST['dialDurationInSeconds'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);

@@ -101,6 +101,7 @@
       </table>
     </div>
   </div>
+  {{-- @csrf --}}
   <script src="https://unpkg.com/africastalking-client@1.0.2/build/africastalking.js"></script>
 
   <script>
@@ -108,27 +109,35 @@
   </script>
 </div>
 <script>
-window.onload = (){
-    
-}
-const username = "lexeme";
+window.onload = function(){
+    let clientName = document.getElementById("client-name");
+    clientName.value = "{{Auth::user()->name}}";
 
-const loginBtn = document.getElementById("login-btn"),
-  outputLabel = document.getElementById("output-lbl"),
-  loader = document.getElementById("loader");
-loginBtn.addEventListener("click", function () {
-  ATlogin();
-});
-console.log({ Africastalking });
+    // ATlogin();
+}
+ const username = "TIFACommodityPrices";
+
+    const loginBtn = document.getElementById("login-btn"),
+    outputLabel = document.getElementById("output-lbl"),
+     loader = document.getElementById("loader");
+
+    loginBtn.addEventListener("click", function () {
+    ATlogin();
+
+    });
+// console.log({ Africastalking });
 function ATlogin() {
+    var csrf = document.querySelector('meta[name="csrf-token"]').content;
+//  alert(csrf);
   const clientName = document.getElementById("client-name");
   if (!(clientName.value.length === 0)) {
     loader.classList = "ui active dimmer";
-    fetch("/capability-token", {
+    fetch("/api/capability-token", {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: "POST",
       body: JSON.stringify({
         clientName: clientName.value,
+        _token: csrf
       }),
     })
       .then((data) => {
@@ -147,7 +156,7 @@ function ATlogin() {
         return at;
       })
       .then((client) => {
-        const logoutBtn = document.getElementById("logout-btn"),
+          const logoutBtn = document.getElementById("logout-btn"),
           hangupBtn = document.getElementById("hangup-btn"),
           answerBtn = document.getElementById("answer-btn"),
           callBtn = document.getElementById("call-btn"),
@@ -315,6 +324,8 @@ function ATlogin() {
     outputLabel.textContent = "make sure client name is valid";
   }
 }
+
+
 
 </script>
 @endsection
