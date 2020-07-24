@@ -203,8 +203,18 @@ class AgentController extends Controller
             request()->session()->flash('scheduled', 'true');
             return  $spedules->random(1);
         }
+        // DB::enableQueryLog();
+        // $respondents =  DB::select(DB::raw('select * from `respondents` where `project` = ? and exists (select * from `incomplete` where `respondents`.`id` = `incomplete`.`respondent` and `incomplete`.`agent` = "' . Auth::user()->id . '" ) and not exists (select * from `spedules` where `respondents`.`id` = `spedules`.`respondent_id`'));
+        $respondents = Respondent::where('project', $project)->whereHas('incomplete', function ($q) {
+            $q->where('agent', Auth::user()->id);
+        })->whereDoesntHave('spedules')->get();
 
+        // dd(DB::getQueryLog());
 
+        if (!$respondents->isEmpty()) {
+            request()->session()->flash('message', 'Respondents with Incomplete Interviews Appearing First');
+            return  $respondents->random(1);
+        }
 
         // dd($spedules);
         $respondents = Respondent::where('project', $project)->get();

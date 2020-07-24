@@ -91,9 +91,9 @@
 
 @endphp
 
-@if (session()->has('scheduled'))
+@if (session()->has('message'))
     <script>
-        toastr["info"]('You had rescheduled this respondent to appear at around this time');
+        toastr["warning"]('Respondents with unfinished interviews appearing first');
     </script>
 @endif
 
@@ -102,6 +102,11 @@
         <button class="btn btn-dark" onclick="location.reload()"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
         @if (session()->has('scheduled'))
         <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
+        @endif
+        @if (session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                <p style="color: black" >You have an unfinished interview with  this respondent but not scheduled</p>
+            </div>
         @endif
     </div>
     <br>
