@@ -344,15 +344,16 @@ class AgentController extends Controller
                     $response .= '</Response>';
                     header('Content-type: application/xml');
                     echo $response;
-                }
-                $response  = '<?xml version="1.0" encoding="UTF-8"?>';
-                $response .= '<Response>';
-                $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
-                $response .= '</Response>';
+                } else {
+                    $response  = '<?xml version="1.0" encoding="UTF-8"?>';
+                    $response .= '<Response>';
+                    $response .= '<Dial record="true" sequential="true" phoneNumbers="tifa.agent1@ke.sip.africastalking.com"  />';
+                    $response .= '</Response>';
 
-                // Print the response onto the page so that our gateway can read it
-                header('Content-type: application/xml');
-                echo $response;
+                    // Print the response onto the page so that our gateway can read it
+                    header('Content-type: application/xml');
+                    echo $response;
+                }
             } else {
                 $call = Call::where('session_id',  $sessionId)->first();
 
