@@ -21,7 +21,8 @@
         "ozdemirburak/json-csv": "^0.3.0",
         "pusher/pusher-php-server": "^4.1",
         "sentry/sentry-laravel": "1.8.0",
-        "tiamo/spss": "^2.1"
+        "tiamo/spss": "^2.1",
+        "yajra/laravel-datatables-oracle": "^9.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

@@ -397,8 +397,14 @@ class AgentController extends Controller
             // $pm->credit =  $pm->credit - $credit;
             // $pm->save();
             if ($request->direction == 'Inbound') {
-                DB::table('calls')->insert(['status' => 'Completed', 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+
+                if (isset($request->clientDialedNumber)) {
+                    DB::table('web_calls')->insert(['status' => 'Completed', 'agent' => $request->callerNumber, 'phonecalled' => $request->clientDialedNumber, 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
+                }
+
+                // DB::table('calls')->insert(['status' => 'Completed', 'session_id' => $sessionId, 'recording_link' =>  $_POST['recordingUrl'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
             } else {
+
                 DB::table('calls')->where('session_id',  $sessionId)->update(['status' => 'Completed', 'recording_link' =>  $_POST['recordingUrl'], 'call_duration' => $_POST['dialDurationInSeconds'], 'duration' => $_POST['durationInSeconds'], 'amount' => $_POST['amount']]);
             }
 

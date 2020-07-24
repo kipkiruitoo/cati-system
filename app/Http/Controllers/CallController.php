@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 // GuzzleH
+
 class CallController extends Controller
 {
     //
@@ -67,5 +70,32 @@ class CallController extends Controller
 
         // $mybody['username'] = $username;
         // $mybody['phoneNumber']
+    }
+
+
+    public function recordings(Request $request)
+    { {
+            if (request()->ajax()) {
+                if (!empty($request->filter_phone)) {
+                    $data = DB::table('web_calls')
+                        ->select('agent', 'phonecalled', 'recording_link', 'created_at')
+                        ->where('agent', $request->filter_agent)
+                        ->where('phonecalled', $request->filter_phone)
+                        ->get();
+                } else {
+                    $data = DB::table('web_calls')
+                        ->select('agent', 'phonecalled', 'recording_link', 'created_at')
+                        ->get();
+                }
+                return datatables()->of($data)->startsWithSearch()->smart(true)->make(true);
+            }
+            $country_name = DB::table('web_calls')
+                ->select('created_at')
+                ->groupBy('created_at')
+                ->orderBy('created_at', 'ASC')
+                ->get();
+            return view('calls.recordings', compact('country_name'));
+        }
+        // return view('calls.recordings');
     }
 }

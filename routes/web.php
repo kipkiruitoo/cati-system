@@ -170,3 +170,6 @@ Route::post('reschedule', 'AgentController@reschedule')->name('reschedule');
 Route::get('dialer', 'CallController@index')->name('dialer')->middleware('auth');
 
 Route::post('api/capability-token', 'CallController@capability');
+
+
+Route::get('recordings', 'CallController@recordings')->name('recordings');
