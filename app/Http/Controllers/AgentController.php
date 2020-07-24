@@ -195,7 +195,7 @@ class AgentController extends Controller
         // dd($date);
         // $starttime = $now->subMinutes(30);
 
-        $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(10)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(10)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+        $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(30)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(30)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
         // dd($spedules);
 
