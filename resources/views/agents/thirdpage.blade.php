@@ -50,6 +50,10 @@
 
 }
 
+.rescheduleform{
+    padding: 20px;
+}
+
 
 </style>
 @endsection
@@ -96,6 +100,9 @@
 <div class="container">
     <div class="row">
         <button class="btn btn-dark" onclick="location.reload()"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
+        @if (session()->has('scheduled'))
+        <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
+        @endif
     </div>
     <br>
 
@@ -254,6 +261,43 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button onclick="addfeedback()" class="btn btn-dark"><span><i class="fa fa-save"></i> Save</span> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reschedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reschedule This Interview for:
+                    {{$respondent[0]->name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="rescheduleform" id="reschedule" method="POST" action="{{route('reschedule')}}">
+                @csrf
+
+                <div class="form-group">
+                    <label for="date">Select Date</label>
+                    <input type="date" required id="date" name="date" class="form-control">
+                    <small>This respondent will start appearing a few minutes before the time selected</small>
+
+                <div class="form-group">
+                    <label for="time">Select time to Continue</label>
+                    <input type="time" required id="time" name="time" class="form-control">
+                    <small>This respondent will start appearing a few minutes before the time selected</small>
+                </div>
+                <input type="hidden" name="respondent" name="respondent" value="{{$respondent[0]->id}}">
+
+                @php
+                    // dd($survey['id']);
+                @endphp
+                {{-- <input type="hidden" name="survey" value="{{$survey['id']}}"> --}}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Reschedule</button>
                 </div>
             </form>
         </div>

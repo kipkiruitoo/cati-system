@@ -420,4 +420,28 @@ class AgentController extends Controller
 
         return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " . $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
     }
+    public function reschedule(Request $request)
+    {
+        // dd($request);
+        $respondent  = Respondent::find($request->respondent);
+        Spedule::where('respondent_id', $request->respondent)->where('user_id', Auth::user()->id)->delete();
+
+        $respondent->spedules()->create([
+            'schedule' => $request->time,
+            'user_id' =>  Auth::user()->id,
+            'date' => $request->date
+        ]);
+        // dd($request);
+
+        $surveys = Survey::where('project', $respondent->project)->where('stage', '!=', 'draft')->get();
+
+        $project = $respondent->project;
+
+        // dd($respondent->spedules);
+
+
+
+
+        return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " . $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
+    }
 }

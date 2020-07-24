@@ -162,3 +162,6 @@ Route::get('download/recordings', 'FilesController@downloadfiles');
 
 
 Route::post('pauseinterview', 'AgentController@pauseinterview')->name('pauseinterview');
+
+
+Route::post('reschedule', 'AgentController@reschedule')->name('reschedule');

@@ -45,14 +45,14 @@ $respondent = json_decode($respondent)
                 <input type="time" required id="time" name="time" class="form-control">
                 <small>This respondent will start appearing a few minutes before the time selected</small>
             </div>
-        <input type="hidden" name="respondent" name="respondent" value="{{$respondent[0]->id}}">
+            <input type="hidden" name="respondent" name="respondent" value="{{$respondent[0]->id}}">
 
             @php
                 // dd($survey['id']);
             @endphp
-        <input type="hidden" name="survey" value="{{$survey['id']}}">
+            <input type="hidden" name="survey" value="{{$survey['id']}}">
             <div class="form-group">
-                <button type="submit" class="btn btn-success">Pause</button>
+                <button type="submit" class="btn btn-success">Schedule</button>
             </div>
         </form>
         </div>
