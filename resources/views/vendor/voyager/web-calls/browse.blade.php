@@ -202,7 +202,7 @@
                                                             <source src="{{ $newlink }}" type="audio/mpeg">
                                                             Your browser does not support the audio element.
                                                         </audio>
-                                                        <a style="padding-left: 10px;" href="{{ $newlink }}" target="_blank">
+                                                        <a class="btn btn-primary"  style="padding-left: 10px;" href="{{ $newlink }}" target="_blank">
                                                             Download
                                                         </a>
                                                     @endif
