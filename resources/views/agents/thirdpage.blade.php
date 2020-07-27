@@ -112,11 +112,11 @@
     <hr>
     <hr>
     <div class="row">
-        @if ($respondent[0]->project == 61)
+        {{-- @if ($respondent[0]->project == 61)
             <button class="btn btn-success" onclick="window.open(`{{route('dialer')}}`,'Dialer','width=600,height=400')">Open Dialer</button></a>
 
              <p style="color: red">Please use 3cx if working from the Office</p>
-        @endif
+        @endif --}}
 
     </div>
     <br>
@@ -186,9 +186,9 @@
         {{-- <form action="{{route('makecall')}}" method="POST"> --}}
         {{-- <input type="hidden" name="respondent" value="{{$respondent[0]->id}}"> --}}
             {{-- @csrf --}}
-            @if ($respondent[0]->project != 61)
+            {{-- @if ($respondent[0]->project != 61) --}}
                  <button class="btn btn-dark" type="button" data-toggle="modal" data-target="#calling" onclick="make_call()" > <span><i class="fa fa-phone"> </i> </span>Make Call</button>
-            @endif
+            {{-- @endif --}}
 
             {{-- </form> --}}
         </div>
