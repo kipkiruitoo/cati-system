@@ -114,7 +114,10 @@
     <div class="row">
         @if ($respondent[0]->project == 61)
             <button class="btn btn-success" onclick="window.open(`{{route('dialer')}}`,'Dialer','width=600,height=400')">Open Dialer</button></a>
+
+             <p style="color: red">Please use 3cx if working from the Office</p>
         @endif
+
     </div>
     <br>
 
