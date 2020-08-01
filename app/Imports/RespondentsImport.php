@@ -41,7 +41,12 @@ class RespondentsImport implements ToModel
             'sex' => $row[12],
             'lsm' => $row[13],
             'age' => $row[14],
-            'status' => 'Active'
+            'status' => 'Active',
+            'district' => $row[16],
+            'division' => $row[17],
+            'location' => $row[18],
+            'sublocation' => $row[19],
+            'ward' => $row[20],
 
 
         ]);

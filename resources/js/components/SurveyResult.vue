@@ -33,7 +33,7 @@ widgets.bootstrapslider(SurveyVue);
 export default {
   name: "survey-result",
   components: {
-    Survey
+    Survey,
   },
   data() {
     //Define Survey JSON
@@ -44,9 +44,9 @@ export default {
           type: "text",
           name: "customerName",
           title: "What is your name?",
-          isRequired: true
-        }
-      ]
+          isRequired: true,
+        },
+      ],
     };
 
     var url = window.location.href.split("/");
@@ -61,7 +61,7 @@ export default {
       survey: {},
       results: [],
       id: url[4],
-      interview: url.pop()
+      interview: url.pop(),
     };
   },
   mounted() {
@@ -71,24 +71,24 @@ export default {
     page() {
       this.getResults();
       this.survey.data = this.results.json;
-    }
+    },
   },
   methods: {
     getResults(id = this.id, interview = this.interview) {
       axios
         .get("/api/survey/" + id + "/result/" + interview)
-        .then(response => {
+        .then((response) => {
           this.results = response.data.result;
           this.survey = new SurveyVue.Model(response.data.survey.json);
           console.log(response.data.result);
           this.survey.mode = "display";
           this.survey.data = this.results;
         })
-        .catch(error => {
-          console.info(error.response);
+        .catch((error) => {
+        //   console.info(error.response);
           this.loading = false;
         });
-    }
-  }
+    },
+  },
 };
 </script>
