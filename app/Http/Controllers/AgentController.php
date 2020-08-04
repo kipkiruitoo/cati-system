@@ -195,12 +195,12 @@ class AgentController extends Controller
         // dd($date);
         // $starttime = $now->subMinutes(30);
 
-        $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+        // $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
-        if (!$newspedules->isEmpty()) {
-            // request()->session()->flash('scheduled', 'true');
-            return  $newspedules->random(1);
-        }
+        // if (!$newspedules->isEmpty()) {
+        //     // request()->session()->flash('scheduled', 'true');
+        //     return  $newspedules->random(1);
+        // }
 
         $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
