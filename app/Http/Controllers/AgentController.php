@@ -459,7 +459,7 @@ class AgentController extends Controller
     {
         // dd($request);
         $respondent  = Respondent::find($request->respondent);
-        Spedule::where('respondent_id', $request->respondent)->where('user_id', Auth::user()->id)->delete();
+        Spedule::where('respondent_id', $request->respondent)->delete();
 
         $respondent->spedules()->create([
             'schedule' => $request->time,
