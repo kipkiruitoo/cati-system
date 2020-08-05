@@ -194,13 +194,15 @@ class AgentController extends Controller
 
         // dd($date);
         // $starttime = $now->subMinutes(30);
+        if (Auth::user()->id % 2 == 0) {
+            $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(3)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(5)->format('H:i:s'))->whereNull('user_id')->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
-        // $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(5)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(5)->format('H:i:s'))->whereNull('user_id')->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+            if (!$newspedules->isEmpty()) {
+                // request()->session()->flash('scheduled', 'true');
+                return  $newspedules->random(1);
+            }
+        }
 
-        // if (!$newspedules->isEmpty()) {
-        //     // request()->session()->flash('scheduled', 'true');
-        //     return  $newspedules->random(1);
-        // }
 
         $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
@@ -211,6 +213,7 @@ class AgentController extends Controller
             return  $spedules->random(1);
         }
         // DB::enableQueryLog();
+
         // $respondents =  DB::select(DB::raw('select * from `respondents` where `project` = ? and exists (select * from `incomplete` where `respondents`.`id` = `incomplete`.`respondent` and `incomplete`.`agent` = "' . Auth::user()->id . '" ) and not exists (select * from `spedules` where `respondents`.`id` = `spedules`.`respondent_id`'));
         // $respondents = Respondent::where('project', $project)->whereHas('incomplete', function ($q) {
         //     $q->where('agent', Auth::user()->id);
