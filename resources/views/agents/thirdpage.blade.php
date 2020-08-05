@@ -103,9 +103,17 @@
         @if (session()->has('scheduled'))
         <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
         @endif
+        @if (session()->has('newrecruit'))
+        <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
+        @endif
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert">
                 <p style="color: black" >You have an unfinished interview with  this respondent but not scheduled</p>
+            </div>
+        @endif
+         @if (session()->has('newrecruit'))
+            <div class="alert alert-warning" role="alert">
+                <p style="color: black" >This Respondent has been recruited in the field and requested to be called at this time.</p>
             </div>
         @endif
     </div>
