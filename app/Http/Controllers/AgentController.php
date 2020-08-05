@@ -195,7 +195,7 @@ class AgentController extends Controller
         // dd($date);
         // $starttime = $now->subMinutes(30);
         if (Auth::user()->id % 2 == 0) {
-            $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(3)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(5)->format('H:i:s'))->whereNull('user_id')->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+            $newspedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(3)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(30)->format('H:i:s'))->whereNull('user_id')->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
 
             if (!$newspedules->isEmpty()) {
                 request()->session()->flash('newrecruit', 'true');
