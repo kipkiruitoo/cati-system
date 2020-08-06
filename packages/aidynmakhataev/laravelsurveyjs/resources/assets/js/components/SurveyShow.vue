@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="timer">
+      <BaseTimer :time-left="timeLeft" :time-passed="timePassed" :time-limit="timeLimit" />
+    </div>
     <v-menu v-if="requiredate">
       <v-text-field
         slot="activator"
@@ -22,7 +25,7 @@
       <select v-model="slocale" @change="onlocaleChange" id="locale" class="form-control">
         <option value="en">English</option>
         <option value="bg">Swahili</option>
-        <option value="it" >Vernacular</option>
+        <option value="it">Vernacular</option>
         <option value="de">Maasai</option>
         <option value="pl">Somali</option>
       </select>
@@ -42,24 +45,25 @@ Survey.sendResultOnPageNext = true;
 import format from "date-fns/format";
 
 import * as widgets from "surveyjs-widgets";
-
+import BaseTimer from "./BaseTimer";
 Object.filter = (obj, predicate) =>
   Object.keys(obj)
-    .filter(key => predicate(obj[key]))
+    .filter((key) => predicate(obj[key]))
     .reduce((res, key) => Object.assign(res, { [key]: obj[key] }), {});
 
 const widgetsList = Object.filter(
   SurveyConfig.widgets,
-  widget => widget === true
+  (widget) => widget === true
 );
 
-Object.keys(widgetsList).forEach(function(widget) {
+Object.keys(widgetsList).forEach(function (widget) {
   widgets[widget](SurveyVue);
 });
 
 export default {
   components: {
-    Survey
+    Survey,
+    BaseTimer,
   },
   props: ["surveyData", "selectedphone", "callSession", "jsonData"],
 
@@ -80,7 +84,10 @@ export default {
       slocale: "en",
       requiredate: false,
       showsurvey: false,
-      nit: 1
+      nit: 1,
+      timeLimit: 6,
+      timerInterval: null,
+      timePassed: 0,
     };
   },
   created() {
@@ -104,15 +111,18 @@ export default {
     // console.log(this.jsondata);
   },
   methods: {
+    startTimer() {
+      this.timerInterval = setInterval(() => (this.timePassed += 1), 1000);
+    },
     checkdate() {
       let url = `/check-date`;
 
       axios
         .post(url, {
           date: this.date,
-          respondent: this.respondent.respondent
+          respondent: this.respondent.respondent,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response.data.exists);
           if (response.data.exists) {
             this.$toastr.i(
@@ -122,6 +132,33 @@ export default {
           } else {
             this.showsurvey = true;
           }
+        });
+    },
+    sendResults() {
+      this.timeLimit = 6;
+      this.timePassed = 0;
+      //   this.startTimer();
+      let url = "/incomplete";
+      var resultAsString = JSON.stringify(this.survey.getPlainData);
+      // alert(resultAsString); //send Ajax request to your web server.
+      axios
+        .post(url, {
+          json: this.survey.data,
+          agent: this.agent,
+          respondent: this.respondent.respondent,
+          survey: this.sid,
+          // phonenumber: this.phonenumber,
+          project: this.surveyData.project,
+          // date: this.date
+        })
+        .then((result) => {
+          console.log(result);
+          if (result.data.message === "Success") {
+            this.$toastr.i("Progress Successfully Saved");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
     loadResults() {
@@ -150,12 +187,15 @@ export default {
       var dateTime = date + " " + time;
 
       return dateTime;
-    }
+    },
   },
   computed: {
     formattedDate() {
       return this.date ? format(this.date, "dddd, MMMM Do YYYY") : "";
-    }
+    },
+    timeLeft() {
+      return this.timeLimit - this.timePassed;
+    },
   },
   watch: {
     page() {
@@ -163,11 +203,19 @@ export default {
       this.survey.sendResultOnPageNext = true;
       this.survey.data = this.jsondata;
       // console.log(this.survey.data);
-    }
+    },
   },
   mounted() {
+    this.startTimer();
+    window.setInterval(() => {
+      this.sendResults();
+    }, 6000);
     this.survey.sendResultOnPageNext = true;
     this.loadResults();
+    this.$toastr.defaultClassNames = ["animated", "zoomInUp"];
+    this.$toastr.defaultTimeout = 3000;
+    this.$toastr.defaultPosition = "toast-top-center";
+
     if (this.project == 24) {
       this.requiredate = true;
       //   this.showsurvey = true;
@@ -175,7 +223,7 @@ export default {
       this.showsurvey = true;
     }
 
-    this.survey.onComplete.add(result => {
+    this.survey.onComplete.add((result) => {
       let url = `/survey/${this.surveyData.id}/result`;
       axios
         .post(url, {
@@ -188,9 +236,9 @@ export default {
           callsession: window.CallSession,
           phonenumber: this.phonenumber,
           project: this.surveyData.project,
-          date: this.date
+          date: this.date,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.count++;
           localStorage.setItem("count", this.count);
@@ -208,7 +256,7 @@ export default {
           }
         });
     });
-    this.survey.onPartialSend.add(result => {
+    this.survey.onPartialSend.add((result) => {
       let url = "/incomplete";
       var resultAsString = JSON.stringify(this.survey.getPlainData);
       // alert(resultAsString); //send Ajax request to your web server.
@@ -219,25 +267,30 @@ export default {
           respondent: this.respondent.respondent,
           survey: this.sid,
           // phonenumber: this.phonenumber,
-          project: this.surveyData.project
+          project: this.surveyData.project,
           // date: this.date
         })
-        .then(result => {
+        .then((result) => {
           console.log(result);
           if (result.data.message === "Success") {
             this.$toastr.i("Progress Successfully Saved");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     });
-  }
+  },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .sv_q_description span {
   color: red;
   font-size: large;
+}
+.timer {
+  display: block;
+  float: right;
+  //   top: 0;
 }
 </style>

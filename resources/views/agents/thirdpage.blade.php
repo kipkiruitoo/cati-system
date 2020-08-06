@@ -99,20 +99,26 @@
 
 <div class="container">
     <div class="row">
-        <form action="{{route('agentthirdpage')}}" method="POST">
+        <div class="col col-md-6">
+              <form action="{{route('agentthirdpage')}}" method="POST">
             <input type="hidden" name="project" value="{{$project}}">
             @csrf
                     <input type="hidden" name="survey" value="{{$survey}}">
              <button class="btn btn-dark" type="submit"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
 
         </form>
-         @if (!session()->has('searched'))
-            <button type="button"  data-toggle="modal" data-target="#searchrespondent" class="btn btn-success"> <span><i class="fa fa-search" aria-hidden="true"></i></span> Search for Respondent</button>
+        </div>
+        <div class="col col-md-4 offset-md-4">
+            @if (!session()->has('searched'))
+            <button type="button"  data-toggle="modal" data-target="#searchrespondent" class="btn btn-success"> <span><i class="fa fa-search" aria-hidden="true"></i></span> Search for a Respondent</button>
         @else
 
         {{-- <button type="button" onclick="window.history.back()" class="btn btn-dark"><span><i class="fa fa-arrow-circle-left"></i></span>  Back</button> --}}
         <small>search is currently unavailable</small>
         @endif
+        </div>
+
+
           @if (session()->has('scheduled'))
         <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
         @endif
