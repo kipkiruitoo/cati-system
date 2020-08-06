@@ -99,8 +99,21 @@
 
 <div class="container">
     <div class="row">
-        <button class="btn btn-dark" onclick="location.reload()"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
-        @if (session()->has('scheduled'))
+        <form action="{{route('agentthirdpage')}}" method="POST">
+            <input type="hidden" name="project" value="{{$project}}">
+            @csrf
+                    <input type="hidden" name="survey" value="{{$survey}}">
+             <button class="btn btn-dark" type="submit"> <span><i class="fa fa-refresh" aria-hidden="true"></i></span> Get New Respondent</button>
+
+        </form>
+         @if (!session()->has('searched'))
+            <button type="button"  data-toggle="modal" data-target="#searchrespondent" class="btn btn-success"> <span><i class="fa fa-search" aria-hidden="true"></i></span> Search for Respondent</button>
+        @else
+
+        {{-- <button type="button" onclick="window.history.back()" class="btn btn-dark"><span><i class="fa fa-arrow-circle-left"></i></span>  Back</button> --}}
+        <small>search is currently unavailable</small>
+        @endif
+          @if (session()->has('scheduled'))
         <button class="btn btn-warning" data-toggle="modal" data-target="#reschedule">Reschedule Call</button>
         @endif
         @if (session()->has('newrecruit'))
@@ -289,6 +302,38 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="searchrespondent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search for a Respondent </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('agentthirdpage')}}" method="POST">
+                     @csrf
+                     <div class="modal-body">
+                    <div class="form-group">
+
+                    <input type="hidden" name="project" value="{{$project}}">
+                    <input type="hidden" name="survey" value="{{$survey}}">
+                    <input type="hidden" name="thirdpage" id="thirdpage">
+                        <!-- <input type="text" class="form-control"> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Search by Phone Number</label>
+                        <input type="tel" id="phone" placeholder="07xxxxxxx" class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark " name="search" value="Search  for Respondent"/>
+                    </div>
+                     </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="reschedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -326,6 +371,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="schedule" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

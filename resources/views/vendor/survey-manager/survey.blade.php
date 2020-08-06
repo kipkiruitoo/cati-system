@@ -32,7 +32,7 @@ $respondent = json_decode($respondent)
             </div>
         </div>
         <div class="row">
-            <h4>Pause Interview and Continue later</h4>
+            <h4>Schedule this Interview</h4>
         <form action="{{route('pauseinterview')}}" method="POST">
             @csrf
             <div class="form-group">

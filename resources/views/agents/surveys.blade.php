@@ -29,10 +29,35 @@
                         <!-- <input type="text" class="form-control"> -->
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-dark ">Next</button>
+                        <button type="submit" class="btn btn-dark ">Continue With New Respondent</button>
                     </div>
+
                 </form>
             </div>
+        </div>
+        <div class="col col-md-6">
+        <form action="{{route('agentthirdpage')}}" method="POST">
+                     @csrf
+                    <div class="form-group">
+
+                    <input type="hidden" name="project" value="{{$project}}">
+                        <select name="survey" class="form-control" id="">
+                            @foreach($surveys as $survey)
+                            <option value="{{$survey->slug}}">{{$survey->name}}</option>
+                            @endforeach
+                        </select>
+
+                        <!-- <input type="text" class="form-control"> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Search by Phone Number</label>
+                        <input type="tel" id="phone" placeholder="07xxxxxxx" class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark " name="search" value="Search"/>
+                    </div>
+            </form>
+
         </div>
     </div>
 </div>

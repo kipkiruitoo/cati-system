@@ -47,23 +47,40 @@ class AgentController extends Controller
     }
     public function thirdpage(Request $request)
     {
+        // dd($request);
+        if (isset($request->search)) {
 
-        $survey =  $request->survey;
-        // echo $request;
+            $request->session()->flash('searched', 'true');
+            // DB::enableQueryLog();
+            $survey =  $request->survey;
+            // echo $request;
 
-        $surv = Survey::where('slug', $survey)->first();
-        // echo $surv;
-        $daysbetweeninterviews = $surv->days_between_interview;
+            $surv = Survey::where('slug', $survey)->first();
+            // echo $surv;
+            $daysbetweeninterviews = $surv->days_between_interview;
 
-        // echo $daysbetweeninterviews;
+            // echo $daysbetweeninterviews;
 
-        $respondent = $this->fetchuser($request->project, $daysbetweeninterviews);
-        // echo $respondent;
-        if ($respondent == "norespondents") {
+            $respondent = Respondent::where('phone', 'like',  (int)$request->phone)->where('project', $request->project)->get();
+            if ($respondent->isEmpty()) {
+                $surveys = Survey::where('project', $request->project)->where('stage', '!=', 'draft')->get();
+
+
+
+                return redirect()->back()->with(['message' => " Respondents marching that phone number not found in this project. Please check and try again", 'alert-type' => 'error', 'surveys' => $surveys, 'project' => $request->project]);
+            }
+            if (!($respondent[0]->interviews->isEmpty())) {
+                // $respondent[0]->interviews;
+
+                $surveys = Survey::where('project', $request->project)->where('stage', '!=', 'draft')->get();
+                return redirect()->back()->with(['message' => "Respondent has already been interviewed for this project", 'alert-type' => 'error', 'surveys' => $surveys, 'project' => $request->project]);
+            }
+
+
             // echo $respondent;
-            return redirect()->back()->with(['message' => "No Respondents have been assigned to the Project Yet. Please ask the Project Manager to do so.", 'alert-type' => 'error']);
-        } else {
 
+            // dd(DB::getQueryLog());
+            // dd($respondent);
             // echo $respondent;
 
             // echo $lid;
@@ -86,6 +103,46 @@ class AgentController extends Controller
             // echo $respondent;
 
             return view('agents.thirdpage', compact('survey', 'respondent', 'project', 'feedback', 'feedbacks', 'lastinterviewdate'));
+        } else {
+            $survey =  $request->survey;
+            // echo $request;
+
+            $surv = Survey::where('slug', $survey)->first();
+            // echo $surv;
+            $daysbetweeninterviews = $surv->days_between_interview;
+
+            // echo $daysbetweeninterviews;
+
+            $respondent = $this->fetchuser($request->project, $daysbetweeninterviews);
+            // echo $respondent;
+            if ($respondent == "norespondents") {
+                // echo $respondent;
+                return redirect()->back()->with(['message' => "No Respondents have been assigned to the Project Yet. Please ask the Project Manager to do so.", 'alert-type' => 'error']);
+            } else {
+
+                // echo $respondent;
+
+                // echo $lid;
+                // echo  $lid->diffInDays($todaysdate);
+
+                // echo $todaysdate;
+
+                $feedbacks = PanelFeedback::all();
+                $project = $request->project;
+
+                $feedback = Feedback::where('respondent_id', $respondent[0]->id)->latest()->take(5)->get();
+
+                $lastinterviewdate = Interview::where('respondent', $respondent[0]->id)->latest()->first();
+                if ($lastinterviewdate == null) {
+                    $lastinterviewdate =  'no interview yet';
+                } else {
+                    $lastinterviewdate = $lastinterviewdate->date;
+                }
+                // var_dump($lastinterviewdate);
+                // echo $respondent;
+
+                return view('agents.thirdpage', compact('survey', 'respondent', 'project', 'feedback', 'feedbacks', 'lastinterviewdate'));
+            }
         }
     }
 
@@ -477,6 +534,7 @@ class AgentController extends Controller
 
 
 
-        return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " . $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
+        return redirect()->route('agentchoseproject', $project)->with(['message' => "Call Successfully scheduled at " .
+            $request->time, 'alert-type()' => 'error', 'surveys' => $surveys, 'project' => $project]);
     }
 }
