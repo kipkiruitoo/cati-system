@@ -342,8 +342,8 @@ class AgentController extends Controller
     {
 
         // Set your app credentials
-        $username = "TIFACommodityPrices";
-        $apiKey   = "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75";
+        $username = "lexeme";
+        $apiKey   = "18a0ab0cd1e6a6d16cd38ed464b7839a2ffef87431077a60c1b573ef644d0ca5";
 
         // Initialize the SDK
         $AT       = new AfricasTalking($username, $apiKey);
@@ -352,7 +352,8 @@ class AgentController extends Controller
         $voice    = $AT->voice();
 
         // Set your Africa's Talking phone number in international format
-        $from     = "+254711082144";
+        $from     =
+            "+254711082033";
 
         // Set the numbers you want to call to in a comma-separated list
         $to       =  "+254" . Auth::user()->phone;
