@@ -65,6 +65,8 @@ export default {
   position: relative;
   float: right;
   width: 70px;
+  box-shadow: 3px 3px 4px #999;
+  border-radius: 50%;
   height: 70px;
 
   &__svg {

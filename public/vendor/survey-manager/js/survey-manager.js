@@ -4777,7 +4777,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".base-timer[data-v-3fded0cd] {\n  position: relative;\n  float: right;\n  width: 70px;\n  height: 70px;\n}\n.base-timer__svg[data-v-3fded0cd] {\n  transform: scaleX(-1);\n}\n.base-timer__circle[data-v-3fded0cd] {\n  fill: none;\n  stroke: none;\n}\n.base-timer__path-elapsed[data-v-3fded0cd] {\n  stroke-width: 7px;\n  stroke: #6be9c3;\n}\n.base-timer__path-remaining[data-v-3fded0cd] {\n  stroke-width: 7px;\n  stroke-linecap: round;\n  transform: rotate(90deg);\n  transform-origin: center;\n  transition: 1s linear all;\n  fill-rule: nonzero;\n  stroke: currentColor;\n}\n.base-timer__path-remaining.green[data-v-3fded0cd] {\n  color: #41b883;\n}\n.base-timer__path-remaining.orange[data-v-3fded0cd] {\n  color: orange;\n}\n.base-timer__path-remaining.red[data-v-3fded0cd] {\n  color: red;\n}\n.base-timer__label[data-v-3fded0cd] {\n  position: absolute;\n  width: 70px;\n  height: 70px;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 23px;\n}", ""]);
+exports.push([module.i, ".base-timer[data-v-3fded0cd] {\n  position: relative;\n  float: right;\n  width: 70px;\n  box-shadow: 3px 3px 4px #999;\n  border-radius: 50%;\n  height: 70px;\n}\n.base-timer__svg[data-v-3fded0cd] {\n  transform: scaleX(-1);\n}\n.base-timer__circle[data-v-3fded0cd] {\n  fill: none;\n  stroke: none;\n}\n.base-timer__path-elapsed[data-v-3fded0cd] {\n  stroke-width: 7px;\n  stroke: #6be9c3;\n}\n.base-timer__path-remaining[data-v-3fded0cd] {\n  stroke-width: 7px;\n  stroke-linecap: round;\n  transform: rotate(90deg);\n  transform-origin: center;\n  transition: 1s linear all;\n  fill-rule: nonzero;\n  stroke: currentColor;\n}\n.base-timer__path-remaining.green[data-v-3fded0cd] {\n  color: #41b883;\n}\n.base-timer__path-remaining.orange[data-v-3fded0cd] {\n  color: orange;\n}\n.base-timer__path-remaining.red[data-v-3fded0cd] {\n  color: red;\n}\n.base-timer__label[data-v-3fded0cd] {\n  position: absolute;\n  width: 70px;\n  height: 70px;\n  top: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 23px;\n}", ""]);
 
 // exports
 
@@ -4796,7 +4796,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".sv_q_description span[data-v-719d1924] {\n  color: red;\n  font-size: large;\n}\n.timer[data-v-719d1924] {\n  display: block;\n  float: right;\n}", ""]);
+exports.push([module.i, ".sv_q_description span[data-v-719d1924] {\n  color: red;\n  font-size: large;\n}\n.timer[data-v-719d1924] {\n  position: fixed;\n  width: 80px;\n  height: 80px;\n  bottom: 40px;\n  right: 40px;\n}", ""]);
 
 // exports
 
@@ -141289,21 +141289,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        { staticClass: "timer" },
-        [
-          _c("BaseTimer", {
-            attrs: {
-              "time-left": _vm.timeLeft,
-              "time-passed": _vm.timePassed,
-              "time-limit": _vm.timeLimit
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
       _vm.requiredate
         ? _c(
             "v-menu",
@@ -141401,7 +141386,22 @@ var render = function() {
           }
         ],
         attrs: { survey: _vm.survey }
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "timer" },
+        [
+          _c("BaseTimer", {
+            attrs: {
+              "time-left": _vm.timeLeft,
+              "time-passed": _vm.timePassed,
+              "time-limit": _vm.timeLimit
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )

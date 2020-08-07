@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="timer">
-      <BaseTimer :time-left="timeLeft" :time-passed="timePassed" :time-limit="timeLimit" />
-    </div>
     <v-menu v-if="requiredate">
       <v-text-field
         slot="activator"
@@ -32,6 +29,9 @@
     </div>
 
     <survey v-show="showsurvey" :survey="survey"></survey>
+    <div class="timer">
+      <BaseTimer :time-left="timeLeft" :time-passed="timePassed" :time-limit="timeLimit" />
+    </div>
   </div>
 </template>
 
@@ -283,14 +283,21 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .sv_q_description span {
   color: red;
   font-size: large;
 }
 .timer {
-  display: block;
-  float: right;
-  //   top: 0;
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  bottom: 40px;
+  right: 40px;
+  //   background-color: #0c9;
+  //   color: #fff;
+  //   border-radius: 50px;
+  //   text-align: center;
+  //   box-shadow: 2px 2px 3px #999;
 }
 </style>
