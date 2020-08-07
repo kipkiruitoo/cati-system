@@ -336,7 +336,7 @@ class ProjectController extends Controller
         $username = "lexeme";
         $apiKey   = "18a0ab0cd1e6a6d16cd38ed464b7839a2ffef87431077a60c1b573ef644d0ca5";
 
-        $endpoint = "https://api.africastalking.com/version1/user?username=TIFACommodityPrices";
+        $endpoint = "https://api.africastalking.com/version1/user?username=" . $username;
         $client = new \GuzzleHttp\Client();
 
         $headers = [
