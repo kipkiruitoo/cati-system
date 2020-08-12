@@ -19,8 +19,8 @@ class CallController extends Controller
 
     public function capability(Request $request)
     {
-        $username = "TIFACommodityPrices";
-        $apiKey   = "275afd71fe6ed4c404771065d8b3eab9ed4dde0307c79765ba83db28a92c9c75";
+        $username = "lexeme";
+        $apiKey   = "18a0ab0cd1e6a6d16cd38ed464b7839a2ffef87431077a60c1b573ef644d0ca5";
         // dd(Auth::user());
         // $token = null;
         $url = 'https://webrtc.africastalking.com/capability-token/request';
