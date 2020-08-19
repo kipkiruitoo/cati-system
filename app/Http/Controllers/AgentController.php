@@ -262,6 +262,8 @@ class AgentController extends Controller
             request()->session()->flash('scheduled', 'true');
             return  $spedules->random(1);
         }
+
+        dd($spedules)
         // DB::enableQueryLog();
 
         // $respondents =  DB::select(DB::raw('select * from `respondents` where `project` = ? and exists (select * from `incomplete` where `respondents`.`id` = `incomplete`.`respondent` and `incomplete`.`agent` = "' . Auth::user()->id . '" ) and not exists (select * from `spedules` where `respondents`.`id` = `spedules`.`respondent_id`'));
