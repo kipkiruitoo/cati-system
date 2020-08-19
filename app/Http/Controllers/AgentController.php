@@ -251,19 +251,7 @@ class AgentController extends Controller
 
         // dd($date);
         // $starttime = $now->subMinutes(30);
-
-
-
-        $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
-
         // dd($spedules);
-
-        if (!$spedules->isEmpty()) {
-            request()->session()->flash('scheduled', 'true');
-            return  $spedules->random(1);
-        }
-
-        dd($spedules);
         // DB::enableQueryLog();
 
         // $respondents =  DB::select(DB::raw('select * from `respondents` where `project` = ? and exists (select * from `incomplete` where `respondents`.`id` = `incomplete`.`respondent` and `incomplete`.`agent` = "' . Auth::user()->id . '" ) and not exists (select * from `spedules` where `respondents`.`id` = `spedules`.`respondent_id`'));
@@ -283,6 +271,16 @@ class AgentController extends Controller
         if ($respondents->isEmpty()) {
             return "norespondents";
         } else {
+
+            $spedules = Spedule::where('date', $date)->where('schedule', '>', Carbon::now('+3:00')->subMinutes(15)->format('H:i:s'))->where('schedule', '<', Carbon::now('+3:00')->addMinutes(40)->format('H:i:s'))->where('user_id', Auth::user()->id)->get()->pluck('respondent')->where('project', $project)->where('status', 'Active');
+
+            // dd($spedules);
+
+            if (!$spedules->isEmpty()) {
+                request()->session()->flash('scheduled', 'true');
+                return  $spedules->random(1);
+            }
+
             $respondent = Respondent::where('project', $project)->where('status', 'Active')->get()->random(1);
             $lid = Interview::where('respondent', $respondent[0]->id)->latest()->first();
             $todaysdate = Carbon::now();
